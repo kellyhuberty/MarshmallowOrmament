@@ -1,0 +1,420 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		C74389081963D134000D50AF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C74389071963D134000D50AF /* Foundation.framework */; };
+		C743890D1963D134000D50AF /* MarshmallowOrmament.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = C743890C1963D134000D50AF /* MarshmallowOrmament.h */; };
+		C743890F1963D134000D50AF /* MarshmallowOrmament.m in Sources */ = {isa = PBXBuildFile; fileRef = C743890E1963D134000D50AF /* MarshmallowOrmament.m */; };
+		C74389161963D134000D50AF /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C74389151963D134000D50AF /* XCTest.framework */; };
+		C74389171963D134000D50AF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C74389071963D134000D50AF /* Foundation.framework */; };
+		C74389191963D134000D50AF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C74389181963D134000D50AF /* UIKit.framework */; };
+		C743891C1963D134000D50AF /* libMarshmallowOrmament.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C74389041963D134000D50AF /* libMarshmallowOrmament.a */; };
+		C74389221963D134000D50AF /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C74389201963D134000D50AF /* InfoPlist.strings */; };
+		C74389241963D134000D50AF /* MarshmallowOrmamentTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C74389231963D134000D50AF /* MarshmallowOrmamentTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		C743891A1963D134000D50AF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C74388FC1963D134000D50AF /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C74389031963D134000D50AF;
+			remoteInfo = MarshmallowOrmament;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		C74389021963D134000D50AF /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+				C743890D1963D134000D50AF /* MarshmallowOrmament.h in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		C74389041963D134000D50AF /* libMarshmallowOrmament.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libMarshmallowOrmament.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		C74389071963D134000D50AF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		C743890B1963D134000D50AF /* MarshmallowOrmament-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MarshmallowOrmament-Prefix.pch"; sourceTree = "<group>"; };
+		C743890C1963D134000D50AF /* MarshmallowOrmament.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MarshmallowOrmament.h; sourceTree = "<group>"; };
+		C743890E1963D134000D50AF /* MarshmallowOrmament.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MarshmallowOrmament.m; sourceTree = "<group>"; };
+		C74389141963D134000D50AF /* MarshmallowOrmamentTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MarshmallowOrmamentTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C74389151963D134000D50AF /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		C74389181963D134000D50AF /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
+		C743891F1963D134000D50AF /* MarshmallowOrmamentTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MarshmallowOrmamentTests-Info.plist"; sourceTree = "<group>"; };
+		C74389211963D134000D50AF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		C74389231963D134000D50AF /* MarshmallowOrmamentTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MarshmallowOrmamentTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		C74389011963D134000D50AF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C74389081963D134000D50AF /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C74389111963D134000D50AF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C743891C1963D134000D50AF /* libMarshmallowOrmament.a in Frameworks */,
+				C74389161963D134000D50AF /* XCTest.framework in Frameworks */,
+				C74389191963D134000D50AF /* UIKit.framework in Frameworks */,
+				C74389171963D134000D50AF /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		C74388FB1963D134000D50AF = {
+			isa = PBXGroup;
+			children = (
+				C74389091963D134000D50AF /* MarshmallowOrmament */,
+				C743891D1963D134000D50AF /* MarshmallowOrmamentTests */,
+				C74389061963D134000D50AF /* Frameworks */,
+				C74389051963D134000D50AF /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		C74389051963D134000D50AF /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C74389041963D134000D50AF /* libMarshmallowOrmament.a */,
+				C74389141963D134000D50AF /* MarshmallowOrmamentTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C74389061963D134000D50AF /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C74389071963D134000D50AF /* Foundation.framework */,
+				C74389151963D134000D50AF /* XCTest.framework */,
+				C74389181963D134000D50AF /* UIKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C74389091963D134000D50AF /* MarshmallowOrmament */ = {
+			isa = PBXGroup;
+			children = (
+				C743890C1963D134000D50AF /* MarshmallowOrmament.h */,
+				C743890E1963D134000D50AF /* MarshmallowOrmament.m */,
+				C743890A1963D134000D50AF /* Supporting Files */,
+			);
+			path = MarshmallowOrmament;
+			sourceTree = "<group>";
+		};
+		C743890A1963D134000D50AF /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				C743890B1963D134000D50AF /* MarshmallowOrmament-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		C743891D1963D134000D50AF /* MarshmallowOrmamentTests */ = {
+			isa = PBXGroup;
+			children = (
+				C74389231963D134000D50AF /* MarshmallowOrmamentTests.m */,
+				C743891E1963D134000D50AF /* Supporting Files */,
+			);
+			path = MarshmallowOrmamentTests;
+			sourceTree = "<group>";
+		};
+		C743891E1963D134000D50AF /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				C743891F1963D134000D50AF /* MarshmallowOrmamentTests-Info.plist */,
+				C74389201963D134000D50AF /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		C74389031963D134000D50AF /* MarshmallowOrmament */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C74389271963D134000D50AF /* Build configuration list for PBXNativeTarget "MarshmallowOrmament" */;
+			buildPhases = (
+				C74389001963D134000D50AF /* Sources */,
+				C74389011963D134000D50AF /* Frameworks */,
+				C74389021963D134000D50AF /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MarshmallowOrmament;
+			productName = MarshmallowOrmament;
+			productReference = C74389041963D134000D50AF /* libMarshmallowOrmament.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		C74389131963D134000D50AF /* MarshmallowOrmamentTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C743892A1963D134000D50AF /* Build configuration list for PBXNativeTarget "MarshmallowOrmamentTests" */;
+			buildPhases = (
+				C74389101963D134000D50AF /* Sources */,
+				C74389111963D134000D50AF /* Frameworks */,
+				C74389121963D134000D50AF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C743891B1963D134000D50AF /* PBXTargetDependency */,
+			);
+			name = MarshmallowOrmamentTests;
+			productName = MarshmallowOrmamentTests;
+			productReference = C74389141963D134000D50AF /* MarshmallowOrmamentTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		C74388FC1963D134000D50AF /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0510;
+				ORGANIZATIONNAME = "Kelly Huberty";
+			};
+			buildConfigurationList = C74388FF1963D134000D50AF /* Build configuration list for PBXProject "MarshmallowOrmament" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = C74388FB1963D134000D50AF;
+			productRefGroup = C74389051963D134000D50AF /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				C74389031963D134000D50AF /* MarshmallowOrmament */,
+				C74389131963D134000D50AF /* MarshmallowOrmamentTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		C74389121963D134000D50AF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C74389221963D134000D50AF /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		C74389001963D134000D50AF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C743890F1963D134000D50AF /* MarshmallowOrmament.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C74389101963D134000D50AF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C74389241963D134000D50AF /* MarshmallowOrmamentTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		C743891B1963D134000D50AF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C74389031963D134000D50AF /* MarshmallowOrmament */;
+			targetProxy = C743891A1963D134000D50AF /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		C74389201963D134000D50AF /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C74389211963D134000D50AF /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		C74389251963D134000D50AF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		C74389261963D134000D50AF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		C74389281963D134000D50AF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DSTROOT = /tmp/MarshmallowOrmament.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MarshmallowOrmament/MarshmallowOrmament-Prefix.pch";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		C74389291963D134000D50AF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DSTROOT = /tmp/MarshmallowOrmament.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MarshmallowOrmament/MarshmallowOrmament-Prefix.pch";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		C743892B1963D134000D50AF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MarshmallowOrmament/MarshmallowOrmament-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "MarshmallowOrmamentTests/MarshmallowOrmamentTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		C743892C1963D134000D50AF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MarshmallowOrmament/MarshmallowOrmament-Prefix.pch";
+				INFOPLIST_FILE = "MarshmallowOrmamentTests/MarshmallowOrmamentTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		C74388FF1963D134000D50AF /* Build configuration list for PBXProject "MarshmallowOrmament" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C74389251963D134000D50AF /* Debug */,
+				C74389261963D134000D50AF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C74389271963D134000D50AF /* Build configuration list for PBXNativeTarget "MarshmallowOrmament" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C74389281963D134000D50AF /* Debug */,
+				C74389291963D134000D50AF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		C743892A1963D134000D50AF /* Build configuration list for PBXNativeTarget "MarshmallowOrmamentTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C743892B1963D134000D50AF /* Debug */,
+				C743892C1963D134000D50AF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = C74388FC1963D134000D50AF /* Project object */;
+}
