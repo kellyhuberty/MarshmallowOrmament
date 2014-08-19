@@ -7,8 +7,14 @@
 //
 
 #import <XCTest/XCTest.h>
-
-@interface MarshmallowOrmamentTests : XCTestCase
+#import "MMSQLiteRecord.h"
+@interface MarshmallowOrmamentTests : XCTestCase{
+    
+    MMSQLiteRecord * _record;
+    
+    
+    
+}
 
 @end
 
@@ -17,6 +23,8 @@
 - (void)setUp
 {
     [super setUp];
+    
+    _record  = [[MMSQLiteRecord alloc] init];
     // Put setup code here. This method is called before the invocation of each test method in the class.
 }
 
@@ -28,7 +36,18 @@
 
 - (void)testExample
 {
-    XCTFail(@"No implementation for \"%s\"", __PRETTY_FUNCTION__);
+    
+    NSLog(@"%@", [_record buildInsertQuery]);
+    
+    //XCTFail(@"No implementation for \"%s\"", __PRETTY_FUNCTION__);
+}
+
+- (void)testExample2
+{
+    
+    NSLog(@"%@", [_record buildUpdateQuery]);
+    
+    //XCTFail(@"No implementation for \"%s\"", __PRETTY_FUNCTION__);
 }
 
 @end

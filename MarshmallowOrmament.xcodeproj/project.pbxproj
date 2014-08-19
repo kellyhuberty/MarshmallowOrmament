@@ -7,19 +7,52 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C731719D19873350005F27E6 /* MMConditional.m in Sources */ = {isa = PBXBuildFile; fileRef = C731719C19873350005F27E6 /* MMConditional.m */; };
+		C73171A01987348D005F27E6 /* MMCondition.m in Sources */ = {isa = PBXBuildFile; fileRef = C731719F1987348D005F27E6 /* MMCondition.m */; };
+		C73171A2198899D2005F27E6 /* MMConditionalTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C73171A1198899D2005F27E6 /* MMConditionalTests.m */; };
+		C73171A51991DEE2005F27E6 /* TSTNotebook.m in Sources */ = {isa = PBXBuildFile; fileRef = C73171A41991DEE2005F27E6 /* TSTNotebook.m */; };
+		C73171A81992B6CB005F27E6 /* MMRelationshipTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C73171A71992B6CB005F27E6 /* MMRelationshipTests.m */; };
+		C733B46B19782D1700116BBC /* MMRecordSet.m in Sources */ = {isa = PBXBuildFile; fileRef = C733B46A19782D1700116BBC /* MMRecordSet.m */; };
+		C733B46E197830B100116BBC /* MMRelationshipSet.m in Sources */ = {isa = PBXBuildFile; fileRef = C733B46D197830B100116BBC /* MMRelationshipSet.m */; };
+		C733B47119797D6500116BBC /* MMRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = C733B47019797D6500116BBC /* MMRequest.m */; };
+		C733B4741979830300116BBC /* MMSQLiteRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = C733B4731979830300116BBC /* MMSQLiteRequest.m */; };
 		C74389081963D134000D50AF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C74389071963D134000D50AF /* Foundation.framework */; };
 		C743890D1963D134000D50AF /* MarshmallowOrmament.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = C743890C1963D134000D50AF /* MarshmallowOrmament.h */; };
 		C743890F1963D134000D50AF /* MarshmallowOrmament.m in Sources */ = {isa = PBXBuildFile; fileRef = C743890E1963D134000D50AF /* MarshmallowOrmament.m */; };
-		C74389161963D134000D50AF /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C74389151963D134000D50AF /* XCTest.framework */; };
-		C74389171963D134000D50AF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C74389071963D134000D50AF /* Foundation.framework */; };
-		C74389191963D134000D50AF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C74389181963D134000D50AF /* UIKit.framework */; };
-		C743891C1963D134000D50AF /* libMarshmallowOrmament.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C74389041963D134000D50AF /* libMarshmallowOrmament.a */; };
-		C74389221963D134000D50AF /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C74389201963D134000D50AF /* InfoPlist.strings */; };
-		C74389241963D134000D50AF /* MarshmallowOrmamentTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C74389231963D134000D50AF /* MarshmallowOrmamentTests.m */; };
+		C743892F1963D1A1000D50AF /* MMSQLiteRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = C743892E1963D1A1000D50AF /* MMSQLiteRecord.m */; };
+		C74389351963E458000D50AF /* MMRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = C74389341963E458000D50AF /* MMRecord.m */; };
+		C744E38C196474DC006A1BA5 /* MMORMUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = C744E38B196474DC006A1BA5 /* MMORMUtility.m */; };
+		C765563E198419BE00F7DFDD /* MMRequestTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C765563D198419BE00F7DFDD /* MMRequestTests.m */; };
+		C774FA3B1976F40300CDBCB8 /* MMRelationship.m in Sources */ = {isa = PBXBuildFile; fileRef = C774FA3A1976F40300CDBCB8 /* MMRelationship.m */; };
+		C787917519812F7800C31EA7 /* MMRelation.m in Sources */ = {isa = PBXBuildFile; fileRef = C787917419812F7800C31EA7 /* MMRelation.m */; };
+		C789AFA0196EC2FD008BBA72 /* MMResultsSet.m in Sources */ = {isa = PBXBuildFile; fileRef = C789AF9F196EC2FD008BBA72 /* MMResultsSet.m */; };
+		C7A0C4F3196598BF009EB4E1 /* MMEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = C7A0C4F2196598BF009EB4E1 /* MMEntity.m */; };
+		C7A345FC1965A78A00EC08BB /* MMSQLiteSchema.m in Sources */ = {isa = PBXBuildFile; fileRef = C7A345FB1965A78A00EC08BB /* MMSQLiteSchema.m */; };
+		C7A345FF1965A7E100EC08BB /* MMSchema.m in Sources */ = {isa = PBXBuildFile; fileRef = C7A345FE1965A7E100EC08BB /* MMSchema.m */; };
+		C7A346071965B46500EC08BB /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C74389151963D134000D50AF /* XCTest.framework */; };
+		C7A346081965B46500EC08BB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C74389071963D134000D50AF /* Foundation.framework */; };
+		C7A346091965B46500EC08BB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C74389181963D134000D50AF /* UIKit.framework */; };
+		C7A3460F1965B46500EC08BB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C7A3460D1965B46500EC08BB /* InfoPlist.strings */; };
+		C7A346111965B46500EC08BB /* OrmamentTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C7A346101965B46500EC08BB /* OrmamentTests.m */; };
+		C7A346181965B4B000EC08BB /* MMSchemaTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C7A0C4EC1965984C009EB4E1 /* MMSchemaTests.m */; };
+		C7A3461E1965B87000EC08BB /* libMarshmallowOrmament.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C74389041963D134000D50AF /* libMarshmallowOrmament.a */; };
+		C7A3461F1965B9E900EC08BB /* noteit__0_1_0.plist in Resources */ = {isa = PBXBuildFile; fileRef = C7A0C4F41965992C009EB4E1 /* noteit__0_1_0.plist */; };
+		C7A346221965C1D900EC08BB /* TSTNote.m in Sources */ = {isa = PBXBuildFile; fileRef = C7A346211965C1D900EC08BB /* TSTNote.m */; };
+		C7A346251965C20C00EC08BB /* TSTItem.m in Sources */ = {isa = PBXBuildFile; fileRef = C7A346241965C20C00EC08BB /* TSTItem.m */; };
+		C7A346281965C64F00EC08BB /* MMSQLiteStore.m in Sources */ = {isa = PBXBuildFile; fileRef = C7A346271965C64F00EC08BB /* MMSQLiteStore.m */; };
+		C7A3462B1965C66100EC08BB /* MMStore.m in Sources */ = {isa = PBXBuildFile; fileRef = C7A3462A1965C66100EC08BB /* MMStore.m */; };
+		C7A3462D1965F09E00EC08BB /* MMORMBootstrapTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C7A3462C1965F09E00EC08BB /* MMORMBootstrapTests.m */; };
+		C7A346301965F38400EC08BB /* MMOrmamentBootstrap.m in Sources */ = {isa = PBXBuildFile; fileRef = C7A3462F1965F38400EC08BB /* MMOrmamentBootstrap.m */; };
+		C7A346331966E9B100EC08BB /* MMSchemaMigration.m in Sources */ = {isa = PBXBuildFile; fileRef = C7A346321966E9B100EC08BB /* MMSchemaMigration.m */; };
+		C7A3463D196B522D00EC08BB /* MMSqliteSchemaMigration.m in Sources */ = {isa = PBXBuildFile; fileRef = C7A3463C196B522D00EC08BB /* MMSqliteSchemaMigration.m */; };
+		C7B9C656199DA6FF0036F89B /* MMAutoRelatedEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = C7B9C655199DA6FF0036F89B /* MMAutoRelatedEntity.m */; };
+		C7BEB0F2196C8C4900575D45 /* TSTMigration1.m in Sources */ = {isa = PBXBuildFile; fileRef = C7BEB0F1196C8C4900575D45 /* TSTMigration1.m */; };
+		C7F2145F196CF05A00002371 /* MMRecordTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C7F2145E196CF05A00002371 /* MMRecordTests.m */; };
+		F66B7131FB1946A18756E921 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E5A1237B9E264435AAC8ECB3 /* libPods.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		C743891A1963D134000D50AF /* PBXContainerItemProxy */ = {
+		C7A3461C1965B73600EC08BB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = C74388FC1963D134000D50AF /* Project object */;
 			proxyType = 1;
@@ -42,17 +75,84 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		7F13C8100F6C414EA065BE33 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
+		C731719B19873350005F27E6 /* MMConditional.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMConditional.h; sourceTree = "<group>"; };
+		C731719C19873350005F27E6 /* MMConditional.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMConditional.m; sourceTree = "<group>"; };
+		C731719E1987348D005F27E6 /* MMCondition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMCondition.h; sourceTree = "<group>"; };
+		C731719F1987348D005F27E6 /* MMCondition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMCondition.m; sourceTree = "<group>"; };
+		C73171A1198899D2005F27E6 /* MMConditionalTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MMConditionalTests.m; path = OrmamentTests/MMConditionalTests.m; sourceTree = SOURCE_ROOT; };
+		C73171A31991DEE2005F27E6 /* TSTNotebook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSTNotebook.h; sourceTree = "<group>"; };
+		C73171A41991DEE2005F27E6 /* TSTNotebook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSTNotebook.m; sourceTree = "<group>"; };
+		C73171A71992B6CB005F27E6 /* MMRelationshipTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMRelationshipTests.m; sourceTree = "<group>"; };
+		C733B46919782D1700116BBC /* MMRecordSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMRecordSet.h; sourceTree = "<group>"; };
+		C733B46A19782D1700116BBC /* MMRecordSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMRecordSet.m; sourceTree = "<group>"; };
+		C733B46C197830B100116BBC /* MMRelationshipSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MMRelationshipSet.h; path = MarshmallowOrmament/MMRelationshipSet.h; sourceTree = "<group>"; };
+		C733B46D197830B100116BBC /* MMRelationshipSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MMRelationshipSet.m; path = MarshmallowOrmament/MMRelationshipSet.m; sourceTree = "<group>"; };
+		C733B46F19797D6500116BBC /* MMRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMRequest.h; sourceTree = "<group>"; };
+		C733B47019797D6500116BBC /* MMRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMRequest.m; sourceTree = "<group>"; };
+		C733B4721979830300116BBC /* MMSQLiteRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MMSQLiteRequest.h; path = MarshmallowOrmament/MMSQLiteRequest.h; sourceTree = "<group>"; };
+		C733B4731979830300116BBC /* MMSQLiteRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MMSQLiteRequest.m; path = MarshmallowOrmament/MMSQLiteRequest.m; sourceTree = "<group>"; };
 		C74389041963D134000D50AF /* libMarshmallowOrmament.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libMarshmallowOrmament.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		C74389071963D134000D50AF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		C743890B1963D134000D50AF /* MarshmallowOrmament-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MarshmallowOrmament-Prefix.pch"; sourceTree = "<group>"; };
 		C743890C1963D134000D50AF /* MarshmallowOrmament.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MarshmallowOrmament.h; sourceTree = "<group>"; };
 		C743890E1963D134000D50AF /* MarshmallowOrmament.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MarshmallowOrmament.m; sourceTree = "<group>"; };
-		C74389141963D134000D50AF /* MarshmallowOrmamentTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MarshmallowOrmamentTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C74389151963D134000D50AF /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		C74389181963D134000D50AF /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		C743891F1963D134000D50AF /* MarshmallowOrmamentTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MarshmallowOrmamentTests-Info.plist"; sourceTree = "<group>"; };
 		C74389211963D134000D50AF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		C74389231963D134000D50AF /* MarshmallowOrmamentTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MarshmallowOrmamentTests.m; sourceTree = "<group>"; };
+		C743892D1963D1A1000D50AF /* MMSQLiteRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMSQLiteRecord.h; sourceTree = "<group>"; };
+		C743892E1963D1A1000D50AF /* MMSQLiteRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMSQLiteRecord.m; sourceTree = "<group>"; };
+		C74389311963E0C0000D50AF /* libPods.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPods.a; path = "Pods/build/Debug-iphoneos/libPods.a"; sourceTree = "<group>"; };
+		C74389331963E458000D50AF /* MMRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMRecord.h; sourceTree = "<group>"; };
+		C74389341963E458000D50AF /* MMRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMRecord.m; sourceTree = "<group>"; };
+		C744E38A196474DC006A1BA5 /* MMORMUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMORMUtility.h; sourceTree = "<group>"; };
+		C744E38B196474DC006A1BA5 /* MMORMUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMORMUtility.m; sourceTree = "<group>"; };
+		C765563D198419BE00F7DFDD /* MMRequestTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMRequestTests.m; sourceTree = "<group>"; };
+		C774FA391976F40300CDBCB8 /* MMRelationship.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMRelationship.h; sourceTree = "<group>"; };
+		C774FA3A1976F40300CDBCB8 /* MMRelationship.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMRelationship.m; sourceTree = "<group>"; };
+		C787917319812F7800C31EA7 /* MMRelation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMRelation.h; sourceTree = "<group>"; };
+		C787917419812F7800C31EA7 /* MMRelation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMRelation.m; sourceTree = "<group>"; };
+		C789AF9E196EC2FD008BBA72 /* MMResultsSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMResultsSet.h; sourceTree = "<group>"; };
+		C789AF9F196EC2FD008BBA72 /* MMResultsSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMResultsSet.m; sourceTree = "<group>"; };
+		C7A0C4EC1965984C009EB4E1 /* MMSchemaTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MMSchemaTests.m; path = ../MarshmallowOrmamentTests/MMSchemaTests.m; sourceTree = "<group>"; };
+		C7A0C4F1196598BF009EB4E1 /* MMEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMEntity.h; sourceTree = "<group>"; };
+		C7A0C4F2196598BF009EB4E1 /* MMEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMEntity.m; sourceTree = "<group>"; };
+		C7A0C4F41965992C009EB4E1 /* noteit__0_1_0.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = noteit__0_1_0.plist; sourceTree = "<group>"; };
+		C7A345FA1965A78A00EC08BB /* MMSQLiteSchema.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMSQLiteSchema.h; sourceTree = "<group>"; };
+		C7A345FB1965A78A00EC08BB /* MMSQLiteSchema.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMSQLiteSchema.m; sourceTree = "<group>"; };
+		C7A345FD1965A7E100EC08BB /* MMSchema.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMSchema.h; sourceTree = "<group>"; };
+		C7A345FE1965A7E100EC08BB /* MMSchema.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMSchema.m; sourceTree = "<group>"; };
+		C7A346001965B13100EC08BB /* libPods-FMDB.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-FMDB.a"; path = "Pods/build/Debug-iphoneos/libPods-FMDB.a"; sourceTree = "<group>"; };
+		C7A346061965B46500EC08BB /* OrmamentTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OrmamentTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C7A3460C1965B46500EC08BB /* OrmamentTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "OrmamentTests-Info.plist"; sourceTree = "<group>"; };
+		C7A3460E1965B46500EC08BB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		C7A346101965B46500EC08BB /* OrmamentTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OrmamentTests.m; sourceTree = "<group>"; };
+		C7A346121965B46500EC08BB /* OrmamentTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "OrmamentTests-Prefix.pch"; sourceTree = "<group>"; };
+		C7A346191965B4FB00EC08BB /* libPods.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPods.a; path = "Pods/build/Debug-iphoneos/libPods.a"; sourceTree = "<group>"; };
+		C7A346201965C1D900EC08BB /* TSTNote.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSTNote.h; sourceTree = "<group>"; };
+		C7A346211965C1D900EC08BB /* TSTNote.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSTNote.m; sourceTree = "<group>"; };
+		C7A346231965C20C00EC08BB /* TSTItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSTItem.h; sourceTree = "<group>"; };
+		C7A346241965C20C00EC08BB /* TSTItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSTItem.m; sourceTree = "<group>"; };
+		C7A346261965C64F00EC08BB /* MMSQLiteStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMSQLiteStore.h; sourceTree = "<group>"; };
+		C7A346271965C64F00EC08BB /* MMSQLiteStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMSQLiteStore.m; sourceTree = "<group>"; };
+		C7A346291965C66100EC08BB /* MMStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMStore.h; sourceTree = "<group>"; };
+		C7A3462A1965C66100EC08BB /* MMStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMStore.m; sourceTree = "<group>"; };
+		C7A3462C1965F09E00EC08BB /* MMORMBootstrapTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMORMBootstrapTests.m; sourceTree = "<group>"; };
+		C7A3462E1965F38400EC08BB /* MMOrmamentBootstrap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMOrmamentBootstrap.h; sourceTree = "<group>"; };
+		C7A3462F1965F38400EC08BB /* MMOrmamentBootstrap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMOrmamentBootstrap.m; sourceTree = "<group>"; };
+		C7A346311966E9B100EC08BB /* MMSchemaMigration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMSchemaMigration.h; sourceTree = "<group>"; };
+		C7A346321966E9B100EC08BB /* MMSchemaMigration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMSchemaMigration.m; sourceTree = "<group>"; };
+		C7A3463B196B522D00EC08BB /* MMSqliteSchemaMigration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMSqliteSchemaMigration.h; sourceTree = "<group>"; };
+		C7A3463C196B522D00EC08BB /* MMSqliteSchemaMigration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMSqliteSchemaMigration.m; sourceTree = "<group>"; };
+		C7A3463E196C1ED000EC08BB /* noteit_2.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = noteit_2.plist; sourceTree = "<group>"; };
+		C7B9C654199DA6FF0036F89B /* MMAutoRelatedEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMAutoRelatedEntity.h; sourceTree = "<group>"; };
+		C7B9C655199DA6FF0036F89B /* MMAutoRelatedEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMAutoRelatedEntity.m; sourceTree = "<group>"; };
+		C7BEB0F0196C8C4900575D45 /* TSTMigration1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TSTMigration1.h; path = OrmamentTests/TSTMigration1.h; sourceTree = SOURCE_ROOT; };
+		C7BEB0F1196C8C4900575D45 /* TSTMigration1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TSTMigration1.m; path = OrmamentTests/TSTMigration1.m; sourceTree = SOURCE_ROOT; };
+		C7F2145E196CF05A00002371 /* MMRecordTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMRecordTests.m; sourceTree = "<group>"; };
+		E5A1237B9E264435AAC8ECB3 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,17 +161,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				C74389081963D134000D50AF /* Foundation.framework in Frameworks */,
+				F66B7131FB1946A18756E921 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C74389111963D134000D50AF /* Frameworks */ = {
+		C7A346031965B46500EC08BB /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C743891C1963D134000D50AF /* libMarshmallowOrmament.a in Frameworks */,
-				C74389161963D134000D50AF /* XCTest.framework in Frameworks */,
-				C74389191963D134000D50AF /* UIKit.framework in Frameworks */,
-				C74389171963D134000D50AF /* Foundation.framework in Frameworks */,
+				C7A3461E1965B87000EC08BB /* libMarshmallowOrmament.a in Frameworks */,
+				C7A346071965B46500EC08BB /* XCTest.framework in Frameworks */,
+				C7A346091965B46500EC08BB /* UIKit.framework in Frameworks */,
+				C7A346081965B46500EC08BB /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -81,10 +182,16 @@
 		C74388FB1963D134000D50AF = {
 			isa = PBXGroup;
 			children = (
+				C733B4721979830300116BBC /* MMSQLiteRequest.h */,
+				C733B4731979830300116BBC /* MMSQLiteRequest.m */,
+				C733B46C197830B100116BBC /* MMRelationshipSet.h */,
+				C733B46D197830B100116BBC /* MMRelationshipSet.m */,
 				C74389091963D134000D50AF /* MarshmallowOrmament */,
 				C743891D1963D134000D50AF /* MarshmallowOrmamentTests */,
+				C7A3460A1965B46500EC08BB /* OrmamentTests */,
 				C74389061963D134000D50AF /* Frameworks */,
 				C74389051963D134000D50AF /* Products */,
+				7F13C8100F6C414EA065BE33 /* Pods.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -92,7 +199,7 @@
 			isa = PBXGroup;
 			children = (
 				C74389041963D134000D50AF /* libMarshmallowOrmament.a */,
-				C74389141963D134000D50AF /* MarshmallowOrmamentTests.xctest */,
+				C7A346061965B46500EC08BB /* OrmamentTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -100,9 +207,13 @@
 		C74389061963D134000D50AF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C7A346191965B4FB00EC08BB /* libPods.a */,
+				C7A346001965B13100EC08BB /* libPods-FMDB.a */,
+				C74389311963E0C0000D50AF /* libPods.a */,
 				C74389071963D134000D50AF /* Foundation.framework */,
 				C74389151963D134000D50AF /* XCTest.framework */,
 				C74389181963D134000D50AF /* UIKit.framework */,
+				E5A1237B9E264435AAC8ECB3 /* libPods.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -110,8 +221,46 @@
 		C74389091963D134000D50AF /* MarshmallowOrmament */ = {
 			isa = PBXGroup;
 			children = (
+				C789AF9E196EC2FD008BBA72 /* MMResultsSet.h */,
+				C789AF9F196EC2FD008BBA72 /* MMResultsSet.m */,
+				C7A0C4F1196598BF009EB4E1 /* MMEntity.h */,
+				C7A0C4F2196598BF009EB4E1 /* MMEntity.m */,
+				C7A3462E1965F38400EC08BB /* MMOrmamentBootstrap.h */,
+				C7A3462F1965F38400EC08BB /* MMOrmamentBootstrap.m */,
+				C7A346311966E9B100EC08BB /* MMSchemaMigration.h */,
+				C7A346321966E9B100EC08BB /* MMSchemaMigration.m */,
+				C7A3463B196B522D00EC08BB /* MMSqliteSchemaMigration.h */,
+				C7A3463C196B522D00EC08BB /* MMSqliteSchemaMigration.m */,
 				C743890C1963D134000D50AF /* MarshmallowOrmament.h */,
 				C743890E1963D134000D50AF /* MarshmallowOrmament.m */,
+				C743892D1963D1A1000D50AF /* MMSQLiteRecord.h */,
+				C743892E1963D1A1000D50AF /* MMSQLiteRecord.m */,
+				C744E38A196474DC006A1BA5 /* MMORMUtility.h */,
+				C744E38B196474DC006A1BA5 /* MMORMUtility.m */,
+				C7B9C654199DA6FF0036F89B /* MMAutoRelatedEntity.h */,
+				C7B9C655199DA6FF0036F89B /* MMAutoRelatedEntity.m */,
+				C774FA391976F40300CDBCB8 /* MMRelationship.h */,
+				C774FA3A1976F40300CDBCB8 /* MMRelationship.m */,
+				C787917319812F7800C31EA7 /* MMRelation.h */,
+				C787917419812F7800C31EA7 /* MMRelation.m */,
+				C74389331963E458000D50AF /* MMRecord.h */,
+				C74389341963E458000D50AF /* MMRecord.m */,
+				C733B46F19797D6500116BBC /* MMRequest.h */,
+				C733B47019797D6500116BBC /* MMRequest.m */,
+				C731719B19873350005F27E6 /* MMConditional.h */,
+				C731719C19873350005F27E6 /* MMConditional.m */,
+				C731719E1987348D005F27E6 /* MMCondition.h */,
+				C731719F1987348D005F27E6 /* MMCondition.m */,
+				C7A345FD1965A7E100EC08BB /* MMSchema.h */,
+				C7A345FE1965A7E100EC08BB /* MMSchema.m */,
+				C7A345FA1965A78A00EC08BB /* MMSQLiteSchema.h */,
+				C7A345FB1965A78A00EC08BB /* MMSQLiteSchema.m */,
+				C7A346291965C66100EC08BB /* MMStore.h */,
+				C7A3462A1965C66100EC08BB /* MMStore.m */,
+				C7A346261965C64F00EC08BB /* MMSQLiteStore.h */,
+				C7A346271965C64F00EC08BB /* MMSQLiteStore.m */,
+				C733B46919782D1700116BBC /* MMRecordSet.h */,
+				C733B46A19782D1700116BBC /* MMRecordSet.m */,
 				C743890A1963D134000D50AF /* Supporting Files */,
 			);
 			path = MarshmallowOrmament;
@@ -137,8 +286,43 @@
 		C743891E1963D134000D50AF /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				C7BEB0F0196C8C4900575D45 /* TSTMigration1.h */,
+				C7BEB0F1196C8C4900575D45 /* TSTMigration1.m */,
+				C7A0C4F41965992C009EB4E1 /* noteit__0_1_0.plist */,
+				C7A3463E196C1ED000EC08BB /* noteit_2.plist */,
 				C743891F1963D134000D50AF /* MarshmallowOrmamentTests-Info.plist */,
 				C74389201963D134000D50AF /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		C7A3460A1965B46500EC08BB /* OrmamentTests */ = {
+			isa = PBXGroup;
+			children = (
+				C7A346201965C1D900EC08BB /* TSTNote.h */,
+				C7A346211965C1D900EC08BB /* TSTNote.m */,
+				C73171A31991DEE2005F27E6 /* TSTNotebook.h */,
+				C73171A41991DEE2005F27E6 /* TSTNotebook.m */,
+				C7A346231965C20C00EC08BB /* TSTItem.h */,
+				C7A346241965C20C00EC08BB /* TSTItem.m */,
+				C7F2145E196CF05A00002371 /* MMRecordTests.m */,
+				C73171A71992B6CB005F27E6 /* MMRelationshipTests.m */,
+				C765563D198419BE00F7DFDD /* MMRequestTests.m */,
+				C7A0C4EC1965984C009EB4E1 /* MMSchemaTests.m */,
+				C73171A1198899D2005F27E6 /* MMConditionalTests.m */,
+				C7A3462C1965F09E00EC08BB /* MMORMBootstrapTests.m */,
+				C7A346101965B46500EC08BB /* OrmamentTests.m */,
+				C7A3460B1965B46500EC08BB /* Supporting Files */,
+			);
+			path = OrmamentTests;
+			sourceTree = "<group>";
+		};
+		C7A3460B1965B46500EC08BB /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				C7A3460C1965B46500EC08BB /* OrmamentTests-Info.plist */,
+				C7A3460D1965B46500EC08BB /* InfoPlist.strings */,
+				C7A346121965B46500EC08BB /* OrmamentTests-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -150,9 +334,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C74389271963D134000D50AF /* Build configuration list for PBXNativeTarget "MarshmallowOrmament" */;
 			buildPhases = (
+				EF78FFD8F8FB4FDCB2E78701 /* Check Pods Manifest.lock */,
 				C74389001963D134000D50AF /* Sources */,
 				C74389011963D134000D50AF /* Frameworks */,
 				C74389021963D134000D50AF /* CopyFiles */,
+				238F4A8677294A7E97C29910 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -163,22 +349,22 @@
 			productReference = C74389041963D134000D50AF /* libMarshmallowOrmament.a */;
 			productType = "com.apple.product-type.library.static";
 		};
-		C74389131963D134000D50AF /* MarshmallowOrmamentTests */ = {
+		C7A346051965B46500EC08BB /* OrmamentTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C743892A1963D134000D50AF /* Build configuration list for PBXNativeTarget "MarshmallowOrmamentTests" */;
+			buildConfigurationList = C7A346151965B46500EC08BB /* Build configuration list for PBXNativeTarget "OrmamentTests" */;
 			buildPhases = (
-				C74389101963D134000D50AF /* Sources */,
-				C74389111963D134000D50AF /* Frameworks */,
-				C74389121963D134000D50AF /* Resources */,
+				C7A346021965B46500EC08BB /* Sources */,
+				C7A346031965B46500EC08BB /* Frameworks */,
+				C7A346041965B46500EC08BB /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				C743891B1963D134000D50AF /* PBXTargetDependency */,
+				C7A3461D1965B73600EC08BB /* PBXTargetDependency */,
 			);
-			name = MarshmallowOrmamentTests;
-			productName = MarshmallowOrmamentTests;
-			productReference = C74389141963D134000D50AF /* MarshmallowOrmamentTests.xctest */;
+			name = OrmamentTests;
+			productName = OrmamentTests;
+			productReference = C7A346061965B46500EC08BB /* OrmamentTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -189,6 +375,11 @@
 			attributes = {
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = "Kelly Huberty";
+				TargetAttributes = {
+					C7A346051965B46500EC08BB = {
+						TestTargetID = C74389031963D134000D50AF;
+					};
+				};
 			};
 			buildConfigurationList = C74388FF1963D134000D50AF /* Build configuration list for PBXProject "MarshmallowOrmament" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -203,46 +394,111 @@
 			projectRoot = "";
 			targets = (
 				C74389031963D134000D50AF /* MarshmallowOrmament */,
-				C74389131963D134000D50AF /* MarshmallowOrmamentTests */,
+				C7A346051965B46500EC08BB /* OrmamentTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		C74389121963D134000D50AF /* Resources */ = {
+		C7A346041965B46500EC08BB /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C74389221963D134000D50AF /* InfoPlist.strings in Resources */,
+				C7A3461F1965B9E900EC08BB /* noteit__0_1_0.plist in Resources */,
+				C7A3460F1965B46500EC08BB /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		238F4A8677294A7E97C29910 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EF78FFD8F8FB4FDCB2E78701 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		C74389001963D134000D50AF /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C7A346281965C64F00EC08BB /* MMSQLiteStore.m in Sources */,
+				C733B47119797D6500116BBC /* MMRequest.m in Sources */,
+				C7A345FF1965A7E100EC08BB /* MMSchema.m in Sources */,
+				C73171A01987348D005F27E6 /* MMCondition.m in Sources */,
+				C774FA3B1976F40300CDBCB8 /* MMRelationship.m in Sources */,
+				C733B4741979830300116BBC /* MMSQLiteRequest.m in Sources */,
+				C74389351963E458000D50AF /* MMRecord.m in Sources */,
+				C7A3462B1965C66100EC08BB /* MMStore.m in Sources */,
+				C744E38C196474DC006A1BA5 /* MMORMUtility.m in Sources */,
+				C7B9C656199DA6FF0036F89B /* MMAutoRelatedEntity.m in Sources */,
+				C731719D19873350005F27E6 /* MMConditional.m in Sources */,
+				C7A0C4F3196598BF009EB4E1 /* MMEntity.m in Sources */,
+				C7A346301965F38400EC08BB /* MMOrmamentBootstrap.m in Sources */,
+				C743892F1963D1A1000D50AF /* MMSQLiteRecord.m in Sources */,
 				C743890F1963D134000D50AF /* MarshmallowOrmament.m in Sources */,
+				C7A3463D196B522D00EC08BB /* MMSqliteSchemaMigration.m in Sources */,
+				C789AFA0196EC2FD008BBA72 /* MMResultsSet.m in Sources */,
+				C7BEB0F2196C8C4900575D45 /* TSTMigration1.m in Sources */,
+				C733B46B19782D1700116BBC /* MMRecordSet.m in Sources */,
+				C7A345FC1965A78A00EC08BB /* MMSQLiteSchema.m in Sources */,
+				C787917519812F7800C31EA7 /* MMRelation.m in Sources */,
+				C7A346331966E9B100EC08BB /* MMSchemaMigration.m in Sources */,
+				C733B46E197830B100116BBC /* MMRelationshipSet.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C74389101963D134000D50AF /* Sources */ = {
+		C7A346021965B46500EC08BB /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C74389241963D134000D50AF /* MarshmallowOrmamentTests.m in Sources */,
+				C73171A2198899D2005F27E6 /* MMConditionalTests.m in Sources */,
+				C765563E198419BE00F7DFDD /* MMRequestTests.m in Sources */,
+				C7F2145F196CF05A00002371 /* MMRecordTests.m in Sources */,
+				C73171A81992B6CB005F27E6 /* MMRelationshipTests.m in Sources */,
+				C7A346181965B4B000EC08BB /* MMSchemaTests.m in Sources */,
+				C73171A51991DEE2005F27E6 /* TSTNotebook.m in Sources */,
+				C7A346221965C1D900EC08BB /* TSTNote.m in Sources */,
+				C7A3462D1965F09E00EC08BB /* MMORMBootstrapTests.m in Sources */,
+				C7A346251965C20C00EC08BB /* TSTItem.m in Sources */,
+				C7A346111965B46500EC08BB /* OrmamentTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		C743891B1963D134000D50AF /* PBXTargetDependency */ = {
+		C7A3461D1965B73600EC08BB /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = C74389031963D134000D50AF /* MarshmallowOrmament */;
-			targetProxy = C743891A1963D134000D50AF /* PBXContainerItemProxy */;
+			targetProxy = C7A3461C1965B73600EC08BB /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -251,6 +507,14 @@
 			isa = PBXVariantGroup;
 			children = (
 				C74389211963D134000D50AF /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		C7A3460D1965B46500EC08BB /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C7A3460E1965B46500EC08BB /* en */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -266,6 +530,7 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_MODULES_AUTOLINK = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
@@ -291,6 +556,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_CFLAGS = "$(inherited)";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -303,6 +569,7 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_MODULES_AUTOLINK = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
@@ -321,6 +588,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				OTHER_CFLAGS = "$(inherited)";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -328,6 +596,7 @@
 		};
 		C74389281963D134000D50AF /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7F13C8100F6C414EA065BE33 /* Pods.xcconfig */;
 			buildSettings = {
 				DSTROOT = /tmp/MarshmallowOrmament.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -340,6 +609,7 @@
 		};
 		C74389291963D134000D50AF /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7F13C8100F6C414EA065BE33 /* Pods.xcconfig */;
 			buildSettings = {
 				DSTROOT = /tmp/MarshmallowOrmament.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -350,38 +620,48 @@
 			};
 			name = Release;
 		};
-		C743892B1963D134000D50AF /* Debug */ = {
+		C7A346161965B46500EC08BB /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7F13C8100F6C414EA065BE33 /* Pods.xcconfig */;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "MarshmallowOrmament/MarshmallowOrmament-Prefix.pch";
+				GCC_PREFIX_HEADER = "OrmamentTests/OrmamentTests-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = "MarshmallowOrmamentTests/MarshmallowOrmamentTests-Info.plist";
+				INFOPLIST_FILE = "OrmamentTests/OrmamentTests-Info.plist";
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos8.0;
 				WRAPPER_EXTENSION = xctest;
 			};
 			name = Debug;
 		};
-		C743892C1963D134000D50AF /* Release */ = {
+		C7A346171965B46500EC08BB /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7F13C8100F6C414EA065BE33 /* Pods.xcconfig */;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "MarshmallowOrmament/MarshmallowOrmament-Prefix.pch";
-				INFOPLIST_FILE = "MarshmallowOrmamentTests/MarshmallowOrmamentTests-Info.plist";
+				GCC_PREFIX_HEADER = "OrmamentTests/OrmamentTests-Prefix.pch";
+				INFOPLIST_FILE = "OrmamentTests/OrmamentTests-Info.plist";
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos8.0;
 				WRAPPER_EXTENSION = xctest;
 			};
 			name = Release;
@@ -405,14 +685,16 @@
 				C74389291963D134000D50AF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
-		C743892A1963D134000D50AF /* Build configuration list for PBXNativeTarget "MarshmallowOrmamentTests" */ = {
+		C7A346151965B46500EC08BB /* Build configuration list for PBXNativeTarget "OrmamentTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				C743892B1963D134000D50AF /* Debug */,
-				C743892C1963D134000D50AF /* Release */,
+				C7A346161965B46500EC08BB /* Debug */,
+				C7A346171965B46500EC08BB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

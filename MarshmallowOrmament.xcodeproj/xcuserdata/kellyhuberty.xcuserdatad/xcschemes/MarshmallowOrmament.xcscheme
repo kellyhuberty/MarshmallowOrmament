@@ -32,9 +32,9 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "C74389131963D134000D50AF"
-               BuildableName = "MarshmallowOrmamentTests.xctest"
-               BlueprintName = "MarshmallowOrmamentTests"
+               BlueprintIdentifier = "C7A346051965B46500EC08BB"
+               BuildableName = "OrmamentTests.xctest"
+               BlueprintName = "OrmamentTests"
                ReferencedContainer = "container:MarshmallowOrmament.xcodeproj">
             </BuildableReference>
          </TestableReference>
