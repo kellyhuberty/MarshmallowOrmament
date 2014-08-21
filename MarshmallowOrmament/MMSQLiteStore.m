@@ -7,7 +7,7 @@
 //
 
 #import "MMSQLiteStore.h"
-#import "MMEntity.h"
+#import "MMAutoRelatedEntity.h"
 #import "MMAttribute.h"
 #import "MMRecord.h"
 #import "MMRequest.h"
@@ -208,7 +208,7 @@
     
     NSMutableString * constraints = [NSMutableString stringWithString:@""];
     
-    if (attribute.unique) {
+    if (attribute.unique == true) {
         [constraints appendString:@" UNIQUE"];
     }
 
@@ -258,8 +258,29 @@
 
 
 -(NSArray *)loadRecordOfType:(NSString *)classname withResultsOfQuery:(NSString *)query withParameterDictionary:(NSDictionary *)dictionary{
+
+    NSArray * array = nil;
+    
+    NSError * error = nil;
+    
+    if(!(array = [self loadRecordOfType:classname withResultsOfQuery:query withParameterDictionary:dictionary error:&error])){
+        
+        [NSException raise:@"MMInvalidSQLQueryException" format:@"The query performed on this sqlite database is failing. Error:%@", [error localizedDescription]];
+        
+    }
+    
+    return array;
+    
+}
+
+-(NSArray *)loadRecordOfType:(NSString *)classname withResultsOfQuery:(NSString *)query withParameterDictionary:(NSDictionary *)dictionary error:(NSError **)error{
     
     NSMutableArray * __block ret;
+    
+    if (! NSClassFromString(classname)) {
+        [NSException raise:@"MMInvalidClassnameException" format:@"The classname provided does not reference a valid class."];
+    }
+    
     
     [self.dbQueue inDatabase:^(FMDatabase *db) {
     
@@ -272,21 +293,30 @@
             result = [db executeQuery:query];
         }
         
-        ret = [NSMutableArray array];
-        
-        while ([result next]) {
+        if (result) {
             
-            NSDictionary * values = [result resultDictionary];
+            ret = [NSMutableArray array];
             
-            MMRecord * rec = [[ NSClassFromString(classname) alloc]initWithFillValues:values created:YES fromStore:self];
+            while ([result next]) {
+                
+                NSDictionary * values = [result resultDictionary];
+                
+                MMRecord * rec = [[ NSClassFromString(classname) alloc]initWithFillValues:values created:YES fromStore:self];
+                
+                [ret addObject:rec];
+                
+                MMRelease(rec);
+                
+            }
             
-            [ret addObject:rec];
-            
-            MMRelease(rec);
+            [result close];
             
         }
-        
-        [result close];
+        else{
+            
+            *error = [db lastError];
+            
+        }
         
     }];
     
@@ -340,16 +370,121 @@
 }
 
 
+-(NSString *)buildJoinSqlWithAutoRelationship:(MMRelationship *)relationship{
+    
+    NSMutableString * clause = [NSMutableString stringWithString:@""];
+    
+    NSEnumerator * enu = [relationship.links objectEnumerator];
+    
+    //MMRelation * rel = nil;
+    
+    MMEntity * local = [self.schema entityForName:relationship.recordEntityName];
+    MMEntity * foreign = [self.schema entityForName:relationship.entityName];
+    MMAutoRelatedEntity * inter = (MMAutoRelatedEntity *)[self.schema entityForName:relationship.autoRelateName];
+
+    
+    [clause appendFormat:@"%@ JOIN %@ ON %@.%@ = %@.%@ JOIN %@ ON %@.%@ = %@.%@",
+     local.name,
+     inter.name,
+     local.name,
+     [[self class] rowidColumnNameForEntity:local],
+     inter.name,
+     [inter localAttributeNameForRelation:relationship],
+     foreign.name,
+     inter.name,
+     [inter foreignAttributeNameForRelation:relationship],
+     foreign.name,
+     [[self class] rowidColumnNameForEntity:foreign]
+     ];
+
+    
+    
+    
+    return [NSString stringWithString:clause];
+}
+
 -(MMRelationshipSet *)buildRelationshipObjectWithRelationship:(MMRelationship *)relationship record:(MMRecord *)record values:(NSDictionary *)values{
+    
+    MMRelationshipSet * set = nil;
+    
+    if(relationship.autoRelate){
+        
+        set = [self buildAutomaticRelationshipSetWithRelationship:relationship record:record values:values];
+        
+    }
+    else{
+        
+        set = [self buildManualRelationshipSetWithRelationship:relationship record:record values:values];
+
+    }
+    
+    NSLog(@"%@", set);
+    
+    if (!relationship.hasMany) {
+        
+        if ([set count] > 0){
+            
+            return set[0];
+        
+        }
+        
+        return [NSNull null];
+    }
+    
+    return set;
+}
+
+
+-(MMRelationshipSet *)buildAutomaticRelationshipSetWithRelationship:(MMRelationship *)relationship record:(MMRecord *)record values:(NSDictionary *)values{
     
     MMRelationshipSet * set = [[MMRelationshipSet alloc]init];
     
     MMRequest * request = MMAutorelease([[MMRequest alloc] init]);
     
+    request.className = relationship.className;
+    
+    request.sqlSelect = [NSString stringWithFormat:@"%@.*", relationship.entityName];
+    
+    request.sqlFrom = [NSString stringWithFormat:@"%@", [self buildJoinSqlWithAutoRelationship:relationship]];
+    
+    request.sqlWhere = [[self class]primaryKeyWhereClauseForRecord:record];
+    
+    [request.sqlBindValues addEntriesFromDictionary:[record idValues]];//[[self class]primaryKeyWhereClauseForRecord:record];
+
+    
+    NSLog(@"%@ %@ %@",request.sqlSelect, request.sqlFrom, request.sqlWhere);
+    
+    
+    set.request = request;
+    
+    set.record = record;
+    
+    NSError * error = nil;
+    
+    //[set fetch:&error];
+    
+    if ([set fetch:&error]) {
+        NSLog(@"cant fetch error ___%@", [error localizedDescription]);
+    }
+    
+    NSLog(@"SETT:%@", set);
+    
+    return set;
+}
+
+
+-(MMRelationshipSet *)buildManualRelationshipSetWithRelationship:(MMRelationship *)relationship record:(MMRecord *)record values:(NSDictionary *)values{
+    
+    MMRelationshipSet * set = [[MMRelationshipSet alloc]init];
+    
+    MMRequest * request = MMAutorelease([[MMRequest alloc] init]);
+    
+    request.className = relationship.className;
+    
     request.sqlSelect = [NSString stringWithFormat:@"%@.*", relationship.entityName];
     
     request.sqlFrom = [NSString stringWithFormat:@"%@", [[self class] buildJoinSqlWithRelationship:relationship]];
-
+    
     request.sqlWhere = [[self class]primaryKeyWhereClauseForRecord:record];
     
     set.request = request;
@@ -360,20 +495,9 @@
     
     NSLog(@"SETT:%@", set);
     
-    if (!relationship.hasMany) {
-        
-        if ([set count] > 0){
-            
-            return set[0];
-        
-        }
-        
-        return nil;
-    }
     
     return set;
 }
-
 
 -(BOOL)addRecords:(NSArray *)set toRelationship:(MMRelationship *)relationship onRecord:(MMRecord *)record error:(NSError **)error{
     
@@ -438,15 +562,43 @@
 
 +(NSString *)rowidColumnNameForRecord:(MMRecord *)rec{
     
-    NSArray * idKeys = [[rec class] idKeys];
+//    NSArray * idKeys = [[rec class] idKeys];
+//    
+//    //return [self entityName];
+//    if([idKeys count] == 1){
+//        
+//        NSString * key = idKeys[0];
+//        
+//        NSString * className = [[[[rec class] entity] attributeWithName:key] classname];
+//        NSString * primativeName = [[[[rec class] entity] attributeWithName:key] primativeType];
+//        
+//        if ([className isEqualToString:@"NSNumber"] && [primativeName isEqualToString:@"int"]) {
+//            return key;
+//        }
+//        
+//        
+//    }
+//    
+//    
+//    return @"ROWID";
+    
+    
+    return [((MMSQLiteStore *)[[rec class] store]) rowidColumnNameForEntityName:[[rec class]entityName]];
+    
+}
+
+
++(NSString *)rowidColumnNameForEntity:(MMEntity *)entity{
+    
+    NSArray * idKeys = [entity idKeys];
     
     //return [self entityName];
     if([idKeys count] == 1){
         
         NSString * key = idKeys[0];
         
-        NSString * className = [[[[rec class] entity] attributeWithName:key] classname];
-        NSString * primativeName = [[[[rec class] entity] attributeWithName:key] primativeType];
+        NSString * className = [[entity attributeWithName:key] classname];
+        NSString * primativeName = [[entity attributeWithName:key] primativeType];
         
         if ([className isEqualToString:@"NSNumber"] && [primativeName isEqualToString:@"int"]) {
             return key;
@@ -457,6 +609,14 @@
     
     
     return @"ROWID";
+}
+
+-(NSString *)rowidColumnNameForEntityName:(NSString *)name{
+
+    MMEntity * en = [self.schema entityForName:name];
+
+    return [[self class] rowidColumnNameForEntity:en];
+
 }
 
 
@@ -542,7 +702,7 @@
     //[self.dbQueue inDatabase:^(FMDatabase * db){
         
         
-        [set addObjectsFromArray:[self loadRecordOfType:req.className withResultsOfQuery:[self queryWithRequest:req] withParameterDictionary:@{}]];
+        [set addObjectsFromArray:[self loadRecordOfType:req.className withResultsOfQuery:[self queryWithRequest:req] withParameterDictionary:req.sqlBindValues]];
         
     
     //}];

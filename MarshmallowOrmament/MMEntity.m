@@ -93,7 +93,10 @@ static NSString * classPrefix;
     if (self) {
         _attributes = [[MMSet alloc]init];
         [_attributes addIndexForKey:@"name" unique:YES];
+        [_attributes addIndexForKey:@"autoincrement" unique:NO];
 
+        
+        
         _relationships = [[MMSet alloc]init];
         [_relationships addIndexForKey:@"name" unique:YES];
         [_relationships addIndexForKey:@"autoRelate" unique:NO];
@@ -443,10 +446,19 @@ static NSString * classPrefix;
 
 
 
--(void)build{
+-(NSArray *)idKeys{
     
+    if (_idKeys && [ _idKeys isKindOfClass:[NSArray class] ]) {
+        return [_idKeys copy];
+    }
     
+    NSArray * keys = nil;
     
+    if (keys = [_attributes objectsWithValue:[NSNumber numberWithBool:YES] forKey:@"autoincrement"]) {
+        return [keys copy];
+    }
+
+    return @[@"ROWID"];
     
 }
 

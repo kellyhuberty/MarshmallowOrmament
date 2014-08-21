@@ -14,6 +14,7 @@
 -(instancetype)initWithAutoRelationships:(NSArray *)relationships;
 +(instancetype)autoRelatedEntityWithAutoRelationships:(NSArray *)relationships;
 
--(NSString *)attributeNameForRelation:(NSArray *)relationships;
+-(NSString *)foreignAttributeNameForRelation:(MMRelationship *)relationship;
+-(NSString *)localAttributeNameForRelation:(MMRelationship *)relationship;
 
 @end

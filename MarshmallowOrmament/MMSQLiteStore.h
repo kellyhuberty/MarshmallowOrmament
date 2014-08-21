@@ -34,8 +34,8 @@
 
 
 +(NSString *)rowidColumnNameForRecord:(MMRecord *)rec;
-
-
++(NSString *)rowidColumnNameForEntity:(MMEntity *)entity;
+-(NSString *)rowidColumnNameForEntityName:(NSString *)name;
 
 +(NSString *)primaryKeyWhereClauseForRecord:(MMRecord *)rec;
 

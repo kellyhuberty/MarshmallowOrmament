@@ -90,6 +90,11 @@
     [[store db]executeUpdate:
         @"INSERT INTO note (notebookid ,created, text) VALUES (2,1,'note1'),(2,1, 'note2'),(2,1, 'note3'),(2,1, 'note4')"
      ];
+
+    [[store db]executeUpdate:
+        @"INSERT INTO NotesInNotebook (notebook__id , note__id) VALUES (2,0),(2,1),(2,2),(2,3)"
+     ];
+    
     
     MMRequest * req = [TSTNote newRequest];
     
@@ -109,6 +114,11 @@
     //XCTAssertNotNil((((TSTNote *)set)), @"Failed to fetch relationship");
 
     NSLog(@"notebook %@", NSStringFromClass([ set[0] class]) );
+    
+    NSLog(@"notebook %@", NSStringFromClass([(((TSTNote *)set[0]).notebook) class]) );
+
+    TSTNotebook * nb = ((TSTNote *)set[0]).notebook;
+    
     
     XCTAssertEqualObjects(NSStringFromClass([(((TSTNote *)set[0]).notebook) class]), @"TSTNotebook", @"Notebook class is wrong...");
     

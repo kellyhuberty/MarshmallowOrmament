@@ -14,7 +14,7 @@
 -(id)init{
     
     if (self = [super init]) {
-        
+        _sqlBindValues = [[NSMutableDictionary alloc]init];
     }
     
     return self;

@@ -106,7 +106,7 @@
     
     if (error2) {
         *error = error2;
-        return false;
+        return NO;
     }
     
     return YES;

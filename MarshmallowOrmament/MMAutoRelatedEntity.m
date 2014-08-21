@@ -52,24 +52,53 @@
         
         [rel log];
         
-        MMAttribute * attribute = [MMAttribute attributeWithDictionary:@{@"name":[self attributeNameForRelation:rel],
+        NSString * localAttrName = [self localAttributeNameForRelation:rel];
+        NSString * foreignAttrName = [self foreignAttributeNameForRelation:rel];
+
+        
+        MMAttribute * localAttribute = [self.attributes objectWithValue:localAttrName forKey:@"name"];
+        MMAttribute * foreignAttribute = [self.attributes objectWithValue:foreignAttrName forKey:@"name"];
+
+        
+        if(!localAttribute){
+
+            localAttribute = [MMAttribute attributeWithDictionary:@{@"name":[self localAttributeNameForRelation:rel],
                                                                          @"classname":@"NSNumber",
                                                                          @"primative":@"int"
                                                                          }];
+            [self.attributes addObject:localAttribute];
+
+        
+        }
         
         
-        [self.attributes addObject:attribute];
+        
+        if(!foreignAttribute){
+            foreignAttribute = [MMAttribute attributeWithDictionary:@{@"name":[self foreignAttributeNameForRelation:rel],
+                                                                             @"classname":@"NSNumber",
+                                                                             @"primative":@"int"
+                                                                             }];
+            [self.attributes addObject:foreignAttribute];
+            
+        }
         
         
-        attribute = [MMAttribute attributeWithDictionary:@{@"name":[self foreignAttributeNameForRelation:rel],
-                                                                         @"classname":@"NSNumber",
-                                                                         @"primative":@"int"
-                                                                         }];
+        /*
+        if (rel.shareable) {
+            localAttribute.unique = NO;
+        }
+        else{
+            localAttribute.unique = YES;
+        }
         
-        
-        [self.attributes addObject:attribute];
-        
-        
+    
+        if (rel.hasMany) {
+            foreignAttribute.unique = NO;
+        }
+        else{
+            foreignAttribute.unique = YES;
+        }
+        */
         
         
     }
@@ -77,7 +106,7 @@
     
 }
 
--(NSString *)attributeNameForRelation:(MMRelationship *)relationship{
+-(NSString *)localAttributeNameForRelation:(MMRelationship *)relationship{
     
     NSString * name = [NSString stringWithFormat:@"%@__id", relationship.recordEntityName];
     
@@ -93,6 +122,9 @@
 -(NSString *)foreignAttributeNameForRelation:(MMRelationship *)relationship{
     
     NSString * name = [NSString stringWithFormat:@"%@__id", relationship.entityName];
+    
+    
+    [self.attributes objectWithValue:name forKey:@"name"];
     
 //    if ([relationship onSelf]) {
 //        name = [NSString stringWithFormat:@"%@__%@", relationship.name, name];

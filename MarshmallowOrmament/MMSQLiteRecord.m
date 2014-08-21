@@ -45,28 +45,28 @@
     
 }
 
-+(NSString *)rowidColumnNameForRecord:(MMRecord *)rec{
-    
-    NSArray * idKeys = [self idKeys];
-    
-    //return [self entityName];
-    if([idKeys count] == 1){
-        
-        NSString * key = idKeys[0];
-        
-        NSString * className = [[[[rec class] entity] attributeWithName:key] classname];
-        NSString * primativeName = [[[[rec class] entity] attributeWithName:key] primativeType];
-
-        if ([className isEqualToString:@"NSNumber"] && [primativeName isEqualToString:@"int"]) {
-            return key;
-        }
-        
-        
-    }
-    
-    
-    return @"ROWID";
-}
+//+(NSString *)rowidColumnNameForRecord:(MMRecord *)rec{
+//    
+//    NSArray * idKeys = [self idKeys];
+//    
+//    //return [self entityName];
+//    if([idKeys count] == 1){
+//        
+//        NSString * key = idKeys[0];
+//        
+//        NSString * className = [[[[rec class] entity] attributeWithName:key] classname];
+//        NSString * primativeName = [[[[rec class] entity] attributeWithName:key] primativeType];
+//
+//        if ([className isEqualToString:@"NSNumber"] && [primativeName isEqualToString:@"int"]) {
+//            return key;
+//        }
+//        
+//        
+//    }
+//    
+//    
+//    return @"ROWID";
+//}
 
 
 +(NSArray *)primaryKeyNames{
@@ -129,7 +129,7 @@
         
         //[db lastInsertRowId];
         
-        [self refreshRecord:rec withValues:values forRowId:[db lastInsertRowId]];
+        [self.store refreshRecord:rec withValues:values forRowId:[db lastInsertRowId]];
         
     //}
     
@@ -137,32 +137,32 @@
 
 }
 
-+(BOOL)refreshRecord:(MMRecord *)rec withValues:(NSMutableDictionary *)values forRowId:(long long)rowId{
-    
-    FMDatabase * db = [[self class] database];
-    
-    [values removeAllObjects];
-    
-    NSString * rowIdKey = [self rowidColumnNameForRecord:rec];
-    
-    NSLog(@"REFRESHED VALUES %@", [NSString stringWithFormat:@"SELECT * FROM %@ WHERE `%@` = :%@", [[rec class] tableName] , rowIdKey, rowIdKey]);
-    
-    
-    FMResultSet * res = [db executeQuery:[NSString stringWithFormat:@"SELECT * FROM %@ WHERE `%@` = :%@", [[rec class] tableName], rowIdKey, rowIdKey] withParameterDictionary:@{rowIdKey:[NSNumber numberWithLongLong:rowId]}];
-    
-    BOOL crap = [res next];
-    
-    [values addEntriesFromDictionary: [res resultDictionary]];
-    
-    [res close];
-    
-    NSLog(@"REFRESHED VALUES %@", values);
-    
-    
-    
-    return true;
-    
-}
+//+(BOOL)refreshRecord:(MMRecord *)rec withValues:(NSMutableDictionary *)values forRowId:(long long)rowId{
+//    
+//    FMDatabase * db = [[self class] database];
+//    
+//    [values removeAllObjects];
+//    
+//    NSString * rowIdKey = [()self.store rowidColumnNameForRecord:rec];
+//    
+//    NSLog(@"REFRESHED VALUES %@", [NSString stringWithFormat:@"SELECT * FROM %@ WHERE `%@` = :%@", [[rec class] tableName] , rowIdKey, rowIdKey]);
+//    
+//    
+//    FMResultSet * res = [db executeQuery:[NSString stringWithFormat:@"SELECT * FROM %@ WHERE `%@` = :%@", [[rec class] tableName], rowIdKey, rowIdKey] withParameterDictionary:@{rowIdKey:[NSNumber numberWithLongLong:rowId]}];
+//    
+//    BOOL crap = [res next];
+//    
+//    [values addEntriesFromDictionary: [res resultDictionary]];
+//    
+//    [res close];
+//    
+//    NSLog(@"REFRESHED VALUES %@", values);
+//    
+//    
+//    
+//    return true;
+//    
+//}
 
 +(BOOL)executeDestroyOnRecord:(MMRecord *)rec withValues:(NSMutableDictionary *)values error:(NSError **)error{
     

@@ -110,7 +110,7 @@
 					<key>autoRelate</key>
 					<true/>
 					<key>autoRelateName</key>
-					<string>notesInNotebook</string>
+					<string>NotesInNotebook</string>
 					<key>hasMany</key>
 					<false/>
 					<key>className</key>

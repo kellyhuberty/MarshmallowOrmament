@@ -75,6 +75,11 @@
             _hasMany = [dict[@"hasMany"] boolValue];
             
         }
+        if (dict[@"shareable"]) {
+            
+            _shareable = [dict[@"shareable"] boolValue];
+            
+        }
         if (dict[@"autoRelate"]) {
             
             _autoRelate = [dict[@"autoRelate"] boolValue];
