@@ -18,10 +18,5 @@
     
 }
 
-@property(nonatomic, retain)MMSQLiteStore * olderStore;
-@property(nonatomic, retain)MMSQLiteStore * newerStore;
-
-@property(nonatomic, retain)MMSQLiteSchema * olderSchema;
-@property(nonatomic, retain)MMSQLiteSchema * newerSchema;
 
 @end

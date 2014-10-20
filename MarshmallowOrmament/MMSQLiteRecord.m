@@ -123,6 +123,7 @@
     
     
     
+    
     [db executeUpdate:[self buildInsertQueryForRecord:rec values:values] withParameterDictionary:values];
     
     //if ( [values count] != [[[rec class] entity] count]) {

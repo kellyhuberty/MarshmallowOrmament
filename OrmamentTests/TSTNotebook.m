@@ -13,6 +13,7 @@
 @dynamic id;
 @dynamic title;
 @dynamic description;
+@dynamic notes;
 
 +(NSString *)schemaName{
     

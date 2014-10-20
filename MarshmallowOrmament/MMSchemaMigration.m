@@ -10,6 +10,58 @@
 
 @implementation MMSchemaMigration
 
+
++(instancetype)migrationWithDictionary:(NSDictionary *)dictionary{
+    
+    MMSchemaMigration * migration = nil;
+    
+    if(dictionary[@"className"]){
+        migration = [[NSClassFromString(dictionary[@"className"]) alloc]initWithDictionary:dictionary entityDictionary:nil];
+    }
+    else{
+        migration = [[MMSchemaMigration alloc]initWithDictionary:dictionary entityDictionary:nil];
+    }
+    
+    MMAutorelease(migration);
+    
+    return migration;
+    
+}
+
+
++(instancetype)migrationWithDictionary:(NSDictionary *)dictionary entityDictionary:(NSDictionary *)entityDictionarys{
+    
+    MMSchemaMigration * migration = nil;
+    
+    if(dictionary[@"className"]){
+        migration = [[NSClassFromString(dictionary[@"className"]) alloc]initWithDictionary:dictionary entityDictionary:entityDictionarys];
+    }
+    else{
+        migration = [[MMSchemaMigration alloc]initWithDictionary:dictionary entityDictionary:entityDictionarys];
+    }
+    
+    return migration;
+    
+}
+
+-(instancetype)initWithDictionary:(NSDictionary *)dictionary entityDictionary:(NSDictionary *)entityDictionarys{
+    
+    if (self = [self init]) {
+        
+        _fromVersion = [MMVersionString stringWithString:dictionary[@"fromVersion"]];
+        
+        if (!_fromVersion) {
+            [NSException raise:@"MMInvaildInitailizerDictionary" format:@"the init dict does not contain a fromVersion string."];
+        }
+        
+        //_className = [MMVersionString stringWithString:dictionary[@"className"]];
+        //selfentityDictionarys;
+        
+    }
+    
+    return self;
+}
+
 -(instancetype)initWithOldSchema:(MMSchema *)oldSchema newSchema:(MMSchema *)newSchema options:(NSDictionary *)options{
     
     self = [super init];
@@ -33,7 +85,7 @@
 
 
 
--(BOOL)upgrade:(NSError **)error{
+-(BOOL)upgradeStore:(MMStore *)oldStore toStore:(MMStore *)newStore error:(NSError **)error{
     
     
     

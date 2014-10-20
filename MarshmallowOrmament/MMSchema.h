@@ -19,15 +19,19 @@
     NSMutableDictionary * _modelClassNameIndex;
     NSString * _storeClassName;
     MMSet * _autoRelationships;
+    MMSet * _migrations;
     
 }
 @property(nonatomic)MMVersionString * version;
 @property(nonatomic, retain)NSString * name;
 @property(nonatomic, retain)NSArray * entities;
 @property(nonatomic, retain)NSString * storeClassName;
+@property(nonatomic, retain)MMSet * migrations;
+
 
 +(void)registerSchema:(MMSchema *)schema;
 +(MMSchema *)currentSchemaWithName:(NSString *)name;
++(MMSchema *)schemaFromName:(NSString *)name version:(NSString *)ver;
 +(NSArray *)allSchemas;
 
 

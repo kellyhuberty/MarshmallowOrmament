@@ -21,6 +21,8 @@
     
     [self removeFiles];
 
+    [MMOrmamentBootstrap unsetVersionForSchema:@"noteit"];
+    
     [super setUp];
     // Put setup code here. This method is called before the invocation of each test method in the class.
 }
@@ -325,6 +327,94 @@
 }
 
 
+- (void)testUpdatePrimativeValue
+{
+    
+    MMSetArcEnabled();
+    
+    
+    [MMOrmamentBootstrap startWithSchemas:@[     @{
+                                                     @"name":@"noteit",@"version":@"0.1.0"
+                                                     }]];
+    
+    //[note logValues];
+    
+    TSTNote * note = [TSTNote create];
+    
+    note.text = @"blah";
+    // note.date = [NSDate date];
+    
+    [note logValues];
+    
+    
+    NSError * error = nil;
+    
+    [note save:&error];
+    //exit(1);
+    //XCTAssertTrue([note save:&error], @"Saving");
+    
+    [note logValues];
+    
+    
+    TSTNote * note2 = [TSTNote create];
+    
+    note2.text = @"blah";
+    // note.date = [NSDate date];
+    
+    [note logValues];
+    
+    
+    NSError * error2 = nil;
+    
+    NSError * error3 = nil;
+    [note logValues];
+    
+    
+    [note2 save:&error2];
+    
+    [note logValues];
+    
+    
+    note.text = @"meh";
+    
+    [note save:&error3];
+    
+    note.latitude = 132.5;
+    note.longitude = 74.75;
+    
+    
+    [note logValues];
+    
+    XCTAssertTrue((note.latitude == 132.5), @"Same primative value returned");
+    XCTAssertTrue((note.longitude == 74.75), @"Same primative value returned");
+
+    
+    
+    FMDatabase * db = [((MMSQLiteStore *)[[note class] store]) db];
+    
+    
+    [note logValues];
+    
+    
+    FMResultSet * set = [db executeQuery:@"SELECT COUNT(*) as cnt FROM `note` WHERE `text` LIKE \"meh\""];
+    
+    [set next];
+    //[set intForColumnIndex:0];
+    NSLog(@"SELECT text FROM note %i", [set intForColumn:@"cnt"] );
+    
+    XCTAssertTrue(([set intForColumn:@"cnt"] == 1), @"Saving");
+    
+    [self archiveDatabaseFileForTest:@"testUpdate"];
+    
+    //exit(1);
+    
+    // NSLog(@"record value %@", note.text);
+    
+    
+    
+    //XCTFail(@"No implementation for \"%s\"", __PRETTY_FUNCTION__);
+}
+
 - (void)testUpdateCount
 {
     
@@ -496,9 +586,6 @@
     NSError * error;
     
     [note save:&error];
-    
-    
-    
     
     NSError * error2;
     

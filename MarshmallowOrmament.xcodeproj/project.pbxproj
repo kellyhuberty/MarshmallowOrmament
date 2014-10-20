@@ -22,20 +22,20 @@
 		C743892F1963D1A1000D50AF /* MMSQLiteRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = C743892E1963D1A1000D50AF /* MMSQLiteRecord.m */; };
 		C74389351963E458000D50AF /* MMRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = C74389341963E458000D50AF /* MMRecord.m */; };
 		C744E38C196474DC006A1BA5 /* MMORMUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = C744E38B196474DC006A1BA5 /* MMORMUtility.m */; };
+		C75E75F319C4E4E100B2B825 /* OrmamentTests-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C75E75F219C4E4E100B2B825 /* OrmamentTests-Info.plist */; };
 		C765563E198419BE00F7DFDD /* MMRequestTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C765563D198419BE00F7DFDD /* MMRequestTests.m */; };
 		C774FA3B1976F40300CDBCB8 /* MMRelationship.m in Sources */ = {isa = PBXBuildFile; fileRef = C774FA3A1976F40300CDBCB8 /* MMRelationship.m */; };
 		C787917519812F7800C31EA7 /* MMRelation.m in Sources */ = {isa = PBXBuildFile; fileRef = C787917419812F7800C31EA7 /* MMRelation.m */; };
+		C78852C019D701600004D029 /* MMGroupDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = C78852BF19D701600004D029 /* MMGroupDescriptor.m */; };
+		C78852C319D8AE800004D029 /* MMRequestController.m in Sources */ = {isa = PBXBuildFile; fileRef = C78852C219D8AE800004D029 /* MMRequestController.m */; };
 		C789AFA0196EC2FD008BBA72 /* MMResultsSet.m in Sources */ = {isa = PBXBuildFile; fileRef = C789AF9F196EC2FD008BBA72 /* MMResultsSet.m */; };
 		C7A0C4F3196598BF009EB4E1 /* MMEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = C7A0C4F2196598BF009EB4E1 /* MMEntity.m */; };
 		C7A345FC1965A78A00EC08BB /* MMSQLiteSchema.m in Sources */ = {isa = PBXBuildFile; fileRef = C7A345FB1965A78A00EC08BB /* MMSQLiteSchema.m */; };
 		C7A345FF1965A7E100EC08BB /* MMSchema.m in Sources */ = {isa = PBXBuildFile; fileRef = C7A345FE1965A7E100EC08BB /* MMSchema.m */; };
-		C7A346071965B46500EC08BB /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C74389151963D134000D50AF /* XCTest.framework */; };
 		C7A346081965B46500EC08BB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C74389071963D134000D50AF /* Foundation.framework */; };
-		C7A346091965B46500EC08BB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C74389181963D134000D50AF /* UIKit.framework */; };
 		C7A3460F1965B46500EC08BB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C7A3460D1965B46500EC08BB /* InfoPlist.strings */; };
 		C7A346111965B46500EC08BB /* OrmamentTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C7A346101965B46500EC08BB /* OrmamentTests.m */; };
 		C7A346181965B4B000EC08BB /* MMSchemaTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C7A0C4EC1965984C009EB4E1 /* MMSchemaTests.m */; };
-		C7A3461E1965B87000EC08BB /* libMarshmallowOrmament.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C74389041963D134000D50AF /* libMarshmallowOrmament.a */; };
 		C7A3461F1965B9E900EC08BB /* noteit__0_1_0.plist in Resources */ = {isa = PBXBuildFile; fileRef = C7A0C4F41965992C009EB4E1 /* noteit__0_1_0.plist */; };
 		C7A346221965C1D900EC08BB /* TSTNote.m in Sources */ = {isa = PBXBuildFile; fileRef = C7A346211965C1D900EC08BB /* TSTNote.m */; };
 		C7A346251965C20C00EC08BB /* TSTItem.m in Sources */ = {isa = PBXBuildFile; fileRef = C7A346241965C20C00EC08BB /* TSTItem.m */; };
@@ -47,6 +47,9 @@
 		C7A3463D196B522D00EC08BB /* MMSqliteSchemaMigration.m in Sources */ = {isa = PBXBuildFile; fileRef = C7A3463C196B522D00EC08BB /* MMSqliteSchemaMigration.m */; };
 		C7B9C656199DA6FF0036F89B /* MMAutoRelatedEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = C7B9C655199DA6FF0036F89B /* MMAutoRelatedEntity.m */; };
 		C7BEB0F2196C8C4900575D45 /* TSTMigration1.m in Sources */ = {isa = PBXBuildFile; fileRef = C7BEB0F1196C8C4900575D45 /* TSTMigration1.m */; };
+		C7C3D9FA19EDDAC9000EEE19 /* libMarshmallowOrmament.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C74389041963D134000D50AF /* libMarshmallowOrmament.a */; };
+		C7E1FA3B19E7307300AB3842 /* MMMigrationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C7E1FA3A19E7307300AB3842 /* MMMigrationTests.m */; };
+		C7E2F52C19ED72C000B2064F /* noteit__0_2_0.plist in Resources */ = {isa = PBXBuildFile; fileRef = C7CEBE9E19E322A40094E4A8 /* noteit__0_2_0.plist */; };
 		C7F2145F196CF05A00002371 /* MMRecordTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C7F2145E196CF05A00002371 /* MMRecordTests.m */; };
 		F66B7131FB1946A18756E921 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E5A1237B9E264435AAC8ECB3 /* libPods.a */; };
 /* End PBXBuildFile section */
@@ -75,7 +78,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		7F13C8100F6C414EA065BE33 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
+		B21B32DAD641BEE99523B067 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		C731719B19873350005F27E6 /* MMConditional.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMConditional.h; sourceTree = "<group>"; };
 		C731719C19873350005F27E6 /* MMConditional.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMConditional.m; sourceTree = "<group>"; };
 		C731719E1987348D005F27E6 /* MMCondition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMCondition.h; sourceTree = "<group>"; };
@@ -109,11 +112,16 @@
 		C74389341963E458000D50AF /* MMRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMRecord.m; sourceTree = "<group>"; };
 		C744E38A196474DC006A1BA5 /* MMORMUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMORMUtility.h; sourceTree = "<group>"; };
 		C744E38B196474DC006A1BA5 /* MMORMUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMORMUtility.m; sourceTree = "<group>"; };
+		C75E75F219C4E4E100B2B825 /* OrmamentTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "OrmamentTests-Info.plist"; path = "OrmamentTests/OrmamentTests-Info.plist"; sourceTree = "<group>"; };
 		C765563D198419BE00F7DFDD /* MMRequestTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMRequestTests.m; sourceTree = "<group>"; };
 		C774FA391976F40300CDBCB8 /* MMRelationship.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMRelationship.h; sourceTree = "<group>"; };
 		C774FA3A1976F40300CDBCB8 /* MMRelationship.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMRelationship.m; sourceTree = "<group>"; };
 		C787917319812F7800C31EA7 /* MMRelation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMRelation.h; sourceTree = "<group>"; };
 		C787917419812F7800C31EA7 /* MMRelation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMRelation.m; sourceTree = "<group>"; };
+		C78852BE19D701600004D029 /* MMGroupDescriptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMGroupDescriptor.h; sourceTree = "<group>"; };
+		C78852BF19D701600004D029 /* MMGroupDescriptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMGroupDescriptor.m; sourceTree = "<group>"; };
+		C78852C119D8AE800004D029 /* MMRequestController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMRequestController.h; sourceTree = "<group>"; };
+		C78852C219D8AE800004D029 /* MMRequestController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMRequestController.m; sourceTree = "<group>"; };
 		C789AF9E196EC2FD008BBA72 /* MMResultsSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMResultsSet.h; sourceTree = "<group>"; };
 		C789AF9F196EC2FD008BBA72 /* MMResultsSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMResultsSet.m; sourceTree = "<group>"; };
 		C7A0C4EC1965984C009EB4E1 /* MMSchemaTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MMSchemaTests.m; path = ../MarshmallowOrmamentTests/MMSchemaTests.m; sourceTree = "<group>"; };
@@ -151,8 +159,14 @@
 		C7B9C655199DA6FF0036F89B /* MMAutoRelatedEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMAutoRelatedEntity.m; sourceTree = "<group>"; };
 		C7BEB0F0196C8C4900575D45 /* TSTMigration1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TSTMigration1.h; path = OrmamentTests/TSTMigration1.h; sourceTree = SOURCE_ROOT; };
 		C7BEB0F1196C8C4900575D45 /* TSTMigration1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TSTMigration1.m; path = OrmamentTests/TSTMigration1.m; sourceTree = SOURCE_ROOT; };
+		C7C3D9F319EDA66B000EEE19 /* libPods.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPods.a; path = "Pods/build/Debug-iphoneos/libPods.a"; sourceTree = "<group>"; };
+		C7C3D9F619EDCA3A000EEE19 /* libPods-MarshmallowCore.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-MarshmallowCore.a"; path = "Pods/build/Debug-iphoneos/libPods-MarshmallowCore.a"; sourceTree = "<group>"; };
+		C7C3D9F819EDD8F7000EEE19 /* libPods.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPods.a; path = "Pods/build/Debug-iphoneos/libPods.a"; sourceTree = "<group>"; };
+		C7CEBE9E19E322A40094E4A8 /* noteit__0_2_0.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = noteit__0_2_0.plist; sourceTree = "<group>"; };
+		C7E1FA3A19E7307300AB3842 /* MMMigrationTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMMigrationTests.m; sourceTree = "<group>"; };
 		C7F2145E196CF05A00002371 /* MMRecordTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMRecordTests.m; sourceTree = "<group>"; };
 		E5A1237B9E264435AAC8ECB3 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		EA40C49C3D687741A0791EB5 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -169,9 +183,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C7A3461E1965B87000EC08BB /* libMarshmallowOrmament.a in Frameworks */,
-				C7A346071965B46500EC08BB /* XCTest.framework in Frameworks */,
-				C7A346091965B46500EC08BB /* UIKit.framework in Frameworks */,
+				C7C3D9FA19EDDAC9000EEE19 /* libMarshmallowOrmament.a in Frameworks */,
 				C7A346081965B46500EC08BB /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -179,9 +191,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2805A29EE068316727DF3CCD /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				EA40C49C3D687741A0791EB5 /* Pods.debug.xcconfig */,
+				B21B32DAD641BEE99523B067 /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		C74388FB1963D134000D50AF = {
 			isa = PBXGroup;
 			children = (
+				C75E75F219C4E4E100B2B825 /* OrmamentTests-Info.plist */,
 				C733B4721979830300116BBC /* MMSQLiteRequest.h */,
 				C733B4731979830300116BBC /* MMSQLiteRequest.m */,
 				C733B46C197830B100116BBC /* MMRelationshipSet.h */,
@@ -191,7 +213,7 @@
 				C7A3460A1965B46500EC08BB /* OrmamentTests */,
 				C74389061963D134000D50AF /* Frameworks */,
 				C74389051963D134000D50AF /* Products */,
-				7F13C8100F6C414EA065BE33 /* Pods.xcconfig */,
+				2805A29EE068316727DF3CCD /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -207,6 +229,9 @@
 		C74389061963D134000D50AF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C7C3D9F819EDD8F7000EEE19 /* libPods.a */,
+				C7C3D9F619EDCA3A000EEE19 /* libPods-MarshmallowCore.a */,
+				C7C3D9F319EDA66B000EEE19 /* libPods.a */,
 				C7A346191965B4FB00EC08BB /* libPods.a */,
 				C7A346001965B13100EC08BB /* libPods-FMDB.a */,
 				C74389311963E0C0000D50AF /* libPods.a */,
@@ -221,8 +246,12 @@
 		C74389091963D134000D50AF /* MarshmallowOrmament */ = {
 			isa = PBXGroup;
 			children = (
+				C78852BE19D701600004D029 /* MMGroupDescriptor.h */,
+				C78852BF19D701600004D029 /* MMGroupDescriptor.m */,
 				C789AF9E196EC2FD008BBA72 /* MMResultsSet.h */,
 				C789AF9F196EC2FD008BBA72 /* MMResultsSet.m */,
+				C78852C119D8AE800004D029 /* MMRequestController.h */,
+				C78852C219D8AE800004D029 /* MMRequestController.m */,
 				C7A0C4F1196598BF009EB4E1 /* MMEntity.h */,
 				C7A0C4F2196598BF009EB4E1 /* MMEntity.m */,
 				C7A3462E1965F38400EC08BB /* MMOrmamentBootstrap.h */,
@@ -289,6 +318,7 @@
 				C7BEB0F0196C8C4900575D45 /* TSTMigration1.h */,
 				C7BEB0F1196C8C4900575D45 /* TSTMigration1.m */,
 				C7A0C4F41965992C009EB4E1 /* noteit__0_1_0.plist */,
+				C7CEBE9E19E322A40094E4A8 /* noteit__0_2_0.plist */,
 				C7A3463E196C1ED000EC08BB /* noteit_2.plist */,
 				C743891F1963D134000D50AF /* MarshmallowOrmamentTests-Info.plist */,
 				C74389201963D134000D50AF /* InfoPlist.strings */,
@@ -311,6 +341,7 @@
 				C7A0C4EC1965984C009EB4E1 /* MMSchemaTests.m */,
 				C73171A1198899D2005F27E6 /* MMConditionalTests.m */,
 				C7A3462C1965F09E00EC08BB /* MMORMBootstrapTests.m */,
+				C7E1FA3A19E7307300AB3842 /* MMMigrationTests.m */,
 				C7A346101965B46500EC08BB /* OrmamentTests.m */,
 				C7A3460B1965B46500EC08BB /* Supporting Files */,
 			);
@@ -353,9 +384,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C7A346151965B46500EC08BB /* Build configuration list for PBXNativeTarget "OrmamentTests" */;
 			buildPhases = (
+				0CD8BD6446862DC25730EA83 /* Check Pods Manifest.lock */,
 				C7A346021965B46500EC08BB /* Sources */,
 				C7A346031965B46500EC08BB /* Frameworks */,
 				C7A346041965B46500EC08BB /* Resources */,
+				B5A7BE3CA35614B0014B599D /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -404,7 +437,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C75E75F319C4E4E100B2B825 /* OrmamentTests-Info.plist in Resources */,
 				C7A3461F1965B9E900EC08BB /* noteit__0_1_0.plist in Resources */,
+				C7E2F52C19ED72C000B2064F /* noteit__0_2_0.plist in Resources */,
 				C7A3460F1965B46500EC08BB /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -412,6 +447,21 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		0CD8BD6446862DC25730EA83 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
 		238F4A8677294A7E97C29910 /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -424,7 +474,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B5A7BE3CA35614B0014B599D /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		EF78FFD8F8FB4FDCB2E78701 /* Check Pods Manifest.lock */ = {
@@ -452,6 +517,7 @@
 				C7A346281965C64F00EC08BB /* MMSQLiteStore.m in Sources */,
 				C733B47119797D6500116BBC /* MMRequest.m in Sources */,
 				C7A345FF1965A7E100EC08BB /* MMSchema.m in Sources */,
+				C78852C319D8AE800004D029 /* MMRequestController.m in Sources */,
 				C73171A01987348D005F27E6 /* MMCondition.m in Sources */,
 				C774FA3B1976F40300CDBCB8 /* MMRelationship.m in Sources */,
 				C733B4741979830300116BBC /* MMSQLiteRequest.m in Sources */,
@@ -469,6 +535,7 @@
 				C7BEB0F2196C8C4900575D45 /* TSTMigration1.m in Sources */,
 				C733B46B19782D1700116BBC /* MMRecordSet.m in Sources */,
 				C7A345FC1965A78A00EC08BB /* MMSQLiteSchema.m in Sources */,
+				C78852C019D701600004D029 /* MMGroupDescriptor.m in Sources */,
 				C787917519812F7800C31EA7 /* MMRelation.m in Sources */,
 				C7A346331966E9B100EC08BB /* MMSchemaMigration.m in Sources */,
 				C733B46E197830B100116BBC /* MMRelationshipSet.m in Sources */,
@@ -488,6 +555,7 @@
 				C7A346221965C1D900EC08BB /* TSTNote.m in Sources */,
 				C7A3462D1965F09E00EC08BB /* MMORMBootstrapTests.m in Sources */,
 				C7A346251965C20C00EC08BB /* TSTItem.m in Sources */,
+				C7E1FA3B19E7307300AB3842 /* MMMigrationTests.m in Sources */,
 				C7A346111965B46500EC08BB /* OrmamentTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -524,6 +592,7 @@
 /* Begin XCBuildConfiguration section */
 		C74389251963D134000D50AF /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = EA40C49C3D687741A0791EB5 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -554,7 +623,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CFLAGS = "$(inherited)";
 				SDKROOT = iphoneos;
@@ -563,6 +632,7 @@
 		};
 		C74389261963D134000D50AF /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B21B32DAD641BEE99523B067 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -587,7 +657,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				OTHER_CFLAGS = "$(inherited)";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -596,7 +666,7 @@
 		};
 		C74389281963D134000D50AF /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7F13C8100F6C414EA065BE33 /* Pods.xcconfig */;
+			baseConfigurationReference = EA40C49C3D687741A0791EB5 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				DSTROOT = /tmp/MarshmallowOrmament.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -609,7 +679,7 @@
 		};
 		C74389291963D134000D50AF /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7F13C8100F6C414EA065BE33 /* Pods.xcconfig */;
+			baseConfigurationReference = B21B32DAD641BEE99523B067 /* Pods.release.xcconfig */;
 			buildSettings = {
 				DSTROOT = /tmp/MarshmallowOrmament.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -622,7 +692,7 @@
 		};
 		C7A346161965B46500EC08BB /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7F13C8100F6C414EA065BE33 /* Pods.xcconfig */;
+			baseConfigurationReference = EA40C49C3D687741A0791EB5 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
@@ -638,7 +708,10 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "OrmamentTests/OrmamentTests-Info.plist";
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Pods/build/Debug-iphoneos",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos8.0;
 				WRAPPER_EXTENSION = xctest;
@@ -647,7 +720,7 @@
 		};
 		C7A346171965B46500EC08BB /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7F13C8100F6C414EA065BE33 /* Pods.xcconfig */;
+			baseConfigurationReference = B21B32DAD641BEE99523B067 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
@@ -659,7 +732,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "OrmamentTests/OrmamentTests-Prefix.pch";
 				INFOPLIST_FILE = "OrmamentTests/OrmamentTests-Info.plist";
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Pods/build/Debug-iphoneos",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos8.0;
 				WRAPPER_EXTENSION = xctest;

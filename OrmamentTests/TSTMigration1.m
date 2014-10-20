@@ -11,8 +11,9 @@
 @implementation TSTMigration1
 -(BOOL)upgrade:(NSError **)error{
 
-    NSError * error1;
-    [self.newerStore copyFromVersion:self.olderSchema.version error:&error1];
+    //NSError * error1;
+    
+    //[((MMSqliteSchemaMigration *)self.newerStore) copyFromVersion:self.olderSchema.version error:&error1];
     
     //self.newerStore
     

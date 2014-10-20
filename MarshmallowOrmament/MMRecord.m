@@ -19,19 +19,82 @@
 #import "MMRequest.h"
 
 #import <objc/runtime.h>
+#import "MMAdapter.h"
+
+static void setValueIMP(id self, SEL _cmd, id aValue);
+
+
+@interface MMRecord ()
+
+-(MMRelationshipSet *)_fetchRelationshipSetWithRelationshipName:(NSString *)relationshipName;
+-(MMRelationshipSet *)_fetchRelationshipSetWithRelationship:(MMRelationship *)relationship;
+
+@end
+
+
 
 // generic getter
 id valueIMP(id self, SEL _cmd) {
-    
-    
-    Ivar ivar = class_getInstanceVariable([self class], "_values");
-    return [((NSMutableDictionary *)object_getIvar(self, ivar)) objectForKey:NSStringFromSelector(_cmd)];
 
+    //[self willAccessValueForKey:NSStringFromSelector(_cmd)];
+    Ivar ivar = class_getInstanceVariable([self class], "_values");
+    //[self didAccessValueForKey:NSStringFromSelector(_cmd)];
+    id value = [((NSMutableDictionary *)object_getIvar(self, ivar)) objectForKey:NSStringFromSelector(_cmd)];
+    
+    
+    return value;
 }
+
+static void setValueIntIMP(id self, SEL _cmd, int intValue) {
+    setValueIMP(self, _cmd, [NSNumber numberWithInt:intValue] );
+}
+static void setValueBoolIMP(id self, SEL _cmd, BOOL boolValue) {
+    setValueIMP(self, _cmd, [NSNumber numberWithBool:boolValue] );
+}
+static void setValueFloatIMP(id self, SEL _cmd, float floatValue) {
+    setValueIMP(self, _cmd, [NSNumber numberWithFloat:floatValue] );
+}
+static void setValueDoubleIMP(id self, SEL _cmd, double floatValue) {
+    setValueIMP(self, _cmd, [NSNumber numberWithDouble:floatValue] );
+}
+static void setValueLongIMP(id self, SEL _cmd, float longValue) {
+    setValueIMP(self, _cmd, [NSNumber numberWithLong:longValue] );
+}
+static void setValueCharIMP(id self, SEL _cmd, char charValue) {
+    setValueIMP(self, _cmd, [NSValue value:&charValue withObjCType:@encode(char)] );
+}
+
+
+
+
+int valueIntIMP(id self, SEL _cmd) {
+    return [((NSNumber*)valueIMP(self, _cmd)) intValue];
+}
+BOOL valueBoolIMP(id self, SEL _cmd) {
+    return [((NSNumber*)valueIMP(self, _cmd)) boolValue];
+}
+float valueFloatIMP(id self, SEL _cmd) {
+    return [((NSNumber*)valueIMP(self, _cmd)) floatValue];
+}
+double valueDoubleIMP(id self, SEL _cmd) {
+    return [((NSNumber*)valueIMP(self, _cmd)) doubleValue];
+}
+long valueLongIMP(id self, SEL _cmd) {
+    return [((NSNumber*)valueIMP(self, _cmd)) longValue];
+}
+char valueCharIMP(id self, SEL _cmd) {
+    char * value;
+    [((NSValue*)valueIMP(self, _cmd)) getValue:value];
+    return *value;
+}
+
+
+
 
 
 // generic setter
 static void setValueIMP(id self, SEL _cmd, id aValue) {
+    
     
     id value = [aValue copy];
     NSMutableString *key = [NSStringFromSelector(_cmd) mutableCopy];
@@ -52,10 +115,17 @@ static void setValueIMP(id self, SEL _cmd, id aValue) {
     
     Ivar ivar = class_getInstanceVariable([self class], "_values");
     [((NSMutableDictionary *)object_getIvar(self, ivar)) setObject:(value) forKey:key];
-
+    ((MMRecord *)self).dirty = true;
+    
+    //void * dirty;
+    //object_getInstanceVariable([self class], "_dirty", &dirty);
+    
+    
+    
     
     [self didChangeValueForKey:key];
 
+    
 }
 
 
@@ -65,23 +135,41 @@ id relationValueIMP(id self, SEL _cmd) {
     
     //NSString * key = cleanSelectorIntoKeyName();
     
-    Ivar ivar = class_getInstanceVariable([self class], "_relationValues");
-    id obj = [((NSMutableDictionary *)object_getIvar(self, ivar)) objectForKey:NSStringFromSelector(_cmd)];
+    //Ivar ivar = class_getInstanceVariable([self class], "_relationValues");
+    //id obj = [((NSMutableDictionary *)object_getIvar(self, ivar)) objectForKey:NSStringFromSelector(_cmd)];
+
+    MMEntity * entity = [[((MMRecord *)self) class] entity];
+    MMRelationship * relationship = [entity relationshipWithName:NSStringFromSelector(_cmd)];
+//    
+//    if (!obj) {
+//        
+//        MMStore * store = [[((MMRecord *)self) class] store];
+//        //Ivar ivar = class_getInstanceVariable([self class], "_values");
+//        
+//        if (!relationship) {
+//            [NSException raise:@"MMInvalidRecordPropertyException" format:@"The property tried to access was invalid..."];
+//        }
+//        
+//        obj = [(MMRecord *)self _fetchRelationshipSetWithRelationshipName:key];
+//        
+//        [((NSMutableDictionary *)object_getIvar(self, ivar)) setObject:obj forKey:NSStringFromSelector(_cmd)];
+//    }
     
-    if (!obj) {
+    MMRelationshipSet * obj = [(MMRecord *)self _fetchRelationshipSetWithRelationship:relationship];
+
+    
+    if (!relationship.hasMany) {
         
-        MMStore * store = [[((MMRecord *)self) class] store];
-        MMEntity * entity = [[((MMRecord *)self) class] entity];
-        MMRelationship * relationship = [entity relationshipWithName:NSStringFromSelector(_cmd)];
-        Ivar ivar = class_getInstanceVariable([self class], "_values");
-        
-        
-        obj = [store buildRelationshipObjectWithRelationship:
-               relationship record:((MMRecord *)self) values:((NSMutableDictionary *)object_getIvar(self, ivar))];
-        
-        [((NSMutableDictionary *)object_getIvar(self, ivar)) setObject:obj forKey:NSStringFromSelector(_cmd)];
+        if ([obj count] > 0){
+            
+            obj = obj[0];
+            
+        }
+        else{
+            obj = nil;
+        }
+    
     }
-    
     
     return obj;
 }
@@ -90,10 +178,10 @@ id relationValueIMP(id self, SEL _cmd) {
 // generic setter
 static void setRelationValueIMP(id self, SEL _cmd, id aValue) {
     
-    id value = [aValue copy];
+    //id value = [aValue copy];
     NSMutableString *key = [NSStringFromSelector(_cmd) mutableCopy];
     
-    NSLog(@"settingggg");
+    //NSLog(@"settingggg");
     
     // delete "set" and ":" and lowercase first letter
     [key deleteCharactersInRange:NSMakeRange(0, 3)];
@@ -102,18 +190,33 @@ static void setRelationValueIMP(id self, SEL _cmd, id aValue) {
     [key replaceCharactersInRange:NSMakeRange(0, 1) withString:[firstChar lowercaseString]];
     
     
+    MMStore * store = [[((MMRecord *)self) class] store];
+    MMEntity * entity = [[((MMRecord *)self) class] entity];
+    MMRelationship * relationship = [entity relationshipWithName:NSStringFromSelector(_cmd)];
     
-    [self willChangeValueForKey:key];
+    if (!relationship.hasMany) {
+        
+        [self willChangeValueForKey:key];
+
+        id obj = [self _fetchRelationshipSetWithRelationshipName:key];
+
+        [obj removeAllObjects];
     
+        [obj addObject:aValue];
     
+        [self didChangeValueForKey:key];
+        
+        return;
+    }
     
-    Ivar ivar = class_getInstanceVariable([self class], "_values");
-    [((NSMutableDictionary *)object_getIvar(self, ivar)) setObject:(value) forKey:key];
-    
-    
-    [self didChangeValueForKey:key];
-    
+    [NSException raise:@"MMInvalidRelationshipSaveContext" format:@"You can't directly save a hasMany relationship by property assignment. Please use addObjects: or removeObjects:, or other NSMutableArray mutator methods."];
+        
 }
+
+
+
+
+
 
 
 
@@ -232,6 +335,11 @@ static void setRelationValueIMP(id self, SEL _cmd, id aValue) {
 }
 
 
+-(void)_setDirty{
+    
+    _dirty = true;
+    
+}
 
 
 -(void)fill:(NSDictionary *)dict{
@@ -280,10 +388,31 @@ static void setRelationValueIMP(id self, SEL _cmd, id aValue) {
         //[self executeUpdateOnRecord:self withValues:_values error:error];
     
     }
+    
+    if (suc) {
+        suc = [self _saveRelationships:error];
+    }
+    
     return suc;
 
 }
 
+
+-(BOOL)_saveRelationships:(NSError **)error{
+    
+    for (MMRelationshipSet * set in [_relationValues allValues]) {
+        
+        if ([set dirty]) {
+  
+            [set save:error];
+            
+        }
+    
+    }
+    
+    return YES;
+    
+}
 
 
 -(BOOL)destroy:(NSError **)error{
@@ -443,6 +572,25 @@ static void setRelationValueIMP(id self, SEL _cmd, id aValue) {
 //    
 //}
 
+
+-(void)setPrimativeValue:(id)value forKey:(NSString *)key{
+    
+    _values[key] = value;
+    
+}
+
+
+-(id)primativeValueForKey:(NSString *)key{
+    
+    return _values[key];
+    
+}
+
+
+
+
+
+
 +(NSArray *)idKeys{
     
     return [[self entity] idKeys];
@@ -513,6 +661,42 @@ static void setRelationValueIMP(id self, SEL _cmd, id aValue) {
     
 }
 */
+
+-(void)_fetchAllRelationships:(NSString *)relationship{
+    
+    
+    
+    
+    
+}
+
+
+-(MMRelationshipSet *)_fetchRelationshipSetWithRelationshipName:(NSString *)key{
+    
+    MMRelationship * relationship = [[[self class] entity] relationshipWithName:key];
+    
+    return [self _fetchRelationshipSetWithRelationship:relationship];
+    
+}
+
+
+-(MMRelationshipSet *)_fetchRelationshipSetWithRelationship:(MMRelationship *)relationship{
+    
+    MMRelationshipSet * obj = [_relationValues objectForKey:relationship.name];
+    
+    if (!obj) {
+        
+        obj = [[[self class] store] buildRelationshipObjectWithRelationship:
+               relationship record:self values:_values];
+        
+        [_relationValues setObject:obj forKey:relationship.name];
+    }
+    
+    return obj;
+    
+}
+
+
 /*
 -(MMEntity *)entity{
     
@@ -546,6 +730,9 @@ static void setRelationValueIMP(id self, SEL _cmd, id aValue) {
     
     return nil;
 }
+ 
+ 
+ 
 
 
 -(NSEntityDescription *)coreDataEntityDescription:(NSManagedObjectContext *)context{
@@ -630,7 +817,7 @@ static void setRelationValueIMP(id self, SEL _cmd, id aValue) {
         rel = [[self entity] relationshipWithName:key];
         
         
-        if (attr) {
+        if (attr || rel) {
             setter = YES;
         }
         
@@ -638,8 +825,21 @@ static void setRelationValueIMP(id self, SEL _cmd, id aValue) {
         
     }
     
+    if (attr == nil && rel == nil) {
+//        NSException * e = [NSException exceptionWithName:@"InvalidPropertyNameException" reason:[NSString stringWithFormat:@"The class %@ does not implement the selector %@ either dynamically or conventionally.",NSStringFromClass([self class]) ,NSStringFromSelector(aSEL) ] userInfo:@{}];
+//        
+//        @throw e;
+
+        return false;
     
-    // NSLog(@"blah __attribute %@", attr);
+    }
+    
+
+    
+     NSLog(@"blah sel %@", NSStringFromSelector(aSEL));
+    
+    NSString * type = getPropertyTypeName([self class], key);
+    
     
     if (rel != nil) {
         if (setter) {
@@ -652,20 +852,64 @@ static void setRelationValueIMP(id self, SEL _cmd, id aValue) {
     
     if (attr != nil) {
         if (setter) {
-            class_addMethod([self class], aSEL, (IMP)setValueIMP, "v@:@");
+            if ([type isEqualToString:@"int"]) {
+                class_addMethod([self class], aSEL, (IMP)setValueIntIMP, "v@:@");
+            }
+            else if ([type isEqualToString:@"BOOL"]) {
+                class_addMethod([self class], aSEL, (IMP)setValueBoolIMP, "v@:@");
+            }
+            else if ([type isEqualToString:@"float"]) {
+                class_addMethod([self class], aSEL, (IMP)setValueFloatIMP, "v@:@");
+            }
+            else if ([type isEqualToString:@"double"]) {
+                class_addMethod([self class], aSEL, (IMP)setValueDoubleIMP, "v@:@");
+            }
+            else if ([type isEqualToString:@"long"]) {
+                class_addMethod([self class], aSEL, (IMP)setValueLongIMP, "v@:@");
+            }
+            else if ([type isEqualToString:@"char"]) {
+                class_addMethod([self class], aSEL, (IMP)setValueCharIMP, "v@:@");
+            }
+            else{
+                class_addMethod([self class], aSEL, (IMP)setValueIMP, "v@:@");
+            }
         } else {
-            class_addMethod([self class], aSEL,(IMP)valueIMP, "@@:");
+                //class_addMethod([self class], aSEL,(IMP)valueIMP, "@@:");
+            
+            
+            if ([type isEqualToString:@"int"]) {
+                class_addMethod([self class], aSEL, (IMP)valueIntIMP, "v@:@");
+            }
+            else if ([type isEqualToString:@"BOOL"]) {
+                class_addMethod([self class], aSEL, (IMP)valueBoolIMP, "v@:@");
+            }
+            else if ([type isEqualToString:@"float"]) {
+                class_addMethod([self class], aSEL, (IMP)valueFloatIMP, "v@:@");
+            }
+            else if ([type isEqualToString:@"double"]) {
+                class_addMethod([self class], aSEL, (IMP)valueDoubleIMP, "v@:@");
+            }
+            else if ([type isEqualToString:@"long"]) {
+                class_addMethod([self class], aSEL, (IMP)valueLongIMP, "v@:@");
+            }
+            else if ([type isEqualToString:@"char"]) {
+                class_addMethod([self class], aSEL, (IMP)valueCharIMP, "v@:@");
+            }
+            else{
+                class_addMethod([self class], aSEL, (IMP)valueIMP, "v@:@");
+            }
+                
         }
         return YES;
     }
 
     
     //introspect properties, attributes...
-    if ([NSStringFromSelector(aSEL) hasPrefix:@"set"]) {
-        class_addMethod([self class], aSEL, (IMP)setValueIMP, "v@:@");
-    } else {
-        class_addMethod([self class], aSEL,(IMP)valueIMP, "@@:");
-    }
+//    if ([NSStringFromSelector(aSEL) hasPrefix:@"set"]) {
+//        class_addMethod([self class], aSEL, (IMP)setValueIMP, "v@:@");
+//    } else {
+//        class_addMethod([self class], aSEL,(IMP)valueIMP, "@@:");
+//    }
     return NO;
 }
 

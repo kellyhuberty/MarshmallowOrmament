@@ -39,7 +39,6 @@
 
         
         
-        [[[_record class ]store] removeRecords:@[obj] fromRelationship:_relationship onRecord:_record error:nil];
 
     }
     
@@ -51,7 +50,7 @@
     
     
     
-    if ( [super willRemoveObject:obj]) {
+    if ( [super willRemoveObject:obj] ) {
         
         
         [self removeObjectFromRelationship:obj];
@@ -140,6 +139,8 @@
     
     if ( ! [obj isKindOfClass:NSClassFromString(_relationship.className)] ) {
         
+        [NSException raise:@"MMInvalidObjectInRelationship" format:@"The object of class %@ is not valid for the relationship %@", [obj class], _relationship.name];
+        
         return false;
         
     }
@@ -178,7 +179,28 @@
         
     }
     
+    if(error){
+        
+        NSLog(@"ERR SAVING RELSET %@",[*error localizedDescription]);
+        
+    }
+    
+    
     return addSuccess && delSuccess;
+
+}
+
+
+-(BOOL)dirty{
+    
+    if ([_recordsToAdd count] > 0) {
+        return true;
+    }
+    if ([_recordsToDel count] > 0) {
+        return true;
+    }
+    
+    return false;
 
 }
 

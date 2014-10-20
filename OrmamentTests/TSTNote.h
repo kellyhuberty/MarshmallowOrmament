@@ -19,6 +19,8 @@
 
 @property(nonatomic, retain)NSString * text;
 @property(nonatomic, retain)TSTNotebook * notebook;
+@property(nonatomic)float longitude;
+@property(nonatomic)float latitude;
 
 
 @end

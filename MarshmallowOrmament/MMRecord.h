@@ -12,6 +12,9 @@
 #import "MMStore.h"
 #import <Foundation/Foundation.h>
     //#import "MMEntity.h"
+
+id fetchRelationshipSet(MMRecord * self, NSString * key, MMRelationship* relationship);
+
 @class MMRecord;
 typedef enum{
     MMRecordUninserted,
@@ -67,6 +70,7 @@ typedef enum{
     
     NSMutableDictionary * _values;
     NSMutableDictionary * _relationValues;
+    
     //
     //NSMutableDictionary * _dirtyValues;
     //
@@ -81,6 +85,7 @@ typedef enum{
 }
 @property (nonatomic, readonly)BOOL deleted;
 @property (nonatomic, readonly)BOOL inserted;
+@property (nonatomic)BOOL dirty;
 
 
 //@property (nonatomic, retain)NSDictionary * values;

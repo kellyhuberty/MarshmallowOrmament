@@ -99,7 +99,7 @@
 
     
     schema = [[MMSchema alloc]initWithFilePath:path];
-    [MMDebug setEnabled];
+    [MMLogger setEnabled];
     
     
     [schema log];
@@ -163,7 +163,7 @@
     
     
     schema = [[MMSQLiteSchema alloc]initWithFilePath:path];
-    [MMDebug setEnabled];
+    [MMLogger setEnabled];
     
     NSLog(@"build sql :%@", [schema buildSql]);
     
@@ -201,7 +201,7 @@
     
     XCTAssertTrue([store build:&error], @"sql buildt");
     
-    [MMDebug setEnabled];
+    [MMLogger setEnabled];
     
     NSLog(@"build sql :%@", [error localizedDescription]);
     

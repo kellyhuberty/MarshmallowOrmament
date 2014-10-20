@@ -78,7 +78,7 @@ static NSMutableDictionary * storesByThread;
     }
     
     if (!(store = storeDict[storeName])) {
-        storeDict[storeName] = store = [MMStore newStoreWithSchemaName:(NSString *)schemaName ];
+        storeDict[storeName] = store = [MMStore newStoreWithSchemaName:(NSString *)schemaName version:ver];
     }
 
     NSLog(@"thread dict %@", store);
@@ -89,9 +89,12 @@ static NSMutableDictionary * storesByThread;
 
 
 
-+(MMStore *)newStoreWithSchemaName:(NSString *)schemaName{
++(MMStore *)newStoreWithSchemaName:(NSString *)schemaName version:ver{
     
-    MMSchema * schema = [MMSchema currentSchemaWithName:schemaName];
+    MMSchema * schema = [MMSchema schemaFromName:schemaName version:ver];
+    
+    //+(MMSchema *)schemaFromName:(NSString *)name version:(NSString *)ver{
+
     
     return [[NSClassFromString(schema.storeClassName) alloc]initWithSchema:schema];
 

@@ -31,7 +31,7 @@
 
 
 
-
+-(FMDatabaseQueue *)dbQueue;
 
 +(NSString *)rowidColumnNameForRecord:(MMRecord *)rec;
 +(NSString *)rowidColumnNameForEntity:(MMEntity *)entity;
@@ -66,5 +66,8 @@
 -(BOOL)removeRecords:(NSArray *)set fromRelationship:(MMRelationship *)relationship onRecord:(MMRecord *)record error:(NSError **)error;
 
 -(NSString *)tableNameWithEntityName:(NSString *)str;
+
+
+-(NSString *)dbPathWithVersion:(MMVersionString *)ver;
 
 @end

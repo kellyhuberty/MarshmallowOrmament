@@ -24,11 +24,9 @@
         MMSchema * schema = nil;
         
         if ([obj isKindOfClass:NSClassFromString(@"NSDictionary")]) {
+            
             if ( ((NSDictionary *)obj)[@"name"] && ((NSDictionary *)obj)[@"version"]) {
-                //schema = [self schemaFromPlistPath:[NSString stringWithFormat:@"%@__%@",
-                //            [NSString stringWithString:((NSDictionary *)obj)[@"name"] ],
-                //            [[MMVersionString stringWithString:((NSDictionary *)obj)[@"version"]] pathString]
-                //          ]];
+
                 schema = [self schemaFromName:((NSDictionary *)obj)[@"name"] version:((NSDictionary *)obj)[@"version"]];
                 
             }
@@ -40,22 +38,27 @@
         if ( [self versionForSchema:schema.name] == nil ) {
             //initial data build....
             
+            NSLog(@"Building inital store for %@", schema.name);
+            
             [[self class] buildInitialStoreForSchema:schema error:&error];
             
             
         }
+        //if( [self versionForSchema:schema.name] == nil ){}
         else{
         
             if ( [schema.version compareVersion:[self versionForSchema:schema.name]] == NSOrderedDescending ) {
                 // downgrade schema...
                 
-                MMSchema *newschema = [self schemaFromPlistPath:[NSString stringWithFormat:@"%@__%@",
-                                                                 [NSString stringWithString:((NSDictionary *)obj)[@"name"] ],
-                                                                 [MMVersionString stringWithString:((NSDictionary *)obj)[@"version"]]
-                                                                 ]];
+//                MMSchema *newschema = [self schemaFromPlistPath:[NSString stringWithFormat:@"%@__%@",
+//                                                                 [NSString stringWithString:((NSDictionary *)obj)[@"name"] ],
+//                                                                 [MMVersionString stringWithString:((NSDictionary *)obj)[@"version"]]
+//                                                                 ]];
+                //MMSchema *newschema = [[self class] schemaFromName:[NSString stringWithString:((NSDictionary *)obj)[@"name"] ] version:[MMVersionString stringWithString:((NSDictionary *)obj)[@"version"]]];
+                
                 
 
-                [[self class] downgradeSchema:schema.name olderSchema:schema newerSchema:newschema error:&error];
+                [[self class] downgradeSchema:schema.name oldVersion:[self versionForSchema:schema.name] newVersion:schema.version error:&error];
 
                 
             }
@@ -63,13 +66,10 @@
                 // upgrade schema...
                 
                 
-                MMSchema * oldschema = [self schemaFromPlistPath:[NSString stringWithFormat:@"%@__%@",
-                                                                 [NSString stringWithString:((NSDictionary *)obj)[@"name"] ],
-                                                                 [MMVersionString stringWithString:((NSDictionary *)obj)[@"version"]]
-                                                                 ]];
+                //MMSchema * oldschema = [[self class] schemaFromName:[NSString stringWithString:((NSDictionary *)obj)[@"name"] ] version:[MMVersionString stringWithString:((NSDictionary *)obj)[@"version"]]];
                 
                 
-                [[self class] upgradeSchema:schema.name olderSchema:oldschema newerSchema:schema error:&error];
+                [[self class] upgradeSchema:schema.name oldVersion:[self versionForSchema:schema.name] newVersion:schema.version error:&error];
 
                 
             }
@@ -82,10 +82,6 @@
         
     }
     
-    //NSError * error;
-    
-    //[self checkSchemas:&error];
-    
 }
 
 
@@ -93,7 +89,41 @@
     
     NSLog(@"schema name file:%@", [NSString stringWithFormat:@"%@__%@", name, [[MMVersionString stringWithString:ver] pathString]]);
     
-    return [self schemaFromPlistPath: [NSString stringWithFormat:@"%@__%@", name, [[MMVersionString stringWithString:ver] pathString]]];
+    return MMAutorelease([[MMSchema alloc]initWithDictionary:[self schemaDictionaryWithName:name version:ver]]);
+    
+}
+
++(NSDictionary *)schemaDictionaryWithName:(NSString *)name version:(NSString *)ver{
+    
+    NSDictionary * dictionary = [NSDictionary dictionaryWithContentsOfFile:[self schemaPathWithName:name version:ver ]];
+    
+    return dictionary;
+    
+}
+
+
++(NSString *)schemaPathWithName:(NSString *)name version:(NSString *)ver{
+    
+    return [self bundlePlistPathWithName:[self schemaIdentifierStringFromName:name version:ver]];
+    
+}
+
++(NSString *)bundlePlistPathWithName:(NSString *)name{
+    
+    
+    return [[NSBundle bundleForClass:[self class]] pathForResource:name ofType:@"plist"];
+
+    
+}
+
+
++(NSString *)schemaIdentifierStringFromName:(NSString *)name version:(NSString *)ver{
+    
+    //NSLog(@"schema name file:%@", [NSString stringWithFormat:@"%@__%@", name, [[MMVersionString stringWithString:ver] pathString]]);
+    
+    //return [self schemaFromPlistPath: [NSString stringWithFormat:@"%@__%@", name, [[MMVersionString stringWithString:ver] pathString]]];
+    
+    return [NSString stringWithFormat:@"%@__%@", name, [[MMVersionString stringWithString:ver] pathString]];
     
 }
 
@@ -102,40 +132,41 @@
     
     NSString * path = [[NSBundle bundleForClass:[self class]] pathForResource:string ofType:@"plist"];
     
+    NSDictionary * dictionary = [NSDictionary dictionaryWithContentsOfFile:path];
+    
     NSLog(@"url path__ %@ string__ %@", path, string);
     
-    return MMAutorelease([[MMSchema alloc]initWithFilePath:path]);
-
-}
-
-
-
-+(NSArray *)migrationMapForSchemaName:(NSString *)schemaName{
-    
-    
-    NSString * path = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"%@__migrations",schemaName] ofType:@"plist"];
-    
-    if(!path){
-        
-        [MMException(@"no file found for filename!", @"MMFileException", nil) raise];
-        return nil;
-        
-    }
-    
-    
-    NSArray * dict = [NSArray arrayWithContentsOfFile:path] ;
-    
-    
-    if(!dict){
-        
-        [MMException(@"Dictionary not parseable.", @"MMSchemaException", nil) raise];
-        return nil;
-        
-    }
-    
-    return dict;
+    return MMAutorelease([[MMSchema alloc]initWithDictionary:dictionary]);
     
 }
+
+
+//+(NSArray *)migrationMapForSchemaName:(NSString *)schemaName{
+//    
+//    
+//    NSString * path = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"%@__migrations",schemaName] ofType:@"plist"];
+//    
+//    if(!path){
+//        
+//        [MMException(@"no file found for filename!", @"MMFileException", nil) raise];
+//        return nil;
+//        
+//    }
+//    
+//    
+//    NSArray * dict = [NSArray arrayWithContentsOfFile:path] ;
+//    
+//    
+//    if(!dict){
+//        
+//        [MMException(@"Dictionary not parseable.", @"MMSchemaException", nil) raise];
+//        return nil;
+//        
+//    }
+//    
+//    return dict;
+//    
+//}
 
 
 +(void)start{
@@ -173,10 +204,24 @@
     
     dict[schemaName] = version;
     
-    [MMPreferences setValue:@"MMSchemaVersions" forKey:dict];
+    [MMPreferences setValue:dict forKey:@"MMSchemaVersions"];
     
 }
 
+
++(void)unsetVersionForSchema:(NSString *)schemaName{
+    
+    NSMutableDictionary * dict = [MMPreferences valueForKey:@"MMSchemaVersions"];
+    
+    if (!dict) {
+        dict = [NSMutableDictionary dictionary];
+    }
+    
+    [dict removeObjectForKey:schemaName];
+    
+    [MMPreferences setValue:dict forKey:@"MMSchemaVersions"];
+    
+}
 
 
 +(BOOL)checkSchemas:(NSError **)error{
@@ -202,89 +247,170 @@
     
 }
 
-+(NSArray *)buildSchemaMigrationsWithName:(NSString *)schemaName olderSchema:(MMSchema *)olderSchema newerSchema:(MMSchema *)newerSchema error:(NSError **)error{
++(void)resetStoreForStoreForSchema:(MMSchema *)schema error:(NSError **)error{
     
-    MMSet * set = [[MMSet alloc]init];
+    MMStore * store = [[NSClassFromString(schema.storeClassName) alloc] initWithSchema:(schema)];
     
-    MMSet * migrations = [[MMSet alloc]init];
+    [store build:&error];
     
-    [set addIndexForKey:@"old"];
-    [set addIndexForKey:@"new"];
+    [self setVersion:schema.version forSchema:schema.name];
     
-    [set addObjectsFromArray:[self migrationMapForSchemaName:schemaName]];
+}
+
+//+(NSArray *)buildSchemaMigrationsWithName:(NSString *)schemaName olderSchema:(MMSchema *)olderSchema newerSchema:(MMSchema *)newerSchema error:(NSError **)error{
+//    
+//    MMSet * set = [[MMSet alloc]init];
+//    
+//    MMSet * migrations = [[MMSet alloc]init];
+//    
+//    [set addIndexForKey:@"fromVersion"];
+//    [set addIndexForKey:@"toVersion"];
+//    
+//    //[set addObjectsFromArray:[self migrationMapForSchemaName:schemaName]];
+//    
+//
+//        MMVersionString * oldVersion = [MMVersionString stringWithString:olderSchema.version];
+//        MMVersionString * intermediate;
+//        MMVersionString * newVersion = [MMVersionString stringWithString:newerSchema.version];
+//        BOOL goodPath = NO;
+//        BOOL badPath = NO;
+//
+//        intermediate = oldVersion;
+//
+//
+//        while(!goodPath && !badPath){
+//
+//            MMLog(@"Upgrade path generation loop");
+//
+//            //newVersion.migrationMaps
+//            
+//            NSArray * possibleMigrations = [set objectsWithValue:intermediate forKey:@"old"];
+//            
+//            if([possibleMigrations count] > 0){
+//
+//                for (NSDictionary * migDict in possibleMigrations) {
+//                    if ([[MMVersionString stringWithString:migDict[@"new"]] compareVersion:newVersion] == NSOrderedAscending) {
+//                        // add migration
+//                        
+//                        
+//                        
+//                    }
+//                    if ([[MMVersionString stringWithString:migDict[@"new"]] compareVersion:newVersion] == NSOrderedSame) {
+//                        // add migration and break
+//                        
+//                        //[migrations addObject:
+//                         
+//                         Class <MMSchemaMigration> cls = NSClassFromString(migDict[@"classname"]);
+//                        
+//                         MMSchema * oldSchema = [self schemaFromName:schemaName version:[MMVersionString stringWithString:migDict[@"old"]]];
+//                        
+//                         MMSchema * newSchema = [self schemaFromName:schemaName version:[MMVersionString stringWithString:migDict[@"new"]]];
+//                        
+//                        
+//                         MMSchemaMigration * mig = [cls migrationForOldSchema:[MMVersionString stringWithString:migDict[@"old"]] newSchema:[MMVersionString stringWithString:migDict[@"new"]]
+//                          ];
+//                        
+//                        [migrations addObject:mig];
+//                        
+//                        goodPath = true;
+//                    
+//                    }
+//                    if ([[MMVersionString stringWithString:migDict[@"new"]] compareVersion:newVersion] == NSOrderedDescending) {
+//                        // add migration and break
+//                        
+//                        badPath = true;
+//                    }
+//                    
+//                }
+//
+//            }
+//            else{
+//                badPath = true;
+//            }
+//        }
+//        
+//
+//    
+//    return migrations;
+//}
+
++(NSArray *)buildSchemaMigrationsForName:(NSString *)name fromVersion:(MMVersionString *)old toVersion:(MMVersionString *)new{
     
-
-        MMVersionString * oldVersion = [MMVersionString stringWithString:olderSchema.version];
-        MMVersionString *  intermediate;
-        MMVersionString * newVersion = [MMVersionString stringWithString:newerSchema.version];
-        BOOL goodPath = NO;
-        BOOL badPath = NO;
-
-        intermediate = oldVersion;
-
-
-        while(!goodPath && !badPath){
-
-            MMLog(@"Upgrade path generation loop");
-
-            NSArray * possibleMigrations = [set objectsWithValue:intermediate forKey:@"old"];
+    BOOL downgrade = ( ([old compareVersion:new] == NSOrderedAscending) ? false: true);
+    
+    NSDictionary * schemaDictionary = [self schemaDictionaryWithName:name version:new];
+    
+    NSDictionary * migrationDictionary = nil;
+    
+    [self migrationDictionariesWithSchemaDictionary:schemaDictionary];
+    
+    NSMutableArray * migrations = [NSMutableArray array];
+    
+    MMSchemaMigration * migration = [MMSchemaMigration migrationWithDictionary:migrationDictionary];
+    [migrations insertObject:migration atIndex:0];
+    
+    while (migration && migration.fromVersion != old) {
+     
+        NSDictionary * schemaDictionary = [self schemaDictionaryWithName:name version:new];
+        
+        NSDictionary * migrationDictionary = nil;
+        
+        migrationDictionary = [self migrationDictionariesWithSchemaDictionary:schemaDictionary];
+        
+        if ([old compareVersion:new] == NSOrderedDescending && downgrade ) {
             
-            if([possibleMigrations count] > 0){
-
-                for (NSDictionary * migDict in possibleMigrations) {
-                    if ([[MMVersionString stringWithString:migDict[@"new"]] compareVersion:newVersion] == NSOrderedAscending) {
-                        // add migration
-                    }
-                    if ([[MMVersionString stringWithString:migDict[@"new"]] compareVersion:newVersion] == NSOrderedSame) {
-                        // add migration and break
-                        
-                        //[migrations addObject:
-                         
-                         Class <MMSchemaMigration> cls = NSClassFromString(migDict[@"classname"]);
-                        
-                        MMSchema * oldSchema = [self schemaFromName:schemaName version:[MMVersionString stringWithString:migDict[@"old"]]];
-                        
-                        MMSchema * newSchema = [self schemaFromName:schemaName version:[MMVersionString stringWithString:migDict[@"new"]]];
-                        
-                        
-                         MMSchemaMigration * mig = [cls migrationForOldSchema:[MMVersionString stringWithString:migDict[@"old"]] newSchema:[MMVersionString stringWithString:migDict[@"new"]]
-                          ];
-                        
-                        [migrations addObject:mig];
-                        
-                        goodPath = true;
-                    
-                    }
-                    if ([[MMVersionString stringWithString:migDict[@"new"]] compareVersion:newVersion] == NSOrderedDescending) {
-                        // add migration and break
-                        
-                        badPath = true;
-                    }
-                    
-                }
-
-            }
-            else{
-                badPath = true;
-            }
+            [NSException raise:@"MMInvalidSchemaMigrationException" format:@"The schema had an invalid migration"];
+            
+        }
+        else if([old compareVersion:new] == NSOrderedAscending && !downgrade ){
+            
+            [NSException raise:@"MMInvalidSchemaMigrationException" format:@"The schema had an invalid migration"];
+            
         }
         
+        MMSchemaMigration * migration = [MMSchemaMigration migrationWithDictionary:migrationDictionary];
 
+        [migrations insertObject:migration atIndex:0];
+        
+    }
     
     return migrations;
+    
 }
 
 
-
-
-+(void)upgradeSchema:(NSString *)schemaName olderSchema:(MMSchema *)olderSchema newerSchema:(MMSchema *)newerSchema error:(NSError **)error{
++(NSDictionary *)versionMigrationDictionariesWithSchemaName:(NSString *)schemaName version:(MMVersionString *)ver{
     
-    MMSet * migrations = [self buildSchemaMigrationsWithName:(NSString *)schemaName olderSchema:(MMSchema *)olderSchema newerSchema:(MMSchema *)newerSchema error:error];
+
+   return [self migrationDictionariesWithSchemaDictionary:[self schemaDictionaryWithName:schemaName version:ver]];
+    
+}
+
++(NSDictionary *)migrationDictionariesWithSchemaDictionary:(NSDictionary *)schemaDict{
+    
+    return @{schemaDict[@"migration"]: schemaDict[@"migration"]};
+    
+}
+
++(NSDictionary *)bestMigrationUpgradeToVersion:(MMVersionString *)ver withDictionaries:(NSDictionary *)schemaDict{
+    
+    return schemaDict[@"migration"];
+    
+}
+
++(void)upgradeSchema:(NSString *)schemaName oldVersion:(MMVersionString *)oldVersion newVersion:(MMVersionString *)newVersion error:(NSError **)error{
+    
+    NSArray * migrations = [self buildSchemaMigrationsForName:schemaName fromVersion:oldVersion toVersion:newVersion];
     
     //NSError * error;
     
     for (MMSchemaMigration * migration in migrations) {
-        BOOL success = [migration upgrade:error];
+        
+        MMStore * oldStore = [MMStore storeWithSchemaName:schemaName version:migration.fromVersion];
+        MMStore * newStore = [MMStore storeWithSchemaName:schemaName version:migration.toVersion];
+
+        
+        BOOL success = [migration upgradeStore:oldStore toStore:newStore error:error];
         
         if (!success) {
             MMLog(@"Migration falied %@", [*error localizedDescription] );
@@ -297,7 +423,7 @@
     
 }
 
-+(void)downgradeSchema:(NSString *)schemaName olderSchema:(MMSchema *)olderSchema newerSchema:(MMSchema *)newerSchema error:(NSError **)error{
++(void)downgradeSchema:(NSString *)schemaName oldVersion:(MMVersionString *)oldVersion newVersion:(MMVersionString *)newVersion error:(NSError **)error{
     
     
     

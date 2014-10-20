@@ -124,7 +124,7 @@
     NSString * name = [NSString stringWithFormat:@"%@__id", relationship.entityName];
     
     
-    [self.attributes objectWithValue:name forKey:@"name"];
+    //[self.attributes objectWithValue:name forKey:@"name"];
     
 //    if ([relationship onSelf]) {
 //        name = [NSString stringWithFormat:@"%@__%@", relationship.name, name];

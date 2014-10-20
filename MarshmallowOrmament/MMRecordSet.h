@@ -8,8 +8,8 @@
 
 #import "MMSet.h"
 //#import "MMStore.h"
-
-@interface MMRecordSet : MMSet{
+#import "MMResultsSet.h"
+@interface MMRecordSet : MMResultsSet{
     
     
     

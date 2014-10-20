@@ -12,6 +12,8 @@
 #import "MMRecord.h"
 #import "MMRequest.h"
 
+#import <objc/runtime.h>
+
 //#import <sqlite3.h>
 
 
@@ -374,14 +376,9 @@
     
     NSMutableString * clause = [NSMutableString stringWithString:@""];
     
-    NSEnumerator * enu = [relationship.links objectEnumerator];
-    
-    //MMRelation * rel = nil;
-    
     MMEntity * local = [self.schema entityForName:relationship.recordEntityName];
     MMEntity * foreign = [self.schema entityForName:relationship.entityName];
     MMAutoRelatedEntity * inter = (MMAutoRelatedEntity *)[self.schema entityForName:relationship.autoRelateName];
-
     
     [clause appendFormat:@"%@ JOIN %@ ON %@.%@ = %@.%@ JOIN %@ ON %@.%@ = %@.%@",
      local.name,
@@ -396,9 +393,6 @@
      foreign.name,
      [[self class] rowidColumnNameForEntity:foreign]
      ];
-
-    
-    
     
     return [NSString stringWithString:clause];
 }
@@ -418,18 +412,8 @@
 
     }
     
-    NSLog(@"%@", set);
+    //NSLog(@"%@", set);
     
-    if (!relationship.hasMany) {
-        
-        if ([set count] > 0){
-            
-            return set[0];
-        
-        }
-        
-        return [NSNull null];
-    }
     
     return set;
 }
@@ -454,6 +438,7 @@
     
     NSLog(@"%@ %@ %@",request.sqlSelect, request.sqlFrom, request.sqlWhere);
     
+    set.relationship = relationship;
     
     set.request = request;
     
@@ -500,39 +485,101 @@
 }
 
 -(BOOL)addRecords:(NSArray *)set toRelationship:(MMRelationship *)relationship onRecord:(MMRecord *)record error:(NSError **)error{
-    
-    NSString * updateTableName = nil;
-    NSString * updateColumnName = nil;
 
-    for (MMRecord * rec in set) {
-        
-        
-        
-        
-    }
+    BOOL __block success;
     
-    return NO;
+    NSLog(@"unable to update");
+    
+    [self.dbQueue inDatabase:^(FMDatabase *db) {
+
+        NSString * query = [NSString stringWithFormat:@" INSERT OR REPLACE INTO `%@` (`%@`, `%@`) VALUES (:local, :foreign)",
+                            relationship.autoRelateName,
+                            [[self class] localAttributeNameForRelation:relationship],
+                            [[self class] foreignAttributeNameForRelation:relationship]
+                            ];
+        
+        for (MMRecord * recf in set) {
+            
+            success = [db executeUpdate:query withParameterDictionary:@{
+                                                             @"local":[[self class] rowidColumnValueForRecord:record],
+                                                             @"foreign":[[self class] rowidColumnValueForRecord:recf]
+                                                                 }];
+            if (!success) {
+                
+                NSLog(@"unable to update  %@", [[db lastError] localizedDescription]);
+                
+                *error = [db lastError];
+            }
+            
+        }
+        
+    }];
+    
+    return YES;
 
 }
 
 
 -(BOOL)removeRecords:(NSArray *)set fromRelationship:(MMRelationship *)relationship onRecord:(MMRecord *)record error:(NSError **)error{
     
-    NSString * updateTableName = nil;
-    NSString * updateColumnName = nil;
+    BOOL __block success;
     
-    for (MMRecord * rec in set) {
+    [self.dbQueue inDatabase:^(FMDatabase *db) {
         
+        NSString * query = [NSString stringWithFormat:@"DELETE FROM `%@` WHERE `%@` = :local AND `%@` =  :foreign)",
+                            relationship.autoRelateName,
+                            [[self class] localAttributeNameForRelation:relationship],
+                            [[self class] foreignAttributeNameForRelation:relationship]
+                            ];
         
+        for (MMRecord * recf in set) {
+            
+             success = [db executeUpdate:query withParameterDictionary:@{
+                                                             @"local":[[self class] rowidColumnValueForRecord:record],
+                                                             @"foreign":[[self class] rowidColumnValueForRecord:recf]
+                                                             }];
+            
+            if (!success) {
+                *error = [db lastError];
+            }
+            
+        }
         
-        
-    }
+    }];
     
-    return NO;
+    return success;
 }
 
 
 
+
++(NSString *)localAttributeNameForRelation:(MMRelationship *)relationship{
+    
+    NSString * name = [NSString stringWithFormat:@"%@__id", relationship.recordEntityName];
+    
+    //    if ([relationship onSelf]) {
+    //        name = [NSString stringWithFormat:@"%@__%@", relationship.name, name];
+    //    }
+    
+    return name;
+    
+}
+
+
++(NSString *)foreignAttributeNameForRelation:(MMRelationship *)relationship{
+    
+    NSString * name = [NSString stringWithFormat:@"%@__id", relationship.entityName];
+    
+    
+    //[self.attributes objectWithValue:name forKey:@"name"];
+    
+    //    if ([relationship onSelf]) {
+    //        name = [NSString stringWithFormat:@"%@__%@", relationship.name, name];
+    //    }
+    
+    return name;
+    
+}
 
 
 
@@ -559,6 +606,17 @@
     return [[rec class] entityName];
     
 }
+
+
++(NSObject *)rowidColumnValueForRecord:(MMRecord *)rec{
+    
+    NSString * name = [((MMSQLiteStore *)[[rec class] store]) rowidColumnNameForEntityName:[[rec class]entityName]];
+    
+    Ivar ivar = class_getInstanceVariable([rec class], "_values");
+    return [((NSMutableDictionary *)object_getIvar(rec, ivar)) objectForKey:name];
+    
+}
+
 
 +(NSString *)rowidColumnNameForRecord:(MMRecord *)rec{
     
@@ -715,9 +773,6 @@
     
     BOOL __block success = NO;
     
-    NSLog(@"blah23");
-
-    
     [self.dbQueue inDatabase:^(FMDatabase * db){
 
         success = [db executeUpdate:[[self class] buildUpdateQueryForRecord:rec values:values] withParameterDictionary:values];
@@ -736,9 +791,6 @@
     
     
     BOOL __block success = NO;
-
-    NSLog(@"blah23");
-
     
     [self.dbQueue inDatabase:^(FMDatabase * db){
 
@@ -765,7 +817,7 @@
     
     NSString * rowIdKey = [[self class] rowidColumnNameForRecord:rec];
     
-    NSLog(@"REFRESHED VALUES %@", [NSString stringWithFormat:@"SELECT * FROM %@ WHERE `%@` = :%@", [[self class] tableNameForRecord:rec] , rowIdKey, rowIdKey]);
+    //NSLog(@"REFRESHED VALUES %@", [NSString stringWithFormat:@"SELECT * FROM %@ WHERE `%@` = :%@", [[self class] tableNameForRecord:rec] , rowIdKey, rowIdKey]);
     
         FMResultSet * res = [db executeQuery:[NSString stringWithFormat:@"SELECT * FROM %@ WHERE `%@` = :%@", [[self class] tableNameForRecord:rec], rowIdKey, rowIdKey] withParameterDictionary:@{rowIdKey:[NSNumber numberWithLongLong:rowId]}];
         
@@ -784,8 +836,6 @@
 }
 
 -(BOOL)executeDestroyOnRecord:(MMRecord *)rec withValues:(NSMutableDictionary *)values error:(NSError **)error{
-    
-    NSLog(@"DELDELDEL");
     
     BOOL __block success = NO;
     

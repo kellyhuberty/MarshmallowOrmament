@@ -7,19 +7,35 @@
 //
 
 #import "MMSet.h"
-#import "MMSQLiteStore.h"
+//#import "MMSQLiteStore.h"
 
+enum {
+    MMResultsSetNoTotal = -1,
+    MMResultsSetNoOffset = -1
+};
 
 @interface MMResultsSet : MMSet{
     
-    MMSQLiteStore * _store;
-    NSString * _fillClassName;
-    NSString * _query;
-    int _limit;
-    int _offset;
+//    MMSQLiteStore * _store;
+//    NSString * _fillClassName;
+//    NSString * _query;
     
+      MMSet * _groups;
+      int _offset;
+      int _total;
+    
+    int _maxFetchSize;
+
 }
-@property (nonatomic, retain)MMStore * store;
+@property (atomic, readonly)int total;
+@property (atomic)int offset;
+
+
+//-()setOffset:(int)offset totalResults:(int)totalResults;
+
+-(MMSet *)groupAtIndex:(int)index;
+
+
 
 
 @end

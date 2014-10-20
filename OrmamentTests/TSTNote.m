@@ -12,6 +12,8 @@
 
 @dynamic text;
 @dynamic notebook;
+@dynamic longitude;
+@dynamic latitude;
 //- (id)init
 //{
 //    self = [super initWithFrame:frame];

@@ -10,4 +10,51 @@
 
 @implementation MMResultsSet
 
+
+-(id)init{
+    
+    if (self = [super init]) {
+        //_sqlBindValues = [[NSMutableDictionary alloc]init];
+    
+        _offset = MMResultsSetNoTotal;
+        _total = MMResultsSetNoOffset;
+    
+    }
+    
+    return self;
+}
+
+
+//-(void)_groupAlphaNumeric{
+//    
+//    
+//    
+//    
+//}
+
+
+
+
+
+
+
+
+-(int)total{
+    
+    @synchronized(self){
+        if(MMResultsSetNoTotal){
+            
+            return [super count];
+            
+        }
+        
+        return _total;
+        
+    }
+
+}
+
+
+
+
 @end
