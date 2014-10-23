@@ -36,13 +36,17 @@ static void setValueIMP(id self, SEL _cmd, id aValue);
 // generic getter
 id valueIMP(id self, SEL _cmd) {
 
-    //[self willAccessValueForKey:NSStringFromSelector(_cmd)];
-    Ivar ivar = class_getInstanceVariable([self class], "_values");
-    //[self didAccessValueForKey:NSStringFromSelector(_cmd)];
-    id value = [((NSMutableDictionary *)object_getIvar(self, ivar)) objectForKey:NSStringFromSelector(_cmd)];
-    
-    
+    id value;
+    @synchronized(self) {
+
+        //[self willAccessValueForKey:NSStringFromSelector(_cmd)];
+        Ivar ivar = class_getInstanceVariable([self class], "_values");
+        //[self didAccessValueForKey:NSStringFromSelector(_cmd)];
+        value = [((NSMutableDictionary *)object_getIvar(self, ivar)) objectForKey:NSStringFromSelector(_cmd)];
+            
+    }
     return value;
+
 }
 
 static void setValueIntIMP(id self, SEL _cmd, int intValue) {
@@ -97,35 +101,54 @@ static void setValueIMP(id self, SEL _cmd, id aValue) {
     
     
     id value = [aValue copy];
-    NSMutableString *key = [NSStringFromSelector(_cmd) mutableCopy];
     
-    NSLog(@"settingggg");
+    @synchronized(self){
     
-    // delete "set" and ":" and lowercase first letter
-    [key deleteCharactersInRange:NSMakeRange(0, 3)];
-    [key deleteCharactersInRange:NSMakeRange([key length] - 1, 1)];
-    NSString *firstChar = [key substringToIndex:1];
-    [key replaceCharactersInRange:NSMakeRange(0, 1) withString:[firstChar lowercaseString]];
-    
-    
-    
-    [self willChangeValueForKey:key];
-    
-    
-    
-    Ivar ivar = class_getInstanceVariable([self class], "_values");
-    [((NSMutableDictionary *)object_getIvar(self, ivar)) setObject:(value) forKey:key];
-    ((MMRecord *)self).dirty = true;
-    
-    //void * dirty;
-    //object_getInstanceVariable([self class], "_dirty", &dirty);
-    
-    
-    
-    
-    [self didChangeValueForKey:key];
+        NSString *key;
+        key = [NSStringFromSelector(_cmd) mutableCopy];
+        
+        
+        NSLog(@"settingggg");
+        
+        // delete "set" and ":" and lowercase first letter
+        //[key deleteCharactersInRange:NSMakeRange(0, 3)];
+    //    key = [key stringByReplacingCharactersInRange:NSMakeRange(0, 3) withString:@""];
+    //    [key deleteCharactersInRange:NSMakeRange([key length] - 1, 1)];
+    //    NSString *firstChar = [key substringToIndex:1];
+    //    [key replaceCharactersInRange:NSMakeRange(0, 1) withString:[firstChar lowercaseString]];
+        
+        
+        key = [key stringByReplacingCharactersInRange:NSMakeRange(0, 3) withString:@""];
+        key = [key stringByReplacingCharactersInRange:NSMakeRange([key length] - 1, 1) withString:@""];
+        NSString *firstChar = [key substringToIndex:1];
+        key = [key stringByReplacingCharactersInRange:NSMakeRange(0, 1) withString:[firstChar lowercaseString]];
 
-    
+        
+        
+        
+        [self willChangeValueForKey:key];
+        
+        
+        
+        Ivar ivar = class_getInstanceVariable([self class], "_values");
+        
+        NSMutableDictionary * dict = ((NSMutableDictionary *)object_getIvar(self, ivar));
+        
+        @synchronized(dict){
+            [dict setObject:(value) forKey:key];
+        }
+        
+        ((MMRecord *)self).dirty = true;
+        
+        //void * dirty;
+        //object_getInstanceVariable([self class], "_dirty", &dirty);
+        
+        
+        
+        
+        [self didChangeValueForKey:key];
+
+    }
 }
 
 
@@ -250,8 +273,12 @@ static void setRelationValueIMP(id self, SEL _cmd, id aValue) {
     self = [self init];
     
     if (self != nil) {
-        _inserted = YES;
-        [_values addEntriesFromDictionary:values];
+        @synchronized(self){
+            _inserted = YES;
+        }
+        @synchronized(_values){
+            [_values addEntriesFromDictionary:values];
+        }
         //[self registerNotificationHash];
     }
     
@@ -298,17 +325,49 @@ static void setRelationValueIMP(id self, SEL _cmd, id aValue) {
     //return rec;
 }
 
++(void)create:(NSDictionary *)dictionary error:(NSError **)error completionBlock:( void (^)(MMRecord * record, BOOL success, NSError **))completionBlock{
+    
+    NSOperationQueue * queue = [[NSOperationQueue alloc] init];
+    
+    [queue addOperationWithBlock:^(){
+        
+        MMRecord * rec = [self create:dictionary error:error];
+        
+        BOOL success = false;
+        
+        if (rec) {
+            success = true;
+        }
+        
+        completionBlock(rec, success, error);
+    
+    }];
+    
+}
+
 +(instancetype)create:(NSDictionary *)dictionary{
     
-    MMRecord * rec = MMAutorelease([[[self class] alloc] initWithValues:dictionary]);
-
     NSError * error;
     
-    [rec save:&error];
+    MMRecord * rec = [self create:dictionary error:&error];
     
     return  rec;
     
 }
+
++(instancetype)create:(NSDictionary *)dictionary error:(NSError **)error{
+    
+    MMRecord * rec = MMAutorelease([[[self class] alloc] initWithValues:dictionary]);
+
+    //NSError * error;
+    
+    [rec save:error];
+    
+    return  rec;
+    
+}
+
+
 
 -(void)registerNotificationHash{
     
@@ -335,11 +394,12 @@ static void setRelationValueIMP(id self, SEL _cmd, id aValue) {
 }
 
 
--(void)_setDirty{
-    
-    _dirty = true;
-    
-}
+//-(void)_setDirty{
+//
+//    
+//    _dirty = true;
+//    
+//}
 
 
 -(void)fill:(NSDictionary *)dict{
@@ -360,6 +420,21 @@ static void setRelationValueIMP(id self, SEL _cmd, id aValue) {
     
     //[self loadRelations];
 
+}
+
+//
+-(void)save:(NSError **)error completionBlock:( void (^)(MMRecord * record, BOOL success, NSError **))completionBlock{
+    
+    NSOperationQueue * queue = [[NSOperationQueue alloc] init];
+    
+    
+    [queue addOperationWithBlock:^(){
+        
+        BOOL suc = [self save:&error];
+        
+        completionBlock(self, suc, error);
+    }];
+    
 }
 
 
@@ -414,6 +489,21 @@ static void setRelationValueIMP(id self, SEL _cmd, id aValue) {
     
 }
 
+
+
+-(BOOL)destroy:(NSError **)error completionBlock:(void (^)(MMRecord * record, BOOL success, NSError ** error))completionBlock{
+    
+    
+    
+    //if ([self valid:error] && [self validForCreate:error]) {
+    //return [self executeDestroyForValues:_values error:error];
+    return [[[self class] store] executeDestroyOnRecord:self withValues:_values error:error];
+    
+    //}
+    
+    
+    
+}
 
 -(BOOL)destroy:(NSError **)error{
     
@@ -574,16 +664,16 @@ static void setRelationValueIMP(id self, SEL _cmd, id aValue) {
 
 
 -(void)setPrimativeValue:(id)value forKey:(NSString *)key{
-    
-    _values[key] = value;
-    
+    @synchronized(_values){
+        _values[key] = value;
+    }
 }
 
 
 -(id)primativeValueForKey:(NSString *)key{
-    
-    return _values[key];
-    
+    @synchronized(_values){
+        return _values[key];
+    }
 }
 
 

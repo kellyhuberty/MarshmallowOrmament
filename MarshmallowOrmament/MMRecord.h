@@ -49,11 +49,11 @@ typedef enum{
 -(void)logValues;
 
 
-@property (nonatomic, readonly)NSArray * attributes;
+@property (atomic, readonly)NSArray * attributes;
 
-@property (nonatomic, readonly)BOOL deleted;
-@property (nonatomic, readonly)BOOL inserted;
-@property (nonatomic, readonly)BOOL dirty;
+@property (atomic, readonly)BOOL deleted;
+@property (atomic, readonly)BOOL inserted;
+@property (atomic, readonly)BOOL dirty;
 
 
 @end
@@ -83,9 +83,9 @@ typedef enum{
 
     
 }
-@property (nonatomic, readonly)BOOL deleted;
-@property (nonatomic, readonly)BOOL inserted;
-@property (nonatomic)BOOL dirty;
+@property (atomic, readonly)BOOL deleted;
+@property (atomic, readonly)BOOL inserted;
+@property (atomic)BOOL dirty;
 
 
 //@property (nonatomic, retain)NSDictionary * values;
@@ -102,7 +102,7 @@ typedef enum{
 +(MMRequest *)newRequest;
 
 
--(void)create;
++(instancetype)create;
 
 
 -(id)init;
