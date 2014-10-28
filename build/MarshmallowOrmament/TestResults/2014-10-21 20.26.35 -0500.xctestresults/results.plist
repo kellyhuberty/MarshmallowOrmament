@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Results</key>
+	<array>
+		<dict>
+			<key>Provider Name</key>
+			<string>MarshmallowOrmament</string>
+			<key>Testable Name</key>
+			<string>OrmamentTests</string>
+			<key>Testable Tests</key>
+			<array>
+				<dict>
+					<key>Test Identifier</key>
+					<string>MMConditionalTests/testPregSplit</string>
+					<key>Test Name</key>
+					<string>testPregSplit</string>
+					<key>Test Result</key>
+					<string>Succeeded</string>
+				</dict>
+				<dict>
+					<key>Test Identifier</key>
+					<string>MMMigrationTests/testExample</string>
+					<key>Test Name</key>
+					<string>testExample</string>
+					<key>Test Result</key>
+					<string>Succeeded</string>
+				</dict>
+				<dict>
+					<key>Test Identifier</key>
+					<string>MMMigrationTests/testPerformanceExample</string>
+					<key>Test Name</key>
+					<string>testPerformanceExample</string>
+					<key>Test Performance Data</key>
+					<dict>
+						<key>avg</key>
+						<string>1.5754e-06</string>
+						<key>count</key>
+						<string>10</string>
+						<key>first</key>
+						<string>7.689e-06</string>
+						<key>max</key>
+						<string>7.689e-06</string>
+						<key>min</key>
+						<string>8.08e-07</string>
+						<key>performanceMetric</key>
+						<string>Time</string>
+						<key>relativeStandardDeviation</key>
+						<string>130.0</string>
+						<key>stddev</key>
+						<string>2.048729957803126e-06</string>
+						<key>units</key>
+						<string>seconds</string>
+					</dict>
+					<key>Test Result</key>
+					<string>Succeeded</string>
+				</dict>
+				<dict>
+					<key>Test Identifier</key>
+					<string>MMMigrationTests/testSchemaMigration</string>
+					<key>Test Name</key>
+					<string>testSchemaMigration</string>
+					<key>Test Result</key>
+					<string>Failed</string>
+				</dict>
+				<dict>
+					<key>Test Identifier</key>
+					<string>MMMigrationTests/testSingleEntityMigration</string>
+					<key>Test Name</key>
+					<string>testSingleEntityMigration</string>
+					<key>Test Result</key>
+					<string>Succeeded</string>
+				</dict>
+				<dict>
+					<key>Test Identifier</key>
+					<string>MMORMBootstrapTests/testFirstStartupUseCase</string>
+					<key>Test Name</key>
+					<string>testFirstStartupUseCase</string>
+					<key>Test Result</key>
+					<string>Succeeded</string>
+				</dict>
+				<dict>
+					<key>Test Identifier</key>
+					<string>MMORMBootstrapTests/testUpgradeVersionUseCase</string>
+					<key>Test Name</key>
+					<string>testUpgradeVersionUseCase</string>
+					<key>Test Result</key>
+					<string>Succeeded</string>
+				</dict>
+				<dict>
+					<key>Test Identifier</key>
+					<string>MMRecordTests/testBasicRead</string>
+					<key>Test Name</key>
+					<string>testBasicRead</string>
+					<key>Test Result</key>
+					<string>Succeeded</string>
+				</dict>
+				<dict>
+					<key>Test Identifier</key>
+					<string>MMRecordTests/testCreateAndFill</string>
+					<key>Test Name</key>
+					<string>testCreateAndFill</string>
+					<key>Test Result</key>
+					<string>Succeeded</string>
+				</dict>
+				<dict>
+					<key>Test Identifier</key>
+					<string>MMRecordTests/testDelete</string>
+					<key>Test Name</key>
+					<string>testDelete</string>
+					<key>Test Result</key>
+					<string>Succeeded</string>
+				</dict>
+				<dict>
+					<key>Test Identifier</key>
+					<string>MMRecordTests/testSavingBasicObjectValue</string>
+					<key>Test Name</key>
+					<string>testSavingBasicObjectValue</string>
+					<key>Test Result</key>
+					<string>Succeeded</string>
+				</dict>
+				<dict>
+					<key>Test Identifier</key>
+					<string>MMRecordTests/testSettingBasicObjectValue</string>
+					<key>Test Name</key>
+					<string>testSettingBasicObjectValue</string>
+					<key>Test Result</key>
+					<string>Succeeded</string>
+				</dict>
+				<dict>
+					<key>Test Identifier</key>
+					<string>MMRecordTests/testUpdate</string>
+					<key>Test Name</key>
+					<string>testUpdate</string>
+					<key>Test Result</key>
+					<string>Succeeded</string>
+				</dict>
+				<dict>
+					<key>Test Identifier</key>
+					<string>MMRecordTests/testUpdateCount</string>
+					<key>Test Name</key>
+					<string>testUpdateCount</string>
+					<key>Test Result</key>
+					<string>Succeeded</string>
+				</dict>
+				<dict>
+					<key>Test Identifier</key>
+					<string>MMRecordTests/testUpdatePercision</string>
+					<key>Test Name</key>
+					<string>testUpdatePercision</string>
+					<key>Test Result</key>
+					<string>Succeeded</string>
+				</dict>
+				<dict>
+					<key>Test Identifier</key>
+					<string>MMRecordTests/testUpdatePrimativeValue</string>
+					<key>Test Name</key>
+					<string>testUpdatePrimativeValue</string>
+					<key>Test Result</key>
+					<string>Succeeded</string>
+				</dict>
+				<dict>
+					<key>Test Identifier</key>
+					<string>MMRelationshipTests/testAddItemToRelationshipHasManyNO</string>
+					<key>Test Name</key>
+					<string>testAddItemToRelationshipHasManyNO</string>
+					<key>Test Result</key>
+					<string>Succeeded</string>
+				</dict>
+				<dict>
+					<key>Test Identifier</key>
+					<string>MMRelationshipTests/testGetBadRelationshipResults</string>
+					<key>Test Name</key>
+					<string>testGetBadRelationshipResults</string>
+					<key>Test Result</key>
+					<string>Succeeded</string>
+				</dict>
+				<dict>
+					<key>Test Identifier</key>
+					<string>MMRelationshipTests/testGetHasManyNORelationshipResults</string>
+					<key>Test Name</key>
+					<string>testGetHasManyNORelationshipResults</string>
+					<key>Test Result</key>
+					<string>Succeeded</string>
+				</dict>
+				<dict>
+					<key>Test Identifier</key>
+					<string>MMRelationshipTests/testGetHasManyYESRelationshipResults</string>
+					<key>Test Name</key>
+					<string>testGetHasManyYESRelationshipResults</string>
+					<key>Test Result</key>
+					<string>Succeeded</string>
+				</dict>
+				<dict>
+					<key>Test Identifier</key>
+					<string>MMRelationshipTests/testRemoveItemToRelationshipHasManyNO</string>
+					<key>Test Name</key>
+					<string>testRemoveItemToRelationshipHasManyNO</string>
+					<key>Test Result</key>
+					<string>Succeeded</string>
+				</dict>
+				<dict>
+					<key>Test Identifier</key>
+					<string>MMRequestTests/testBasicReadAllObjects</string>
+					<key>Test Name</key>
+					<string>testBasicReadAllObjects</string>
+					<key>Test Result</key>
+					<string>Succeeded</string>
+				</dict>
+				<dict>
+					<key>Test Identifier</key>
+					<string>MMRequestTests/testBasicReadMAnualWhereClause</string>
+					<key>Test Name</key>
+					<string>testBasicReadMAnualWhereClause</string>
+					<key>Test Result</key>
+					<string>Succeeded</string>
+				</dict>
+				<dict>
+					<key>Test Identifier</key>
+					<string>MMSchemaTests/testBuildFileInvalid</string>
+					<key>Test Name</key>
+					<string>testBuildFileInvalid</string>
+					<key>Test Result</key>
+					<string>Succeeded</string>
+				</dict>
+				<dict>
+					<key>Test Identifier</key>
+					<string>MMSchemaTests/testBuildFileValid</string>
+					<key>Test Name</key>
+					<string>testBuildFileValid</string>
+					<key>Test Result</key>
+					<string>Succeeded</string>
+				</dict>
+				<dict>
+					<key>Test Identifier</key>
+					<string>MMSchemaTests/testBuildSql</string>
+					<key>Test Name</key>
+					<string>testBuildSql</string>
+					<key>Test Result</key>
+					<string>Succeeded</string>
+				</dict>
+				<dict>
+					<key>Test Identifier</key>
+					<string>MMSchemaTests/testBuildStore</string>
+					<key>Test Name</key>
+					<string>testBuildStore</string>
+					<key>Test Result</key>
+					<string>Succeeded</string>
+				</dict>
+			</array>
+		</dict>
+	</array>
+	<key>Version</key>
+	<string>1.0</string>
+</dict>
+</plist>

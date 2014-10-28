@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>FormatVersion</key>
+	<string>1.2</string>
+	<key>RunDestination</key>
+	<dict>
+		<key>LocalComputer</key>
+		<dict>
+			<key>BusSpeedInMHz</key>
+			<integer>100</integer>
+			<key>CPUCount</key>
+			<integer>1</integer>
+			<key>CPUKind</key>
+			<string>Intel Core i7</string>
+			<key>CPUSpeedInMHz</key>
+			<integer>2000</integer>
+			<key>Identifier</key>
+			<string>421271D2-CB49-585C-8135-3B43426BAD72</string>
+			<key>IsConcreteDevice</key>
+			<true/>
+			<key>LogicalCPUCoresPerPackage</key>
+			<integer>4</integer>
+			<key>ModelCode</key>
+			<string>MacBookAir5,2</string>
+			<key>ModelName</key>
+			<string>MacBook Air</string>
+			<key>ModelUTI</key>
+			<string>com.apple.macbookair-13-unibody</string>
+			<key>Name</key>
+			<string>My Mac</string>
+			<key>NativeArchitecture</key>
+			<string>x86_64h</string>
+			<key>OperatingSystemVersion</key>
+			<string>10.10</string>
+			<key>OperatingSystemVersionWithBuildNumber</key>
+			<string>10.10 (14A388a)</string>
+			<key>PhysicalCPUCoresPerPackage</key>
+			<integer>2</integer>
+			<key>Platform</key>
+			<dict>
+				<key>Identifier</key>
+				<string>com.apple.platform.macosx</string>
+				<key>Name</key>
+				<string>OS X</string>
+			</dict>
+			<key>RAMSizeInMegabytes</key>
+			<integer>8192</integer>
+		</dict>
+		<key>Name</key>
+		<string>iPhone 6</string>
+		<key>TargetArchitecture</key>
+		<string>x86_64</string>
+		<key>TargetDevice</key>
+		<dict>
+			<key>Identifier</key>
+			<string>5B744E6E-35E3-48CC-B299-75A14B77E0F5</string>
+			<key>IsConcreteDevice</key>
+			<true/>
+			<key>ModelCode</key>
+			<string>iPhone7,2</string>
+			<key>ModelName</key>
+			<string>iPhone 6</string>
+			<key>ModelUTI</key>
+			<string>com.apple.iphone-6-b4b5b9</string>
+			<key>Name</key>
+			<string>iPhone 6</string>
+			<key>NativeArchitecture</key>
+			<string>x86_64</string>
+			<key>OperatingSystemVersion</key>
+			<string>8.0</string>
+			<key>OperatingSystemVersionWithBuildNumber</key>
+			<string>8.0 (12A365)</string>
+			<key>Platform</key>
+			<dict>
+				<key>Identifier</key>
+				<string>com.apple.platform.iphonesimulator</string>
+				<key>Name</key>
+				<string>iOS Simulator</string>
+			</dict>
+		</dict>
+		<key>TargetSDK</key>
+		<dict>
+			<key>Identifier</key>
+			<string>iphonesimulator8.0</string>
+			<key>IsInternal</key>
+			<false/>
+			<key>Name</key>
+			<string>Simulator - iOS 8.0</string>
+			<key>OperatingSystemVersion</key>
+			<string>8.0</string>
+		</dict>
+	</dict>
+	<key>TestableSummaries</key>
+	<array>
+		<dict>
+			<key>ProjectPath</key>
+			<string>MarshmallowOrmament.xcodeproj</string>
+			<key>TargetName</key>
+			<string>OrmamentTests</string>
+			<key>TestName</key>
+			<string>OrmamentTests</string>
+			<key>TestObjectClass</key>
+			<string>IDESchemeActionTestableSummary</string>
+			<key>Tests</key>
+			<array>
+				<dict>
+					<key>Subtests</key>
+					<array>
+						<dict>
+							<key>Subtests</key>
+							<array>
+								<dict>
+									<key>Subtests</key>
+									<array>
+										<dict>
+											<key>FailureSummaries</key>
+											<array>
+												<dict>
+													<key>FileName</key>
+													<string>/Users/kellyhuberty/Projects/MarshmallowOrmament/OrmamentTests/MMMigrationTests.m</string>
+													<key>LineNumber</key>
+													<integer>48</integer>
+													<key>Message</key>
+													<string>failed: caught "MMInvalidArgumentException", "Invalid class for attribute: value:%@ class:%@ name:%@"
+(
+	0   CoreFoundation                      0x000000010ee163f5 __exceptionPreprocess + 165
+	1   libobjc.A.dylib                     0x000000010eaafbb7 objc_exception_throw + 45
+	2   CoreFoundation                      0x000000010ee1632d +[NSException raise:format:] + 205
+	3   OrmamentTests                       0x00000001124e601d -[MMAttribute verify:class:name:] + 221
+	4   OrmamentTests                       0x00000001124e566a -[MMAttribute loadDescriptionFromDictionary:] + 1770
+	5   OrmamentTests                       0x00000001124e4295 -[MMAttribute initWithDictionary:] + 133
+	6   OrmamentTests                       0x00000001124e4f2a +[MMAttribute attributeWithDictionary:] + 90
+	7   OrmamentTests                       0x0000000112506eba -[MMEntity initWithDictionary:] + 1258
+	8   OrmamentTests                       0x00000001124fb9e7 -[MMSchema initWithDictionary:] + 1559
+	9   OrmamentTests                       0x00000001124fa4a3 +[MMSchema schemaFromName:version:] + 403
+	10  OrmamentTests                       0x000000011250330e +[MMStore newStoreWithSchemaName:version:] + 94
+	11  OrmamentTests                       0x00000001125031b8 +[MMStore storeWithSchemaName:version:] + 952
+	12  OrmamentTests                       0x00000001124d0b03 -[MMMigrationTests testSchemaMigration] + 355
+	13  CoreFoundation                      0x000000010ed0e22c __invoking___ + 140
+	14  CoreFoundation                      0x000000010ed0e082 -[NSInvocation invoke] + 290
+	15  XCTest                              0x000000011291e1df -[XCTestCase invokeTest] + 253
+	16  XCTest                              0x000000011291e3e0 -[XCTestCase performTest:] + 150
+	17  XCTest                              0x0000000112927ce5 -[XCTest run] + 260
+	18  XCTest                              0x000000011291d14b -[XCTestSuite performTest:] + 379
+	19  XCTest                              0x0000000112927ce5 -[XCTest run] + 260
+	20  XCTest                              0x000000011291d14b -[XCTestSuite performTest:] + 379
+	21  XCTest                              0x0000000112927ce5 -[XCTest run] + 260
+	22  XCTest                              0x000000011291d14b -[XCTestSuite performTest:] + 379
+	23  XCTest                              0x0000000112927ce5 -[XCTest run] + 260
+	24  XCTest                              0x000000011291a20c __25-[XCTestDriver _runSuite]_block_invoke + 56
+	25  XCTest                              0x0000000112924f9d -[XCTestObservationCenter _observeTestExecutionForBlock:] + 162
+	26  XCTest                              0x000000011291a140 -[XCTestDriver _runSuite] + 269
+	27  XCTest                              0x000000011291ab6d -[XCTestDriver _checkForTestManager] + 234
+	28  XCTest                              0x000000011292abd0 +[XCTestProbe runTests:] + 182
+	29  xctest                              0x000000010e59d196 xctest + 4502
+	30  xctest                              0x000000010e59d40d xctest + 5133
+	31  xctest                              0x000000010e59ce13 xctest + 3603
+	32  libdyld.dylib                       0x00000001100d1145 start + 1
+	33  ???                                 0x000000000000000a 0x0 + 10
+)</string>
+													<key>PerformanceFailure</key>
+													<false/>
+												</dict>
+											</array>
+											<key>TestIdentifier</key>
+											<string>MMMigrationTests/testSchemaMigration</string>
+											<key>TestName</key>
+											<string>testSchemaMigration</string>
+											<key>TestObjectClass</key>
+											<string>IDESchemeActionTestSummary</string>
+											<key>TestStatus</key>
+											<string>Failure</string>
+											<key>TestSummaryGUID</key>
+											<string>19276E95-A64F-4171-A2C4-5A923A0EE966</string>
+										</dict>
+									</array>
+									<key>TestIdentifier</key>
+									<string>MMMigrationTests</string>
+									<key>TestName</key>
+									<string>MMMigrationTests</string>
+									<key>TestObjectClass</key>
+									<string>IDESchemeActionTestSummaryGroup</string>
+								</dict>
+							</array>
+							<key>TestIdentifier</key>
+							<string>OrmamentTests.xctest</string>
+							<key>TestName</key>
+							<string>OrmamentTests.xctest</string>
+							<key>TestObjectClass</key>
+							<string>IDESchemeActionTestSummaryGroup</string>
+						</dict>
+					</array>
+					<key>TestIdentifier</key>
+					<string>Selected tests</string>
+					<key>TestName</key>
+					<string>Selected tests</string>
+					<key>TestObjectClass</key>
+					<string>IDESchemeActionTestSummaryGroup</string>
+				</dict>
+			</array>
+		</dict>
+	</array>
+</dict>
+</plist>

@@ -1,0 +1,21 @@
+PODS:
+  - FMDB (2.4):
+    - FMDB/standard
+  - FMDB/common (2.4)
+  - FMDB/standard (2.4):
+    - FMDB/common
+  - MarshmallowCore (0.0.6)
+
+DEPENDENCIES:
+  - FMDB
+  - MarshmallowCore (from `/Users/kellyhuberty/Projects/MarshmallowCore`)
+
+EXTERNAL SOURCES:
+  MarshmallowCore:
+    :path: /Users/kellyhuberty/Projects/MarshmallowCore
+
+SPEC CHECKSUMS:
+  FMDB: 0b2fa25e5264ef177973c0cb8c02c711107979aa
+  MarshmallowCore: c108689e83aca64dd4d97e93c6ac38eb16e56d7e
+
+COCOAPODS: 0.34.4

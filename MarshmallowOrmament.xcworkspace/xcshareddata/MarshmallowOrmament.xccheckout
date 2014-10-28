@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>ED44D52F-7C1F-45F2-B043-37C10CA0D30F</string>
+	<key>IDESourceControlProjectName</key>
+	<string>MarshmallowOrmament</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>046846DD0612D74C5915B4B51F97FAED0D2B681A</key>
+		<string>https://github.com/kellyhuberty/MarshmallowCore.git</string>
+		<key>9FFF97BDD0FB6ABB87955FFAA618700966837BA2</key>
+		<string>https://github.com/kellyhuberty/MarshmallowOrmament.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>MarshmallowOrmament.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>046846DD0612D74C5915B4B51F97FAED0D2B681A</key>
+		<string>../../MarshmallowCore</string>
+		<key>9FFF97BDD0FB6ABB87955FFAA618700966837BA2</key>
+		<string>..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/kellyhuberty/MarshmallowOrmament.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>9FFF97BDD0FB6ABB87955FFAA618700966837BA2</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>046846DD0612D74C5915B4B51F97FAED0D2B681A</string>
+			<key>IDESourceControlWCCName</key>
+			<string>MarshmallowCore</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>9FFF97BDD0FB6ABB87955FFAA618700966837BA2</string>
+			<key>IDESourceControlWCCName</key>
+			<string>MarshmallowOrmament</string>
+		</dict>
+	</array>
+</dict>
+</plist>

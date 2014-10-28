@@ -210,6 +210,13 @@ static NSMutableDictionary __strong * globalSchemas;
     
 }
 
++(Class)entityClass{
+    
+    return [MMEntity class];
+    
+}
+
+
 
 -(id)initWithDictionary:(NSDictionary *)dict {
     
@@ -239,7 +246,7 @@ static NSMutableDictionary __strong * globalSchemas;
             
             for ( NSDictionary * entityDict in array ) {
                 
-                MMEntity * entity = [[MMEntity alloc]initWithDictionary:entityDict];
+                MMEntity * entity = [[[[self class]entityClass] alloc]initWithDictionary:entityDict];
                 
                 //[_autoRelationships addObjectsFromArray:[entity.relationships objectsWithValue:[NSNumber numberWithBool:true] forKey:@"autoRelated"]];
                 

@@ -1,0 +1,1 @@
+../../../../../MarshmallowCore/MarshmallowCore/MMAdapter.h
