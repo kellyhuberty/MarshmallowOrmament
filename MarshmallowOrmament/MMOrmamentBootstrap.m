@@ -185,7 +185,7 @@
 
 +(MMVersionString *)versionForSchema:(NSString *)schemaName{
     
-    NSDictionary * dict = [MMPreferences valueForKey:@"MMSchemaVersions"];
+    NSDictionary * dict = [[MMPreferences valueForKey:@"MMSchemaVersions"] mutableCopy];
     if (dict[schemaName]) {
         return [MMVersionString stringWithString:dict[schemaName]];
     }
@@ -195,7 +195,7 @@
 
 +(void)setVersion:(MMVersionString *)version forSchema:(NSString *)schemaName{
     
-     NSMutableDictionary * dict = [MMPreferences valueForKey:@"MMSchemaVersions"];
+     NSMutableDictionary * dict = [[MMPreferences valueForKey:@"MMSchemaVersions"] mutableCopy ];
     
     if (!dict) {
         dict = [NSMutableDictionary dictionary];
@@ -211,7 +211,7 @@
 
 +(void)unsetVersionForSchema:(NSString *)schemaName{
     
-    NSMutableDictionary * dict = [MMPreferences valueForKey:@"MMSchemaVersions"];
+    NSMutableDictionary * dict = [[MMPreferences valueForKey:@"MMSchemaVersions"] mutableCopy];
     
     if (!dict) {
         dict = [NSMutableDictionary dictionary];
