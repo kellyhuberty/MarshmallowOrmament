@@ -1,2 +1,2 @@
-pod 'MarshmallowCore', :path => '/Users/kellyhuberty/Projects/MarshmallowCore'
+pod 'MarshmallowCore', :git => 'ssh://huberty.duckdns.org/git/MarshmallowCore.git'
 pod 'FMDB'
