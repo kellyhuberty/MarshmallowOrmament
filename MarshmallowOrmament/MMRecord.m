@@ -473,6 +473,62 @@ static void setRelationValueIMP(id self, SEL _cmd, id aValue) {
 }
 
 
+
+-(void)push:(NSError **)error completionBlock:( void (^)(MMRecord * record, BOOL success, NSError **))completionBlock{
+    
+    NSOperationQueue * queue = [[NSOperationQueue alloc] init];
+    
+    
+    [queue addOperationWithBlock:^(){
+        
+        BOOL suc = [self save:&error];
+        
+        completionBlock(self, suc, error);
+    }];
+    
+}
+
+
+
+
+-(BOOL)push:(NSError **)error{
+    
+    BOOL suc = false;
+    
+    if (!_inserted) {
+        
+        if ([self valid:error] && [self validForUpdate:error]) {
+            suc = [[[self class] store] executeCreateOnRecord:self withValues:_values error:error];
+        }
+        
+        if (suc) {
+            _inserted = true;
+        }
+        
+    }
+    else{
+        
+        if ([self valid:error] && [self validForCreate:error]) {
+            suc = [[[self class] store] executeUpdateOnRecord:self withValues:_values error:error];
+        }
+        
+        //[self executeUpdateOnRecord:self withValues:_values error:error];
+        
+    }
+    
+    if (suc) {
+        suc = [self _saveRelationships:error];
+    }
+    
+    return suc;
+    
+}
+
+
+
+
+
+
 -(BOOL)_saveRelationships:(NSError **)error{
     
     for (MMRelationshipSet * set in [_relationValues allValues]) {
@@ -558,6 +614,12 @@ static void setRelationValueIMP(id self, SEL _cmd, id aValue) {
 +(MMStore *)store{
     
     return [MMStore storeWithSchemaName:[self schemaName] version:nil];
+    
+}
+
++(MMStore *)cloud{
+    
+    return [MMCloud cloudWithSchemaName:[self cloudName] version:nil];
     
 }
 
