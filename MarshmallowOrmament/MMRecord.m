@@ -617,6 +617,12 @@ static void setRelationValueIMP(id self, SEL _cmd, id aValue) {
     
 }
 
++(MMStore *)cloud{
+    
+    return [MMCloud cloudWithSchemaName:[self cloudName] version:nil];
+    
+}
+
 +(MMRequest *)newRequest{
     
     //[[MMRequest alloc] initWithStore:[self store] classname:NSStringFromClass(self)];
