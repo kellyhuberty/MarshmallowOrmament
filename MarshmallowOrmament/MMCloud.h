@@ -6,8 +6,8 @@
 //  Copyright (c) 2014 Kelly Huberty. All rights reserved.
 //
 
-#import "MMStore.h"
+#import "MMService.h"
 
-@interface MMCloud : MMStore
+@interface MMCloud : MMService
 
 @end

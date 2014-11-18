@@ -6,14 +6,14 @@
 //  Copyright (c) 2014 Kelly Huberty. All rights reserved.
 //
 
-#import "MMOrmamentBootstrap.h"
+#import "MMOrmamentManager.h"
 #import "MMPreferences.h"
 
 #import "MMSchemaMigration.h"
 
-#import "MMStore.h"
+#import "MMService.h"
 
-@implementation MMOrmamentBootstrap
+@implementation MMOrmamentManager
 
 
 +(void)startWithSchemas:(NSArray *)schemas{
@@ -239,7 +239,7 @@
 
 +(void)buildInitialStoreForSchema:(MMSchema *)schema error:(NSError **)error{
     
-    MMStore * store = [[NSClassFromString(schema.storeClassName) alloc] initWithSchema:(schema)];
+    MMService * store = [[NSClassFromString(schema.storeClassName) alloc] initWithSchema:(schema)];
     
     [store build:&error];
     
@@ -249,7 +249,7 @@
 
 +(void)resetStoreForStoreForSchema:(MMSchema *)schema error:(NSError **)error{
     
-    MMStore * store = [[NSClassFromString(schema.storeClassName) alloc] initWithSchema:(schema)];
+    MMService * store = [[NSClassFromString(schema.storeClassName) alloc] initWithSchema:(schema)];
     
     [store build:&error];
     
@@ -406,8 +406,8 @@
     
     for (MMSchemaMigration * migration in migrations) {
         
-        MMStore * oldStore = [MMStore storeWithSchemaName:schemaName version:migration.fromVersion];
-        MMStore * newStore = [MMStore storeWithSchemaName:schemaName version:migration.toVersion];
+        MMService * oldStore = [MMService storeWithSchemaName:schemaName version:migration.fromVersion];
+        MMService * newStore = [MMService storeWithSchemaName:schemaName version:migration.toVersion];
 
         
         BOOL success = [migration upgradeStore:oldStore toStore:newStore error:error];

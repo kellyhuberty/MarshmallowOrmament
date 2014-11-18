@@ -28,7 +28,26 @@
       shouldUseLaunchSchemeArgsEnv = "YES"
       buildConfiguration = "Debug">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "C7A346051965B46500EC08BB"
+               BuildableName = "OrmamentTests.xctest"
+               BlueprintName = "OrmamentTests"
+               ReferencedContainer = "container:MarshmallowOrmament.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "C74389031963D134000D50AF"
+            BuildableName = "libMarshmallowOrmament.a"
+            BlueprintName = "MarshmallowOrmament"
+            ReferencedContainer = "container:MarshmallowOrmament.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
    </TestAction>
    <LaunchAction
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"

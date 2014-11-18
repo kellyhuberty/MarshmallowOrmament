@@ -8,7 +8,7 @@
 
 #import "MMConditional.h"
 #import "MMCondition.h"
-#import "MMStore.h"
+#import "MMService.h"
 @implementation MMConditional
 
 -(id)initWithFormat:(NSString *)formatString, ...{

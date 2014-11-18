@@ -9,7 +9,7 @@
 //#import <CoreData/CoreData.h>
 //#import "MMCoreData.h"
 #import "MMAttribute.h"
-#import "MMStore.h"
+#import "MMService.h"
 #import <Foundation/Foundation.h>
     //#import "MMEntity.h"
 
@@ -33,7 +33,7 @@ typedef enum{
 -(NSDictionary *)idValues;
 -(NSString *)idHash;
 
--(instancetype)initWithFillValues:(NSDictionary *)values created:(BOOL)inserted fromStore:(MMStore *)store;
+-(instancetype)initWithFillValues:(NSDictionary *)values created:(BOOL)inserted fromStore:(MMService *)store;
 -(instancetype)create;
 -(instancetype)create:(NSDictionary*)values;
 
@@ -98,7 +98,7 @@ typedef enum{
 //@property (nonatomic, retain)NSMutableDictionary * mmValues;
 +(MMSet *)attributes;
 +(MMEntity *)entity;
-+(MMStore *)store;
++(MMService *)store;
 +(MMRequest *)newRequest;
 
 
@@ -128,7 +128,7 @@ typedef enum{
 +(BOOL)executeReadOnRecord:(MMRecord *)record withValues:(NSMutableDictionary *)dictionary error:(NSError **)err;
 +(BOOL)executeUpdateOnRecord:(MMRecord *)record withValues:(NSMutableDictionary *)dictionary error:(NSError **)err;
 +(BOOL)executeDestroyOnRecord:(MMRecord *)record withValues:(NSMutableDictionary *)dictionary error:(NSError **)err;
-+(MMStore *)store;
++(MMService *)store;
 
 @end
 

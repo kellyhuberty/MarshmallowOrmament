@@ -7,7 +7,7 @@
 //
 
 #import "MMRelationship.h"
-#import "MMStore.h"
+#import "MMService.h"
 
 @implementation MMRelationship
 

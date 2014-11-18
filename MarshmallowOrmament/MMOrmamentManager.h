@@ -10,7 +10,7 @@
 #import <Foundation/Foundation.h>
 #import "MMSchema.h"
 
-@interface MMOrmamentBootstrap : NSObject
+@interface MMOrmamentManager : NSObject
 
 +(void)startWithSchemas:(NSArray *)schemas;
 

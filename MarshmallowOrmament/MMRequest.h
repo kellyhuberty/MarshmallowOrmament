@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "MMStore.h"
+#import "MMService.h"
 typedef void (^completionBlock)(MMSet *, NSError *__autoreleasing *);
 
 @interface MMRequest : NSObject{
@@ -36,7 +36,7 @@ typedef void (^completionBlock)(MMSet *, NSError *__autoreleasing *);
     
     NSString * _className;
     NSString * _entityName;
-    MMStore * _store;
+    MMService * _store;
     
 }
 
@@ -44,7 +44,7 @@ typedef void (^completionBlock)(MMSet *, NSError *__autoreleasing *);
 @property(nonatomic, retain)NSString * className;
 @property(nonatomic, retain)NSString * entityName;
 
-@property(atomic, retain)MMStore * store;
+@property(atomic, retain)MMService * store;
 
 @property(atomic, retain)NSString * _sqlQuery;
 
@@ -62,14 +62,14 @@ typedef void (^completionBlock)(MMSet *, NSError *__autoreleasing *);
 
 
 -(id)init;
--(id)initWithStore:(MMStore *)store classname:(NSString *)className;
+-(id)initWithStore:(MMService *)store classname:(NSString *)className;
 
 -(void)executeWithCompletionBlock:(void (^)(MMRecordSet* set, NSError ** error))block;
 
--(void)executeOnStore:(MMStore *)store completionBlock:(void (^)(MMRecordSet* set, NSError ** error))block;
+-(void)executeOnStore:(MMService *)store completionBlock:(void (^)(MMRecordSet* set, NSError ** error))block;
 -(void)completedWithResults:(MMSet *)set error:(NSError**)error;
 
--(MMSet *)executeOnStore:(MMStore *)store error:(NSError**)error;
+-(MMSet *)executeOnStore:(MMService *)store error:(NSError**)error;
 //@property(nonatomic, retain)
 
 @end

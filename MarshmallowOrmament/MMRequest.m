@@ -20,7 +20,7 @@
     return self;
 }
 
--(id)initWithStore:(MMStore *)store classname:(NSString *)className{
+-(id)initWithStore:(MMService *)store classname:(NSString *)className{
     
     if (self = [self init]) {
         //_className = MMRetain(className);
@@ -43,7 +43,7 @@
 }
 
 
--(BOOL)executeOnStore:(MMStore *)store returnToTarget:(id)target selector:(SEL)selector{
+-(BOOL)executeOnStore:(MMService *)store returnToTarget:(id)target selector:(SEL)selector{
     
     NSInvocationOperation * a = [[NSInvocationOperation alloc]initWithTarget:[self class] selector:@selector(executeReadWithRequest:) object:self];
     
@@ -61,7 +61,7 @@
     
 }
 
--(void)executeOnStore:(MMStore *)store error:(NSError**)error completionBlock:(void (^)(MMSet *, NSError *__autoreleasing *))block{
+-(void)executeOnStore:(MMService *)store error:(NSError**)error completionBlock:(void (^)(MMSet *, NSError *__autoreleasing *))block{
     
     if(!_completionBlock){
         self.completionBlock = block;
@@ -85,7 +85,7 @@
     
 }
 
--(MMSet *)executeOnStore:(MMStore *)store error:(NSError**)error{
+-(MMSet *)executeOnStore:(MMService *)store error:(NSError**)error{
     
     if (_store == nil) {
         _store = MMRetain(store);

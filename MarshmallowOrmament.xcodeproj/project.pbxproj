@@ -29,6 +29,8 @@
 		C78852C019D701600004D029 /* MMGroupDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = C78852BF19D701600004D029 /* MMGroupDescriptor.m */; };
 		C78852C319D8AE800004D029 /* MMRequestController.m in Sources */ = {isa = PBXBuildFile; fileRef = C78852C219D8AE800004D029 /* MMRequestController.m */; };
 		C789AFA0196EC2FD008BBA72 /* MMResultsSet.m in Sources */ = {isa = PBXBuildFile; fileRef = C789AF9F196EC2FD008BBA72 /* MMResultsSet.m */; };
+		C78C42F71A1AA4F4005FB127 /* MMStore.m in Sources */ = {isa = PBXBuildFile; fileRef = C78C42F61A1AA4F4005FB127 /* MMStore.m */; };
+		C78C42FD1A1B1CB3005FB127 /* MMSchemaObject.m in Sources */ = {isa = PBXBuildFile; fileRef = C78C42FC1A1B1CB3005FB127 /* MMSchemaObject.m */; };
 		C7A0C4F3196598BF009EB4E1 /* MMEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = C7A0C4F2196598BF009EB4E1 /* MMEntity.m */; };
 		C7A345FC1965A78A00EC08BB /* MMSQLiteSchema.m in Sources */ = {isa = PBXBuildFile; fileRef = C7A345FB1965A78A00EC08BB /* MMSQLiteSchema.m */; };
 		C7A345FF1965A7E100EC08BB /* MMSchema.m in Sources */ = {isa = PBXBuildFile; fileRef = C7A345FE1965A7E100EC08BB /* MMSchema.m */; };
@@ -40,9 +42,9 @@
 		C7A346221965C1D900EC08BB /* TSTNote.m in Sources */ = {isa = PBXBuildFile; fileRef = C7A346211965C1D900EC08BB /* TSTNote.m */; };
 		C7A346251965C20C00EC08BB /* TSTItem.m in Sources */ = {isa = PBXBuildFile; fileRef = C7A346241965C20C00EC08BB /* TSTItem.m */; };
 		C7A346281965C64F00EC08BB /* MMSQLiteStore.m in Sources */ = {isa = PBXBuildFile; fileRef = C7A346271965C64F00EC08BB /* MMSQLiteStore.m */; };
-		C7A3462B1965C66100EC08BB /* MMStore.m in Sources */ = {isa = PBXBuildFile; fileRef = C7A3462A1965C66100EC08BB /* MMStore.m */; };
+		C7A3462B1965C66100EC08BB /* MMService.m in Sources */ = {isa = PBXBuildFile; fileRef = C7A3462A1965C66100EC08BB /* MMService.m */; };
 		C7A3462D1965F09E00EC08BB /* MMORMBootstrapTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C7A3462C1965F09E00EC08BB /* MMORMBootstrapTests.m */; };
-		C7A346301965F38400EC08BB /* MMOrmamentBootstrap.m in Sources */ = {isa = PBXBuildFile; fileRef = C7A3462F1965F38400EC08BB /* MMOrmamentBootstrap.m */; };
+		C7A346301965F38400EC08BB /* MMOrmamentManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C7A3462F1965F38400EC08BB /* MMOrmamentManager.m */; };
 		C7A346331966E9B100EC08BB /* MMSchemaMigration.m in Sources */ = {isa = PBXBuildFile; fileRef = C7A346321966E9B100EC08BB /* MMSchemaMigration.m */; };
 		C7A3463D196B522D00EC08BB /* MMSqliteSchemaMigration.m in Sources */ = {isa = PBXBuildFile; fileRef = C7A3463C196B522D00EC08BB /* MMSqliteSchemaMigration.m */; };
 		C7B9C656199DA6FF0036F89B /* MMAutoRelatedEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = C7B9C655199DA6FF0036F89B /* MMAutoRelatedEntity.m */; };
@@ -125,6 +127,10 @@
 		C78852C219D8AE800004D029 /* MMRequestController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMRequestController.m; sourceTree = "<group>"; };
 		C789AF9E196EC2FD008BBA72 /* MMResultsSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMResultsSet.h; sourceTree = "<group>"; };
 		C789AF9F196EC2FD008BBA72 /* MMResultsSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMResultsSet.m; sourceTree = "<group>"; };
+		C78C42F51A1AA4F4005FB127 /* MMStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMStore.h; sourceTree = "<group>"; };
+		C78C42F61A1AA4F4005FB127 /* MMStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMStore.m; sourceTree = "<group>"; };
+		C78C42FB1A1B1CB3005FB127 /* MMSchemaObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMSchemaObject.h; sourceTree = "<group>"; };
+		C78C42FC1A1B1CB3005FB127 /* MMSchemaObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMSchemaObject.m; sourceTree = "<group>"; };
 		C7A0C4EC1965984C009EB4E1 /* MMSchemaTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MMSchemaTests.m; path = ../MarshmallowOrmamentTests/MMSchemaTests.m; sourceTree = "<group>"; };
 		C7A0C4F1196598BF009EB4E1 /* MMEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMEntity.h; sourceTree = "<group>"; };
 		C7A0C4F2196598BF009EB4E1 /* MMEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMEntity.m; sourceTree = "<group>"; };
@@ -146,11 +152,11 @@
 		C7A346241965C20C00EC08BB /* TSTItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSTItem.m; sourceTree = "<group>"; };
 		C7A346261965C64F00EC08BB /* MMSQLiteStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMSQLiteStore.h; sourceTree = "<group>"; };
 		C7A346271965C64F00EC08BB /* MMSQLiteStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMSQLiteStore.m; sourceTree = "<group>"; };
-		C7A346291965C66100EC08BB /* MMStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMStore.h; sourceTree = "<group>"; };
-		C7A3462A1965C66100EC08BB /* MMStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMStore.m; sourceTree = "<group>"; };
+		C7A346291965C66100EC08BB /* MMService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMService.h; sourceTree = "<group>"; };
+		C7A3462A1965C66100EC08BB /* MMService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMService.m; sourceTree = "<group>"; };
 		C7A3462C1965F09E00EC08BB /* MMORMBootstrapTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMORMBootstrapTests.m; sourceTree = "<group>"; };
-		C7A3462E1965F38400EC08BB /* MMOrmamentBootstrap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMOrmamentBootstrap.h; sourceTree = "<group>"; };
-		C7A3462F1965F38400EC08BB /* MMOrmamentBootstrap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMOrmamentBootstrap.m; sourceTree = "<group>"; };
+		C7A3462E1965F38400EC08BB /* MMOrmamentManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMOrmamentManager.h; sourceTree = "<group>"; };
+		C7A3462F1965F38400EC08BB /* MMOrmamentManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMOrmamentManager.m; sourceTree = "<group>"; };
 		C7A346311966E9B100EC08BB /* MMSchemaMigration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMSchemaMigration.h; sourceTree = "<group>"; };
 		C7A346321966E9B100EC08BB /* MMSchemaMigration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMSchemaMigration.m; sourceTree = "<group>"; };
 		C7A3463B196B522D00EC08BB /* MMSqliteSchemaMigration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMSqliteSchemaMigration.h; sourceTree = "<group>"; };
@@ -257,8 +263,10 @@
 				C78852C219D8AE800004D029 /* MMRequestController.m */,
 				C7A0C4F1196598BF009EB4E1 /* MMEntity.h */,
 				C7A0C4F2196598BF009EB4E1 /* MMEntity.m */,
-				C7A3462E1965F38400EC08BB /* MMOrmamentBootstrap.h */,
-				C7A3462F1965F38400EC08BB /* MMOrmamentBootstrap.m */,
+				C78C42FB1A1B1CB3005FB127 /* MMSchemaObject.h */,
+				C78C42FC1A1B1CB3005FB127 /* MMSchemaObject.m */,
+				C7A3462E1965F38400EC08BB /* MMOrmamentManager.h */,
+				C7A3462F1965F38400EC08BB /* MMOrmamentManager.m */,
 				C7A346311966E9B100EC08BB /* MMSchemaMigration.h */,
 				C7A346321966E9B100EC08BB /* MMSchemaMigration.m */,
 				C7A3463B196B522D00EC08BB /* MMSqliteSchemaMigration.h */,
@@ -289,8 +297,10 @@
 				C7A345FB1965A78A00EC08BB /* MMSQLiteSchema.m */,
 				C7CE8A7D1A180B0400F2CBB0 /* MMCloud.h */,
 				C7CE8A7E1A180B0400F2CBB0 /* MMCloud.m */,
-				C7A346291965C66100EC08BB /* MMStore.h */,
-				C7A3462A1965C66100EC08BB /* MMStore.m */,
+				C7A346291965C66100EC08BB /* MMService.h */,
+				C7A3462A1965C66100EC08BB /* MMService.m */,
+				C78C42F51A1AA4F4005FB127 /* MMStore.h */,
+				C78C42F61A1AA4F4005FB127 /* MMStore.m */,
 				C7A346261965C64F00EC08BB /* MMSQLiteStore.h */,
 				C7A346271965C64F00EC08BB /* MMSQLiteStore.m */,
 				C733B46919782D1700116BBC /* MMRecordSet.h */,
@@ -520,6 +530,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C7A346281965C64F00EC08BB /* MMSQLiteStore.m in Sources */,
+				C78C42FD1A1B1CB3005FB127 /* MMSchemaObject.m in Sources */,
 				C733B47119797D6500116BBC /* MMRequest.m in Sources */,
 				C7A345FF1965A7E100EC08BB /* MMSchema.m in Sources */,
 				C78852C319D8AE800004D029 /* MMRequestController.m in Sources */,
@@ -527,14 +538,15 @@
 				C774FA3B1976F40300CDBCB8 /* MMRelationship.m in Sources */,
 				C733B4741979830300116BBC /* MMSQLiteRequest.m in Sources */,
 				C74389351963E458000D50AF /* MMRecord.m in Sources */,
-				C7A3462B1965C66100EC08BB /* MMStore.m in Sources */,
+				C7A3462B1965C66100EC08BB /* MMService.m in Sources */,
 				C744E38C196474DC006A1BA5 /* MMORMUtility.m in Sources */,
 				C7B9C656199DA6FF0036F89B /* MMAutoRelatedEntity.m in Sources */,
 				C731719D19873350005F27E6 /* MMConditional.m in Sources */,
 				C7A0C4F3196598BF009EB4E1 /* MMEntity.m in Sources */,
-				C7A346301965F38400EC08BB /* MMOrmamentBootstrap.m in Sources */,
+				C7A346301965F38400EC08BB /* MMOrmamentManager.m in Sources */,
 				C743892F1963D1A1000D50AF /* MMSQLiteRecord.m in Sources */,
 				C743890F1963D134000D50AF /* MarshmallowOrmament.m in Sources */,
+				C78C42F71A1AA4F4005FB127 /* MMStore.m in Sources */,
 				C7A3463D196B522D00EC08BB /* MMSqliteSchemaMigration.m in Sources */,
 				C7CE8A7F1A180B0400F2CBB0 /* MMCloud.m in Sources */,
 				C789AFA0196EC2FD008BBA72 /* MMResultsSet.m in Sources */,
