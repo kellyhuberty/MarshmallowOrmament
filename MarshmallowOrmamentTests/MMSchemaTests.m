@@ -195,7 +195,7 @@
     
     schema = [[MMSQLiteSchema alloc]initWithFilePath:path];
     
-    MMStore * store = [[MMSQLiteStore alloc]initWithSchema:schema ];
+    MMService * store = [[MMSQLiteStore alloc]initWithSchema:schema ];
     
     NSError * error;
     

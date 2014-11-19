@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "MMSchema.h"
-#import "MMStore.h"
+#import "MMService.h"
 
 @protocol MMSchemaMigration <NSObject>
 
@@ -26,8 +26,8 @@
     NSString * _className;
     
     
-    MMStore * _olderStore;
-    MMStore * _newerStore;
+    MMService * _olderStore;
+    MMService * _newerStore;
     
     MMSchema * _olderSchema;
     MMSchema * _newerSchema;
@@ -44,8 +44,8 @@
 @property(nonatomic, retain)MMVersionString * toVersion;
 
 
-@property(nonatomic, retain)MMStore * olderStore;
-@property(nonatomic, retain)MMStore * newerStore;
+@property(nonatomic, retain)MMService * olderStore;
+@property(nonatomic, retain)MMService * newerStore;
 
 @property(nonatomic, retain)MMSchema * olderSchema;
 @property(nonatomic, retain)MMSchema * newerSchema;
@@ -53,8 +53,8 @@
 
 
 
--(BOOL)upgradeStore:(MMStore *)oldStore toStore:(MMStore *)newStore error:(NSError **)error;
--(BOOL)downgradeStore:(MMStore *)oldStore toStore:(MMStore *)newStore error:(NSError **)error;
+-(BOOL)upgradeStore:(MMService *)oldStore toStore:(MMService *)newStore error:(NSError **)error;
+-(BOOL)downgradeStore:(MMService *)oldStore toStore:(MMService *)newStore error:(NSError **)error;
 
 
 

@@ -10,7 +10,7 @@
     //#import "MMService.h"
     //#import "MMEntity.h"
 #import "MMUtility.h"
-#import "MMStore.h"
+#import "MMService.h"
 
 #import "MMSet.h"
 
@@ -213,7 +213,7 @@ static void setRelationValueIMP(id self, SEL _cmd, id aValue) {
     [key replaceCharactersInRange:NSMakeRange(0, 1) withString:[firstChar lowercaseString]];
     
     
-    MMStore * store = [[((MMRecord *)self) class] store];
+    MMService * store = [[((MMRecord *)self) class] store];
     MMEntity * entity = [[((MMRecord *)self) class] entity];
     MMRelationship * relationship = [entity relationshipWithName:NSStringFromSelector(_cmd)];
     
@@ -267,7 +267,7 @@ static void setRelationValueIMP(id self, SEL _cmd, id aValue) {
     return self;
 }
 
--(instancetype)initWithFillValues:(NSDictionary *)values created:(BOOL)inserted fromStore:(MMStore *)store{
+-(instancetype)initWithFillValues:(NSDictionary *)values created:(BOOL)inserted fromStore:(MMService *)store{
     
     //self = [super initWithEntity:[self coreDataEntityDescription:nil] insertIntoManagedObjectContext:nil/*[MMCoreData managedObjectContext]*/];
     self = [self init];
@@ -611,17 +611,17 @@ static void setRelationValueIMP(id self, SEL _cmd, id aValue) {
     
 }
 
-+(MMStore *)store{
++(MMService *)store{
     
-    return [MMStore storeWithSchemaName:[self schemaName] version:nil];
+    return [MMService storeWithSchemaName:[self schemaName] version:nil];
     
 }
 
-+(MMStore *)cloud{
-    
-    return [MMCloud cloudWithSchemaName:[self cloudName] version:nil];
-    
-}
+//+(MMStore *)cloud{
+//    
+//    return [MMCloud cloudWithSchemaName:[self cloudName] version:nil];
+//    
+//}
 
 +(MMRequest *)newRequest{
     

@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 Kelly Huberty. All rights reserved.
 //
 #import <XCTest/XCTest.h>
-#import "MMOrmamentBootstrap.h"
+#import "MMOrmamentManager.h"
 #import "MMSQLiteStore.h"
 //#import "MMRecordTests.m"
 #import "MMRecord.h"
@@ -25,7 +25,7 @@
     
     [self removeFiles];
     
-    [MMOrmamentBootstrap unsetVersionForSchema:@"noteit"];
+    [MMOrmamentManager unsetVersionForSchema:@"noteit"];
     
     [super setUp];
     // Put setup code here. This method is called before the invocation of each test method in the class.
@@ -78,12 +78,12 @@
     MMSetArcEnabled();
     
     
-    [MMOrmamentBootstrap startWithSchemas:@[     @{
+    [MMOrmamentManager startWithSchemas:@[     @{
                                                      @"name":@"noteit",@"version":@"0.1.0"
                                                      }]];
     
     
-    MMSQLiteStore * store = ((MMSQLiteStore *)[MMStore storeWithSchemaName:@"noteit" version:nil]);
+    MMSQLiteStore * store = ((MMSQLiteStore *)[MMService storeWithSchemaName:@"noteit" version:nil]);
 
     [[store db]executeUpdate:
      @"INSERT INTO notebook (id, title, description) VALUES (2, 'correct notebook', 'the right one'),(1, 'incorrect notebook', 'the wrong one')"
@@ -140,12 +140,12 @@
     MMSetArcEnabled();
     
     
-    [MMOrmamentBootstrap startWithSchemas:@[     @{
+    [MMOrmamentManager startWithSchemas:@[     @{
                                                      @"name":@"noteit",@"version":@"0.1.0"
                                                      }]];
     
     
-    MMSQLiteStore * store = ((MMSQLiteStore *)[MMStore storeWithSchemaName:@"noteit" version:nil]);
+    MMSQLiteStore * store = ((MMSQLiteStore *)[MMService storeWithSchemaName:@"noteit" version:nil]);
     
     [[store db]executeUpdate:
      @"INSERT INTO notebook (id, title, description) VALUES (2, 'correct notebook', 'the right one'),(1, 'incorrect notebook', 'the wrong one')"
@@ -201,12 +201,12 @@
     MMSetArcEnabled();
     
     
-    [MMOrmamentBootstrap startWithSchemas:@[@{
+    [MMOrmamentManager startWithSchemas:@[@{
                                                      @"name":@"noteit",@"version":@"0.1.0"
                                                      }]];
     
     
-    MMSQLiteStore * store = ((MMSQLiteStore *)[MMStore storeWithSchemaName:@"noteit" version:nil]);
+    MMSQLiteStore * store = ((MMSQLiteStore *)[MMService storeWithSchemaName:@"noteit" version:nil]);
     
     [[store db]executeUpdate:
      @"INSERT INTO notebook (id, title, description) VALUES (2, 'correct notebook', 'the right one'),(1, 'incorrect notebook', 'the wrong one')"
@@ -274,11 +274,11 @@
     MMSetArcEnabled();
     
     
-    [MMOrmamentBootstrap startWithSchemas:@[     @{
+    [MMOrmamentManager startWithSchemas:@[     @{
                                                      @"name":@"noteit",@"version":@"0.1.0"
                                                      }]];
     
-    MMSQLiteStore * store = ((MMSQLiteStore *)[MMStore storeWithSchemaName:@"noteit" version:nil]);
+    MMSQLiteStore * store = ((MMSQLiteStore *)[MMService storeWithSchemaName:@"noteit" version:nil]);
     
     [[store db]executeUpdate:
      @"INSERT INTO notebook (id, title, description) VALUES (2, 'correct notebook', 'the right one'),(1, 'incorrect notebook', 'the wrong one')"
@@ -378,7 +378,7 @@
     MMSetArcEnabled();
     
     
-    [MMOrmamentBootstrap startWithSchemas:@[     @{
+    [MMOrmamentManager startWithSchemas:@[     @{
                                                      @"name":@"noteit",@"version":@"0.1.0"
                                                      }]];
     

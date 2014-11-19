@@ -9,7 +9,7 @@
 #import "MMRelationshipSet.h"
 #import "MMRelationship.h"
 #import "MMRecord.h"
-#import "MMStore.h"
+#import "MMService.h"
 #import "MMRequest.h"
 
 @implementation MMRelationshipSet

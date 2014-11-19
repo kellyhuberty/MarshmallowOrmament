@@ -85,7 +85,7 @@
 
 
 
--(BOOL)upgradeStore:(MMStore *)oldStore toStore:(MMStore *)newStore error:(NSError **)error{
+-(BOOL)upgradeStore:(MMService *)oldStore toStore:(MMService *)newStore error:(NSError **)error{
     
     
     

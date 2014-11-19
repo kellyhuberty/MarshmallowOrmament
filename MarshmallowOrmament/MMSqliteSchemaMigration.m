@@ -11,7 +11,7 @@
 
 @implementation MMSqliteSchemaMigration
 
--(BOOL)upgradeStore:(MMStore *)oldStore toStore:(MMStore *)newStore error:(NSError **)error{
+-(BOOL)upgradeStore:(MMService *)oldStore toStore:(MMService *)newStore error:(NSError **)error{
     
     
     [self setupNewFile];
@@ -28,7 +28,7 @@
 }
 
 
--(BOOL)downgradeStore:(MMStore *)oldStore toStore:(MMStore *)newStore error:(NSError **)error{
+-(BOOL)downgradeStore:(MMService *)oldStore toStore:(MMService *)newStore error:(NSError **)error{
     
     
     

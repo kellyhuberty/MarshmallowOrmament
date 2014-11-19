@@ -8,7 +8,7 @@
 
 #import <XCTest/XCTest.h>
 #import "MMSqliteSchemaMigration.h"
-#import "MMOrmamentBootstrap.h"
+#import "MMOrmamentManager.h"
 #import "MMLogger.h"
 @interface MMMigrationTests : XCTestCase
 
@@ -44,14 +44,14 @@
     MMVersionString * new = [MMVersionString stringWithString:@"0.2.0"];
 
     
-    MMStore * oldStore = [MMStore storeWithSchemaName:@"noteit" version:[MMVersionString stringWithString:@"0.1.0"]];
-    MMStore * newStore = [MMStore storeWithSchemaName:@"noteit" version:[MMVersionString stringWithString:@"0.2.0"]];
+    MMService * oldStore = [MMService storeWithSchemaName:@"noteit" version:[MMVersionString stringWithString:@"0.1.0"]];
+    MMService * newStore = [MMService storeWithSchemaName:@"noteit" version:[MMVersionString stringWithString:@"0.2.0"]];
 
     
     //[MMStore storeWithSchemaName:@"noteit" version:[MMVersionString stringWithString:@"0.0.1"]];
     
     
-    NSDictionary * dict =[MMOrmamentBootstrap schemaDictionaryWithName:@"noteit" version:new];
+    NSDictionary * dict =[MMOrmamentManager schemaDictionaryWithName:@"noteit" version:new];
 
     
     MMSqliteSchemaMigration * migration = [MMSqliteSchemaMigration migrationWithDictionary:dict[@"migrations"]];

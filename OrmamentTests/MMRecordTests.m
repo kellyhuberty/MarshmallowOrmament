@@ -9,7 +9,7 @@
 #import <XCTest/XCTest.h>
 #import "TSTNote.h"
 #import "MMSQLiteStore.h"
-#import "MMOrmamentBootstrap.h"
+#import "MMOrmamentManager.h"
 @interface MMRecordTests : XCTestCase
 
 @end
@@ -21,7 +21,7 @@
     
     [self removeFiles];
 
-    [MMOrmamentBootstrap unsetVersionForSchema:@"noteit"];
+    [MMOrmamentManager unsetVersionForSchema:@"noteit"];
     
     [super setUp];
     // Put setup code here. This method is called before the invocation of each test method in the class.
@@ -111,7 +111,7 @@
     MMSetArcEnabled();
 
     
-    [MMOrmamentBootstrap startWithSchemas:@[     @{
+    [MMOrmamentManager startWithSchemas:@[     @{
                                                @"name":@"noteit",@"version":@"0.1.0"
                                                }]];
     
@@ -135,7 +135,7 @@
     MMSetArcEnabled();
     
     
-    [MMOrmamentBootstrap startWithSchemas:@[     @{
+    [MMOrmamentManager startWithSchemas:@[     @{
                                                      @"name":@"noteit",@"version":@"0.1.0"
                                                      }]];
     
@@ -159,7 +159,7 @@
     MMSetArcEnabled();
 
     
-    [MMOrmamentBootstrap startWithSchemas:@[     @{
+    [MMOrmamentManager startWithSchemas:@[     @{
                                                      @"name":@"noteit",@"version":@"0.1.0"
                                                      }]];
     
@@ -252,7 +252,7 @@
     MMSetArcEnabled();
     
     
-    [MMOrmamentBootstrap startWithSchemas:@[     @{
+    [MMOrmamentManager startWithSchemas:@[     @{
                                                      @"name":@"noteit",@"version":@"0.1.0"
                                                      }]];
     
@@ -333,7 +333,7 @@
     MMSetArcEnabled();
     
     
-    [MMOrmamentBootstrap startWithSchemas:@[     @{
+    [MMOrmamentManager startWithSchemas:@[     @{
                                                      @"name":@"noteit",@"version":@"0.1.0"
                                                      }]];
     
@@ -421,7 +421,7 @@
     MMSetArcEnabled();
     
     
-    [MMOrmamentBootstrap startWithSchemas:@[     @{
+    [MMOrmamentManager startWithSchemas:@[     @{
                                                      @"name":@"noteit",@"version":@"0.1.0"
                                                      }]];
     
@@ -493,7 +493,7 @@
     MMSetArcEnabled();
     
     
-    [MMOrmamentBootstrap startWithSchemas:@[     @{
+    [MMOrmamentManager startWithSchemas:@[     @{
                                                      @"name":@"noteit",@"version":@"0.1.0"
                                                      }]];
     
@@ -574,7 +574,7 @@
     
     MMSetArcEnabled();
     
-    [MMOrmamentBootstrap startWithSchemas:@[@{
+    [MMOrmamentManager startWithSchemas:@[@{
                                                      @"name":@"noteit",@"version":@"0.1.0"
                                                      }]];
     
@@ -625,7 +625,7 @@
     
     MMSetArcEnabled();
     
-    [MMOrmamentBootstrap startWithSchemas:@[@{
+    [MMOrmamentManager startWithSchemas:@[@{
                                                 @"name":@"noteit",@"version":@"0.1.0"
                                                 }]];
     
@@ -645,7 +645,7 @@
 
     [self archiveDatabaseFileForTest:@"testBasicRead"];
 
-    MMSQLiteStore * str = [MMStore storeWithSchemaName:@"noteit" version:nil];
+    MMSQLiteStore * str = [MMService storeWithSchemaName:@"noteit" version:nil];
     
     if (!str) {
         XCTFail(@"No Store availible...");
