@@ -26,6 +26,7 @@
 @property(nonatomic, retain)NSString * name;
 @property(nonatomic, retain)NSArray * entities;
 @property(nonatomic, retain)NSString * storeClassName;
+@property(nonatomic, retain)NSString * cloudClassName;
 @property(nonatomic, retain)MMSet * migrations;
 
 

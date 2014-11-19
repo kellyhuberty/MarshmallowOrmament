@@ -10,4 +10,17 @@
 
 @implementation MMCloud
 
+
++(MMStore *)newCloudWithSchemaName:(NSString *)schemaName version:ver{
+    
+    MMSchema * schema = [MMSchema schemaFromName:schemaName version:ver];
+    
+        //+(MMSchema *)schemaFromName:(NSString *)name version:(NSString *)ver{
+    
+    
+    return [[NSClassFromString(schema.cloudClassName) alloc]initWithSchema:schema];
+    
+}
+
+
 @end
