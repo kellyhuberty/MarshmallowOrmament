@@ -57,17 +57,17 @@ static NSMutableDictionary * storesByThread;
 
 +(MMService *)storeWithSchemaName:(NSString *)schemaName version:(MMVersionString *)ver{
     
-    return [self storeWithSchemaName:schemaName version:ver type:@"store"];
+    return [self serviceWithSchemaName:schemaName type:@"store" version:ver];
     
 }
 
-+(MMService *)cloudWithSchemaName:(NSString *)schemaName version:(MMVersionString *)ver{
-    
-    return [self storeWithSchemaName:schemaName version:ver type:@"cloud"];
-    
-}
+//+(MMService *)cloudWithSchemaName:(NSString *)schemaName version:(MMVersionString *)ver{
+//    
+//    return [self storeWithSchemaName:schemaName version:ver type:@"cloud"];
+//    
+//}
 
-+(MMService *)storeWithSchemaName:(NSString *)schemaName version:(MMVersionString *)ver type:(NSString *)storeType{
++(MMService *)serviceWithSchemaName:(NSString *)schemaName type:(NSString *)storeType version:(MMVersionString *)ver{
 
     
     if (ver == nil) {

@@ -36,6 +36,7 @@
 
 -(instancetype)initWithSchema:(MMSchema *)schema;
 +(MMService *)storeWithSchemaName:(NSString *)schemaName version:(MMVersionString *)ver;
++(MMService *)serviceWithSchemaName:(NSString *)schemaName type:(NSString *)serviceType version:(MMVersionString *)ver;
 +(MMService *)newServiceWithSchemaName:(NSString *)schemaName serviceType:(NSString *)serviceType version:ver;
 -(BOOL)build:(NSError **)error;
 

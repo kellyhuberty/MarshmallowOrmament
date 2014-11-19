@@ -17,12 +17,14 @@
     int _total;
     int _offset;
     
+    NSRange _loaded;
+    
 }
 
 
 -(instancetype)init;
 -(int)total;
--(int)count;
+-(int)offset;
 
 -(id)itemAtIndex:(NSIndexPath *)path faultBlock:(MMRequestController * (^)(void))blockName;
 -(id)itemAt:(int)index faultBlock:(MMRequestController * (^)(void))blockName;

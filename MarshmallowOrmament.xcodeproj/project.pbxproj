@@ -31,6 +31,7 @@
 		C789AFA0196EC2FD008BBA72 /* MMResultsSet.m in Sources */ = {isa = PBXBuildFile; fileRef = C789AF9F196EC2FD008BBA72 /* MMResultsSet.m */; };
 		C78C42F71A1AA4F4005FB127 /* MMStore.m in Sources */ = {isa = PBXBuildFile; fileRef = C78C42F61A1AA4F4005FB127 /* MMStore.m */; };
 		C78C42FD1A1B1CB3005FB127 /* MMSchemaObject.m in Sources */ = {isa = PBXBuildFile; fileRef = C78C42FC1A1B1CB3005FB127 /* MMSchemaObject.m */; };
+		C78C43001A1BA2AE005FB127 /* MMOrmMeta.m in Sources */ = {isa = PBXBuildFile; fileRef = C78C42FF1A1BA2AE005FB127 /* MMOrmMeta.m */; };
 		C7A0C4F3196598BF009EB4E1 /* MMEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = C7A0C4F2196598BF009EB4E1 /* MMEntity.m */; };
 		C7A345FC1965A78A00EC08BB /* MMSQLiteSchema.m in Sources */ = {isa = PBXBuildFile; fileRef = C7A345FB1965A78A00EC08BB /* MMSQLiteSchema.m */; };
 		C7A345FF1965A7E100EC08BB /* MMSchema.m in Sources */ = {isa = PBXBuildFile; fileRef = C7A345FE1965A7E100EC08BB /* MMSchema.m */; };
@@ -131,6 +132,8 @@
 		C78C42F61A1AA4F4005FB127 /* MMStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMStore.m; sourceTree = "<group>"; };
 		C78C42FB1A1B1CB3005FB127 /* MMSchemaObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMSchemaObject.h; sourceTree = "<group>"; };
 		C78C42FC1A1B1CB3005FB127 /* MMSchemaObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMSchemaObject.m; sourceTree = "<group>"; };
+		C78C42FE1A1BA2AE005FB127 /* MMOrmMeta.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMOrmMeta.h; sourceTree = "<group>"; };
+		C78C42FF1A1BA2AE005FB127 /* MMOrmMeta.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMOrmMeta.m; sourceTree = "<group>"; };
 		C7A0C4EC1965984C009EB4E1 /* MMSchemaTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MMSchemaTests.m; path = ../MarshmallowOrmamentTests/MMSchemaTests.m; sourceTree = "<group>"; };
 		C7A0C4F1196598BF009EB4E1 /* MMEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMEntity.h; sourceTree = "<group>"; };
 		C7A0C4F2196598BF009EB4E1 /* MMEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMEntity.m; sourceTree = "<group>"; };
@@ -299,6 +302,8 @@
 				C7CE8A7E1A180B0400F2CBB0 /* MMCloud.m */,
 				C7A346291965C66100EC08BB /* MMService.h */,
 				C7A3462A1965C66100EC08BB /* MMService.m */,
+				C78C42FE1A1BA2AE005FB127 /* MMOrmMeta.h */,
+				C78C42FF1A1BA2AE005FB127 /* MMOrmMeta.m */,
 				C78C42F51A1AA4F4005FB127 /* MMStore.h */,
 				C78C42F61A1AA4F4005FB127 /* MMStore.m */,
 				C7A346261965C64F00EC08BB /* MMSQLiteStore.h */,
@@ -551,6 +556,7 @@
 				C7CE8A7F1A180B0400F2CBB0 /* MMCloud.m in Sources */,
 				C789AFA0196EC2FD008BBA72 /* MMResultsSet.m in Sources */,
 				C7BEB0F2196C8C4900575D45 /* TSTMigration1.m in Sources */,
+				C78C43001A1BA2AE005FB127 /* MMOrmMeta.m in Sources */,
 				C733B46B19782D1700116BBC /* MMRecordSet.m in Sources */,
 				C7A345FC1965A78A00EC08BB /* MMSQLiteSchema.m in Sources */,
 				C78852C019D701600004D029 /* MMGroupDescriptor.m in Sources */,

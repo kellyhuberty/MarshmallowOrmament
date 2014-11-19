@@ -10,10 +10,10 @@
 
 @implementation MMCloud
 
-//+(MMService *)cloudWithSchemaName:(NSString *)schemaName version:(MMVersionString *)ver{
-//    
-//    return [self storeWithSchemaName:schemaName version:ver type:@"cloud"];
-//    
-//}
++(MMService *)cloudWithSchemaName:(NSString *)schemaName version:(MMVersionString *)ver{
+    
+    return [self serviceWithSchemaName:schemaName type:@"cloud" version:ver];
+    
+}
 
 @end
