@@ -137,9 +137,8 @@ static NSString * classPrefix;
 //}
 
 
--(id)initWithDictionary:(NSDictionary *)dict{
-    self = [self init];
-    
+-(BOOL)loadFromDictionary:(NSDictionary *)dict error:(NSError **)error{
+        
     if (dict[@"name"]) {
         _name = [dict[@"name"] copy];
     }
@@ -176,7 +175,7 @@ static NSString * classPrefix;
         
     }
     
-    return self;
+    return YES;
 }
 
 

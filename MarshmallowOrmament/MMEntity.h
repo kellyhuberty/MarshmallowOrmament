@@ -10,6 +10,7 @@
 #import <CoreData/CoreData.h>
 #import "MMUtility.h"
 #import "MMSet.h"
+#import "MMSchemaObject.h"
 
 //#import "MMCoreData.h"
 /**
@@ -33,7 +34,7 @@
 @class MMAttribute;
 
 
-@interface MMEntity : NSObject{
+@interface MMEntity : MMSchemaObject{
     
     NSString * _name;
     NSString * _modelClassName;

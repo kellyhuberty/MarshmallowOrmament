@@ -11,7 +11,11 @@
 #import "MMVersionString.h"
 #import "MMEntity.h"
 #import "MMSet.h"
-@interface MMSchema : NSObject{
+#import "MMSchemaObject.h"
+
+
+
+@interface MMSchema : MMSchemaObject{
     
     NSString * _name;
     MMVersionString * _version;

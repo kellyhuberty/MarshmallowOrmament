@@ -7,20 +7,108 @@
 //
 
 #import "MMSchemaObject.h"
+#import "MMOrmMeta.h"
+
 
 @implementation MMSchemaObject
 
 -(id)initWithDictionary:(NSDictionary *)dict{
     
-    NSArray * arr = [dict allKeys];
+//    NSArray * arr = [dict allKeys];
+//    
+//    NSPredicate * pred = [NSPredicate predicateWithFormat:@"SELF CONTAINS[c] %@", @"."];
+//    
+//    NSArray * attrKeys = [arr filteredArrayUsingPredicate:pred];
+//    
+
+    if(self = [self init]){
+        
+        NSError * error;
+        
+        [self loadFromDictionary:dict error:&error];
     
-    NSPredicate * pred = [NSPredicate predicateWithFormat:@"SELF CONTAINS[c] %@", @"."];
+        [self loadMetaFromDictionary:dict error:&error];
+
+        
+    }
     
-    NSArray * attrKeys = [arr filteredArrayUsingPredicate:pred];
-    
-    
-    return nil;
+    return self;
     
 }
+
+-(id)init{
+    
+        //    NSArray * arr = [dict allKeys];
+        //
+        //    NSPredicate * pred = [NSPredicate predicateWithFormat:@"SELF CONTAINS[c] %@", @"."];
+        //
+        //    NSArray * attrKeys = [arr filteredArrayUsingPredicate:pred];
+        //
+    
+    if(self = [super init]){
+        
+        _meta = [[NSMutableDictionary alloc]init];
+        
+    }
+    
+    return self;
+    
+}
+
+
+-(BOOL)loadFromDictionary:(NSDictionary *)dict error:(NSError **)error{
+    
+    [NSException raise:@"MMInvalidDictionaryLoaderException"
+                format:@"the method loadFromDictionary:error: in class %@ must be overridden.", NSStringFromClass([self class])];
+    
+    return NO;
+}
+
+-(BOOL)loadMetaFromDictionary:(NSDictionary *)dict error:(NSError **)error{
+    
+    NSArray * arr = [dict allKeys];
+
+    NSPredicate * pred = [NSPredicate predicateWithFormat:@"SELF CONTAINS[c] %@", @"."];
+
+    NSArray * attrKeys = [arr filteredArrayUsingPredicate:pred];
+    
+    for (NSString * keyPath in attrKeys) {
+        
+        NSArray * components = [keyPath componentsSeparatedByString:@"."];
+        
+        [self setMetaValue:dict[keyPath] forKey:components[1] serviceType:components[0]];
+        
+    }
+    
+    return YES;
+}
+
+-(void)setMetaValue:(NSObject *)obj forKey:(NSString *)key serviceType:(NSString *)serviceType{
+    
+    [(NSMutableDictionary *)[self metaForServiceType:serviceType] setValue:obj forKey:key];
+
+    
+}
+
+-(NSObject *)metaForKey:(NSString *)key serviceType:(NSString *)serviceType{
+    
+    return [(NSMutableDictionary *)[self metaForServiceType:serviceType] valueForKey:key];
+    
+}
+
+-(NSObject *)metaForServiceType:(NSString * )serviceType{
+    
+    NSMutableDictionary * metaObj = nil;
+    
+    if (!(metaObj = [_meta valueForKey:serviceType])) {
+        metaObj = [[NSMutableDictionary alloc]init];
+    
+        [_meta setValue:metaObj forKey:serviceType];
+    }
+    
+    return metaObj;
+    
+}
+
 
 @end

@@ -11,7 +11,15 @@
 @implementation MMCloud
 
 
-+(MMStore *)newCloudWithSchemaName:(NSString *)schemaName version:ver{
++(MMService *)cloudWithSchemaName:(NSString *)schemaName version:(MMVersionString *)ver{
+    
+    return [self serviceWithSchemaName:schemaName type:@"cloud" version:ver];
+    
+}
+
+
+
++(MMService *)newCloudWithSchemaName:(NSString *)schemaName version:ver{
     
     MMSchema * schema = [MMSchema schemaFromName:schemaName version:ver];
     

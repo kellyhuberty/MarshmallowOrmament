@@ -218,14 +218,13 @@ static NSMutableDictionary __strong * globalSchemas;
 
 
 
--(id)initWithDictionary:(NSDictionary *)dict {
+-(BOOL)loadFromDictionary:(NSDictionary *)dict error:(NSError **)error{
     
-    self = [self init];
+        //self = [self init];
     
     NSLog(@"schema name___%@", dict[@"name"]);
     
-    if (self) {
-        
+    
         if (dict[@"name"]){
             _name = MMRetain([dict[@"name"] copy]);
         }
@@ -278,7 +277,7 @@ static NSMutableDictionary __strong * globalSchemas;
                 MMAutorelease(migration);
             }
             
-            self.migrations = migrations;
+            self.migrations = [MMSet arrayWithArray:migrations];
             
         }
         else{
@@ -288,9 +287,8 @@ static NSMutableDictionary __strong * globalSchemas;
         
         }
 
-    }
     
-    return self;
+    return YES;
 
 }
 

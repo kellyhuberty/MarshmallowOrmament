@@ -48,60 +48,57 @@
     
 }
 
--(instancetype)initWithDictionary:(NSDictionary *)dict{
+-(BOOL)loadFromDictionary:(NSDictionary *)dict error:(NSError **)error{
     
-    if(self = [self init]){
-        
-        NSArray * relations;
+    
+    NSArray * relations;
 
-        _name = [dict[@"name"] copy];
+    _name = [dict[@"name"] copy];
+    
+    if ((relations = dict[@"links"])) {
         
-        if (relations = dict[@"links"]) {
-            
-            for (NSObject * relDat in relations) {
-            
-                if ([relDat isKindOfClass:[NSString class]]) {
-                    [_links addObject: [ MMRelation relationWithRelationFormat:relDat ]];
-                }
-                if ([relDat isKindOfClass:[NSDictionary class]]) {
-                    [_links addObject: [ MMRelation relationWithDictionary:relDat ]];
-                }
-                
+        for (NSObject * relDat in relations) {
+        
+            if ([relDat isKindOfClass:[NSString class]]) {
+                [_links addObject: [ MMRelation relationWithRelationFormat:relDat ]];
+            }
+            if ([relDat isKindOfClass:[NSDictionary class]]) {
+                [_links addObject: [ MMRelation relationWithDictionary:relDat ]];
             }
             
         }
-        if (dict[@"hasMany"]) {
-            
-            _hasMany = [dict[@"hasMany"] boolValue];
-            
-        }
-        if (dict[@"shareable"]) {
-            
-            _shareable = [dict[@"shareable"] boolValue];
-            
-        }
-        if (dict[@"autoRelate"]) {
-            
-            _autoRelate = [dict[@"autoRelate"] boolValue];
-            
-        }
-        if (dict[@"autoRelateName"]) {
-            
-            _autoRelateName = [dict[@"autoRelateName"] copy];
-            
-        }
         
-        _className = [dict[@"className"] copy];
-        _entityName = [dict[@"entityName"] copy];
-
-        if (!_entityName) {
-            _entityName = [[NSClassFromString(_className) entityName]copy];
-        }
+    }
+    if (dict[@"hasMany"]) {
         
+        _hasMany = [dict[@"hasMany"] boolValue];
+        
+    }
+    if (dict[@"shareable"]) {
+        
+        _shareable = [dict[@"shareable"] boolValue];
+        
+    }
+    if (dict[@"autoRelate"]) {
+        
+        _autoRelate = [dict[@"autoRelate"] boolValue];
+        
+    }
+    if (dict[@"autoRelateName"]) {
+        
+        _autoRelateName = [dict[@"autoRelateName"] copy];
         
     }
     
-    return self;
+    _className = [dict[@"className"] copy];
+    _entityName = [dict[@"entityName"] copy];
+
+    if (!_entityName) {
+        _entityName = [[NSClassFromString(_className) entityName]copy];
+    }
+        
+    
+    return YES;
     
 }
 

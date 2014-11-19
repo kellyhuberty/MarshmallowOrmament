@@ -10,7 +10,7 @@
 
 @interface MMSchemaObject : NSObject{
     
-    NSDictionary * _serviceMeta;
+    NSDictionary * _meta;
     
     
 }

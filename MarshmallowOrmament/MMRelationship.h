@@ -9,7 +9,10 @@
 #import <Foundation/Foundation.h>
 #import "MMSet.h"
 #import "MMRelation.h"
-@interface MMRelationship : NSObject{
+#import "MMSchemaObject.h"
+
+
+@interface MMRelationship : MMSchemaObject{
     
     NSString * _name;
     MMSet * _links;
