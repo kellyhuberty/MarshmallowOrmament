@@ -76,7 +76,7 @@
         
         NSArray * components = [keyPath componentsSeparatedByString:@"."];
         
-        [self setMetaValue:dict[keyPath] forKey:components[1] serviceType:components[0]];
+        [self setMeta:dict[keyPath] forKey:components[1] serviceType:components[0]];
         
     }
     
