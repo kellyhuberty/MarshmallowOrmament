@@ -16,3 +16,4 @@ profile
 DerivedData
 *.DS_Store
 *.xcuserstate
+*.lock
