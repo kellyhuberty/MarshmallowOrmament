@@ -8,6 +8,9 @@
 
 #import <Foundation/Foundation.h>
 #import "MMService.h"
+#import "MMOrmMeta.h"
+
+
 typedef void (^completionBlock)(MMSet *, NSError *__autoreleasing *);
 
 @interface MMRequest : NSObject{
@@ -16,7 +19,8 @@ typedef void (^completionBlock)(MMSet *, NSError *__autoreleasing *);
     NSString * _sqlFrom;
     NSString * _sqlWhere;
     NSMutableDictionary * _sqlBindValues;
-
+    
+    MMOrmMeta * _meta;
     
     MMSet * _predicates;
     NSString * _schemaName;    
@@ -36,7 +40,7 @@ typedef void (^completionBlock)(MMSet *, NSError *__autoreleasing *);
     
     NSString * _className;
     NSString * _entityName;
-    MMService * _store;
+    MMService * _service;
     
 }
 
@@ -44,7 +48,7 @@ typedef void (^completionBlock)(MMSet *, NSError *__autoreleasing *);
 @property(nonatomic, retain)NSString * className;
 @property(nonatomic, retain)NSString * entityName;
 
-@property(atomic, retain)MMService * store;
+@property(atomic, retain)MMService * service;
 
 @property(atomic, retain)NSString * _sqlQuery;
 
@@ -52,17 +56,17 @@ typedef void (^completionBlock)(MMSet *, NSError *__autoreleasing *);
 @property(atomic)int offset;
 
 
-@property(nonatomic, retain)NSString * sqlSelect;
-@property(nonatomic, retain)NSString * sqlFrom;
-@property(nonatomic, retain)NSString * sqlWhere;
-@property(nonatomic, retain, readonly)NSMutableDictionary * sqlBindValues;
+//@property(nonatomic, retain)NSString * sqlSelect;
+//@property(nonatomic, retain)NSString * sqlFrom;
+//@property(nonatomic, retain)NSString * sqlWhere;
+//@property(nonatomic, retain, readonly)NSMutableDictionary * sqlBindValues;
 
 
 @property(atomic, copy) void (^completionBlock)(MMSet* set, NSError *__autoreleasing* error);
 
 
 -(id)init;
--(id)initWithStore:(MMService *)store classname:(NSString *)className;
+-(id)initWithService:(MMService *)store classname:(NSString *)className;
 
 -(void)executeWithCompletionBlock:(void (^)(MMRecordSet* set, NSError ** error))block;
 

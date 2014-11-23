@@ -8,11 +8,11 @@ PODS:
 
 DEPENDENCIES:
   - FMDB
-  - MarshmallowCore (from `/Users/kellyhuberty/Projects/MarshmallowCore`)
+  - MarshmallowCore (from `ssh://huberty.duckdns.org/git/MarshmallowCore.git`)
 
 EXTERNAL SOURCES:
   MarshmallowCore:
-    :path: /Users/kellyhuberty/Projects/MarshmallowCore
+    :git: ssh://huberty.duckdns.org/git/MarshmallowCore.git
 
 SPEC CHECKSUMS:
   FMDB: 0b2fa25e5264ef177973c0cb8c02c711107979aa

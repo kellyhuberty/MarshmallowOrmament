@@ -48,7 +48,9 @@
     
     if (self = [self init]) {
         
-        _fromVersion = [MMVersionString stringWithString:dictionary[@"fromVersion"]];
+        if (dictionary[@"fromVersion"]) {
+            _fromVersion = [MMVersionString stringWithString:dictionary[@"fromVersion"]];
+        }
         
         if (!_fromVersion) {
             [NSException raise:@"MMInvaildInitailizerDictionary" format:@"the init dict does not contain a fromVersion string."];

@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:OrmamentTests/MMActiveRecordTests.m">
+   </FileRef>
+   <FileRef
       location = "group:MarshmallowOrmament.xcodeproj">
    </FileRef>
    <FileRef

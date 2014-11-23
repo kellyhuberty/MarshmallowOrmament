@@ -16,7 +16,7 @@ NSString * propertyClassNameForClassAndPropertyName(Class controlClass, NSString
     return classPropertyType(controlClass, propertyName);
 }
 
-NSString * getPropertyTypeName(Class aClass, NSString * propertyName){
+NSString __weak * getPropertyTypeName(Class aClass, NSString * propertyName){
     return classPropertyType(aClass, propertyName);
 }
 
@@ -30,10 +30,12 @@ NSString * classPropertyType(Class controlClass, NSString * propertyName){
     
     
     
+    NSLog(@"prop name....%@", propertyName);
+    NSLog(@"classname....%@", NSStringFromClass(controlClass));
+
+    
     objc_property_t theProperty = class_getProperty(controlClass, [propertyName UTF8String]);
-    //MMLog(@"%@", theProperty);
-    
-    
+    MMLog(@"%@", theProperty);
     
     char * propertyAttrs = property_getAttributes(theProperty);
     //MMLog(@"FUCK!");

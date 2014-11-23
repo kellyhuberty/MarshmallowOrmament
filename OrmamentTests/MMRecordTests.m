@@ -673,6 +673,71 @@
 
 
 
+- (void)testActiveRecordRead
+{
+    
+    MMSetArcEnabled();
+    
+    [MMOrmamentManager startWithSchemas:@[@{
+                                              @"name":@"noteit",@"version":@"0.1.0"
+                                              }]];
+    
+    NSMutableArray * notes = [NSMutableArray array];
+    
+    NSError * error;
+    
+    notes[0] = [TSTNote create];
+    ((TSTNote *)notes[0]).text = @"hey dude";
+    [(TSTNote *)notes[0] save:&error];
+    notes[1] = [TSTNote create];
+    ((TSTNote *)notes[1]).text = @"hello dude";
+    [(TSTNote *)notes[1] save:&error];
+    notes[2] = [TSTNote create];
+    ((TSTNote *)notes[2]).text = @"meh dupe";
+    [(TSTNote *)notes[2] save:&error];
+    
+    [self archiveDatabaseFileForTest:@"testBasicRead"];
+    
+    MMSQLiteStore * str = [MMService storeWithSchemaName:@"noteit" version:nil];
+    
+    if (!str) {
+        XCTFail(@"No Store availible...");
+    }
+    
+    
+    NSArray * array1 = [str loadRecordOfType:@"TSTNote" withResultsOfQuery:@"SELECT * FROM note WHERE text LIKE \"hey dude\"" withParameterDictionary:nil];
+    
+    //NSLog(@"testBasicRead %@" ,array);
+    
+    
+    NSArray * array2 = [str loadRecordOfType:@"TSTNote" withResultsOfQuery:@"SELECT * FROM note WHERE text LIKE \"hey dude\"" withParameterDictionary:nil];
+
+    NSLog(@" obj1:%i, obj2:%i",array1[0],array2[0]);
+    XCTAssertEqual(array1[0], array2[0]);
+    
+    
+    //XCTAssertTrue(([array count] == 2), @"Saving");
+    
+    //[self archiveDatabaseFileForTest:@"testBasicRead"];
+    
+    
+    //exit(1);
+    
+    // NSLog(@"record value %@", note.text);
+    
+    
+    
+    //XCTFail(@"No implementation for \"%s\"", __PRETTY_FUNCTION__);
+}
+
+
+
+
+
+
+
+
+
 
 
 

@@ -89,7 +89,7 @@
         return [(NSString *)arr[0] intValue];
     }
     
-    return nil;
+    return 0;
 }
 
 
@@ -102,7 +102,7 @@
         return [(NSString *)arr[1] intValue];
     }
     
-    return nil;
+    return 0;
 
 }
 
@@ -111,19 +111,50 @@
     
     NSArray * arr = [_string explode:@"."];
     
-    if([arr count] > 3){
+    if([arr count] > 2){
         
         return [(NSString *)arr[2] intValue];
     }
     
-    return nil;
     
+    
+    return 0;
+}
+
+-(NSComparisonResult)compareVersion:(NSString *)string{
+    
+    if (![string isKindOfClass:[MMVersionString class]]) {
+        string = [MMVersionString stringWithString:string];
+    }
+    
+    int me[3];
+    int myFriend[3];
+
+    me[0] = self.major;
+    me[1] = self.minor;
+    me[2] = self.maintenance;
+
+    myFriend[0] = ((MMVersionString *)string).major;
+    myFriend[1] = ((MMVersionString *)string).minor;
+    myFriend[2] = ((MMVersionString *)string).maintenance;
+    
+    for(int i = 0; i < 3; ++i){
+        if (me[i] > myFriend[i]) {
+            return NSOrderedDescending;
+        }else if(me[i] < myFriend[i]){
+            return NSOrderedAscending;
+        }
+        
+        
+    }
+    
+    return NSOrderedSame;
 }
 
 
--(NSString *)build{
+-(NSString *)pathString{
     
-    return nil;
+    return [NSString stringWithString:[self stringByReplacingOccurrencesOfString:@"." withString:@"_"]];
 }
 
 

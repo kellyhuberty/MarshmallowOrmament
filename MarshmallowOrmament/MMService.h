@@ -53,4 +53,14 @@
 -(BOOL)addRecords:(NSArray *)set toRelationship:(MMRelationship *)relationship onRecord:(MMRecord *)record error:(NSError **)error;
 -(BOOL)removeRecords:(NSArray *)set fromRelationship:(MMRelationship *)relationship onRecord:(MMRecord *)record error:(NSError **)error;
 
+
+-(MMSet *)wrapData:(NSArray *)array intoRecordsOfType:(NSString *)classname inSet:(MMSet *)set created:(BOOL)created;
+-(MMRecord *)wrapValues:(NSDictionary *)values intoRecordOfType:(NSString *)classname created:(BOOL)created;
+
+
++(void)addRecordToActiveRecords:(MMRecord *)rec;
++(void)removeRecordFromActiveRecords:(MMRecord *)rec;
+
++(MMRecord *)retrieveActiveRecord:(NSString *)hash;
+
 @end

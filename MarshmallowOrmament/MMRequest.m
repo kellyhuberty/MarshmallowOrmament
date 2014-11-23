@@ -15,19 +15,20 @@
     
     if (self = [super init]) {
         _sqlBindValues = [[NSMutableDictionary alloc]init];
+        _meta = [[MMOrmMeta alloc]init];
     }
     
     return self;
 }
 
--(id)initWithStore:(MMService *)store classname:(NSString *)className{
+-(id)initWithService:(MMService *)store classname:(NSString *)className{
     
     if (self = [self init]) {
         //_className = MMRetain(className);
         //_store
         
         self.className = className;
-        self.store = store;
+        self.service = store;
         
     }
  
@@ -57,7 +58,7 @@
     if(!_completionBlock){
         self.completionBlock = block;
     }
-    [self executeOnStore:_store error:error completionBlock:_completionBlock];
+    [self executeOnStore:_service error:error completionBlock:_completionBlock];
     
 }
 
@@ -87,8 +88,8 @@
 
 -(MMSet *)executeOnStore:(MMService *)store error:(NSError**)error{
     
-    if (_store == nil) {
-        _store = MMRetain(store);
+    if (_service == nil) {
+        _service = MMRetain(store);
     }
     
     return [self loadRequest:error];
@@ -97,7 +98,7 @@
 
 -(MMSet *)loadRequest:(NSError**) error{
     
-    MMSet * set = [_store executeReadWithRequest:self error:error];
+    MMSet * set = [_service executeReadWithRequest:self error:error];
     
     MMLog(@"RSULT SET %@", set);
     

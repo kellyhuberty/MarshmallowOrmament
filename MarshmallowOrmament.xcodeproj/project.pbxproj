@@ -16,6 +16,7 @@
 		C733B46E197830B100116BBC /* MMRelationshipSet.m in Sources */ = {isa = PBXBuildFile; fileRef = C733B46D197830B100116BBC /* MMRelationshipSet.m */; };
 		C733B47119797D6500116BBC /* MMRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = C733B47019797D6500116BBC /* MMRequest.m */; };
 		C733B4741979830300116BBC /* MMSQLiteRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = C733B4731979830300116BBC /* MMSQLiteRequest.m */; };
+		C7432B191A1D3AE800DEC85F /* MMAttribute.m in Sources */ = {isa = PBXBuildFile; fileRef = C7432B181A1D3AE800DEC85F /* MMAttribute.m */; };
 		C74389081963D134000D50AF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C74389071963D134000D50AF /* Foundation.framework */; };
 		C743890D1963D134000D50AF /* MarshmallowOrmament.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = C743890C1963D134000D50AF /* MarshmallowOrmament.h */; };
 		C743890F1963D134000D50AF /* MarshmallowOrmament.m in Sources */ = {isa = PBXBuildFile; fileRef = C743890E1963D134000D50AF /* MarshmallowOrmament.m */; };
@@ -99,6 +100,8 @@
 		C733B47019797D6500116BBC /* MMRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMRequest.m; sourceTree = "<group>"; };
 		C733B4721979830300116BBC /* MMSQLiteRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MMSQLiteRequest.h; path = MarshmallowOrmament/MMSQLiteRequest.h; sourceTree = "<group>"; };
 		C733B4731979830300116BBC /* MMSQLiteRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MMSQLiteRequest.m; path = MarshmallowOrmament/MMSQLiteRequest.m; sourceTree = "<group>"; };
+		C7432B171A1D3AE800DEC85F /* MMAttribute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMAttribute.h; sourceTree = "<group>"; };
+		C7432B181A1D3AE800DEC85F /* MMAttribute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMAttribute.m; sourceTree = "<group>"; };
 		C74389041963D134000D50AF /* libMarshmallowOrmament.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libMarshmallowOrmament.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		C74389071963D134000D50AF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		C743890B1963D134000D50AF /* MarshmallowOrmament-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MarshmallowOrmament-Prefix.pch"; sourceTree = "<group>"; };
@@ -310,6 +313,8 @@
 				C7A346271965C64F00EC08BB /* MMSQLiteStore.m */,
 				C733B46919782D1700116BBC /* MMRecordSet.h */,
 				C733B46A19782D1700116BBC /* MMRecordSet.m */,
+				C7432B171A1D3AE800DEC85F /* MMAttribute.h */,
+				C7432B181A1D3AE800DEC85F /* MMAttribute.m */,
 				C743890A1963D134000D50AF /* Supporting Files */,
 			);
 			path = MarshmallowOrmament;
@@ -550,6 +555,7 @@
 				C7A0C4F3196598BF009EB4E1 /* MMEntity.m in Sources */,
 				C7A346301965F38400EC08BB /* MMOrmamentManager.m in Sources */,
 				C743892F1963D1A1000D50AF /* MMSQLiteRecord.m in Sources */,
+				C7432B191A1D3AE800DEC85F /* MMAttribute.m in Sources */,
 				C743890F1963D134000D50AF /* MarshmallowOrmament.m in Sources */,
 				C78C42F71A1AA4F4005FB127 /* MMStore.m in Sources */,
 				C7A3463D196B522D00EC08BB /* MMSqliteSchemaMigration.m in Sources */,

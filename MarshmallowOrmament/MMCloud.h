@@ -10,4 +10,6 @@
 
 @interface MMCloud : MMService
 
++(MMService *)cloudWithSchemaName:(NSString *)schemaName version:(MMVersionString *)ver;
+
 @end

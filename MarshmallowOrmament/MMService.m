@@ -11,7 +11,9 @@
 #import "MMRecord.h"
 #import "MMRecordSet.h"
 
+
 static NSMutableDictionary * storesByThread;
+static NSMutableDictionary * activeRecords;
 
 
 @interface MMService(){
@@ -42,6 +44,8 @@ static NSMutableDictionary * storesByThread;
     
     //MMRelease(storesByThread);
     storesByThread = [[NSMutableDictionary alloc]init];
+    
+    activeRecords = [[NSMutableDictionary alloc]init];
     
 }
 
@@ -135,7 +139,17 @@ static NSMutableDictionary * storesByThread;
     
     for (NSDictionary * values in array) {
         
-        MMRecord * rec = [[NSClassFromString(classname) alloc] initWithFillValues:values created:created fromStore:self];
+        //[MMRecord idHashWithIdValues:[MMRecord idValuesWithValues:values]]
+        
+//        MMRecord * rec = [[self class] retrieveActiveRecord:[MMRecord idHashWithIdValues:[MMRecord idValuesWithValues:values]]];
+//        
+//        if (rec == nil) {
+//            rec = [[NSClassFromString(classname) alloc] initWithFillValues:values created:created fromStore:self];
+//            [[self class] addRecordToActiveRecords:rec];
+//        }
+
+        MMRecord * rec = [self wrapValues:values intoRecordOfType:classname created:(BOOL)created];
+        
         
         [set addObject:rec];
         
@@ -148,9 +162,55 @@ static NSMutableDictionary * storesByThread;
 }
 
 
-//RecordOfType:(NSString *)classname withResultsOfQuery:(NSString *)query withParameterDictionary:(NSDictionary *)dictionary{
+-(MMRecord *)wrapValues:(NSDictionary *)values intoRecordOfType:(NSString *)classname created:(BOOL)created{
+    
+    Class class = NSClassFromString(classname);
+    
+    MMRecord * rec = [[self class] retrieveActiveRecord:[class idHashWithIdValues:[class idValuesWithValues:values]]];
+        
+    if (rec == nil) {
+        rec = [[NSClassFromString(classname) alloc] initWithFillValues:values created:created fromStore:self];
+        [[self class] addRecordToActiveRecords:rec];
+    }
+
+    return rec;
+    
+}
 
 
++(void)addRecordToActiveRecords:(MMRecord *)rec{
+    
+    @synchronized(activeRecords){
+        return [activeRecords setObject:rec forKey:[rec idHash]];
+    }
+    
+}
+
++(void)removeRecordFromActiveRecords:(MMRecord *)rec{
+    
+    @synchronized(activeRecords){
+        return [activeRecords removeObjectForKey:[rec idHash]];
+    }
+    
+}
+
++(MMRecord *)retrieveActiveRecord:(NSString *)hash{
+
+    @synchronized(activeRecords){
+        return activeRecords[hash];
+    }
+    
+}
+
++(void)clearActiveRecordCache{
+    
+    @synchronized(activeRecords){
+        [activeRecords removeAllObjects];
+    }
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"MMActiveRecordCacheClear" object:self];
+
+}
 
 
 

@@ -303,7 +303,9 @@
                 
                 NSDictionary * values = [result resultDictionary];
                 
-                MMRecord * rec = [[ NSClassFromString(classname) alloc]initWithFillValues:values created:YES fromStore:self];
+                //MMRecord * rec = [[ NSClassFromString(classname) alloc]initWithFillValues:values created:YES fromStore:self];
+                
+                MMRecord * rec = [self wrapValues:values intoRecordOfType:classname created:YES];
                 
                 [ret addObject:rec];
                 
@@ -657,6 +659,8 @@
         
         NSString * className = [[entity attributeWithName:key] classname];
         NSString * primativeName = [[entity attributeWithName:key] primativeType];
+        
+        MMError(@"primativeName:%@ classNAme: %@ ", className, primativeName);
         
         if ([className isEqualToString:@"NSNumber"] && [primativeName isEqualToString:@"int"]) {
             return key;

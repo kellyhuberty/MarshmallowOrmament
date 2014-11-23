@@ -8,7 +8,7 @@
 
 //#import <CoreData/CoreData.h>
 //#import "MMCoreData.h"
-#import "MMAttribute.h"
+//#import "MMAttribute.h"
 #import "MMService.h"
 #import <Foundation/Foundation.h>
     //#import "MMEntity.h"
@@ -31,7 +31,9 @@ typedef enum{
 
 +(NSArray *)idKeys;
 -(NSDictionary *)idValues;
++(NSDictionary *)idValuesWithValues:(NSDictionary *)values;
 -(NSString *)idHash;
++(NSString *)idHashWithIdValues:(NSDictionary *)idValues;
 
 -(instancetype)initWithFillValues:(NSDictionary *)values created:(BOOL)inserted fromStore:(MMService *)store;
 -(instancetype)create;

@@ -8,37 +8,31 @@
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>2</integer>
 		</dict>
 		<key>Pods-MarshmallowCore.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>3</integer>
 		</dict>
 		<key>Pods.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>1</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>40B033FB37C21515D4702883</key>
+		<key>11AB69C7EACE0F7159BCB01B</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>B8A37B0B325C09435F4E5A91</key>
+		<key>26ABAA183CA2BC9E222C8FE5</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>ED24956E0354FCCD0F321AB6</key>
+		<key>8C77B9F4809A8F2045420AF9</key>
 		<dict>
 			<key>primary</key>
 			<true/>

@@ -27,6 +27,9 @@
 @property(nonatomic, retain)NSString * indexPropertyName;
 //@property(atomic, retain) Class enforcedClass;
 
+
+
+
 -(void)objectForKey:(id)obj;
 //-(void)setObject:(id)obj forKey:(NSObject *)key;
 
@@ -36,9 +39,18 @@
 -(void)indexAllForKey:(NSString *)key;
 
 -(NSArray *)objectsWithValue:(id<NSCopying>)value forKey:(NSString *)key;
+-(id)objectWithValue:(id<NSCopying>)value forKey:(NSString *)key;
 
+-(NSArray *)allValuesForIndexKey:(NSString*)key;
 
 -(NSLock *)lockManually;
 -(void)lockAutomatically;
+
+-(BOOL)willAddObject:(id)obj;
+-(BOOL)willRemoveObject:(id)obj;
+
+
+-(NSDictionary *)dictionaryForIndexKey:(NSString *)key;
+
 
 @end

@@ -292,11 +292,12 @@ static void setRelationValueIMP(id self, SEL _cmd, id aValue) {
     self = [super init];
     
     if (self != nil) {
-        
 
         _values = [[NSMutableDictionary alloc]init];
         _relationValues = [[NSMutableDictionary alloc]init];
 
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(recacheActiveStore) name:@"MMActiveRecordCacheClear" object:[[self class]store]];
+        
     }
     
     return self;
@@ -617,20 +618,53 @@ static void setRelationValueIMP(id self, SEL _cmd, id aValue) {
     
 }
 
-//+(MMStore *)cloud{
-//    
-//    return [MMCloud cloudWithSchemaName:[self cloudName] version:nil];
-//    
-//}
++(NSString *)schemaName{
+    
+    
+    [NSException raise:@"MMSchemaNameException" format:@"Record class %@ has no implementation for +schemaName.", NSStringFromClass(self)];
+    
+    //return @"noteit";
+    return nil;
+    
+}
 
-+(MMRequest *)newRequest{
++(NSString *)entityName{
+    
+    
+    [NSException raise:@"MMEntityNameException" format:@"Record class %@ has no implementation for entityName.", NSStringFromClass(self)];
+    
+    //return @"noteit";
+    return nil;
+}
+
+
+
+
++(MMStore *)cloud{
+    
+    return [MMCloud cloudWithSchemaName:[self schemaName] version:nil];
+    
+}
+
++(MMRequest *)newStoreRequest{
     
     //[[MMRequest alloc] initWithStore:[self store] classname:NSStringFromClass(self)];
 
     
-    return MMAutorelease([[MMRequest alloc] initWithStore:[self store] classname:NSStringFromClass(self)]);
+    return MMAutorelease([[MMRequest alloc] initWithService:[self store] classname:NSStringFromClass(self)]);
     
 }
+
++(MMRequest *)newCloudRequest{
+    
+    //[[MMRequest alloc] initWithStore:[self store] classname:NSStringFromClass(self)];
+    
+    
+    return MMAutorelease([[MMRequest alloc] initWithService:[self cloud] classname:NSStringFromClass(self)]);
+    
+}
+
+
 //-(void)revert{
 //    
 //    
@@ -751,13 +785,22 @@ static void setRelationValueIMP(id self, SEL _cmd, id aValue) {
 
 -(NSDictionary *)idValues{
     
-    NSArray * keys = [[self class] idKeys];
+    return [[self class] idValuesWithValues:_values];
+
+}
+
+
++(NSDictionary *)idValuesWithValues:(NSDictionary *)values{
+    
+    NSArray * keys = [self idKeys];
     
     NSMutableDictionary * dict = [[NSMutableDictionary alloc]init];
     
+    NSLog(@"ID values: %@", values);
+    
     for ( NSString * key in keys ) {
         
-        dict[key] = _values[key];
+        dict[key] = values[key];
         
     }
     
@@ -765,16 +808,39 @@ static void setRelationValueIMP(id self, SEL _cmd, id aValue) {
     
 }
 
+
 -(NSString *)idHash{
     
-    NSMutableArray * hashArray = [NSMutableArray array];
+//    NSMutableArray * hashArray = [NSMutableArray array];
+//    
+//    [hashArray addObject:[[self class]schemaName]];
+//    [hashArray addObject:[[self class]entityName]];
+//    
+//    [hashArray addObjectsFromArray:MMORMSortedValueArray([self idValues])];
+//    
+//    return MMORMIdentifierHash([self idValues]);
+
+    return [[self class]idHashWithIdValues:[self idValues]];
     
-    [hashArray addObject:[[self class]schemaName]];
-    [hashArray addObject:[[self class]entityName]];
+}
+
++(NSString *)idHashWithIdValues:(NSDictionary *)idValues{
     
-    [hashArray addObjectsFromArray:MMORMSortedValueArray([self idValues])];
+//    NSMutableArray * hashArray = [NSMutableArray array];
+//    
+//    [hashArray addObject:[[self class]schemaName]];
+//    [hashArray addObject:[[self class]entityName]];
+//    
+//    [hashArray addObjectsFromArray:MMORMSortedValueArray(idValues)];
+
+    NSMutableDictionary * dict = [NSMutableDictionary dictionaryWithDictionary:idValues];
     
-    return MMORMIdentifierHash([self idValues]);
+    [dict addEntriesFromDictionary:@{
+                                     @"__schema":[[self class]schemaName],
+                                     @"__entity":[[self class]entityName]
+                                    }];
+    
+    return MMORMIdentifierHash(dict);
     
 }
 
@@ -947,6 +1013,15 @@ static void setRelationValueIMP(id self, SEL _cmd, id aValue) {
 //}
 
 
+-(void)recacheActiveStore{
+    
+    [MMService addRecordToActiveRecords:self];
+    
+}
+
+
+
+
 +(BOOL)resolveInstanceMethod:(SEL)aSEL {
     
     NSMutableString * key = [NSStringFromSelector(aSEL) mutableCopy];
@@ -988,7 +1063,7 @@ static void setRelationValueIMP(id self, SEL _cmd, id aValue) {
     
 
     
-     NSLog(@"blah sel %@", NSStringFromSelector(aSEL));
+    NSLog(@"blah sel %@", NSStringFromSelector(aSEL));
     
     NSString * type = getPropertyTypeName([self class], key);
     
@@ -1064,6 +1139,8 @@ static void setRelationValueIMP(id self, SEL _cmd, id aValue) {
 //    }
     return NO;
 }
+
+
 
 
 @end

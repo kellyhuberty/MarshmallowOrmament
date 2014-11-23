@@ -7,7 +7,7 @@
 //
 
 //#import <Foundation/Foundation.h>
-#import "MMDebug.h"
+#import "MMLogger.h"
 #import "MMInit.h"
 #import "MMPreferences.h"
 #import "MMSet.h"

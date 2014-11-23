@@ -1,1 +1,1 @@
-../../../../../MarshmallowCore/MarshmallowCore/Categories/NSString+Marshmallow.h
+../../../MarshmallowCore/MarshmallowCore/Categories/NSString+Marshmallow.h

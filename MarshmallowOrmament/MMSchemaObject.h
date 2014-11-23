@@ -15,4 +15,7 @@
     
 }
 
+-(id)init;
+-(id)initWithDictionary:(NSDictionary *)dict;
+
 @end

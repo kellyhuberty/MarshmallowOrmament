@@ -11,12 +11,12 @@
 
 @interface MMAdapter : NSObject
 
-
+    //
 
 NSString * classPropertyType(Class controlClass, NSString * propertyName);
 NSString * propertyClassNameForClassAndPropertyName(Class controlClass, NSString * propertyName);
 BOOL setValueForPopertyName(id value, NSString * propertyName, NSObject * object);
-NSString * getPropertyTypeName(Class aClass, NSString * propertyName);
+NSString __weak * getPropertyTypeName(Class aClass, NSString * propertyName);
 void * makeMemoryAllocation(NSString * type);
 void * getMemoryAllocationSize(NSString * type);
 void freeMemoryAllocation(void * allocMem);

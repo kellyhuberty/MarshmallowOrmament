@@ -7,7 +7,7 @@
 //
 
 #import "MMInit.h"
-#import "MMDebug.h"
+#import "MMLogger.h"
 
 static NSMutableDictionary * mmIDAssignments;
 
@@ -36,7 +36,7 @@ static NSDictionary * controlNameMap;
 
 +(void)start{
     
-    [MMDebug loadDebugMode];
+    [MMLogger loadDebugMode];
 
 }
 

@@ -40,7 +40,7 @@
             
             NSLog(@"Building inital store for %@", schema.name);
             
-            [[self class] buildInitialStoreForSchema:schema error:&error];
+            [[self class] buildServicesForSchema:schema error:&error];
             
             
         }
@@ -237,12 +237,24 @@
     return nil;
 }
 
-+(void)buildInitialStoreForSchema:(MMSchema *)schema error:(NSError **)error{
++(void)buildServicesForSchema:(MMSchema *)schema error:(NSError **)error{
     
-    MMService * store = [[NSClassFromString(schema.storeClassName) alloc] initWithSchema:(schema)];
+    if (schema.storeClassName) {
     
-    [store build:&error];
+        MMService * store = [[NSClassFromString(schema.storeClassName) alloc] initWithSchema:(schema)];
+        
+        [store build:&error];
+
+    }
     
+    if (schema.cloudClassName) {
+        
+        MMService * cloud = [[NSClassFromString(schema.cloudClassName) alloc] initWithSchema:(schema)];
+        
+        [cloud build:&error];
+    
+    }
+        
     [self setVersion:schema.version forSchema:schema.name];
     
 }

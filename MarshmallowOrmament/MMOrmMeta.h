@@ -8,6 +8,15 @@
 
 #import <Foundation/Foundation.h>
 
-@interface MMOrmMeta : NSObject
+@interface MMOrmMeta : NSMutableDictionary{
+    
+    NSMutableDictionary * _dict;
+    NSString * _type;
+    
+}
+@property (nonatomic, retain)NSString * type;
+
+
+
 
 @end

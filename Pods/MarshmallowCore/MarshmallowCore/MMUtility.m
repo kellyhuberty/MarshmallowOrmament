@@ -73,9 +73,9 @@ BOOL mmRelease(NSObject * obj){
 BOOL mmRelease(NSObject * obj){
     if ( obj != NULL && [obj respondsToSelector:@selector(release)]) {
         
-        MMLog(@"@releasing");
+        //MMLog(@"@releasing");
         [obj release];
-        MMLog(@"@released");
+        //MMLog(@"@released");
 
         obj = nil;
         return true;
@@ -94,9 +94,9 @@ void MMDealloc(NSObject * obj){
 void MMDealloc(NSObject * obj){
     if ( obj != NULL && [obj respondsToSelector:@selector(dealloc)]) {
         
-        MMLog(@"@releasing");
+        //MMLog(@"@releasing");
         [obj dealloc];
-        MMLog(@"@released");
+        //MMLog(@"@released");
         
         obj = nil;
     }

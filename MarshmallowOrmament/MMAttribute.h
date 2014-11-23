@@ -18,8 +18,9 @@
 
 
 #import <Foundation/Foundation.h>
+#import "MMSchemaObject.h"
 
-@interface MMAttribute : NSObject<NSCopying>{
+@interface MMAttribute : MMSchemaObject<NSCopying>{
     
     
     
@@ -29,14 +30,24 @@
     NSString * _controlName;//the name of the controller class from UIKit or otherwise that displays the data
     NSString * _controlProperty;//name for the property on the class that we're getting the value for and validating with
     NSDictionary * _controlOptions;//Key-values for properties to set on the control to configure it properly for the attribute it is setting.
-    NSString * _primativeType;//This must be defined if
+    NSDictionary * _storeOptions;//Key-values for properties specific to certain Store types.
+    
+    //NSString * _primativeType;//This must be defined if
     NSString * _defaultValue;//Default value expressed as a string
     
     //SQLLite stuff
-    NSString * _storeName;
-    NSString * _storeType;
+    //NSString * _storeName;
+    //NSString * _storeType;
     
-        //MMAttribute * _objectDescription;
+    //MMAttribute * _objectDescription;
+    BOOL _readonly;
+    
+    BOOL _nullable;
+    
+    BOOL _unique;
+    
+    BOOL _autoincrement;
+    
     BOOL _strictCasting;
     //BOOL _isBool;
     
@@ -49,11 +60,15 @@
 @property (nonatomic, copy) NSDictionary * controlOptions;
 @property (nonatomic, retain) NSString * primativeType;
 
-@property (nonatomic, retain)NSString * storeName;
-@property (nonatomic, retain)NSString * storeType;
+//@property (nonatomic, retain)NSString * storeName;
+//@property (nonatomic, retain)NSString * storeType;
 //@property (nonatomic, retain) NSString * defaultValue;
-@property (nonatomic, retain) id value;
+//@property (nonatomic, retain) id value;
 @property (nonatomic, retain) id defaultValue;
+@property (nonatomic) BOOL readonly;
+@property (nonatomic) BOOL nullable;
+@property (nonatomic) BOOL unique;
+@property (nonatomic) BOOL autoincrement;
 @property (nonatomic) BOOL strictCasting;
 //@property (nonatomic) BOOL isBool;
 

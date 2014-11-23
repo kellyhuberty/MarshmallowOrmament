@@ -101,7 +101,9 @@
     NSError * error;
     
     MMSet * set = [req executeOnStore:nil error:&error];
+    
     if (error) {
+        
         NSLog(@"ERROR %@", [error description]);
         
     }

@@ -83,7 +83,24 @@
     return YES;
 }
 
--(void)setMetaValue:(NSObject *)obj forKey:(NSString *)key serviceType:(NSString *)serviceType{
+-(void)setMeta:(NSObject *)obj forKeyPath:(NSString *)keyPath{
+    
+    NSArray * components = [keyPath componentsSeparatedByString:@"."];
+    
+    [self setMeta:obj forKey:components[1] serviceType:components[0]];
+    
+}
+
+-(void)metaForKeyPath:(NSString *)keyPath{
+    
+    NSArray * components = [keyPath componentsSeparatedByString:@"."];
+    
+    [self metaForKey:components[1] serviceType:components[0]];
+    
+}
+
+
+-(void)setMeta:(NSObject *)obj forKey:(NSString *)key serviceType:(NSString *)serviceType{
     
     [(NSMutableDictionary *)[self metaForServiceType:serviceType] setValue:obj forKey:key];
 

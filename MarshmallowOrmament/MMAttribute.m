@@ -27,7 +27,7 @@
 @synthesize strictCasting = _strictCasting;
 @synthesize primativeType = _primativeType;
 
-    //@synthesize isBool = _isBool;
+//@synthesize isBool = _isBool;
 
 //static NSDictionary * dict;
 
@@ -44,10 +44,10 @@
     mmRelease(_controlOptions);
     mmRelease(_primativeType);
     mmRelease(_defaultValue);
-    #if __has_feature(objc_arc)
-    #else
+#if __has_feature(objc_arc)
+#else
     [super dealloc];
-    #endif
+#endif
 }
 
 #pragma mark Init
@@ -57,35 +57,35 @@
     
     if (self) {
         
-        [self loadInstance];
-
+        _nullable = YES;
+        
     }
     
     return self;
 }
 
--(id)initWithDictionary:(NSDictionary *)dict{
-    
-    self = [super init];
-    
-    
-    if (self) {
-        
-        [self loadInstance];
-        [self loadDescriptionFromDictionary:dict];
-        
-        
-    }
-    
-    return self;
-    
-
-    
-}
+//-(id)initWithDictionary:(NSDictionary *)dict{
+//    
+//    self = [self init];
+//    
+//    
+//    if (self) {
+//        
+//        //[self loadInstance];
+//        [self loadDescriptionFromDictionary:dict];
+//        
+//        
+//    }
+//    
+//    return self;
+//    
+//    
+//    
+//}
 
 -(id)initWithName:(NSString *)aName displayName:(NSString *)aDisplayName controlClassName:(NSString *)controlClassName enforcedClassName:(NSString *)aClassName{
     
-    self = [super init];
+    self = [self init];
     
     
     if (self) {
@@ -145,7 +145,7 @@
 
 -(id)initWithName:(NSString *)aName displayName:(NSString *)aDisplayName controlClassName:(NSString *)controlClassName controlPropertyName:(NSString *)propertyName controlOptions:(NSDictionary *)options{
     
-    self = [super init];
+    self = [self init];
     
     
     if (self) {
@@ -176,7 +176,7 @@
         _controlProperty = mmRetain(propertyName);
         
         _controlOptions = [[NSMutableDictionary alloc]initWithDictionary:options];
-
+        
         
     }
     
@@ -195,7 +195,7 @@
 
 +(MMAttribute *)attributeWithName:(NSString *)aName displayName:(NSString *)aDisplayName controlClassName:(NSString *)controlClassName controlPropertyName:(NSString *)propertyName controlOptions:(NSDictionary *)dictionary{
     
-     MMAttribute * attr = mmAutorelease([[MMAttribute alloc] initWithName:aName displayName:aDisplayName controlClassName:controlClassName controlPropertyName:propertyName controlOptions:dictionary]);
+    MMAttribute * attr = mmAutorelease([[MMAttribute alloc] initWithName:aName displayName:aDisplayName controlClassName:controlClassName controlPropertyName:propertyName controlOptions:dictionary]);
     
     
     return attr;
@@ -212,15 +212,15 @@
     if (self) {
         
         //[self loadInstance];
-
+        
         
         _name = aName;
         if (_name == nil) {
             
             NSException* e = [NSException
-                                        exceptionWithName:@"UndefinedForDescriptorNameException"
-                                        reason:@"The name value in a MMStore "
-                                        userInfo:nil];
+                              exceptionWithName:@"UndefinedForDescriptorNameException"
+                              reason:@"The name value in a MMStore "
+                              userInfo:nil];
             @throw e;
         }
         
@@ -232,7 +232,7 @@
         }
         
         _classname = aClassName;
-      
+        
         
         
         //Pretty Self Explainitory Here, if you define a string of a class name in the runtime, the attribute will deafult to strict casting.
@@ -244,15 +244,15 @@
             _strictCasting = YES;
         }
         /*
-        NSLog(@"OK");
-
-        NSLog(@"%@",_name);        NSLog(@"OK");
-
-        NSLog(@"%@",_displayname);        NSLog(@"OK");
-
-        NSLog(@"%@",_classname);        NSLog(@"OK");
+         NSLog(@"OK");
+         
+         NSLog(@"%@",_name);        NSLog(@"OK");
+         
+         NSLog(@"%@",_displayname);        NSLog(@"OK");
+         
+         NSLog(@"%@",_classname);        NSLog(@"OK");
          */
-
+        
         
         
         
@@ -269,8 +269,7 @@
 
 
 
--(void)loadDescriptionFromDictionary:(NSDictionary *)dict{
-
+-(BOOL)loadFromDictionary:(NSDictionary *)dict error:(NSError **)error{
     
     _name = mmCopy([self verify:[dict objectForKey:@"name"] class:[NSString class] name:@"name"]);
     
@@ -285,19 +284,41 @@
     //_controlProperty = [dict objectForKey:@"controlproperty"];
     
     _controlOptions = mmCopy([self verify:[dict objectForKey:@"controloptions"] class:[NSString class] name:@"controloptions"]);
+    
+    _storeOptions = mmCopy([self verify:[dict objectForKey:@"controloptions"] class:[NSString class] name:@"controloptions"]);
     //_controlOptions = [dict objectForKey:@"propertyname"];
     
-
-    _defaultValue = mmCopy([self verify:[dict objectForKey:@"default"] class:[NSString class] name:@"default"]);
+    
+    _defaultValue = mmCopy([self verify:[dict objectForKey:@"default"] class:[NSObject class] name:@"default"]);
     //_defaultValue = [dict objectForKey:@"default"];
     
     _primativeType = mmCopy([self verify:[dict objectForKey:@"primativetype"] class:[NSString class] name:@"primativetype"]);
-
-    _storeName = mmCopy((NSString *)[self verify:[dict objectForKey:@"storename"] class:[NSString class] name:@"storename"]);
     
-    _storeType = mmCopy([self verify:[dict objectForKey:@"storetype"] class:[NSString class] name:@"storetype"]);
-
-        //[dict objectForKey:@"displayname"];
+    _primativeType = mmCopy([self verify:[dict objectForKey:@"primative"] class:[NSString class] name:@"primative"]);
+    
+    
+    //_storeName = mmCopy((NSString *)[self verify:[dict objectForKey:@"storename"] class:[NSString class] name:@"storename"]);
+    
+    //_storeType = mmCopy([self verify:[dict objectForKey:@"storetype"] class:[NSString class] name:@"storetype"]);
+    
+    //[dict objectForKey:@"displayname"];
+    if ([dict objectForKey:@"autoincrement"] ) {
+        _autoincrement = [((NSNumber *) [self verify:[dict objectForKey:@"autoincrement"] class:[NSNumber class] name:@"autoincrement"]) boolValue];
+    }
+    
+    if ([dict objectForKey:@"readonly"] ) {
+        _readonly = [((NSNumber *) [self verify:[dict objectForKey:@"readonly"] class:[NSNumber class] name:@"readonly"]) boolValue];
+    }
+    
+    if ([dict objectForKey:@"nullable"] ) {
+        _nullable = [((NSNumber *) [self verify:[dict objectForKey:@"nullable"] class:[NSNumber class] name:@"nullable"]) boolValue];
+    }
+    
+    if ([dict objectForKey:@"unique"] ) {
+        _unique = [((NSNumber *) [self verify:[dict objectForKey:@"unique"] class:[NSNumber class] name:@"unique"]) boolValue];
+    }
+    
+    return YES;
 }
 
 -(id)verify:(NSObject*)obj class:(Class)class name:(NSString *)name{
@@ -307,12 +328,12 @@
     if (obj != nil){
         if (class != nil) {
             
-        
+            
             if ([obj isKindOfClass:class]) {
                 
             }
             else{
-                [NSException raise:@"MMInvalidArgumentException" format:@"Invalid class for attribute: %@"];
+                [NSException raise:@"MMInvalidArgumentException" format:@"Invalid class for attribute with name: %@. Object should be member of class %@. You should check your definition dictionary/plist to ensure that the attribute is defined correctly. ", name, NSStringFromClass(class)];
             }
         }
     }
@@ -322,7 +343,7 @@
         }
     }
     
-    return mmRetain(obj);
+    return obj;
 }
 
 
@@ -382,10 +403,10 @@
 
 #pragma mark NSCopying Protocol Methods
 //- (id)copyWithZone:(NSZone *)zone{
-//    
-//    
-//    
-//    
+//
+//
+//
+//
 //}
 
 
@@ -394,13 +415,14 @@
     
     MMLog(@"            name:%@", _name);
     MMLog(@"            displayname:%@", _displayName);
+    MMLog(@"            classname:%@", _classname);
     MMLog(@"            controlname:%@", _controlName);
     MMLog(@"            controlproperty:%@", _controlProperty);
     MMLog(@"            control options:%@", _controlOptions);
     MMLog(@"            primative Type:%@", _primativeType);
     MMLog(@"            default val:%@", _defaultValue);
-    MMLog(@"            store name:%@", _storeName);
-    MMLog(@"            store type:%@", _storeType);
+    //MMLog(@"            store name:%@", _storeName);
+    //MMLog(@"            store type:%@", _storeType);
     
     
     
@@ -414,8 +436,8 @@
     NSString * _defaultValue;//Default value expressed as a string
     
     //SQLLite stuff
-    NSString * _storeName;
-    NSString * _storeType;
+    //NSString * _storeName;
+    //NSString * _storeType;
     
     
 }

@@ -19,6 +19,7 @@
 
 -(int)length;
 -(unichar)characterAtIndex:(NSUInteger)index;
-
+-(NSComparisonResult)compareVersion:(NSString *)string;
+-(NSString *)pathString;
 
 @end
