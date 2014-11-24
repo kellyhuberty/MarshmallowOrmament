@@ -94,7 +94,7 @@
     
 
     
-    MMRequest * req = [TSTNote newRequest];
+    MMSQLiteRequest * req = [TSTNote newStoreRequest];
     
     req.sqlWhere = @" id = 1 ";
     
@@ -148,7 +148,7 @@
     
     
     
-    MMRequest * req = [TSTNote newRequest];
+    MMRequest * req = [TSTNote newStoreRequest];
     
     //req.sqlWhere = @" id = 1 ";
     

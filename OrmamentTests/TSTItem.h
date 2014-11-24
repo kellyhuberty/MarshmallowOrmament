@@ -6,9 +6,9 @@
 //  Copyright (c) 2014 Kelly Huberty. All rights reserved.
 //
 
-#import "MMSQLiteRecord.h"
+#import "MMRecord.h"
 
-@interface TSTItem : MMSQLiteRecord{
+@interface TSTItem : MMRecord{
     
     
     

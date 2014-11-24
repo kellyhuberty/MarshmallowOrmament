@@ -10,8 +10,13 @@
 
 @interface MMSQLiteRequest : MMRequest{
     
-    NSString * _sqliteQuery;
-    NSMutableDictionary * _parameterDictionary;
+//    NSString * _sqliteQuery;
+//    NSMutableDictionary * _parameterDictionary;
+
+    NSString * _sqlSelect;
+    NSString * _sqlFrom;
+    NSString * _sqlWhere;
+    NSMutableDictionary * _sqlBindValues;
     
 }
 @property(nonatomic, retain)NSString * sqlSelect;

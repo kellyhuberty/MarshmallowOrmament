@@ -10,7 +10,7 @@
 #import "MMAutoRelatedEntity.h"
 #import "MMAttribute.h"
 #import "MMRecord.h"
-#import "MMRequest.h"
+#import "MMSQLiteRequest.h"
 
 #import <objc/runtime.h>
 
@@ -425,7 +425,7 @@
     
     MMRelationshipSet * set = [[MMRelationshipSet alloc]init];
     
-    MMRequest * request = MMAutorelease([[MMRequest alloc] init]);
+    MMSQLiteRequest * request = MMAutorelease([[MMSQLiteRequest alloc] init]);
     
     request.className = relationship.className;
     
@@ -464,7 +464,7 @@
     
     MMRelationshipSet * set = [[MMRelationshipSet alloc]init];
     
-    MMRequest * request = MMAutorelease([[MMRequest alloc] init]);
+    MMSQLiteRequest * request = MMAutorelease([[MMRequest alloc] init]);
     
     request.className = relationship.className;
     
@@ -713,7 +713,7 @@
     
 }
 
--(NSString *)queryWithRequest:(MMRequest *)req{
+-(NSString *)queryWithRequest:(MMSQLiteRequest *)req{
     
     NSMutableString * query = [NSMutableString stringWithString:@""];
     
@@ -859,7 +859,11 @@
 
 -(MMRequest *)newRequestForClassname:(NSString *)className{
     
+    MMSQLiteRequest * req = [[MMSQLiteRequest alloc]initWithService:self classname:className];
     
+    MMAutorelease(req);
+    
+    return req;
     
 }
 

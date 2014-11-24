@@ -11,7 +11,7 @@
 //#import "MMRecordTests.m"
 #import "MMRecord.h"
 #import "TSTNote.h"
-#import "MMRequest.h"
+#import "MMSQLiteRequest.h"
 
 @interface MMRelationshipTests : XCTestCase
 
@@ -98,7 +98,7 @@
      ];
     
     
-    MMRequest * req = [TSTNote newRequest];
+    MMSQLiteRequest * req = [TSTNote newStoreRequest];
     
     req.sqlWhere = @" id = 1 ";
     
@@ -160,7 +160,7 @@
      ];
     
     
-    MMRequest * req = [TSTNotebook newRequest];
+    MMSQLiteRequest * req = [TSTNotebook newStoreRequest];
     
     req.sqlWhere = @" id = 2 ";
     
@@ -221,7 +221,7 @@
      ];
     
     
-    MMRequest * req = [TSTNotebook newRequest];
+    MMSQLiteRequest * req = [TSTNotebook newStoreRequest];
     
     req.sqlWhere = @" id = 2 ";
     
@@ -289,7 +289,7 @@
      ];
     
     
-    MMRequest * req = [TSTNote newRequest];
+    MMSQLiteRequest * req = [TSTNote newStoreRequest];
     
     req.sqlWhere = @" id = 1 ";
     
@@ -309,7 +309,7 @@
 
     
 
-    MMRequest * nbReq = [TSTNotebook newRequest];
+    MMSQLiteRequest * nbReq = [TSTNotebook newStoreRequest];
     
     nbReq.sqlWhere = @" id = 1 ";
     

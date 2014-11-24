@@ -102,7 +102,7 @@ typedef enum{
 +(MMSet *)attributes;
 +(MMEntity *)entity;
 +(MMService *)store;
-+(MMRequest *)newRequest;
++(MMRequest *)newStoreRequest;
 
 
 +(instancetype)create;
@@ -111,6 +111,9 @@ typedef enum{
 -(id)init;
 -(BOOL)save:(NSError **)error;
 -(BOOL)save;
+
++(instancetype)create:(NSDictionary*)values;
+
 
 //-(BOOL)delete:(NSError **)error;
 //-(BOOL)delete;
@@ -132,6 +135,8 @@ typedef enum{
 +(BOOL)executeUpdateOnRecord:(MMRecord *)record withValues:(NSMutableDictionary *)dictionary error:(NSError **)err;
 +(BOOL)executeDestroyOnRecord:(MMRecord *)record withValues:(NSMutableDictionary *)dictionary error:(NSError **)err;
 +(MMService *)store;
+
+
 
 @end
 
