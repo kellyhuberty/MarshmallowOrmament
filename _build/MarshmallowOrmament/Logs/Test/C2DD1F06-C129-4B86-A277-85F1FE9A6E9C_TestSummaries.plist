@@ -1,0 +1,1240 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>FormatVersion</key>
+	<string>1.2</string>
+	<key>RunDestination</key>
+	<dict>
+		<key>LocalComputer</key>
+		<dict>
+			<key>BusSpeedInMHz</key>
+			<integer>100</integer>
+			<key>CPUCount</key>
+			<integer>1</integer>
+			<key>CPUKind</key>
+			<string>Intel Core i7</string>
+			<key>CPUSpeedInMHz</key>
+			<integer>2000</integer>
+			<key>Identifier</key>
+			<string>421271D2-CB49-585C-8135-3B43426BAD72</string>
+			<key>IsConcreteDevice</key>
+			<true/>
+			<key>LogicalCPUCoresPerPackage</key>
+			<integer>4</integer>
+			<key>ModelCode</key>
+			<string>MacBookAir5,2</string>
+			<key>ModelName</key>
+			<string>MacBook Air</string>
+			<key>ModelUTI</key>
+			<string>com.apple.macbookair-13-unibody</string>
+			<key>Name</key>
+			<string>My Mac</string>
+			<key>NativeArchitecture</key>
+			<string>x86_64h</string>
+			<key>OperatingSystemVersion</key>
+			<string>10.10</string>
+			<key>OperatingSystemVersionWithBuildNumber</key>
+			<string>10.10 (14A388a)</string>
+			<key>PhysicalCPUCoresPerPackage</key>
+			<integer>2</integer>
+			<key>Platform</key>
+			<dict>
+				<key>Identifier</key>
+				<string>com.apple.platform.macosx</string>
+				<key>Name</key>
+				<string>OS X</string>
+			</dict>
+			<key>RAMSizeInMegabytes</key>
+			<integer>8192</integer>
+		</dict>
+		<key>Name</key>
+		<string>iPhone 6</string>
+		<key>TargetArchitecture</key>
+		<string>x86_64</string>
+		<key>TargetDevice</key>
+		<dict>
+			<key>Identifier</key>
+			<string>0706B78C-D0AD-442A-9014-1BD4DBC48AF0</string>
+			<key>IsConcreteDevice</key>
+			<true/>
+			<key>ModelCode</key>
+			<string>iPhone7,2</string>
+			<key>ModelName</key>
+			<string>iPhone 6</string>
+			<key>ModelUTI</key>
+			<string>com.apple.iphone-6-b4b5b9</string>
+			<key>Name</key>
+			<string>iPhone 6</string>
+			<key>NativeArchitecture</key>
+			<string>x86_64</string>
+			<key>OperatingSystemVersion</key>
+			<string>8.1</string>
+			<key>OperatingSystemVersionWithBuildNumber</key>
+			<string>8.1 (12B411)</string>
+			<key>Platform</key>
+			<dict>
+				<key>Identifier</key>
+				<string>com.apple.platform.iphonesimulator</string>
+				<key>Name</key>
+				<string>iOS Simulator</string>
+			</dict>
+		</dict>
+		<key>TargetSDK</key>
+		<dict>
+			<key>Identifier</key>
+			<string>iphonesimulator8.1</string>
+			<key>IsInternal</key>
+			<false/>
+			<key>Name</key>
+			<string>Simulator - iOS 8.1</string>
+			<key>OperatingSystemVersion</key>
+			<string>8.1</string>
+		</dict>
+	</dict>
+	<key>TestableSummaries</key>
+	<array>
+		<dict>
+			<key>ProjectPath</key>
+			<string>MarshmallowOrmament.xcodeproj</string>
+			<key>TargetName</key>
+			<string>OrmamentTests</string>
+			<key>TestName</key>
+			<string>OrmamentTests</string>
+			<key>TestObjectClass</key>
+			<string>IDESchemeActionTestableSummary</string>
+			<key>Tests</key>
+			<array>
+				<dict>
+					<key>Subtests</key>
+					<array>
+						<dict>
+							<key>Subtests</key>
+							<array>
+								<dict>
+									<key>Subtests</key>
+									<array>
+										<dict>
+											<key>TestIdentifier</key>
+											<string>MMConditionalTests/testPregSplit</string>
+											<key>TestName</key>
+											<string>testPregSplit</string>
+											<key>TestObjectClass</key>
+											<string>IDESchemeActionTestSummary</string>
+											<key>TestStatus</key>
+											<string>Success</string>
+											<key>TestSummaryGUID</key>
+											<string>EE8A04F0-480E-4A9E-B3B1-EC9BBC55AB26</string>
+										</dict>
+									</array>
+									<key>TestIdentifier</key>
+									<string>MMConditionalTests</string>
+									<key>TestName</key>
+									<string>MMConditionalTests</string>
+									<key>TestObjectClass</key>
+									<string>IDESchemeActionTestSummaryGroup</string>
+								</dict>
+								<dict>
+									<key>Subtests</key>
+									<array>
+										<dict>
+											<key>TestIdentifier</key>
+											<string>MMMigrationTests/testExample</string>
+											<key>TestName</key>
+											<string>testExample</string>
+											<key>TestObjectClass</key>
+											<string>IDESchemeActionTestSummary</string>
+											<key>TestStatus</key>
+											<string>Success</string>
+											<key>TestSummaryGUID</key>
+											<string>33AB4669-6EED-4B4E-BF61-482509FE2101</string>
+										</dict>
+										<dict>
+											<key>PerformanceMetrics</key>
+											<array>
+												<dict>
+													<key>Identifier</key>
+													<string>com.apple.XCTPerformanceMetric_WallClockTime</string>
+													<key>MaxPercentRegression</key>
+													<integer>10</integer>
+													<key>MaxPercentRelativeStandardDeviation</key>
+													<integer>10</integer>
+													<key>MaxRegression</key>
+													<real>0.10000000000000001</real>
+													<key>MaxStandardDeviation</key>
+													<real>0.10000000000000001</real>
+													<key>Measurements</key>
+													<array>
+														<real>4.5430000000000004e-06</real>
+														<real>1.3570000000000001e-06</real>
+														<real>9.1399999999999995e-07</real>
+														<real>9.8200000000000008e-07</real>
+														<real>9.09e-07</real>
+														<real>8.9800000000000002e-07</real>
+														<real>8.8400000000000003e-07</real>
+														<real>9.16e-07</real>
+														<real>9.4200000000000004e-07</real>
+														<real>9.2399999999999996e-07</real>
+													</array>
+													<key>Name</key>
+													<string>Time</string>
+													<key>UnitOfMeasurement</key>
+													<string>seconds</string>
+												</dict>
+											</array>
+											<key>TestIdentifier</key>
+											<string>MMMigrationTests/testPerformanceExample</string>
+											<key>TestName</key>
+											<string>testPerformanceExample</string>
+											<key>TestObjectClass</key>
+											<string>IDESchemeActionTestSummary</string>
+											<key>TestStatus</key>
+											<string>Success</string>
+											<key>TestSummaryGUID</key>
+											<string>E1CC21AB-D18F-459C-AB08-2FE3C95EC2E4</string>
+										</dict>
+										<dict>
+											<key>FailureSummaries</key>
+											<array>
+												<dict>
+													<key>FileName</key>
+													<string>/Users/kellyhuberty/Projects/MarshmallowOrmament/OrmamentTests/MMMigrationTests.m</string>
+													<key>LineNumber</key>
+													<integer>57</integer>
+													<key>Message</key>
+													<string>failed: caught "NSInvalidArgumentException", "*** -[NSPlaceholderMutableString initWithString:]: nil argument"
+(
+	0   CoreFoundation                      0x0000000102343f35 __exceptionPreprocess + 165
+	1   libobjc.A.dylib                     0x0000000101fdcbb7 objc_exception_throw + 45
+	2   CoreFoundation                      0x0000000102343e6d +[NSException raise:format:] + 205
+	3   Foundation                          0x0000000101b514b1 -[NSPlaceholderMutableString initWithString:] + 99
+	4   Foundation                          0x0000000101b5143b +[NSString stringWithString:] + 45
+	5   OrmamentTests                       0x0000000103b38e1e -[MMVersionString initWithString:] + 142
+	6   Foundation                          0x0000000101b5143b +[NSString stringWithString:] + 45
+	7   OrmamentTests                       0x0000000103b5cbd3 -[MMSchemaMigration initWithDictionary:entityDictionary:] + 227
+	8   OrmamentTests                       0x0000000103b5c8c1 +[MMSchemaMigration migrationWithDictionary:] + 305
+	9   OrmamentTests                       0x0000000103b1a912 -[MMMigrationTests testSchemaMigration] + 530
+	10  CoreFoundation                      0x000000010223bc8c __invoking___ + 140
+	11  CoreFoundation                      0x000000010223bae2 -[NSInvocation invoke] + 290
+	12  XCTest                              0x0000000103bc00f7 -[XCTestCase invokeTest] + 253
+	13  XCTest                              0x0000000103bc02f8 -[XCTestCase performTest:] + 150
+	14  XCTest                              0x0000000103bc9bf5 -[XCTest run] + 260
+	15  XCTest                              0x0000000103bbeffb -[XCTestSuite performTest:] + 379
+	16  XCTest                              0x0000000103bc9bf5 -[XCTest run] + 260
+	17  XCTest                              0x0000000103bbeffb -[XCTestSuite performTest:] + 379
+	18  XCTest                              0x0000000103bc9bf5 -[XCTest run] + 260
+	19  XCTest                              0x0000000103bbeffb -[XCTestSuite performTest:] + 379
+	20  XCTest                              0x0000000103bc9bf5 -[XCTest run] + 260
+	21  XCTest                              0x0000000103bbc0bc __25-[XCTestDriver _runSuite]_block_invoke + 56
+	22  XCTest                              0x0000000103bc6ead -[XCTestObservationCenter _observeTestExecutionForBlock:] + 162
+	23  XCTest                              0x0000000103bbbff0 -[XCTestDriver _runSuite] + 269
+	24  XCTest                              0x0000000103bbca1d -[XCTestDriver _checkForTestManager] + 234
+	25  XCTest                              0x0000000103bccaf0 +[XCTestProbe runTests:] + 182
+	26  xctest                              0x0000000101ac9196 xctest + 4502
+	27  xctest                              0x0000000101ac940d xctest + 5133
+	28  xctest                              0x0000000101ac8e13 xctest + 3603
+	29  libdyld.dylib                       0x0000000103602145 start + 1
+)</string>
+													<key>PerformanceFailure</key>
+													<false/>
+												</dict>
+											</array>
+											<key>TestIdentifier</key>
+											<string>MMMigrationTests/testSchemaMigration</string>
+											<key>TestName</key>
+											<string>testSchemaMigration</string>
+											<key>TestObjectClass</key>
+											<string>IDESchemeActionTestSummary</string>
+											<key>TestStatus</key>
+											<string>Failure</string>
+											<key>TestSummaryGUID</key>
+											<string>2A925272-58E9-4420-B5D2-1E34729D24FE</string>
+										</dict>
+										<dict>
+											<key>TestIdentifier</key>
+											<string>MMMigrationTests/testSingleEntityMigration</string>
+											<key>TestName</key>
+											<string>testSingleEntityMigration</string>
+											<key>TestObjectClass</key>
+											<string>IDESchemeActionTestSummary</string>
+											<key>TestStatus</key>
+											<string>Success</string>
+											<key>TestSummaryGUID</key>
+											<string>4FC3F24B-08B8-4C42-9727-20BCE9131E51</string>
+										</dict>
+									</array>
+									<key>TestIdentifier</key>
+									<string>MMMigrationTests</string>
+									<key>TestName</key>
+									<string>MMMigrationTests</string>
+									<key>TestObjectClass</key>
+									<string>IDESchemeActionTestSummaryGroup</string>
+								</dict>
+								<dict>
+									<key>Subtests</key>
+									<array>
+										<dict>
+											<key>TestIdentifier</key>
+											<string>MMORMBootstrapTests/testFirstStartupUseCase</string>
+											<key>TestName</key>
+											<string>testFirstStartupUseCase</string>
+											<key>TestObjectClass</key>
+											<string>IDESchemeActionTestSummary</string>
+											<key>TestStatus</key>
+											<string>Success</string>
+											<key>TestSummaryGUID</key>
+											<string>22387072-E6E4-49E5-AFFE-D7FC54003034</string>
+										</dict>
+										<dict>
+											<key>TestIdentifier</key>
+											<string>MMORMBootstrapTests/testUpgradeVersionUseCase</string>
+											<key>TestName</key>
+											<string>testUpgradeVersionUseCase</string>
+											<key>TestObjectClass</key>
+											<string>IDESchemeActionTestSummary</string>
+											<key>TestStatus</key>
+											<string>Success</string>
+											<key>TestSummaryGUID</key>
+											<string>FA83AAA4-02E3-45DB-9088-02EBE9B12498</string>
+										</dict>
+									</array>
+									<key>TestIdentifier</key>
+									<string>MMORMBootstrapTests</string>
+									<key>TestName</key>
+									<string>MMORMBootstrapTests</string>
+									<key>TestObjectClass</key>
+									<string>IDESchemeActionTestSummaryGroup</string>
+								</dict>
+								<dict>
+									<key>Subtests</key>
+									<array>
+										<dict>
+											<key>FailureSummaries</key>
+											<array>
+												<dict>
+													<key>FileName</key>
+													<string>/Users/kellyhuberty/Projects/MarshmallowOrmament/OrmamentTests/MMRecordTests.m</string>
+													<key>LineNumber</key>
+													<integer>628</integer>
+													<key>Message</key>
+													<string>failed: caught "NSInternalInconsistencyException", "-[__NSCFDictionary setObject:forKey:]: mutating method sent to immutable object"
+(
+	0   CoreFoundation                      0x0000000102343f35 __exceptionPreprocess + 165
+	1   libobjc.A.dylib                     0x0000000101fdcbb7 objc_exception_throw + 45
+	2   CoreFoundation                      0x0000000102343e6d +[NSException raise:format:] + 205
+	3   CoreFoundation                      0x000000010227a8a3 -[__NSCFDictionary setObject:forKey:] + 99
+	4   OrmamentTests                       0x0000000103b542fb +[MMOrmamentBootstrap setVersion:forSchema:] + 251
+	5   OrmamentTests                       0x0000000103b547d6 +[MMOrmamentBootstrap buildInitialStoreForSchema:error:] + 262
+	6   OrmamentTests                       0x0000000103b53220 +[MMOrmamentBootstrap startWithSchemas:] + 1168
+	7   OrmamentTests                       0x0000000103b1401a -[MMRecordTests testBasicRead] + 282
+	8   CoreFoundation                      0x000000010223bc8c __invoking___ + 140
+	9   CoreFoundation                      0x000000010223bae2 -[NSInvocation invoke] + 290
+	10  XCTest                              0x0000000103bc00f7 -[XCTestCase invokeTest] + 253
+	11  XCTest                              0x0000000103bc02f8 -[XCTestCase performTest:] + 150
+	12  XCTest                              0x0000000103bc9bf5 -[XCTest run] + 260
+	13  XCTest                              0x0000000103bbeffb -[XCTestSuite performTest:] + 379
+	14  XCTest                              0x0000000103bc9bf5 -[XCTest run] + 260
+	15  XCTest                              0x0000000103bbeffb -[XCTestSuite performTest:] + 379
+	16  XCTest                              0x0000000103bc9bf5 -[XCTest run] + 260
+	17  XCTest                              0x0000000103bbeffb -[XCTestSuite performTest:] + 379
+	18  XCTest                              0x0000000103bc9bf5 -[XCTest run] + 260
+	19  XCTest                              0x0000000103bbc0bc __25-[XCTestDriver _runSuite]_block_invoke + 56
+	20  XCTest                              0x0000000103bc6ead -[XCTestObservationCenter _observeTestExecutionForBlock:] + 162
+	21  XCTest                              0x0000000103bbbff0 -[XCTestDriver _runSuite] + 269
+	22  XCTest                              0x0000000103bbca1d -[XCTestDriver _checkForTestManager] + 234
+	23  XCTest                              0x0000000103bccaf0 +[XCTestProbe runTests:] + 182
+	24  xctest                              0x0000000101ac9196 xctest + 4502
+	25  xctest                              0x0000000101ac940d xctest + 5133
+	26  xctest                              0x0000000101ac8e13 xctest + 3603
+	27  libdyld.dylib                       0x0000000103602145 start + 1
+)</string>
+													<key>PerformanceFailure</key>
+													<false/>
+												</dict>
+											</array>
+											<key>TestIdentifier</key>
+											<string>MMRecordTests/testBasicRead</string>
+											<key>TestName</key>
+											<string>testBasicRead</string>
+											<key>TestObjectClass</key>
+											<string>IDESchemeActionTestSummary</string>
+											<key>TestStatus</key>
+											<string>Failure</string>
+											<key>TestSummaryGUID</key>
+											<string>C7A4F3FE-2E96-483A-851B-A064B5341170</string>
+										</dict>
+										<dict>
+											<key>FailureSummaries</key>
+											<array>
+												<dict>
+													<key>FileName</key>
+													<string>&lt;unknown&gt;</string>
+													<key>LineNumber</key>
+													<integer>0</integer>
+													<key>Message</key>
+													<string>failed: caught "NSInternalInconsistencyException", "-[__NSCFDictionary removeObjectForKey:]: mutating method sent to immutable object"
+(
+	0   CoreFoundation                      0x0000000102343f35 __exceptionPreprocess + 165
+	1   libobjc.A.dylib                     0x0000000101fdcbb7 objc_exception_throw + 45
+	2   CoreFoundation                      0x0000000102343e6d +[NSException raise:format:] + 205
+	3   CoreFoundation                      0x0000000102282ffb -[__NSCFDictionary removeObjectForKey:] + 91
+	4   OrmamentTests                       0x0000000103b54432 +[MMOrmamentBootstrap unsetVersionForSchema:] + 210
+	5   OrmamentTests                       0x0000000103b0dad8 -[MMRecordTests setUp] + 88
+	6   XCTest                              0x0000000103bc0085 -[XCTestCase invokeTest] + 139
+	7   XCTest                              0x0000000103bc02f8 -[XCTestCase performTest:] + 150
+	8   XCTest                              0x0000000103bc9bf5 -[XCTest run] + 260
+	9   XCTest                              0x0000000103bbeffb -[XCTestSuite performTest:] + 379
+	10  XCTest                              0x0000000103bc9bf5 -[XCTest run] + 260
+	11  XCTest                              0x0000000103bbeffb -[XCTestSuite performTest:] + 379
+	12  XCTest                              0x0000000103bc9bf5 -[XCTest run] + 260
+	13  XCTest                              0x0000000103bbeffb -[XCTestSuite performTest:] + 379
+	14  XCTest                              0x0000000103bc9bf5 -[XCTest run] + 260
+	15  XCTest                              0x0000000103bbc0bc __25-[XCTestDriver _runSuite]_block_invoke + 56
+	16  XCTest                              0x0000000103bc6ead -[XCTestObservationCenter _observeTestExecutionForBlock:] + 162
+	17  XCTest                              0x0000000103bbbff0 -[XCTestDriver _runSuite] + 269
+	18  XCTest                              0x0000000103bbca1d -[XCTestDriver _checkForTestManager] + 234
+	19  XCTest                              0x0000000103bccaf0 +[XCTestProbe runTests:] + 182
+	20  xctest                              0x0000000101ac9196 xctest + 4502
+	21  xctest                              0x0000000101ac940d xctest + 5133
+	22  xctest                              0x0000000101ac8e13 xctest + 3603
+	23  libdyld.dylib                       0x0000000103602145 start + 1
+)</string>
+													<key>PerformanceFailure</key>
+													<false/>
+												</dict>
+											</array>
+											<key>TestIdentifier</key>
+											<string>MMRecordTests/testCreateAndFill</string>
+											<key>TestName</key>
+											<string>testCreateAndFill</string>
+											<key>TestObjectClass</key>
+											<string>IDESchemeActionTestSummary</string>
+											<key>TestStatus</key>
+											<string>Failure</string>
+											<key>TestSummaryGUID</key>
+											<string>7CBC52F2-0B9C-4EB1-B22A-000361BDA512</string>
+										</dict>
+										<dict>
+											<key>FailureSummaries</key>
+											<array>
+												<dict>
+													<key>FileName</key>
+													<string>&lt;unknown&gt;</string>
+													<key>LineNumber</key>
+													<integer>0</integer>
+													<key>Message</key>
+													<string>failed: caught "NSInternalInconsistencyException", "-[__NSCFDictionary removeObjectForKey:]: mutating method sent to immutable object"
+(
+	0   CoreFoundation                      0x0000000102343f35 __exceptionPreprocess + 165
+	1   libobjc.A.dylib                     0x0000000101fdcbb7 objc_exception_throw + 45
+	2   CoreFoundation                      0x0000000102343e6d +[NSException raise:format:] + 205
+	3   CoreFoundation                      0x0000000102282ffb -[__NSCFDictionary removeObjectForKey:] + 91
+	4   OrmamentTests                       0x0000000103b54432 +[MMOrmamentBootstrap unsetVersionForSchema:] + 210
+	5   OrmamentTests                       0x0000000103b0dad8 -[MMRecordTests setUp] + 88
+	6   XCTest                              0x0000000103bc0085 -[XCTestCase invokeTest] + 139
+	7   XCTest                              0x0000000103bc02f8 -[XCTestCase performTest:] + 150
+	8   XCTest                              0x0000000103bc9bf5 -[XCTest run] + 260
+	9   XCTest                              0x0000000103bbeffb -[XCTestSuite performTest:] + 379
+	10  XCTest                              0x0000000103bc9bf5 -[XCTest run] + 260
+	11  XCTest                              0x0000000103bbeffb -[XCTestSuite performTest:] + 379
+	12  XCTest                              0x0000000103bc9bf5 -[XCTest run] + 260
+	13  XCTest                              0x0000000103bbeffb -[XCTestSuite performTest:] + 379
+	14  XCTest                              0x0000000103bc9bf5 -[XCTest run] + 260
+	15  XCTest                              0x0000000103bbc0bc __25-[XCTestDriver _runSuite]_block_invoke + 56
+	16  XCTest                              0x0000000103bc6ead -[XCTestObservationCenter _observeTestExecutionForBlock:] + 162
+	17  XCTest                              0x0000000103bbbff0 -[XCTestDriver _runSuite] + 269
+	18  XCTest                              0x0000000103bbca1d -[XCTestDriver _checkForTestManager] + 234
+	19  XCTest                              0x0000000103bccaf0 +[XCTestProbe runTests:] + 182
+	20  xctest                              0x0000000101ac9196 xctest + 4502
+	21  xctest                              0x0000000101ac940d xctest + 5133
+	22  xctest                              0x0000000101ac8e13 xctest + 3603
+	23  libdyld.dylib                       0x0000000103602145 start + 1
+)</string>
+													<key>PerformanceFailure</key>
+													<false/>
+												</dict>
+											</array>
+											<key>TestIdentifier</key>
+											<string>MMRecordTests/testDelete</string>
+											<key>TestName</key>
+											<string>testDelete</string>
+											<key>TestObjectClass</key>
+											<string>IDESchemeActionTestSummary</string>
+											<key>TestStatus</key>
+											<string>Failure</string>
+											<key>TestSummaryGUID</key>
+											<string>41D9B928-1E96-42D0-BF37-29718E31E318</string>
+										</dict>
+										<dict>
+											<key>FailureSummaries</key>
+											<array>
+												<dict>
+													<key>FileName</key>
+													<string>&lt;unknown&gt;</string>
+													<key>LineNumber</key>
+													<integer>0</integer>
+													<key>Message</key>
+													<string>failed: caught "NSInternalInconsistencyException", "-[__NSCFDictionary removeObjectForKey:]: mutating method sent to immutable object"
+(
+	0   CoreFoundation                      0x0000000102343f35 __exceptionPreprocess + 165
+	1   libobjc.A.dylib                     0x0000000101fdcbb7 objc_exception_throw + 45
+	2   CoreFoundation                      0x0000000102343e6d +[NSException raise:format:] + 205
+	3   CoreFoundation                      0x0000000102282ffb -[__NSCFDictionary removeObjectForKey:] + 91
+	4   OrmamentTests                       0x0000000103b54432 +[MMOrmamentBootstrap unsetVersionForSchema:] + 210
+	5   OrmamentTests                       0x0000000103b0dad8 -[MMRecordTests setUp] + 88
+	6   XCTest                              0x0000000103bc0085 -[XCTestCase invokeTest] + 139
+	7   XCTest                              0x0000000103bc02f8 -[XCTestCase performTest:] + 150
+	8   XCTest                              0x0000000103bc9bf5 -[XCTest run] + 260
+	9   XCTest                              0x0000000103bbeffb -[XCTestSuite performTest:] + 379
+	10  XCTest                              0x0000000103bc9bf5 -[XCTest run] + 260
+	11  XCTest                              0x0000000103bbeffb -[XCTestSuite performTest:] + 379
+	12  XCTest                              0x0000000103bc9bf5 -[XCTest run] + 260
+	13  XCTest                              0x0000000103bbeffb -[XCTestSuite performTest:] + 379
+	14  XCTest                              0x0000000103bc9bf5 -[XCTest run] + 260
+	15  XCTest                              0x0000000103bbc0bc __25-[XCTestDriver _runSuite]_block_invoke + 56
+	16  XCTest                              0x0000000103bc6ead -[XCTestObservationCenter _observeTestExecutionForBlock:] + 162
+	17  XCTest                              0x0000000103bbbff0 -[XCTestDriver _runSuite] + 269
+	18  XCTest                              0x0000000103bbca1d -[XCTestDriver _checkForTestManager] + 234
+	19  XCTest                              0x0000000103bccaf0 +[XCTestProbe runTests:] + 182
+	20  xctest                              0x0000000101ac9196 xctest + 4502
+	21  xctest                              0x0000000101ac940d xctest + 5133
+	22  xctest                              0x0000000101ac8e13 xctest + 3603
+	23  libdyld.dylib                       0x0000000103602145 start + 1
+)</string>
+													<key>PerformanceFailure</key>
+													<false/>
+												</dict>
+											</array>
+											<key>TestIdentifier</key>
+											<string>MMRecordTests/testSavingBasicObjectValue</string>
+											<key>TestName</key>
+											<string>testSavingBasicObjectValue</string>
+											<key>TestObjectClass</key>
+											<string>IDESchemeActionTestSummary</string>
+											<key>TestStatus</key>
+											<string>Failure</string>
+											<key>TestSummaryGUID</key>
+											<string>5D0FF368-6E80-4079-8DB7-F713A95C7BB4</string>
+										</dict>
+										<dict>
+											<key>FailureSummaries</key>
+											<array>
+												<dict>
+													<key>FileName</key>
+													<string>&lt;unknown&gt;</string>
+													<key>LineNumber</key>
+													<integer>0</integer>
+													<key>Message</key>
+													<string>failed: caught "NSInternalInconsistencyException", "-[__NSCFDictionary removeObjectForKey:]: mutating method sent to immutable object"
+(
+	0   CoreFoundation                      0x0000000102343f35 __exceptionPreprocess + 165
+	1   libobjc.A.dylib                     0x0000000101fdcbb7 objc_exception_throw + 45
+	2   CoreFoundation                      0x0000000102343e6d +[NSException raise:format:] + 205
+	3   CoreFoundation                      0x0000000102282ffb -[__NSCFDictionary removeObjectForKey:] + 91
+	4   OrmamentTests                       0x0000000103b54432 +[MMOrmamentBootstrap unsetVersionForSchema:] + 210
+	5   OrmamentTests                       0x0000000103b0dad8 -[MMRecordTests setUp] + 88
+	6   XCTest                              0x0000000103bc0085 -[XCTestCase invokeTest] + 139
+	7   XCTest                              0x0000000103bc02f8 -[XCTestCase performTest:] + 150
+	8   XCTest                              0x0000000103bc9bf5 -[XCTest run] + 260
+	9   XCTest                              0x0000000103bbeffb -[XCTestSuite performTest:] + 379
+	10  XCTest                              0x0000000103bc9bf5 -[XCTest run] + 260
+	11  XCTest                              0x0000000103bbeffb -[XCTestSuite performTest:] + 379
+	12  XCTest                              0x0000000103bc9bf5 -[XCTest run] + 260
+	13  XCTest                              0x0000000103bbeffb -[XCTestSuite performTest:] + 379
+	14  XCTest                              0x0000000103bc9bf5 -[XCTest run] + 260
+	15  XCTest                              0x0000000103bbc0bc __25-[XCTestDriver _runSuite]_block_invoke + 56
+	16  XCTest                              0x0000000103bc6ead -[XCTestObservationCenter _observeTestExecutionForBlock:] + 162
+	17  XCTest                              0x0000000103bbbff0 -[XCTestDriver _runSuite] + 269
+	18  XCTest                              0x0000000103bbca1d -[XCTestDriver _checkForTestManager] + 234
+	19  XCTest                              0x0000000103bccaf0 +[XCTestProbe runTests:] + 182
+	20  xctest                              0x0000000101ac9196 xctest + 4502
+	21  xctest                              0x0000000101ac940d xctest + 5133
+	22  xctest                              0x0000000101ac8e13 xctest + 3603
+	23  libdyld.dylib                       0x0000000103602145 start + 1
+)</string>
+													<key>PerformanceFailure</key>
+													<false/>
+												</dict>
+											</array>
+											<key>TestIdentifier</key>
+											<string>MMRecordTests/testSettingBasicObjectValue</string>
+											<key>TestName</key>
+											<string>testSettingBasicObjectValue</string>
+											<key>TestObjectClass</key>
+											<string>IDESchemeActionTestSummary</string>
+											<key>TestStatus</key>
+											<string>Failure</string>
+											<key>TestSummaryGUID</key>
+											<string>05A83D99-96C7-4F08-A4F5-46D7B3B890FB</string>
+										</dict>
+										<dict>
+											<key>FailureSummaries</key>
+											<array>
+												<dict>
+													<key>FileName</key>
+													<string>&lt;unknown&gt;</string>
+													<key>LineNumber</key>
+													<integer>0</integer>
+													<key>Message</key>
+													<string>failed: caught "NSInternalInconsistencyException", "-[__NSCFDictionary removeObjectForKey:]: mutating method sent to immutable object"
+(
+	0   CoreFoundation                      0x0000000102343f35 __exceptionPreprocess + 165
+	1   libobjc.A.dylib                     0x0000000101fdcbb7 objc_exception_throw + 45
+	2   CoreFoundation                      0x0000000102343e6d +[NSException raise:format:] + 205
+	3   CoreFoundation                      0x0000000102282ffb -[__NSCFDictionary removeObjectForKey:] + 91
+	4   OrmamentTests                       0x0000000103b54432 +[MMOrmamentBootstrap unsetVersionForSchema:] + 210
+	5   OrmamentTests                       0x0000000103b0dad8 -[MMRecordTests setUp] + 88
+	6   XCTest                              0x0000000103bc0085 -[XCTestCase invokeTest] + 139
+	7   XCTest                              0x0000000103bc02f8 -[XCTestCase performTest:] + 150
+	8   XCTest                              0x0000000103bc9bf5 -[XCTest run] + 260
+	9   XCTest                              0x0000000103bbeffb -[XCTestSuite performTest:] + 379
+	10  XCTest                              0x0000000103bc9bf5 -[XCTest run] + 260
+	11  XCTest                              0x0000000103bbeffb -[XCTestSuite performTest:] + 379
+	12  XCTest                              0x0000000103bc9bf5 -[XCTest run] + 260
+	13  XCTest                              0x0000000103bbeffb -[XCTestSuite performTest:] + 379
+	14  XCTest                              0x0000000103bc9bf5 -[XCTest run] + 260
+	15  XCTest                              0x0000000103bbc0bc __25-[XCTestDriver _runSuite]_block_invoke + 56
+	16  XCTest                              0x0000000103bc6ead -[XCTestObservationCenter _observeTestExecutionForBlock:] + 162
+	17  XCTest                              0x0000000103bbbff0 -[XCTestDriver _runSuite] + 269
+	18  XCTest                              0x0000000103bbca1d -[XCTestDriver _checkForTestManager] + 234
+	19  XCTest                              0x0000000103bccaf0 +[XCTestProbe runTests:] + 182
+	20  xctest                              0x0000000101ac9196 xctest + 4502
+	21  xctest                              0x0000000101ac940d xctest + 5133
+	22  xctest                              0x0000000101ac8e13 xctest + 3603
+	23  libdyld.dylib                       0x0000000103602145 start + 1
+)</string>
+													<key>PerformanceFailure</key>
+													<false/>
+												</dict>
+											</array>
+											<key>TestIdentifier</key>
+											<string>MMRecordTests/testUpdate</string>
+											<key>TestName</key>
+											<string>testUpdate</string>
+											<key>TestObjectClass</key>
+											<string>IDESchemeActionTestSummary</string>
+											<key>TestStatus</key>
+											<string>Failure</string>
+											<key>TestSummaryGUID</key>
+											<string>8CD429C1-7BC0-4DF5-B05D-6E44A714D64B</string>
+										</dict>
+										<dict>
+											<key>FailureSummaries</key>
+											<array>
+												<dict>
+													<key>FileName</key>
+													<string>&lt;unknown&gt;</string>
+													<key>LineNumber</key>
+													<integer>0</integer>
+													<key>Message</key>
+													<string>failed: caught "NSInternalInconsistencyException", "-[__NSCFDictionary removeObjectForKey:]: mutating method sent to immutable object"
+(
+	0   CoreFoundation                      0x0000000102343f35 __exceptionPreprocess + 165
+	1   libobjc.A.dylib                     0x0000000101fdcbb7 objc_exception_throw + 45
+	2   CoreFoundation                      0x0000000102343e6d +[NSException raise:format:] + 205
+	3   CoreFoundation                      0x0000000102282ffb -[__NSCFDictionary removeObjectForKey:] + 91
+	4   OrmamentTests                       0x0000000103b54432 +[MMOrmamentBootstrap unsetVersionForSchema:] + 210
+	5   OrmamentTests                       0x0000000103b0dad8 -[MMRecordTests setUp] + 88
+	6   XCTest                              0x0000000103bc0085 -[XCTestCase invokeTest] + 139
+	7   XCTest                              0x0000000103bc02f8 -[XCTestCase performTest:] + 150
+	8   XCTest                              0x0000000103bc9bf5 -[XCTest run] + 260
+	9   XCTest                              0x0000000103bbeffb -[XCTestSuite performTest:] + 379
+	10  XCTest                              0x0000000103bc9bf5 -[XCTest run] + 260
+	11  XCTest                              0x0000000103bbeffb -[XCTestSuite performTest:] + 379
+	12  XCTest                              0x0000000103bc9bf5 -[XCTest run] + 260
+	13  XCTest                              0x0000000103bbeffb -[XCTestSuite performTest:] + 379
+	14  XCTest                              0x0000000103bc9bf5 -[XCTest run] + 260
+	15  XCTest                              0x0000000103bbc0bc __25-[XCTestDriver _runSuite]_block_invoke + 56
+	16  XCTest                              0x0000000103bc6ead -[XCTestObservationCenter _observeTestExecutionForBlock:] + 162
+	17  XCTest                              0x0000000103bbbff0 -[XCTestDriver _runSuite] + 269
+	18  XCTest                              0x0000000103bbca1d -[XCTestDriver _checkForTestManager] + 234
+	19  XCTest                              0x0000000103bccaf0 +[XCTestProbe runTests:] + 182
+	20  xctest                              0x0000000101ac9196 xctest + 4502
+	21  xctest                              0x0000000101ac940d xctest + 5133
+	22  xctest                              0x0000000101ac8e13 xctest + 3603
+	23  libdyld.dylib                       0x0000000103602145 start + 1
+)</string>
+													<key>PerformanceFailure</key>
+													<false/>
+												</dict>
+											</array>
+											<key>TestIdentifier</key>
+											<string>MMRecordTests/testUpdateCount</string>
+											<key>TestName</key>
+											<string>testUpdateCount</string>
+											<key>TestObjectClass</key>
+											<string>IDESchemeActionTestSummary</string>
+											<key>TestStatus</key>
+											<string>Failure</string>
+											<key>TestSummaryGUID</key>
+											<string>3B4E8424-42B5-4705-AA19-60064870A22A</string>
+										</dict>
+										<dict>
+											<key>FailureSummaries</key>
+											<array>
+												<dict>
+													<key>FileName</key>
+													<string>&lt;unknown&gt;</string>
+													<key>LineNumber</key>
+													<integer>0</integer>
+													<key>Message</key>
+													<string>failed: caught "NSInternalInconsistencyException", "-[__NSCFDictionary removeObjectForKey:]: mutating method sent to immutable object"
+(
+	0   CoreFoundation                      0x0000000102343f35 __exceptionPreprocess + 165
+	1   libobjc.A.dylib                     0x0000000101fdcbb7 objc_exception_throw + 45
+	2   CoreFoundation                      0x0000000102343e6d +[NSException raise:format:] + 205
+	3   CoreFoundation                      0x0000000102282ffb -[__NSCFDictionary removeObjectForKey:] + 91
+	4   OrmamentTests                       0x0000000103b54432 +[MMOrmamentBootstrap unsetVersionForSchema:] + 210
+	5   OrmamentTests                       0x0000000103b0dad8 -[MMRecordTests setUp] + 88
+	6   XCTest                              0x0000000103bc0085 -[XCTestCase invokeTest] + 139
+	7   XCTest                              0x0000000103bc02f8 -[XCTestCase performTest:] + 150
+	8   XCTest                              0x0000000103bc9bf5 -[XCTest run] + 260
+	9   XCTest                              0x0000000103bbeffb -[XCTestSuite performTest:] + 379
+	10  XCTest                              0x0000000103bc9bf5 -[XCTest run] + 260
+	11  XCTest                              0x0000000103bbeffb -[XCTestSuite performTest:] + 379
+	12  XCTest                              0x0000000103bc9bf5 -[XCTest run] + 260
+	13  XCTest                              0x0000000103bbeffb -[XCTestSuite performTest:] + 379
+	14  XCTest                              0x0000000103bc9bf5 -[XCTest run] + 260
+	15  XCTest                              0x0000000103bbc0bc __25-[XCTestDriver _runSuite]_block_invoke + 56
+	16  XCTest                              0x0000000103bc6ead -[XCTestObservationCenter _observeTestExecutionForBlock:] + 162
+	17  XCTest                              0x0000000103bbbff0 -[XCTestDriver _runSuite] + 269
+	18  XCTest                              0x0000000103bbca1d -[XCTestDriver _checkForTestManager] + 234
+	19  XCTest                              0x0000000103bccaf0 +[XCTestProbe runTests:] + 182
+	20  xctest                              0x0000000101ac9196 xctest + 4502
+	21  xctest                              0x0000000101ac940d xctest + 5133
+	22  xctest                              0x0000000101ac8e13 xctest + 3603
+	23  libdyld.dylib                       0x0000000103602145 start + 1
+)</string>
+													<key>PerformanceFailure</key>
+													<false/>
+												</dict>
+											</array>
+											<key>TestIdentifier</key>
+											<string>MMRecordTests/testUpdatePercision</string>
+											<key>TestName</key>
+											<string>testUpdatePercision</string>
+											<key>TestObjectClass</key>
+											<string>IDESchemeActionTestSummary</string>
+											<key>TestStatus</key>
+											<string>Failure</string>
+											<key>TestSummaryGUID</key>
+											<string>CA2C4B7B-A20A-4C88-B81D-50224994B055</string>
+										</dict>
+										<dict>
+											<key>FailureSummaries</key>
+											<array>
+												<dict>
+													<key>FileName</key>
+													<string>&lt;unknown&gt;</string>
+													<key>LineNumber</key>
+													<integer>0</integer>
+													<key>Message</key>
+													<string>failed: caught "NSInternalInconsistencyException", "-[__NSCFDictionary removeObjectForKey:]: mutating method sent to immutable object"
+(
+	0   CoreFoundation                      0x0000000102343f35 __exceptionPreprocess + 165
+	1   libobjc.A.dylib                     0x0000000101fdcbb7 objc_exception_throw + 45
+	2   CoreFoundation                      0x0000000102343e6d +[NSException raise:format:] + 205
+	3   CoreFoundation                      0x0000000102282ffb -[__NSCFDictionary removeObjectForKey:] + 91
+	4   OrmamentTests                       0x0000000103b54432 +[MMOrmamentBootstrap unsetVersionForSchema:] + 210
+	5   OrmamentTests                       0x0000000103b0dad8 -[MMRecordTests setUp] + 88
+	6   XCTest                              0x0000000103bc0085 -[XCTestCase invokeTest] + 139
+	7   XCTest                              0x0000000103bc02f8 -[XCTestCase performTest:] + 150
+	8   XCTest                              0x0000000103bc9bf5 -[XCTest run] + 260
+	9   XCTest                              0x0000000103bbeffb -[XCTestSuite performTest:] + 379
+	10  XCTest                              0x0000000103bc9bf5 -[XCTest run] + 260
+	11  XCTest                              0x0000000103bbeffb -[XCTestSuite performTest:] + 379
+	12  XCTest                              0x0000000103bc9bf5 -[XCTest run] + 260
+	13  XCTest                              0x0000000103bbeffb -[XCTestSuite performTest:] + 379
+	14  XCTest                              0x0000000103bc9bf5 -[XCTest run] + 260
+	15  XCTest                              0x0000000103bbc0bc __25-[XCTestDriver _runSuite]_block_invoke + 56
+	16  XCTest                              0x0000000103bc6ead -[XCTestObservationCenter _observeTestExecutionForBlock:] + 162
+	17  XCTest                              0x0000000103bbbff0 -[XCTestDriver _runSuite] + 269
+	18  XCTest                              0x0000000103bbca1d -[XCTestDriver _checkForTestManager] + 234
+	19  XCTest                              0x0000000103bccaf0 +[XCTestProbe runTests:] + 182
+	20  xctest                              0x0000000101ac9196 xctest + 4502
+	21  xctest                              0x0000000101ac940d xctest + 5133
+	22  xctest                              0x0000000101ac8e13 xctest + 3603
+	23  libdyld.dylib                       0x0000000103602145 start + 1
+)</string>
+													<key>PerformanceFailure</key>
+													<false/>
+												</dict>
+											</array>
+											<key>TestIdentifier</key>
+											<string>MMRecordTests/testUpdatePrimativeValue</string>
+											<key>TestName</key>
+											<string>testUpdatePrimativeValue</string>
+											<key>TestObjectClass</key>
+											<string>IDESchemeActionTestSummary</string>
+											<key>TestStatus</key>
+											<string>Failure</string>
+											<key>TestSummaryGUID</key>
+											<string>AA48BACE-DA52-46DF-872D-844C6E2C8DA9</string>
+										</dict>
+									</array>
+									<key>TestIdentifier</key>
+									<string>MMRecordTests</string>
+									<key>TestName</key>
+									<string>MMRecordTests</string>
+									<key>TestObjectClass</key>
+									<string>IDESchemeActionTestSummaryGroup</string>
+								</dict>
+								<dict>
+									<key>Subtests</key>
+									<array>
+										<dict>
+											<key>FailureSummaries</key>
+											<array>
+												<dict>
+													<key>FileName</key>
+													<string>&lt;unknown&gt;</string>
+													<key>LineNumber</key>
+													<integer>0</integer>
+													<key>Message</key>
+													<string>failed: caught "NSInternalInconsistencyException", "-[__NSCFDictionary removeObjectForKey:]: mutating method sent to immutable object"
+(
+	0   CoreFoundation                      0x0000000102343f35 __exceptionPreprocess + 165
+	1   libobjc.A.dylib                     0x0000000101fdcbb7 objc_exception_throw + 45
+	2   CoreFoundation                      0x0000000102343e6d +[NSException raise:format:] + 205
+	3   CoreFoundation                      0x0000000102282ffb -[__NSCFDictionary removeObjectForKey:] + 91
+	4   OrmamentTests                       0x0000000103b54432 +[MMOrmamentBootstrap unsetVersionForSchema:] + 210
+	5   OrmamentTests                       0x0000000103b14ce8 -[MMRelationshipTests setUp] + 88
+	6   XCTest                              0x0000000103bc0085 -[XCTestCase invokeTest] + 139
+	7   XCTest                              0x0000000103bc02f8 -[XCTestCase performTest:] + 150
+	8   XCTest                              0x0000000103bc9bf5 -[XCTest run] + 260
+	9   XCTest                              0x0000000103bbeffb -[XCTestSuite performTest:] + 379
+	10  XCTest                              0x0000000103bc9bf5 -[XCTest run] + 260
+	11  XCTest                              0x0000000103bbeffb -[XCTestSuite performTest:] + 379
+	12  XCTest                              0x0000000103bc9bf5 -[XCTest run] + 260
+	13  XCTest                              0x0000000103bbeffb -[XCTestSuite performTest:] + 379
+	14  XCTest                              0x0000000103bc9bf5 -[XCTest run] + 260
+	15  XCTest                              0x0000000103bbc0bc __25-[XCTestDriver _runSuite]_block_invoke + 56
+	16  XCTest                              0x0000000103bc6ead -[XCTestObservationCenter _observeTestExecutionForBlock:] + 162
+	17  XCTest                              0x0000000103bbbff0 -[XCTestDriver _runSuite] + 269
+	18  XCTest                              0x0000000103bbca1d -[XCTestDriver _checkForTestManager] + 234
+	19  XCTest                              0x0000000103bccaf0 +[XCTestProbe runTests:] + 182
+	20  xctest                              0x0000000101ac9196 xctest + 4502
+	21  xctest                              0x0000000101ac940d xctest + 5133
+	22  xctest                              0x0000000101ac8e13 xctest + 3603
+	23  libdyld.dylib                       0x0000000103602145 start + 1
+)</string>
+													<key>PerformanceFailure</key>
+													<false/>
+												</dict>
+											</array>
+											<key>TestIdentifier</key>
+											<string>MMRelationshipTests/testAddItemToRelationshipHasManyNO</string>
+											<key>TestName</key>
+											<string>testAddItemToRelationshipHasManyNO</string>
+											<key>TestObjectClass</key>
+											<string>IDESchemeActionTestSummary</string>
+											<key>TestStatus</key>
+											<string>Failure</string>
+											<key>TestSummaryGUID</key>
+											<string>142D505C-DA9B-4E43-A85C-B1F14B2FD9C7</string>
+										</dict>
+										<dict>
+											<key>FailureSummaries</key>
+											<array>
+												<dict>
+													<key>FileName</key>
+													<string>&lt;unknown&gt;</string>
+													<key>LineNumber</key>
+													<integer>0</integer>
+													<key>Message</key>
+													<string>failed: caught "NSInternalInconsistencyException", "-[__NSCFDictionary removeObjectForKey:]: mutating method sent to immutable object"
+(
+	0   CoreFoundation                      0x0000000102343f35 __exceptionPreprocess + 165
+	1   libobjc.A.dylib                     0x0000000101fdcbb7 objc_exception_throw + 45
+	2   CoreFoundation                      0x0000000102343e6d +[NSException raise:format:] + 205
+	3   CoreFoundation                      0x0000000102282ffb -[__NSCFDictionary removeObjectForKey:] + 91
+	4   OrmamentTests                       0x0000000103b54432 +[MMOrmamentBootstrap unsetVersionForSchema:] + 210
+	5   OrmamentTests                       0x0000000103b14ce8 -[MMRelationshipTests setUp] + 88
+	6   XCTest                              0x0000000103bc0085 -[XCTestCase invokeTest] + 139
+	7   XCTest                              0x0000000103bc02f8 -[XCTestCase performTest:] + 150
+	8   XCTest                              0x0000000103bc9bf5 -[XCTest run] + 260
+	9   XCTest                              0x0000000103bbeffb -[XCTestSuite performTest:] + 379
+	10  XCTest                              0x0000000103bc9bf5 -[XCTest run] + 260
+	11  XCTest                              0x0000000103bbeffb -[XCTestSuite performTest:] + 379
+	12  XCTest                              0x0000000103bc9bf5 -[XCTest run] + 260
+	13  XCTest                              0x0000000103bbeffb -[XCTestSuite performTest:] + 379
+	14  XCTest                              0x0000000103bc9bf5 -[XCTest run] + 260
+	15  XCTest                              0x0000000103bbc0bc __25-[XCTestDriver _runSuite]_block_invoke + 56
+	16  XCTest                              0x0000000103bc6ead -[XCTestObservationCenter _observeTestExecutionForBlock:] + 162
+	17  XCTest                              0x0000000103bbbff0 -[XCTestDriver _runSuite] + 269
+	18  XCTest                              0x0000000103bbca1d -[XCTestDriver _checkForTestManager] + 234
+	19  XCTest                              0x0000000103bccaf0 +[XCTestProbe runTests:] + 182
+	20  xctest                              0x0000000101ac9196 xctest + 4502
+	21  xctest                              0x0000000101ac940d xctest + 5133
+	22  xctest                              0x0000000101ac8e13 xctest + 3603
+	23  libdyld.dylib                       0x0000000103602145 start + 1
+)</string>
+													<key>PerformanceFailure</key>
+													<false/>
+												</dict>
+											</array>
+											<key>TestIdentifier</key>
+											<string>MMRelationshipTests/testGetBadRelationshipResults</string>
+											<key>TestName</key>
+											<string>testGetBadRelationshipResults</string>
+											<key>TestObjectClass</key>
+											<string>IDESchemeActionTestSummary</string>
+											<key>TestStatus</key>
+											<string>Failure</string>
+											<key>TestSummaryGUID</key>
+											<string>E6085C75-8A13-4FCB-8BFA-65932ABDD468</string>
+										</dict>
+										<dict>
+											<key>FailureSummaries</key>
+											<array>
+												<dict>
+													<key>FileName</key>
+													<string>&lt;unknown&gt;</string>
+													<key>LineNumber</key>
+													<integer>0</integer>
+													<key>Message</key>
+													<string>failed: caught "NSInternalInconsistencyException", "-[__NSCFDictionary removeObjectForKey:]: mutating method sent to immutable object"
+(
+	0   CoreFoundation                      0x0000000102343f35 __exceptionPreprocess + 165
+	1   libobjc.A.dylib                     0x0000000101fdcbb7 objc_exception_throw + 45
+	2   CoreFoundation                      0x0000000102343e6d +[NSException raise:format:] + 205
+	3   CoreFoundation                      0x0000000102282ffb -[__NSCFDictionary removeObjectForKey:] + 91
+	4   OrmamentTests                       0x0000000103b54432 +[MMOrmamentBootstrap unsetVersionForSchema:] + 210
+	5   OrmamentTests                       0x0000000103b14ce8 -[MMRelationshipTests setUp] + 88
+	6   XCTest                              0x0000000103bc0085 -[XCTestCase invokeTest] + 139
+	7   XCTest                              0x0000000103bc02f8 -[XCTestCase performTest:] + 150
+	8   XCTest                              0x0000000103bc9bf5 -[XCTest run] + 260
+	9   XCTest                              0x0000000103bbeffb -[XCTestSuite performTest:] + 379
+	10  XCTest                              0x0000000103bc9bf5 -[XCTest run] + 260
+	11  XCTest                              0x0000000103bbeffb -[XCTestSuite performTest:] + 379
+	12  XCTest                              0x0000000103bc9bf5 -[XCTest run] + 260
+	13  XCTest                              0x0000000103bbeffb -[XCTestSuite performTest:] + 379
+	14  XCTest                              0x0000000103bc9bf5 -[XCTest run] + 260
+	15  XCTest                              0x0000000103bbc0bc __25-[XCTestDriver _runSuite]_block_invoke + 56
+	16  XCTest                              0x0000000103bc6ead -[XCTestObservationCenter _observeTestExecutionForBlock:] + 162
+	17  XCTest                              0x0000000103bbbff0 -[XCTestDriver _runSuite] + 269
+	18  XCTest                              0x0000000103bbca1d -[XCTestDriver _checkForTestManager] + 234
+	19  XCTest                              0x0000000103bccaf0 +[XCTestProbe runTests:] + 182
+	20  xctest                              0x0000000101ac9196 xctest + 4502
+	21  xctest                              0x0000000101ac940d xctest + 5133
+	22  xctest                              0x0000000101ac8e13 xctest + 3603
+	23  libdyld.dylib                       0x0000000103602145 start + 1
+)</string>
+													<key>PerformanceFailure</key>
+													<false/>
+												</dict>
+											</array>
+											<key>TestIdentifier</key>
+											<string>MMRelationshipTests/testGetHasManyNORelationshipResults</string>
+											<key>TestName</key>
+											<string>testGetHasManyNORelationshipResults</string>
+											<key>TestObjectClass</key>
+											<string>IDESchemeActionTestSummary</string>
+											<key>TestStatus</key>
+											<string>Failure</string>
+											<key>TestSummaryGUID</key>
+											<string>A0995075-563E-4988-9FA6-DBED32B30AA9</string>
+										</dict>
+										<dict>
+											<key>FailureSummaries</key>
+											<array>
+												<dict>
+													<key>FileName</key>
+													<string>&lt;unknown&gt;</string>
+													<key>LineNumber</key>
+													<integer>0</integer>
+													<key>Message</key>
+													<string>failed: caught "NSInternalInconsistencyException", "-[__NSCFDictionary removeObjectForKey:]: mutating method sent to immutable object"
+(
+	0   CoreFoundation                      0x0000000102343f35 __exceptionPreprocess + 165
+	1   libobjc.A.dylib                     0x0000000101fdcbb7 objc_exception_throw + 45
+	2   CoreFoundation                      0x0000000102343e6d +[NSException raise:format:] + 205
+	3   CoreFoundation                      0x0000000102282ffb -[__NSCFDictionary removeObjectForKey:] + 91
+	4   OrmamentTests                       0x0000000103b54432 +[MMOrmamentBootstrap unsetVersionForSchema:] + 210
+	5   OrmamentTests                       0x0000000103b14ce8 -[MMRelationshipTests setUp] + 88
+	6   XCTest                              0x0000000103bc0085 -[XCTestCase invokeTest] + 139
+	7   XCTest                              0x0000000103bc02f8 -[XCTestCase performTest:] + 150
+	8   XCTest                              0x0000000103bc9bf5 -[XCTest run] + 260
+	9   XCTest                              0x0000000103bbeffb -[XCTestSuite performTest:] + 379
+	10  XCTest                              0x0000000103bc9bf5 -[XCTest run] + 260
+	11  XCTest                              0x0000000103bbeffb -[XCTestSuite performTest:] + 379
+	12  XCTest                              0x0000000103bc9bf5 -[XCTest run] + 260
+	13  XCTest                              0x0000000103bbeffb -[XCTestSuite performTest:] + 379
+	14  XCTest                              0x0000000103bc9bf5 -[XCTest run] + 260
+	15  XCTest                              0x0000000103bbc0bc __25-[XCTestDriver _runSuite]_block_invoke + 56
+	16  XCTest                              0x0000000103bc6ead -[XCTestObservationCenter _observeTestExecutionForBlock:] + 162
+	17  XCTest                              0x0000000103bbbff0 -[XCTestDriver _runSuite] + 269
+	18  XCTest                              0x0000000103bbca1d -[XCTestDriver _checkForTestManager] + 234
+	19  XCTest                              0x0000000103bccaf0 +[XCTestProbe runTests:] + 182
+	20  xctest                              0x0000000101ac9196 xctest + 4502
+	21  xctest                              0x0000000101ac940d xctest + 5133
+	22  xctest                              0x0000000101ac8e13 xctest + 3603
+	23  libdyld.dylib                       0x0000000103602145 start + 1
+)</string>
+													<key>PerformanceFailure</key>
+													<false/>
+												</dict>
+											</array>
+											<key>TestIdentifier</key>
+											<string>MMRelationshipTests/testGetHasManyYESRelationshipResults</string>
+											<key>TestName</key>
+											<string>testGetHasManyYESRelationshipResults</string>
+											<key>TestObjectClass</key>
+											<string>IDESchemeActionTestSummary</string>
+											<key>TestStatus</key>
+											<string>Failure</string>
+											<key>TestSummaryGUID</key>
+											<string>5947DEB3-22E1-43EB-B1F5-EE2BF8EDFEBF</string>
+										</dict>
+										<dict>
+											<key>FailureSummaries</key>
+											<array>
+												<dict>
+													<key>FileName</key>
+													<string>&lt;unknown&gt;</string>
+													<key>LineNumber</key>
+													<integer>0</integer>
+													<key>Message</key>
+													<string>failed: caught "NSInternalInconsistencyException", "-[__NSCFDictionary removeObjectForKey:]: mutating method sent to immutable object"
+(
+	0   CoreFoundation                      0x0000000102343f35 __exceptionPreprocess + 165
+	1   libobjc.A.dylib                     0x0000000101fdcbb7 objc_exception_throw + 45
+	2   CoreFoundation                      0x0000000102343e6d +[NSException raise:format:] + 205
+	3   CoreFoundation                      0x0000000102282ffb -[__NSCFDictionary removeObjectForKey:] + 91
+	4   OrmamentTests                       0x0000000103b54432 +[MMOrmamentBootstrap unsetVersionForSchema:] + 210
+	5   OrmamentTests                       0x0000000103b14ce8 -[MMRelationshipTests setUp] + 88
+	6   XCTest                              0x0000000103bc0085 -[XCTestCase invokeTest] + 139
+	7   XCTest                              0x0000000103bc02f8 -[XCTestCase performTest:] + 150
+	8   XCTest                              0x0000000103bc9bf5 -[XCTest run] + 260
+	9   XCTest                              0x0000000103bbeffb -[XCTestSuite performTest:] + 379
+	10  XCTest                              0x0000000103bc9bf5 -[XCTest run] + 260
+	11  XCTest                              0x0000000103bbeffb -[XCTestSuite performTest:] + 379
+	12  XCTest                              0x0000000103bc9bf5 -[XCTest run] + 260
+	13  XCTest                              0x0000000103bbeffb -[XCTestSuite performTest:] + 379
+	14  XCTest                              0x0000000103bc9bf5 -[XCTest run] + 260
+	15  XCTest                              0x0000000103bbc0bc __25-[XCTestDriver _runSuite]_block_invoke + 56
+	16  XCTest                              0x0000000103bc6ead -[XCTestObservationCenter _observeTestExecutionForBlock:] + 162
+	17  XCTest                              0x0000000103bbbff0 -[XCTestDriver _runSuite] + 269
+	18  XCTest                              0x0000000103bbca1d -[XCTestDriver _checkForTestManager] + 234
+	19  XCTest                              0x0000000103bccaf0 +[XCTestProbe runTests:] + 182
+	20  xctest                              0x0000000101ac9196 xctest + 4502
+	21  xctest                              0x0000000101ac940d xctest + 5133
+	22  xctest                              0x0000000101ac8e13 xctest + 3603
+	23  libdyld.dylib                       0x0000000103602145 start + 1
+)</string>
+													<key>PerformanceFailure</key>
+													<false/>
+												</dict>
+											</array>
+											<key>TestIdentifier</key>
+											<string>MMRelationshipTests/testRemoveItemToRelationshipHasManyNO</string>
+											<key>TestName</key>
+											<string>testRemoveItemToRelationshipHasManyNO</string>
+											<key>TestObjectClass</key>
+											<string>IDESchemeActionTestSummary</string>
+											<key>TestStatus</key>
+											<string>Failure</string>
+											<key>TestSummaryGUID</key>
+											<string>F65C7F13-C8D9-44B6-87E7-0EB41600F0FF</string>
+										</dict>
+									</array>
+									<key>TestIdentifier</key>
+									<string>MMRelationshipTests</string>
+									<key>TestName</key>
+									<string>MMRelationshipTests</string>
+									<key>TestObjectClass</key>
+									<string>IDESchemeActionTestSummaryGroup</string>
+								</dict>
+								<dict>
+									<key>Subtests</key>
+									<array>
+										<dict>
+											<key>FailureSummaries</key>
+											<array>
+												<dict>
+													<key>FileName</key>
+													<string>&lt;unknown&gt;</string>
+													<key>LineNumber</key>
+													<integer>0</integer>
+													<key>Message</key>
+													<string>failed: caught "NSInternalInconsistencyException", "-[__NSCFDictionary removeObjectForKey:]: mutating method sent to immutable object"
+(
+	0   CoreFoundation                      0x0000000102343f35 __exceptionPreprocess + 165
+	1   libobjc.A.dylib                     0x0000000101fdcbb7 objc_exception_throw + 45
+	2   CoreFoundation                      0x0000000102343e6d +[NSException raise:format:] + 205
+	3   CoreFoundation                      0x0000000102282ffb -[__NSCFDictionary removeObjectForKey:] + 91
+	4   OrmamentTests                       0x0000000103b54432 +[MMOrmamentBootstrap unsetVersionForSchema:] + 210
+	5   OrmamentTests                       0x0000000103b0b548 -[MMRequestTests setUp] + 88
+	6   XCTest                              0x0000000103bc0085 -[XCTestCase invokeTest] + 139
+	7   XCTest                              0x0000000103bc02f8 -[XCTestCase performTest:] + 150
+	8   XCTest                              0x0000000103bc9bf5 -[XCTest run] + 260
+	9   XCTest                              0x0000000103bbeffb -[XCTestSuite performTest:] + 379
+	10  XCTest                              0x0000000103bc9bf5 -[XCTest run] + 260
+	11  XCTest                              0x0000000103bbeffb -[XCTestSuite performTest:] + 379
+	12  XCTest                              0x0000000103bc9bf5 -[XCTest run] + 260
+	13  XCTest                              0x0000000103bbeffb -[XCTestSuite performTest:] + 379
+	14  XCTest                              0x0000000103bc9bf5 -[XCTest run] + 260
+	15  XCTest                              0x0000000103bbc0bc __25-[XCTestDriver _runSuite]_block_invoke + 56
+	16  XCTest                              0x0000000103bc6ead -[XCTestObservationCenter _observeTestExecutionForBlock:] + 162
+	17  XCTest                              0x0000000103bbbff0 -[XCTestDriver _runSuite] + 269
+	18  XCTest                              0x0000000103bbca1d -[XCTestDriver _checkForTestManager] + 234
+	19  XCTest                              0x0000000103bccaf0 +[XCTestProbe runTests:] + 182
+	20  xctest                              0x0000000101ac9196 xctest + 4502
+	21  xctest                              0x0000000101ac940d xctest + 5133
+	22  xctest                              0x0000000101ac8e13 xctest + 3603
+	23  libdyld.dylib                       0x0000000103602145 start + 1
+)</string>
+													<key>PerformanceFailure</key>
+													<false/>
+												</dict>
+											</array>
+											<key>TestIdentifier</key>
+											<string>MMRequestTests/testBasicReadAllObjects</string>
+											<key>TestName</key>
+											<string>testBasicReadAllObjects</string>
+											<key>TestObjectClass</key>
+											<string>IDESchemeActionTestSummary</string>
+											<key>TestStatus</key>
+											<string>Failure</string>
+											<key>TestSummaryGUID</key>
+											<string>94D7DE35-EFC8-4FA4-982B-B16D0D9BEFE7</string>
+										</dict>
+										<dict>
+											<key>FailureSummaries</key>
+											<array>
+												<dict>
+													<key>FileName</key>
+													<string>&lt;unknown&gt;</string>
+													<key>LineNumber</key>
+													<integer>0</integer>
+													<key>Message</key>
+													<string>failed: caught "NSInternalInconsistencyException", "-[__NSCFDictionary removeObjectForKey:]: mutating method sent to immutable object"
+(
+	0   CoreFoundation                      0x0000000102343f35 __exceptionPreprocess + 165
+	1   libobjc.A.dylib                     0x0000000101fdcbb7 objc_exception_throw + 45
+	2   CoreFoundation                      0x0000000102343e6d +[NSException raise:format:] + 205
+	3   CoreFoundation                      0x0000000102282ffb -[__NSCFDictionary removeObjectForKey:] + 91
+	4   OrmamentTests                       0x0000000103b54432 +[MMOrmamentBootstrap unsetVersionForSchema:] + 210
+	5   OrmamentTests                       0x0000000103b0b548 -[MMRequestTests setUp] + 88
+	6   XCTest                              0x0000000103bc0085 -[XCTestCase invokeTest] + 139
+	7   XCTest                              0x0000000103bc02f8 -[XCTestCase performTest:] + 150
+	8   XCTest                              0x0000000103bc9bf5 -[XCTest run] + 260
+	9   XCTest                              0x0000000103bbeffb -[XCTestSuite performTest:] + 379
+	10  XCTest                              0x0000000103bc9bf5 -[XCTest run] + 260
+	11  XCTest                              0x0000000103bbeffb -[XCTestSuite performTest:] + 379
+	12  XCTest                              0x0000000103bc9bf5 -[XCTest run] + 260
+	13  XCTest                              0x0000000103bbeffb -[XCTestSuite performTest:] + 379
+	14  XCTest                              0x0000000103bc9bf5 -[XCTest run] + 260
+	15  XCTest                              0x0000000103bbc0bc __25-[XCTestDriver _runSuite]_block_invoke + 56
+	16  XCTest                              0x0000000103bc6ead -[XCTestObservationCenter _observeTestExecutionForBlock:] + 162
+	17  XCTest                              0x0000000103bbbff0 -[XCTestDriver _runSuite] + 269
+	18  XCTest                              0x0000000103bbca1d -[XCTestDriver _checkForTestManager] + 234
+	19  XCTest                              0x0000000103bccaf0 +[XCTestProbe runTests:] + 182
+	20  xctest                              0x0000000101ac9196 xctest + 4502
+	21  xctest                              0x0000000101ac940d xctest + 5133
+	22  xctest                              0x0000000101ac8e13 xctest + 3603
+	23  libdyld.dylib                       0x0000000103602145 start + 1
+)</string>
+													<key>PerformanceFailure</key>
+													<false/>
+												</dict>
+											</array>
+											<key>TestIdentifier</key>
+											<string>MMRequestTests/testBasicReadMAnualWhereClause</string>
+											<key>TestName</key>
+											<string>testBasicReadMAnualWhereClause</string>
+											<key>TestObjectClass</key>
+											<string>IDESchemeActionTestSummary</string>
+											<key>TestStatus</key>
+											<string>Failure</string>
+											<key>TestSummaryGUID</key>
+											<string>0D69387E-0EA9-4360-B5C8-8489B632A048</string>
+										</dict>
+									</array>
+									<key>TestIdentifier</key>
+									<string>MMRequestTests</string>
+									<key>TestName</key>
+									<string>MMRequestTests</string>
+									<key>TestObjectClass</key>
+									<string>IDESchemeActionTestSummaryGroup</string>
+								</dict>
+								<dict>
+									<key>Subtests</key>
+									<array>
+										<dict>
+											<key>TestIdentifier</key>
+											<string>MMSchemaTests/testBuildFileInvalid</string>
+											<key>TestName</key>
+											<string>testBuildFileInvalid</string>
+											<key>TestObjectClass</key>
+											<string>IDESchemeActionTestSummary</string>
+											<key>TestStatus</key>
+											<string>Success</string>
+											<key>TestSummaryGUID</key>
+											<string>0AC83321-B32B-449E-A6DE-7460EAFF9C23</string>
+										</dict>
+										<dict>
+											<key>TestIdentifier</key>
+											<string>MMSchemaTests/testBuildFileValid</string>
+											<key>TestName</key>
+											<string>testBuildFileValid</string>
+											<key>TestObjectClass</key>
+											<string>IDESchemeActionTestSummary</string>
+											<key>TestStatus</key>
+											<string>Success</string>
+											<key>TestSummaryGUID</key>
+											<string>6D370413-9673-43F3-9505-5FCF0DE8AA42</string>
+										</dict>
+										<dict>
+											<key>TestIdentifier</key>
+											<string>MMSchemaTests/testBuildSql</string>
+											<key>TestName</key>
+											<string>testBuildSql</string>
+											<key>TestObjectClass</key>
+											<string>IDESchemeActionTestSummary</string>
+											<key>TestStatus</key>
+											<string>Success</string>
+											<key>TestSummaryGUID</key>
+											<string>E10154DD-5C87-4B2F-A5B5-D5DCC4EB0588</string>
+										</dict>
+										<dict>
+											<key>TestIdentifier</key>
+											<string>MMSchemaTests/testBuildStore</string>
+											<key>TestName</key>
+											<string>testBuildStore</string>
+											<key>TestObjectClass</key>
+											<string>IDESchemeActionTestSummary</string>
+											<key>TestStatus</key>
+											<string>Success</string>
+											<key>TestSummaryGUID</key>
+											<string>82FAEFE0-EFD3-4B61-A881-203335C05B5C</string>
+										</dict>
+									</array>
+									<key>TestIdentifier</key>
+									<string>MMSchemaTests</string>
+									<key>TestName</key>
+									<string>MMSchemaTests</string>
+									<key>TestObjectClass</key>
+									<string>IDESchemeActionTestSummaryGroup</string>
+								</dict>
+							</array>
+							<key>TestIdentifier</key>
+							<string>OrmamentTests.xctest</string>
+							<key>TestName</key>
+							<string>OrmamentTests.xctest</string>
+							<key>TestObjectClass</key>
+							<string>IDESchemeActionTestSummaryGroup</string>
+						</dict>
+					</array>
+					<key>TestIdentifier</key>
+					<string>All tests</string>
+					<key>TestName</key>
+					<string>All tests</string>
+					<key>TestObjectClass</key>
+					<string>IDESchemeActionTestSummaryGroup</string>
+				</dict>
+			</array>
+		</dict>
+	</array>
+</dict>
+</plist>
