@@ -41,6 +41,9 @@
 -(BOOL)build:(NSError **)error;
 
 -(MMSet *)executeReadWithRequest:(MMRequest *)req error:(NSError **)error;
+-(MMRequest *)newRequestForClassname:(NSString *)className;
+
+
 -(BOOL)executeUpdateOnRecord:(MMRecord *)rec withValues:(NSMutableDictionary *)values error:(NSError **)error;
 -(BOOL)executeCreateOnRecord:(MMRecord *)rec withValues:(NSMutableDictionary *)values error:(NSError **)error;
 -(BOOL)refreshRecord:(MMRecord *)rec withValues:(NSMutableDictionary *)values forRowId:(long long)rowId;

@@ -11,13 +11,11 @@
 @implementation MMSQLiteRequest
 
     //
--(instancetype)init{
+-(id)init{
     
-    
-    self = [super init];
-    
-    if (self) {
-        _parameterDictionary = [[NSMutableDictionary alloc]init];
+    if (self = [super init]) {
+            _sqlBindValues = [[NSMutableDictionary alloc]init];
+            //_meta = [[MMOrmMeta alloc]init];
     }
     
     return self;

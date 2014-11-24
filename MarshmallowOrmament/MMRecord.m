@@ -651,7 +651,9 @@ static void setRelationValueIMP(id self, SEL _cmd, id aValue) {
     //[[MMRequest alloc] initWithStore:[self store] classname:NSStringFromClass(self)];
 
     
-    return MMAutorelease([[MMRequest alloc] initWithService:[self store] classname:NSStringFromClass(self)]);
+    return [[self store] newRequestForClassname:NSStringFromClass(self)];
+    
+        //return MMAutorelease([[MMRequest alloc] initWithService:[self store] classname:NSStringFromClass(self)]);
     
 }
 
@@ -659,8 +661,9 @@ static void setRelationValueIMP(id self, SEL _cmd, id aValue) {
     
     //[[MMRequest alloc] initWithStore:[self store] classname:NSStringFromClass(self)];
     
-    
-    return MMAutorelease([[MMRequest alloc] initWithService:[self cloud] classname:NSStringFromClass(self)]);
+    return [[self cloud] newRequestForClassname:NSStringFromClass(self)];
+
+        //return MMAutorelease([[MMRequest alloc] initWithService:[self cloud] classname:NSStringFromClass(self)]);
     
 }
 

@@ -9,7 +9,8 @@
 //#import <CoreData/CoreData.h>
 //#import "MMCoreData.h"
 //#import "MMAttribute.h"
-#import "MMService.h"
+#import "MMCloud.h"
+#import "MMStore.h"
 #import <Foundation/Foundation.h>
     //#import "MMEntity.h"
 

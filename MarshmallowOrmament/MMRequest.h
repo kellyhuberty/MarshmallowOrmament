@@ -15,12 +15,12 @@ typedef void (^completionBlock)(MMSet *, NSError *__autoreleasing *);
 
 @interface MMRequest : NSObject{
     
-    NSString * _sqlSelect;
-    NSString * _sqlFrom;
-    NSString * _sqlWhere;
-    NSMutableDictionary * _sqlBindValues;
-    
-    MMOrmMeta * _meta;
+//    NSString * _sqlSelect;
+//    NSString * _sqlFrom;
+//    NSString * _sqlWhere;
+//    NSMutableDictionary * _sqlBindValues;
+//    
+//   MMOrmMeta * _meta;
     
     MMSet * _predicates;
     NSString * _schemaName;    
@@ -59,7 +59,7 @@ typedef void (^completionBlock)(MMSet *, NSError *__autoreleasing *);
 //@property(nonatomic, retain)NSString * sqlSelect;
 //@property(nonatomic, retain)NSString * sqlFrom;
 //@property(nonatomic, retain)NSString * sqlWhere;
-//@property(nonatomic, retain, readonly)NSMutableDictionary * sqlBindValues;
+@property(nonatomic, retain, readonly)NSMutableDictionary * sqlBindValues;
 
 
 @property(atomic, copy) void (^completionBlock)(MMSet* set, NSError *__autoreleasing* error);

@@ -14,8 +14,8 @@
 -(id)init{
     
     if (self = [super init]) {
-        _sqlBindValues = [[NSMutableDictionary alloc]init];
-        _meta = [[MMOrmMeta alloc]init];
+            //_sqlBindValues = [[NSMutableDictionary alloc]init];
+            //_meta = [[MMOrmMeta alloc]init];
     }
     
     return self;
@@ -119,6 +119,15 @@
     }
     
 }
+
+//-(void)setValue:(id)value forUndefinedKey:(NSString *)key{
+//    
+//    
+//    
+//    
+//}
+
+
 
 
 

@@ -856,6 +856,13 @@
     return success;
 }
 
+
+-(MMRequest *)newRequestForClassname:(NSString *)className{
+    
+    
+    
+}
+
 //-(BOOL)executeDelete:(NSError **)error{
 //
 //    [[[self class] database]executeUpdate:[self buildDeleteQuery] withParameterDictionary:[self idValues]];

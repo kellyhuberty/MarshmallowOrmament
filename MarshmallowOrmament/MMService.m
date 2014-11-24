@@ -161,6 +161,20 @@ static NSMutableDictionary * activeRecords;
 
 }
 
+-(MMRequest *)newRequestForClassname:(NSString *)className{
+    
+        //MMSchema * schema = [MMSchema schemaFromName:schemaName version:ver];
+    
+        //+(MMSchema *)schemaFromName:(NSString *)name version:(NSString *)ver{
+    
+    
+        //return [[NSClassFromString([schema valueForKey:[NSString stringWithFormat:@"%@ClassName", serviceType]]) alloc]initWithSchema:schema];
+    
+    return nil;
+    
+}
+
+
 
 -(MMRecord *)wrapValues:(NSDictionary *)values intoRecordOfType:(NSString *)classname created:(BOOL)created{
     
