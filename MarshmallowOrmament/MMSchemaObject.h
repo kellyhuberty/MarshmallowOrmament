@@ -18,4 +18,10 @@
 -(id)init;
 -(id)initWithDictionary:(NSDictionary *)dict;
 
+
+-(void)metaForKeyPath:(NSString *)keyPath;
+-(void)setMeta:(NSObject *)obj forKeyPath:(NSString *)keyPath;
+
+
+
 @end
