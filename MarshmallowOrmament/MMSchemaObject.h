@@ -22,6 +22,7 @@
 -(void)metaForKeyPath:(NSString *)keyPath;
 -(void)setMeta:(NSObject *)obj forKeyPath:(NSString *)keyPath;
 
-
+-(void)setMeta:(NSObject *)obj forKey:(NSString *)key serviceType:(NSString *)serviceType;
+-(NSObject *)metaForKey:(NSString *)key serviceType:(NSString *)serviceType;
 
 @end
