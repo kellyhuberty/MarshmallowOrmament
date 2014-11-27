@@ -91,11 +91,11 @@
     
 }
 
--(void)metaForKeyPath:(NSString *)keyPath{
+-(NSObject *)metaForKeyPath:(NSString *)keyPath{
     
     NSArray * components = [keyPath componentsSeparatedByString:@"."];
     
-    [self metaForKey:components[1] serviceType:components[0]];
+    return (NSObject *)[self metaForKey:components[1] serviceType:components[0]];
     
 }
 
