@@ -25,4 +25,6 @@
 -(void)setMeta:(NSObject *)obj forKey:(NSString *)key serviceType:(NSString *)serviceType;
 -(NSObject *)metaForKey:(NSString *)key serviceType:(NSString *)serviceType;
 
+-(NSObject *)metaForServiceType:(NSString * )serviceType;
+
 @end
