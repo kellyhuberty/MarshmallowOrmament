@@ -44,5 +44,16 @@
     
 }
 
++(NSArray *)idKeys{
+    
+    return @[@"id"];
+    
+}
+
++(NSDictionary *)metaForRecordEntity{
+    
+    return nil;
+    
+}
 
 @end

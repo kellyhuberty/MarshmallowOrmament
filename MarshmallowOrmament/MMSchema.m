@@ -11,8 +11,8 @@
 #import "MMSchema.h"
 #import "MMAutoRelatedEntity.h"
 #import "MMSchemaMigration.h"
-
-
+#import <objc/runtime.h>
+#import "MMRecord.h"
 static NSMutableDictionary __strong * globalSchemas;
 
 
@@ -22,6 +22,36 @@ static NSMutableDictionary __strong * globalSchemas;
 
 @end
 
+
+NSArray * MMGetSubclasses(Class parentClass)
+{
+    int numClasses = objc_getClassList(NULL, 0);
+    Class *classes = NULL;
+    
+    classes = (__unsafe_unretained Class *)malloc(sizeof(Class) * numClasses);
+    numClasses = objc_getClassList(classes, numClasses);
+    
+    NSMutableArray *result = [NSMutableArray array];
+    for (NSInteger i = 0; i < numClasses; i++)
+    {
+        Class superClass = classes[i];
+        do
+        {
+            superClass = class_getSuperclass(superClass);
+        } while(superClass && superClass != parentClass);
+        
+        if (superClass == nil)
+        {
+            continue;
+        }
+        
+        [result addObject:classes[i]];
+    }
+    
+    free(classes);
+    
+    return result;
+}
 
 @implementation MMSchema
 
@@ -238,7 +268,12 @@ static NSMutableDictionary __strong * globalSchemas;
             NSLog(@"Notice: MMSchema `%@` has an unset version number. Assuming version 1.0.0.", _name);
             _version = [[MMVersionString alloc] initWithString:@"1.0.0"];
         }
-        if ( dict[@"entities"] != nil && [dict[@"entities"] isKindOfClass:[NSArray class]]){
+        if ( dict[@"autoEntities"] ){
+            //_version = [[MMVersionString alloc] initWithString:(NSString *)dict[@"version"]];
+            self.autoEntities = YES;
+        
+        }
+        else if ( dict[@"entities"] != nil && [dict[@"entities"] isKindOfClass:[NSArray class]]){
             NSArray * array = dict[@"entities"];
 
             NSMutableArray * entities = [NSMutableArray array];
@@ -324,6 +359,90 @@ static NSMutableDictionary __strong * globalSchemas;
 }
 
 
+-(void)setAutoEntities:(BOOL)autoEntities{
+    
+    _autoEntities = autoEntities;
+    
+    
+    if(_autoEntities){
+        
+        [self autoLoadEntities];
+        
+    }
+    
+    
+    
+}
+
+
+
+-(void)autoLoadEntities{
+    
+    NSArray * allSubclasses = [self allSubclassesOfClass:[MMRecord class]];
+    
+    NSMutableArray * entities = [NSMutableArray array];
+    
+    for (Class class in allSubclasses) {
+        
+        
+        NSString * schemaName = nil;
+        NSString * entityName = nil;
+        
+        if ((class != [MMRecord class]) && [((id<NSObject>)class) respondsToSelector:@selector(schemaName)]) {
+            
+            schemaName = [((id<MMRecord>)class) schemaName];
+            
+        }
+        
+        if ((class != [MMRecord class]) && [((id<NSObject>)class) respondsToSelector:@selector(entityName)]) {
+            
+            entityName = [((id<MMRecord>)class) entityName];
+            
+        }
+        
+        if ( [self.name isEqualToString:schemaName] && entityName) {
+            
+            MMEntity * entity = [MMEntity entityWithRecordClass:class];
+            
+            [entities addObject:entity];
+            
+        }
+        
+    }
+    
+    
+    self.entities = entities;
+    
+}
+
+-(NSArray *)allSubclassesOfClass:(Class)class{
+    int numClasses = objc_getClassList(NULL, 0);
+    Class *classes = NULL;
+    
+    classes = (__unsafe_unretained Class *)malloc(sizeof(Class) * numClasses);
+    numClasses = objc_getClassList(classes, numClasses);
+    
+    NSMutableArray *result = [NSMutableArray array];
+    for (NSInteger i = 0; i < numClasses; i++)
+    {
+        Class superClass = classes[i];
+        do
+        {
+            superClass = class_getSuperclass(superClass);
+        } while(superClass && superClass != class);
+        
+        if (superClass == nil)
+        {
+            continue;
+        }
+        
+        [result addObject:classes[i]];
+    }
+    
+    free(classes);
+    
+    return result;
+}
 
 -(void)setEntities:(NSArray *)entities{
     

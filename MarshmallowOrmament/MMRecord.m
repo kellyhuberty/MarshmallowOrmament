@@ -638,6 +638,11 @@ static void setRelationValueIMP(id self, SEL _cmd, id aValue) {
 }
 
 
++(NSDictionary *)metaForRecordEntity{
+    
+    return nil;
+    
+}
 
 
 +(MMStore *)cloud{

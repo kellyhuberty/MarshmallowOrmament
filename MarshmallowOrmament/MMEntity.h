@@ -89,6 +89,8 @@
 
 
 -(id)init;
++(instancetype)entityWithRecordClass:(Class)aClass;
+
 -(id)initWithDictionary:(NSDictionary *)dict;
 -(void)dealloc;
 

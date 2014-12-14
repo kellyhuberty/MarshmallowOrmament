@@ -29,6 +29,7 @@ typedef enum{
 
 +(NSString *)entityName;
 +(NSString *)schemaName;
++(NSDictionary *)metaForRecordEntity;
 
 +(NSArray *)idKeys;
 -(NSDictionary *)idValues;

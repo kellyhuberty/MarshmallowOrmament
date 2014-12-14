@@ -11,6 +11,7 @@
 #import "MMPreferences.h"
 #import "MMAttribute.h"
 #import "MMRelationship.h"
+#import "MMRecord.h"
 @interface MMEntity ()
 
 +(void)initialize;
@@ -119,6 +120,30 @@ static NSString * classPrefix;
     return self;
 }
 
+
+-(id)initWithRecordClass:(Class)aClass{
+    self = [self init];
+    
+    if (self){
+        NSError * error;
+        
+        [self loadFromRecordClass:aClass error:&error];
+    }
+    
+    return self;
+}
+
++(instancetype)entityWithRecordClass:(Class)aClass{
+    
+    NSObject * instance = [[self alloc]initWithRecordClass:aClass];
+    
+    MMAutorelease(instance);
+    
+    return instance;
+    
+}
+
+
 //-(id)initWithName:(NSString *)name attributes:(NSArray *)descript{
 //    self = [self initWithName:name];
 //    if (self){
@@ -135,6 +160,60 @@ static NSString * classPrefix;
 //    
 //    
 //}
+
+-(BOOL)loadFromRecordClass:(Class)aClass error:(NSError **)error{
+    
+    Class class = aClass;
+    
+    if ([class respondsToSelector:@selector(entityName)]) {
+        _name = [class entityName];
+    }
+    if ([class respondsToSelector:@selector(entityName)]) {
+        _idKeys = [[class idKeys] copy];
+    }
+    //if (dict[@"modelclassname"]) {
+        _modelClassName = NSStringFromClass(class);
+    //}
+    if (self){
+    //    NSArray * attributeDicts = [dict valueForKey:@"attributes"];
+        NSMutableArray * attributes = [NSMutableArray array];
+        NSDictionary * metaDict;
+
+//        for (NSDictionary * attDict in attributeDicts) {
+//            MMAttribute * descriptor = [MMAttribute attributeWithDictionary:attDict];
+//            [attributes addObject:descriptor];
+//        }
+//        [_attributes addObjectsFromArray:attributes];
+        
+        
+        
+        if([aClass respondsToSelector:@selector(metaForRecordEntity)]){
+            
+            metaDict = [(id<MMRecord>)aClass metaForRecordEntity];
+            //NSArray * relationshipDicts = [dict valueForKey:@"relationships"];
+            
+            
+        }
+
+//        NSMutableArray * relationships = [NSMutableArray array];
+//        
+//        for (NSDictionary * relDict in relationshipDicts) {
+//            MMRelationship * rel = [MMRelationship relationshipWithDictionary:relDict];
+//            rel.recordEntityName = self.name;
+//            [relationships addObject:rel];
+//        }
+//        [_relationships addObjectsFromArray:relationships];
+        for (NSString * keyPath in [metaDict allKeys]) {
+            [self setMeta: metaDict[keyPath] forKeyPath:keyPath];
+        }
+        
+        
+    }
+    
+    return YES;
+}
+
+
 
 
 -(BOOL)loadFromDictionary:(NSDictionary *)dict error:(NSError **)error{
