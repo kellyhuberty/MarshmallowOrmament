@@ -12,6 +12,8 @@
 #import "MMCloud.h"
 #import "MMStore.h"
 #import <Foundation/Foundation.h>
+#import "MMAttribute.h"
+
     //#import "MMEntity.h"
 
 id fetchRelationshipSet(MMRecord * self, NSString * key, MMRelationship* relationship);
@@ -64,6 +66,12 @@ typedef enum{
 
 
 
+@protocol MMRecordEntityCofiguration
+
++(NSDictionary *)metaForRecordEntity;
++(NSDictionary *)configureRecordEntityAttribute:(MMAttribute *)attribute fromProperty:(MMProperty *)prop;
+
+@end
 
 
 

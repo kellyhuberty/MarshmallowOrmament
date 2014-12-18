@@ -176,18 +176,20 @@ static NSString * classPrefix;
         _modelClassName = NSStringFromClass(class);
     //}
     if (self){
-        NSArray * attributeDicts = [dict valueForKey:@"attributes"];
+            //NSArray * attributeDicts = [dict valueForKey:@"attributes"];
       
         NSArray * properties = [MMProperty propertiesOnClass:aClass];
         
         NSMutableArray * attributes = [NSMutableArray array];
         for (MMProperty * prop in properties) {
                 //MMAttribute * descriptor = [MMAttribute attributeWithDictionary:attDict];
-            MMAttribute * attribute = [MMAttribute attributeWithProperty:prop];
-            
-            [aClass respondsToSelector:@"configureAttribute"]
-            
-            [attributes addObject:attribute];
+//            MMAttribute * attribute = [MMAttribute attributeWithProperty:prop];
+//            
+//            if ([aClass respondsToSelector:@"configureRecordEntityAttribute:fromProperty:"]) {
+//                
+//            }
+//            
+//            [attributes addObject:attribute];
         }
         [_attributes addObjectsFromArray:attributes];
         

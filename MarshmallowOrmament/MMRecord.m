@@ -21,6 +21,8 @@
 #import <objc/runtime.h>
 #import "MMAdapter.h"
 
+#import "MMAttribute.h"
+
 static void setValueIMP(id self, SEL _cmd, id aValue);
 
 
@@ -637,6 +639,7 @@ static void setRelationValueIMP(id self, SEL _cmd, id aValue) {
     return nil;
 }
 
+#pragma mark MMRecordEntityConfiguration Protocol
 
 +(NSDictionary *)metaForRecordEntity{
     
@@ -645,7 +648,7 @@ static void setRelationValueIMP(id self, SEL _cmd, id aValue) {
 }
 
 
-+(NSDictionary *)configureAttributeForRecordEntity{
++(NSDictionary *)configureRecordEntityAttribute:(MMAttribute *)attribute fromProperty:(MMProperty *)prop{
     
     return nil;
     

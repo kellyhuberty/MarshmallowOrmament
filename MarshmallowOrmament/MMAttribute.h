@@ -19,7 +19,7 @@
 
 #import <Foundation/Foundation.h>
 #import "MMSchemaObject.h"
-
+#import "MMProperty.h"
 @interface MMAttribute : MMSchemaObject<NSCopying>{
     
     
@@ -89,11 +89,11 @@
 
 - (id)copyWithZone:(NSZone *)zone;
 
-typedef enum {
-    MMKeyValueNumberControlTypeField,
-    MMKeyValueNumberControlTypeStepper,
-    MMKeyValueNumberControlTypeSwitch,
-} MMKeyValueNumberControlType;
+//typedef enum {
+//    MMKeyValueNumberControlTypeField,
+//    MMKeyValueNumberControlTypeStepper,
+//    MMKeyValueNumberControlTypeSwitch,
+//} MMKeyValueNumberControlType;
 
 @end
 
