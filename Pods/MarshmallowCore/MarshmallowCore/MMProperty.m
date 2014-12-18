@@ -8,6 +8,89 @@
 
 #import "MMUtility.h"
 #import "MMProperty.h"
+#import <objc/runtime.h>
+
+
+//NSString * classPropertyType(Class controlClass, NSString * propertyName){
+//    
+//    NSString * returnType;
+//    
+//    //MMLog(@"FUCK!");
+//    // MMLog(@"%@, %@", NSStringFromClass(controlClass), propertyName);
+//    
+//    
+//    
+//    NSLog(@"prop name....%@", propertyName);
+//    NSLog(@"classname....%@", NSStringFromClass(controlClass));
+//    
+//    
+//    objc_property_t theProperty = class_getProperty(controlClass, [propertyName UTF8String]);
+//    MMLog(@"%@", theProperty);
+//    
+//    char * propertyAttrs = property_getAttributes(theProperty);
+//    //MMLog(@"FUCK!");
+//    
+//    //NSString *unfilteredStr = [NSString stringWithCharacters:propertyAttrs length:sizeof(propertyAttrs)];
+//    NSString *unfilteredStr = [NSString stringWithUTF8String:propertyAttrs];
+//    
+//    // MMLog(@"%@", unfilteredStr);
+//    
+//    
+//    //NSRange startRange = [unfilteredStr rangeOfString:@"@\""];
+//    //NSRange endRange = [unfilteredStr rangeOfString:@"\","];
+//    //NSRange filter = NSMakeRange(startRange.location + startRange.length , endRange.location - startRange.location - 1);
+//    
+//    
+//    NSString * typeStr = [[unfilteredStr componentsSeparatedByString:@","]objectAtIndex:0];
+//    
+//    //MMLog(@"%@", typeStr);
+//    NSString * semifilteredStr1 = [typeStr stringByReplacingOccurrencesOfString:@"T@\"" withString:@""];
+//    // MMLog(@"%@", semifilteredStr1);
+//    
+//    
+//    NSString * semifilteredStr2 = [semifilteredStr1 stringByReplacingOccurrencesOfString:@"\"" withString:@""];
+//    // MMLog(@"%@", semifilteredStr2);
+//    
+//    if( NSClassFromString(semifilteredStr2) ){
+//        returnType = semifilteredStr2;
+//    }
+//    else{
+//        
+//        NSString * check = [semifilteredStr2 substringWithRange:NSMakeRange(1, [semifilteredStr2 length]-1)];
+//        
+//        
+//        // MMLog(@"%@", check);
+//        const char * ccheck = [check UTF8String];
+//        
+//        if (strcmp(ccheck, @encode(int)) == 0) {
+//            returnType = @"int";
+//        }
+//        if (strcmp(ccheck, @encode(float)) == 0) {
+//            returnType = @"float";
+//        }
+//        if (strcmp(ccheck, @encode(double)) == 0) {
+//            returnType = @"double";
+//        }
+//        if (strcmp(ccheck, @encode(long)) == 0) {
+//            returnType = @"long";
+//        }
+//        if (strcmp(ccheck, @encode(short)) == 0) {
+//            returnType = @"short";
+//        }
+//        if (strcmp(ccheck, @encode(char)) == 0) {
+//            returnType = @"char";
+//        }
+//        if (strcmp(ccheck, @encode(BOOL)) == 0) {
+//            returnType = @"BOOL";
+//        }
+//        
+//    }
+//    
+//    MMLog(@"%@", returnType);
+//    
+//    return returnType;
+//}
+
 
 @interface MMProperty ()
 
@@ -82,6 +165,214 @@
 
     
 }
+
+
+-(id)initWithPropertyNamed:(NSString *)propertyName onClass:(Class)aClass {
+    
+    
+    objc_property_t theProperty = class_getProperty(aClass, [propertyName UTF8String]);
+    MMLog(@"%@", theProperty);
+    
+    char * propertyAttrs = property_getAttributes(theProperty);
+        //MMLog(@"FUCK!");
+    
+        //NSString *unfilteredStr = [NSString stringWithCharacters:propertyAttrs length:sizeof(propertyAttrs)];
+    NSString *unfilteredStr = [NSString stringWithUTF8String:propertyAttrs];
+    
+    if (self = [self init]) {
+        
+        [self parseAttributesString:unfilteredStr];
+        
+         _name = [[NSString alloc]initWithUTF8String:property_getName(theProperty)];
+        
+    }
+    
+    return self;
+
+}
+
++(instancetype)propertyWithName:(NSString *)name onClass:(Class)aClass {
+    
+    MMProperty * prop = [[self alloc]initWithPropertyNamed:name onClass:aClass];
+    
+    mmAutorelease(prop);
+    
+    return prop;
+    
+}
+
++(NSArray *)propertiesOnClass:(Class)aClass {
+    
+    unsigned int count;
+    
+    objc_property_t *properties = class_copyPropertyList(aClass, &count);
+    
+    NSMutableArray * blah = [NSMutableArray array];
+    
+    for (int i = 0; i < count; ++i) {
+     
+        objc_property_t property = properties[i];
+
+        //[blah addObject: [self propertyWithAttributesString:[NSString stringWithUTF8String:property_getAttributes(property)] class:aClass]];
+        
+        [blah addObject: [self propertyWithName:[NSString stringWithUTF8String:property_getName(property)] onClass:aClass]];
+        
+    }
+    
+    return [NSArray arrayWithArray:blah];
+}
+
+
+//+(instancetype)propertyWithAttributesString:(NSString *)attrStr class:(Class)aClass {
+//    
+//    MMProperty * prop = [[self alloc]initWithAttributesString:attrStr class:aClass];
+//    
+//    mmAutorelease(prop);
+//    
+//    return prop;
+//    
+//}
+
+//-(id)initWithAttributesString:(NSString *)propertyAttributesStr class:(Class)aClass {
+//    
+//    self = [self init];
+//    
+//    if (self) {
+//        
+//        [self parseAttributesString:propertyAttributesStr];
+//        
+//            //[self loadInstance];
+//            //[self loadDescriptionFromDictionary:dict];
+//        
+//        
+//    }
+//    
+//    return self;
+//    
+//}
+
+-(void)parseAttributesString:(NSString *)attStr{
+    
+    NSLog(@"STR:%@", attStr);
+    
+    NSMutableArray * arr = [[attStr componentsSeparatedByString:@","] mutableCopy];
+    
+    NSString * typeStr = [arr objectAtIndex:0];
+    NSString * ivarStr = [arr lastObject];
+
+    [arr removeObjectAtIndex:0];
+    [arr removeLastObject];
+    
+    
+    [self parseEncodeString:typeStr];
+    [self parseIvarString:ivarStr];
+    [self parseTypeArray:arr];
+    
+    
+}
+
+
+
+-(void)parseEncodeString:(NSString *)attStr{
+    
+    NSMutableString * str = [attStr mutableCopy];
+    
+    // MMLog(@"%@", semifilteredStr1);
+    
+    if ([str containsString:@"\""]) {
+        
+        [str replaceOccurrencesOfString:@"T@\"" withString:@"" options:NSLiteralSearch range:NSRangeFromString(str)];
+        
+        [str replaceOccurrencesOfString:@"T@\"" withString:@"" options:NSLiteralSearch range:NSRangeFromString(str)];
+        
+        if (NSClassFromString(str)) {
+            _classname = [NSString stringWithString:str];
+            mmRetain(_classname);
+        }
+        else{
+            _classname = nil;
+        }
+        
+        
+    }
+    
+    NSString * check = [attStr substringWithRange:NSMakeRange(1, [attStr length]-1)];
+    
+    // MMLog(@"%@", check);
+    const char * ccheck = [check UTF8String];
+    
+    if (strcmp(ccheck, @encode(int)) == 0) {
+        _primativeType = @"int";
+    }
+    if (strcmp(ccheck, @encode(float)) == 0) {
+        _primativeType = @"float";
+    }
+    if (strcmp(ccheck, @encode(double)) == 0) {
+        _primativeType = @"double";
+    }
+    if (strcmp(ccheck, @encode(long)) == 0) {
+        _primativeType = @"long";
+    }
+    if (strcmp(ccheck, @encode(short)) == 0) {
+        _primativeType = @"short";
+    }
+    if (strcmp(ccheck, @encode(char)) == 0) {
+        _primativeType = @"char";
+    }
+    if (strcmp(ccheck, @encode(BOOL)) == 0) {
+        _primativeType = @"BOOL";
+    }
+    if (strcmp(ccheck, @encode(id)) == 0) {
+        _primativeType = @"id";
+    }
+    
+    mmRetain(_primativeType);
+    
+}
+
+
+-(void)parseIvarString:(NSString *)ivarStr{
+    
+    //NSString * str =[ivarStr mutableCopy]
+    
+    _name = [ivarStr substringFromIndex:1];
+    
+    mmRetain(_name);
+    
+}
+
+-(void)parseTypeArray:(NSArray *)attArray{
+    
+    for (NSString * item in attArray) {
+        
+        if ([item isEqualToString:@"R"]) {
+            _readonly = true;
+        }
+        if ([item isEqualToString:@"C"]) {
+            //_readonly = true;
+        }
+        if ([item isEqualToString:@"&"]) {
+            //_readonly = true;
+            //retain
+        }
+        if ([item isEqualToString:@"N"]) {
+            _nonatomic = true;
+        }
+        if ([item isEqualToString:@"D"]) {
+            //@dynamic
+        }
+        if ([item isEqualToString:@"W"]) {
+            //__weak
+        }
+        if ([item isEqualToString:@"P"]) {
+            //Garbage collection
+        }
+        
+    }
+    
+    
+}
+
 
 -(id)initWithName:(NSString *)aName displayName:(NSString *)aDisplayName controlClassName:(NSString *)controlClassName enforcedClassName:(NSString *)aClassName{
     
@@ -268,7 +559,6 @@
 }
 
 
-
 -(void)loadDescriptionFromDictionary:(NSDictionary *)dict{
 
     
@@ -390,6 +680,73 @@
 //+(NSString *)defaultPropertyNameForDescriptor:(MMAttribute *)descriptor{
 //  //  return [MMControlMap propertyNameForDescriptor:descriptor];
 //}
+
+
+
++(NSString *)typeStringWithPropertyAttributeString:(NSString *)unfilteredStr{
+    
+    //NSString *unfilteredStr = [NSString stringWithUTF8String:propertyAttrs];
+    
+    // MMLog(@"%@", unfilteredStr);
+    
+    NSString * returnType;
+    //NSRange startRange = [unfilteredStr rangeOfString:@"@\""];
+    //NSRange endRange = [unfilteredStr rangeOfString:@"\","];
+    //NSRange filter = NSMakeRange(startRange.location + startRange.length , endRange.location - startRange.location - 1);
+    
+    
+    NSString * typeStr = [[unfilteredStr componentsSeparatedByString:@","]objectAtIndex:0];
+    
+    //MMLog(@"%@", typeStr);
+    NSString * semifilteredStr1 = [typeStr stringByReplacingOccurrencesOfString:@"T@\"" withString:@""];
+    // MMLog(@"%@", semifilteredStr1);
+    
+    
+    NSString * semifilteredStr2 = [semifilteredStr1 stringByReplacingOccurrencesOfString:@"\"" withString:@""];
+    // MMLog(@"%@", semifilteredStr2);
+    
+    if( NSClassFromString(semifilteredStr2) ){
+        returnType = semifilteredStr2;
+    }
+    else{
+        
+        NSString * check = [semifilteredStr2 substringWithRange:NSMakeRange(1, [semifilteredStr2 length]-1)];
+        
+        
+        // MMLog(@"%@", check);
+        const char * ccheck = [check UTF8String];
+        
+        if (strcmp(ccheck, @encode(int)) == 0) {
+            returnType = @"int";
+        }
+        if (strcmp(ccheck, @encode(float)) == 0) {
+            returnType = @"float";
+        }
+        if (strcmp(ccheck, @encode(double)) == 0) {
+            returnType = @"double";
+        }
+        if (strcmp(ccheck, @encode(long)) == 0) {
+            returnType = @"long";
+        }
+        if (strcmp(ccheck, @encode(short)) == 0) {
+            returnType = @"short";
+        }
+        if (strcmp(ccheck, @encode(char)) == 0) {
+            returnType = @"char";
+        }
+        if (strcmp(ccheck, @encode(BOOL)) == 0) {
+            returnType = @"BOOL";
+        }
+        
+    }
+    
+    MMLog(@"%@", returnType);
+    
+    return returnType;
+    
+}
+
+
 
 
 -(NSObject *)defaultValue{

@@ -26,6 +26,8 @@
     NSString * _displayName;//the name of the data from the perspective of the user, in the ui
     NSString * _name;//the name of the data value as described the data
     NSString * _classname;//name for the class that we're getting
+    NSString * _primativeType;
+    BOOL _isPrimative;
     NSString * _controlName;//the name of the controller class from UIKit or otherwise that displays the data
     NSString * _controlProperty;//name for the property on the class that we're getting the value for and validating with
     NSDictionary * _controlOptions;//Key-values for properties to set on the control to configure it properly for the attribute it is setting.
@@ -43,6 +45,8 @@
 
     BOOL _nullable;
     
+    BOOL _nonatomic;
+    
     BOOL _unique;
     
     BOOL _autoincrement;
@@ -58,6 +62,7 @@
 @property (nonatomic, retain) NSString * controlProperty;
 @property (nonatomic, copy) NSDictionary * controlOptions;
 @property (nonatomic, retain) NSString * primativeType;
+@property (nonatomic) BOOL isPrimative;
 
 //@property (nonatomic, retain)NSString * storeName;
 //@property (nonatomic, retain)NSString * storeType;
@@ -76,6 +81,11 @@
 -(id)initWithName:(NSString *)aName displayName:(NSString *)aDisplayName enforcedClassName:(NSString *)aClassName;
 
 -(id)initWithName:(NSString *)aName displayName:(NSString *)aDisplayName controlClassName:(NSString *)controlClassName enforcedClassName:(NSString *)aClassName;
+
++(NSArray *)propertiesOnClass:(Class)aClass ;
++(instancetype)propertyWithAttributesString:(NSString *)attrStr class:(Class)aClass;
+
+
 //-(void)loadDescriptionFromDictionary:(NSDictionary *)dict;
 +(MMProperty *)attributeWithDictionary:(NSDictionary *)dict;
 +(MMProperty *)attributeWithName:(NSString *)aName displayName:(NSString *)aDisplayName controlClassName:(NSString *)controlClassName enforcedClassName:(NSString *)aClassName;

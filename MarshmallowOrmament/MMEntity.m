@@ -12,6 +12,7 @@
 #import "MMAttribute.h"
 #import "MMRelationship.h"
 #import "MMRecord.h"
+#import "MMProperty.h"
 @interface MMEntity ()
 
 +(void)initialize;
@@ -175,18 +176,24 @@ static NSString * classPrefix;
         _modelClassName = NSStringFromClass(class);
     //}
     if (self){
-    //    NSArray * attributeDicts = [dict valueForKey:@"attributes"];
+        NSArray * attributeDicts = [dict valueForKey:@"attributes"];
+      
+        NSArray * properties = [MMProperty propertiesOnClass:aClass];
+        
         NSMutableArray * attributes = [NSMutableArray array];
+        for (MMProperty * prop in properties) {
+                //MMAttribute * descriptor = [MMAttribute attributeWithDictionary:attDict];
+            MMAttribute * attribute = [MMAttribute attributeWithProperty:prop];
+            
+            [aClass respondsToSelector:@"configureAttribute"]
+            
+            [attributes addObject:attribute];
+        }
+        [_attributes addObjectsFromArray:attributes];
+        
+            //Entity meta
         NSDictionary * metaDict;
 
-//        for (NSDictionary * attDict in attributeDicts) {
-//            MMAttribute * descriptor = [MMAttribute attributeWithDictionary:attDict];
-//            [attributes addObject:descriptor];
-//        }
-//        [_attributes addObjectsFromArray:attributes];
-        
-        
-        
         if([aClass respondsToSelector:@selector(metaForRecordEntity)]){
             
             metaDict = [(id<MMRecord>)aClass metaForRecordEntity];
