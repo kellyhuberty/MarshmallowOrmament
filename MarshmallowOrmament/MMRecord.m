@@ -645,6 +645,13 @@ static void setRelationValueIMP(id self, SEL _cmd, id aValue) {
 }
 
 
++(NSDictionary *)configureAttributeForRecordEntity{
+    
+    return nil;
+    
+}
+
+
 +(MMStore *)cloud{
     
     return [MMCloud cloudWithSchemaName:[self schemaName] version:nil];
