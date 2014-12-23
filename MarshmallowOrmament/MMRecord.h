@@ -69,7 +69,8 @@ typedef enum{
 @protocol MMRecordEntityCofiguration
 
 +(NSDictionary *)metaForRecordEntity;
-+(NSDictionary *)configureRecordEntityAttribute:(MMAttribute *)attribute fromProperty:(MMProperty *)prop;
++(void)configureRecordEntityAttribute:(MMAttribute *)attribute fromProperty:(MMProperty *)prop;
++(NSArray *)relationshipsForRecordEntity;
 
 @end
 

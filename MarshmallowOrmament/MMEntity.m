@@ -172,53 +172,49 @@ static NSString * classPrefix;
     if ([class respondsToSelector:@selector(entityName)]) {
         _idKeys = [[class idKeys] copy];
     }
-    //if (dict[@"modelclassname"]) {
-        _modelClassName = NSStringFromClass(class);
-    //}
-    if (self){
-            //NSArray * attributeDicts = [dict valueForKey:@"attributes"];
-      
+    
+    _modelClassName = NSStringFromClass(class);
+ 
+    //Grab Attributes.
         NSArray * properties = [MMProperty propertiesOnClass:aClass];
-        
         NSMutableArray * attributes = [NSMutableArray array];
         for (MMProperty * prop in properties) {
                 //MMAttribute * descriptor = [MMAttribute attributeWithDictionary:attDict];
-//            MMAttribute * attribute = [MMAttribute attributeWithProperty:prop];
-//            
-//            if ([aClass respondsToSelector:@"configureRecordEntityAttribute:fromProperty:"]) {
-//                
-//            }
-//            
-//            [attributes addObject:attribute];
+            MMAttribute * attribute = [MMAttribute attributeWithProperty:prop];
+            
+            if ([aClass respondsToSelector:@selector(configureRecordEntityAttribute:fromProperty:)]) {
+                [aClass configureRecordEntityAttribute:attribute fromProperty:prop];
+            }
+            
+            [attributes addObject:attribute];
         }
         [_attributes addObjectsFromArray:attributes];
         
-            //Entity meta
+    
+    
+    //Grab Relationships
+        if ([aClass respondsToSelector:@selector(relationshipsForRecordEntity)]) {
+            [_relationships addObjectsFromArray:[aClass relationshipsForRecordEntity]];
+        }
+    
+        
+        
+    //Entity meta
         NSDictionary * metaDict;
 
         if([aClass respondsToSelector:@selector(metaForRecordEntity)]){
             
-            metaDict = [(id<MMRecord>)aClass metaForRecordEntity];
+            metaDict = [aClass metaForRecordEntity];
             //NSArray * relationshipDicts = [dict valueForKey:@"relationships"];
             
-            
         }
-
-//        NSMutableArray * relationships = [NSMutableArray array];
-//        
-//        for (NSDictionary * relDict in relationshipDicts) {
-//            MMRelationship * rel = [MMRelationship relationshipWithDictionary:relDict];
-//            rel.recordEntityName = self.name;
-//            [relationships addObject:rel];
-//        }
-//        [_relationships addObjectsFromArray:relationships];
+    
         for (NSString * keyPath in [metaDict allKeys]) {
             [self setMeta: metaDict[keyPath] forKeyPath:keyPath];
         }
         
         
-    }
-    
+ 
     return YES;
 }
 

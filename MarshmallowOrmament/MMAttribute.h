@@ -79,6 +79,7 @@
 -(id)initWithName:(NSString *)aName displayName:(NSString *)aDisplayName controlClassName:(NSString *)controlClassName enforcedClassName:(NSString *)aClassName;
 //-(void)loadDescriptionFromDictionary:(NSDictionary *)dict;
 +(MMAttribute *)attributeWithDictionary:(NSDictionary *)dict;
++(MMAttribute *)attributeWithProperty:(MMProperty *)property;
 +(MMAttribute *)attributeWithName:(NSString *)aName displayName:(NSString *)aDisplayName controlClassName:(NSString *)controlClassName enforcedClassName:(NSString *)aClassName;
 +(MMAttribute *)attributeWithName:(NSString *)aName displayName:(NSString *)aDisplayName controlClassName:(NSString *)controlClassName controlPropertyName:(NSString *)propertyName controlOptions:(NSDictionary *)dictionary;
 

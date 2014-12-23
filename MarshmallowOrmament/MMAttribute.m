@@ -267,7 +267,22 @@
     return mmAutorelease([[MMAttribute alloc]initWithDictionary:dict]);
 }
 
++(MMAttribute *)attributeWithProperty:(MMProperty *)property{
+    return mmAutorelease([[MMAttribute alloc]initWithProperty:property]);
 
+}
+
+-(id)initWithProperty:(MMProperty *)property{
+    
+    
+    if (self = [self init]) {
+        
+        NSError * error;
+        [self loadFromProperty:property error:&error];
+    }
+    
+    return self;
+}
 
 -(BOOL)loadFromDictionary:(NSDictionary *)dict error:(NSError **)error{
     
@@ -320,6 +335,63 @@
     
     return YES;
 }
+
+
+-(BOOL)loadFromProperty:(MMProperty *)prop error:(NSError **)error{
+    
+    _name = mmCopy(prop.name);
+    
+    _displayName = mmCopy(prop.displayName);
+    
+    _classname = mmCopy(prop.classname);
+    
+    _controlName = mmCopy(prop.controlName);
+    //_controlName = [dict objectForKey:@"controlname"];
+    
+    _controlProperty = mmCopy(prop.controlProperty);
+    //_controlProperty = [dict objectForKey:@"controlproperty"];
+    
+    _controlOptions = mmCopy(prop.controlOptions);
+    
+    //_storeOptions = mmCopy(prop.storeOptions);
+    //_controlOptions = [dict objectForKey:@"propertyname"];
+    
+    
+    _defaultValue = mmCopy(prop.defaultValue);
+    //_defaultValue = [dict objectForKey:@"default"];
+    
+    _primativeType = mmCopy(prop.primativeType);
+    
+    //_primativeType = mmCopy([self verify:[dict objectForKey:@"primative"] class:[NSString class] name:@"primative"]);
+    
+    
+    //_storeName = mmCopy((NSString *)[self verify:[dict objectForKey:@"storename"] class:[NSString class] name:@"storename"]);
+    
+    //_storeType = mmCopy([self verify:[dict objectForKey:@"storetype"] class:[NSString class] name:@"storetype"]);
+    
+    //[dict objectForKey:@"displayname"];
+    //if ([dict objectForKey:@"autoincrement"] ) {
+    
+    
+    _autoincrement = (prop.autoincrement);
+    //}
+    
+    //if ([dict objectForKey:@"readonly"] ) {
+        _readonly = prop.readonly;
+    //}
+    
+    //if ([dict objectForKey:@"nullable"] ) {
+        _nullable = (prop.nullable);
+    //}
+    
+    //if ([dict objectForKey:@"unique"] ) {
+        _unique = (prop.unique);
+    //}
+    
+    return YES;
+}
+
+
 
 -(id)verify:(NSObject*)obj class:(Class)class name:(NSString *)name{
     
