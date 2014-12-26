@@ -132,42 +132,7 @@
 }
 
 
-- (void)testBuildSql
-{
-    MMSetArcEnabled();
-    
-    
-    MMSQLiteSchema * schema;
-    
-        //NSArray * path = [[NSBundle bundleForClass:[self class]] pathsForResourcesOfType:@"plist" inDirectory:nil];
-    
-    NSString * path = [[NSBundle bundleForClass:[self class]] pathForResource:@"noteit__0_1_0" ofType:@"plist"];
-    
-    NSLog(@"path %@", path);
-    
-    NSArray * paths = [[NSBundle bundleForClass:[self class]] pathsForResourcesOfType:@"plist" inDirectory:nil];
-    
-    NSLog(@"%@", paths);
-    
-    
-    schema = [[MMSchema alloc]initWithDictionary:@{
-                                                   @"version":@"1.0.0",
-                                                   @"name":@"noteitauto",
-                                                   @"autoEntites":[NSNumber numberWithBool:YES],
-                                                   @"classname":@"MMSqlLiteSchema"
-                                                   }];
-    
-    [MMLogger setEnabled];
-    
-    NSLog(@"build sql :%@", [schema buildSql]);
-    
-        //[schema log];
-    
-    
-    
-    
-        //XCTFail(@"No implementation for \"%s\"", __PRETTY_FUNCTION__);
-}
+
 
 - (void)testBuildStore
 {
