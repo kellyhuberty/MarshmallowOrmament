@@ -12,5 +12,5 @@ Pod::Spec.new do |s|
   s.source_files  = 'MarshmallowOrmament', 'MarshmallowOrmament/Categories/*.{h,m}', 'Classes/**/*.{h,m}'
   s.framework  = 'Foundation'
   s.dependency 'FMDB'
-  s.dependency 'couchbase-ios-lite'
+  s.dependency 'couchbase-lite-ios'
 end
