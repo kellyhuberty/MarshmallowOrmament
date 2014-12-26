@@ -48,6 +48,10 @@
 		C7A346301965F38400EC08BB /* MMOrmamentManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C7A3462F1965F38400EC08BB /* MMOrmamentManager.m */; };
 		C7A346331966E9B100EC08BB /* MMSchemaMigration.m in Sources */ = {isa = PBXBuildFile; fileRef = C7A346321966E9B100EC08BB /* MMSchemaMigration.m */; };
 		C7A3463D196B522D00EC08BB /* MMSqliteSchemaMigration.m in Sources */ = {isa = PBXBuildFile; fileRef = C7A3463C196B522D00EC08BB /* MMSqliteSchemaMigration.m */; };
+		C7AF98FE1A4A20320093835D /* TSANote.m in Sources */ = {isa = PBXBuildFile; fileRef = C7AF98FD1A4A20320093835D /* TSANote.m */; };
+		C7AF99011A4A204E0093835D /* TSANotebook.m in Sources */ = {isa = PBXBuildFile; fileRef = C7AF99001A4A204E0093835D /* TSANotebook.m */; };
+		C7AF99041A4A20660093835D /* TSAItem.m in Sources */ = {isa = PBXBuildFile; fileRef = C7AF99031A4A20660093835D /* TSAItem.m */; };
+		C7AF99061A4A22030093835D /* MMAutoSchemaTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C7AF99051A4A22030093835D /* MMAutoSchemaTests.m */; };
 		C7B9C656199DA6FF0036F89B /* MMAutoRelatedEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = C7B9C655199DA6FF0036F89B /* MMAutoRelatedEntity.m */; };
 		C7BEB0F2196C8C4900575D45 /* TSTMigration1.m in Sources */ = {isa = PBXBuildFile; fileRef = C7BEB0F1196C8C4900575D45 /* TSTMigration1.m */; };
 		C7C3D9FA19EDDAC9000EEE19 /* libMarshmallowOrmament.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C74389041963D134000D50AF /* libMarshmallowOrmament.a */; };
@@ -165,6 +169,13 @@
 		C7A3463B196B522D00EC08BB /* MMSqliteSchemaMigration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMSqliteSchemaMigration.h; sourceTree = "<group>"; };
 		C7A3463C196B522D00EC08BB /* MMSqliteSchemaMigration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMSqliteSchemaMigration.m; sourceTree = "<group>"; };
 		C7A3463E196C1ED000EC08BB /* noteit_2.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = noteit_2.plist; sourceTree = "<group>"; };
+		C7AF98FC1A4A20320093835D /* TSANote.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSANote.h; sourceTree = "<group>"; };
+		C7AF98FD1A4A20320093835D /* TSANote.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSANote.m; sourceTree = "<group>"; };
+		C7AF98FF1A4A204E0093835D /* TSANotebook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSANotebook.h; sourceTree = "<group>"; };
+		C7AF99001A4A204E0093835D /* TSANotebook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSANotebook.m; sourceTree = "<group>"; };
+		C7AF99021A4A20660093835D /* TSAItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSAItem.h; sourceTree = "<group>"; };
+		C7AF99031A4A20660093835D /* TSAItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSAItem.m; sourceTree = "<group>"; };
+		C7AF99051A4A22030093835D /* MMAutoSchemaTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMAutoSchemaTests.m; sourceTree = "<group>"; };
 		C7B9C654199DA6FF0036F89B /* MMAutoRelatedEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMAutoRelatedEntity.h; sourceTree = "<group>"; };
 		C7B9C655199DA6FF0036F89B /* MMAutoRelatedEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMAutoRelatedEntity.m; sourceTree = "<group>"; };
 		C7BEB0F0196C8C4900575D45 /* TSTMigration1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TSTMigration1.h; path = OrmamentTests/TSTMigration1.h; sourceTree = SOURCE_ROOT; };
@@ -349,6 +360,12 @@
 		C7A3460A1965B46500EC08BB /* OrmamentTests */ = {
 			isa = PBXGroup;
 			children = (
+				C7AF98FC1A4A20320093835D /* TSANote.h */,
+				C7AF98FD1A4A20320093835D /* TSANote.m */,
+				C7AF98FF1A4A204E0093835D /* TSANotebook.h */,
+				C7AF99001A4A204E0093835D /* TSANotebook.m */,
+				C7AF99021A4A20660093835D /* TSAItem.h */,
+				C7AF99031A4A20660093835D /* TSAItem.m */,
 				C7A346201965C1D900EC08BB /* TSTNote.h */,
 				C7A346211965C1D900EC08BB /* TSTNote.m */,
 				C73171A31991DEE2005F27E6 /* TSTNotebook.h */,
@@ -359,6 +376,7 @@
 				C73171A71992B6CB005F27E6 /* MMRelationshipTests.m */,
 				C765563D198419BE00F7DFDD /* MMRequestTests.m */,
 				C7A0C4EC1965984C009EB4E1 /* MMSchemaTests.m */,
+				C7AF99051A4A22030093835D /* MMAutoSchemaTests.m */,
 				C73171A1198899D2005F27E6 /* MMConditionalTests.m */,
 				C7A3462C1965F09E00EC08BB /* MMORMBootstrapTests.m */,
 				C7E1FA3A19E7307300AB3842 /* MMMigrationTests.m */,
@@ -570,16 +588,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C7AF99061A4A22030093835D /* MMAutoSchemaTests.m in Sources */,
 				C73171A2198899D2005F27E6 /* MMConditionalTests.m in Sources */,
 				C765563E198419BE00F7DFDD /* MMRequestTests.m in Sources */,
 				C7F2145F196CF05A00002371 /* MMRecordTests.m in Sources */,
 				C73171A81992B6CB005F27E6 /* MMRelationshipTests.m in Sources */,
 				C7A346181965B4B000EC08BB /* MMSchemaTests.m in Sources */,
+				C7AF99041A4A20660093835D /* TSAItem.m in Sources */,
 				C73171A51991DEE2005F27E6 /* TSTNotebook.m in Sources */,
 				C7A346221965C1D900EC08BB /* TSTNote.m in Sources */,
 				C7A3462D1965F09E00EC08BB /* MMORMBootstrapTests.m in Sources */,
 				C7A346251965C20C00EC08BB /* TSTItem.m in Sources */,
 				C7E1FA3B19E7307300AB3842 /* MMMigrationTests.m in Sources */,
+				C7AF99011A4A204E0093835D /* TSANotebook.m in Sources */,
+				C7AF98FE1A4A20320093835D /* TSANote.m in Sources */,
 				C7A346111965B46500EC08BB /* OrmamentTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
