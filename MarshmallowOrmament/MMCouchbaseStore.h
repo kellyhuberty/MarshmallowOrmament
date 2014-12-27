@@ -7,8 +7,7 @@
 //
 
 #import "MMStore.h"
-#import "CouchbaseLite/CouchbaseLite.h"
-#import "CouchbaseLite/CBLDocument.h"
+#import "CouchbaseLite.h"
 
 @interface MMCouchbaseStore : MMStore<MMStore>{
     
