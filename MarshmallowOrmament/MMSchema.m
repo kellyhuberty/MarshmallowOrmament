@@ -268,6 +268,22 @@ NSArray * MMGetSubclasses(Class parentClass)
             NSLog(@"Notice: MMSchema `%@` has an unset version number. Assuming version 1.0.0.", _name);
             _version = [[MMVersionString alloc] initWithString:@"1.0.0"];
         }
+        if (dict[@"storeClassName"]){
+            _storeClassName = [dict[@"storeClassName"] copy];
+            
+            MMRetain(_storeClassName);
+        }
+        else{
+            
+        }
+        if (dict[@"cloudClassName"]){
+            _cloudClassName = [dict[@"cloudClassName"] copy];
+            
+            MMRetain(_cloudClassName);
+        }
+        else{
+            
+        }
         if ( dict[@"autoEntities"] ){
             //_version = [[MMVersionString alloc] initWithString:(NSString *)dict[@"version"]];
             self.autoEntities = YES;

@@ -32,6 +32,11 @@
             }
             
         }
+        else if ([obj isKindOfClass:NSClassFromString(@"MMSchema")]){
+            
+            schema = (MMSchema *)obj;
+            
+        }
         
         NSError * error = nil;
         
