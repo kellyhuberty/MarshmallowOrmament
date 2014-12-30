@@ -1,14 +1,25 @@
 //
-//  MMStore.h
+//  MMCouchbaseStore.h
 //  MarshmallowOrmament
 //
-//  Created by Kelly Huberty on 11/17/14.
+//  Created by Kelly Huberty on 12/26/14.
 //  Copyright (c) 2014 Kelly Huberty. All rights reserved.
 //
 
-#import "MMService.h"
+#import "MMStore.h"
+#import "CouchbaseLite.h"
 
-@protocol MMStore <NSObject>
+@interface MMCouchbaseStore : MMStore<MMStore>{
+    
+    
+    
+    CBLManager * _manager;
+    CBLDatabase * _db;
+    
+}
+
+-(MMSet *)executeReadWithRequest:(MMRequest *)req error:(NSError **)error;
+-(MMRequest *)newRequestForClassname:(NSString *)className;
 
 -(BOOL)executeUpdateOnRecord:(MMRecord *)rec withValues:(NSMutableDictionary *)values error:(NSError **)error;
 -(BOOL)executeCreateOnRecord:(MMRecord *)rec withValues:(NSMutableDictionary *)values error:(NSError **)error;
@@ -18,13 +29,5 @@
 -(BOOL)addRecords:(NSArray *)set toRelationship:(MMRelationship *)relationship onRecord:(MMRecord *)record error:(NSError **)error;
 -(BOOL)removeRecords:(NSArray *)set fromRelationship:(MMRelationship *)relationship onRecord:(MMRecord *)record error:(NSError **)error;
 
--(MMSet *)executeReadWithRequest:(MMRequest *)req error:(NSError **)error;
--(MMRequest *)newRequestForClassname:(NSString *)className;
-
--(BOOL)build:(NSError **)error;
-
-@end
-
-@interface MMStore : MMService<MMStore>
 
 @end

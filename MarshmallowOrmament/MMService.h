@@ -63,7 +63,6 @@
 
 +(void)addRecordToActiveRecords:(MMRecord *)rec;
 +(void)removeRecordFromActiveRecords:(MMRecord *)rec;
-
 +(MMRecord *)retrieveActiveRecord:(NSString *)hash;
 
 @end
