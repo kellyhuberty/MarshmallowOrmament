@@ -49,7 +49,6 @@
             
             
         }
-        //if( [self versionForSchema:schema.name] == nil ){}
         else{
         
             if ( [schema.version compareVersion:[self versionForSchema:schema.name]] == NSOrderedDescending ) {
