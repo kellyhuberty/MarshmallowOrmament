@@ -81,10 +81,10 @@
     
     CBLRevision * newRevision = [doc putProperties: values error: error];
     
-    NSError * theError = *error;
+   
     
     if (!newRevision) {
-        MMError(@"Cannot write document to database. Error message: %@", theError.localizedDescription);
+        MMError(@"Cannot write document to database. Error message: %@", [(*error) localizedDescription]);
         return NO;
     }
         // display the retrieved document
@@ -100,10 +100,13 @@
     
     CBLRevision * newRevision = [doc putProperties: values error: error];
     
-    NSError * theError = *error;
+    //NSError * theError = *error;
     
     if (!newRevision) {
-        MMError(@"Cannot write document to database. Error message: %@", theError.localizedDescription);
+        
+        //NSError * theError = *error;
+        
+        MMError(@"Cannot write document to database. Error message: %@", [(*error) localizedDescription]);
         return NO;
     }
         // display the retrieved document
@@ -120,10 +123,8 @@
     CBLDocument * doc = [_db documentWithID: values[@"docID"]];
     
     if (![doc deleteDocument:error]) {
-        
-        NSError * theError = *error;
 
-        MMError(@"Cannot write document to database. Error message: %@", theError.localizedDescription);
+        MMError(@"Cannot write document to database. Error message: %@",  [(*error) localizedDescription]);
         return NO;
     }
         // display the retrieved document
