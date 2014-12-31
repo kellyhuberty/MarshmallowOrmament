@@ -569,6 +569,10 @@ NSArray * MMGetSubclasses(Class parentClass)
 
 -(NSString *)storeClassName{
     
+    if (_storeClassName) {
+        return _storeClassName;
+    }
+    
     return @"MMSQLiteStore";
     
 }
