@@ -256,7 +256,8 @@ NSArray * MMGetSubclasses(Class parentClass)
     
     
         if (dict[@"name"]){
-            _name = MMRetain([dict[@"name"] copy]);
+            _name = [dict[@"name"] copy];
+            MMRetain(_name);
         }
         else{
             [MMException(@"Schema Dictionary contains no name", nil, nil) raise];
