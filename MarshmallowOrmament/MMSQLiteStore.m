@@ -705,6 +705,10 @@
     NSArray * params = [[rec class] idKeys];
     NSMutableArray * paramStringArray = [NSMutableArray array];
     
+    if (params == nil || [params count] == 0) {
+        return [NSString stringWithFormat:@" %@.rowid = :rowid", [[self class] tableNameForRecord:rec] ];
+    }
+    
     for (NSString * pName in params) {
         [paramStringArray addObject: [NSString stringWithFormat:@" %@.%@ = :%@", [[self class] tableNameForRecord:rec] , pName, pName ]];
     }
@@ -776,7 +780,7 @@
 -(BOOL)executeUpdateOnRecord:(MMRecord *)rec withValues:(NSMutableDictionary *)values error:(NSError **)error{
     
     BOOL __block success = NO;
-    
+        
     [self.dbQueue inDatabase:^(FMDatabase * db){
 
         success = [db executeUpdate:[[self class] buildUpdateQueryForRecord:rec values:values] withParameterDictionary:values];
@@ -823,7 +827,12 @@
     
     //NSLog(@"REFRESHED VALUES %@", [NSString stringWithFormat:@"SELECT * FROM %@ WHERE `%@` = :%@", [[self class] tableNameForRecord:rec] , rowIdKey, rowIdKey]);
     
-        FMResultSet * res = [db executeQuery:[NSString stringWithFormat:@"SELECT * FROM %@ WHERE `%@` = :%@", [[self class] tableNameForRecord:rec], rowIdKey, rowIdKey] withParameterDictionary:@{rowIdKey:[NSNumber numberWithLongLong:rowId]}];
+        FMResultSet * res = [db executeQuery:[NSString stringWithFormat:@"SELECT %@ FROM %@ WHERE `%@` = :%@",
+                                              [[self class] buildSelectColumnsClauseForRecord:rec values:values],
+                                              [[self class] tableNameForRecord:rec],
+                                              rowIdKey,
+                                              rowIdKey]
+                                withParameterDictionary:@{rowIdKey:[NSNumber numberWithLongLong:rowId]}];
         
         crap = [res next];
         
@@ -886,7 +895,23 @@
 
 +(NSString *)buildSelectQueryForRecord:(MMRecord *)rec values:(NSDictionary *)values{
     
-    return [NSString stringWithFormat:@"SELECT * FROM %@ WHERE %@", [[self class] tableNameForRecord:rec], [self primaryKeyWhereClauseForRecord:rec] ];
+    return [NSString stringWithFormat:@"SELECT * FROM %@ WHERE %@",
+                        [self buildSelectColumnsClauseForRecord:rec values:values],
+                        [self tableNameForRecord:rec],
+                        [self primaryKeyWhereClauseForRecord:rec]
+            ];
+    
+}
+
++(NSString *)buildSelectColumnsClauseForRecord:(MMRecord *)rec values:(NSDictionary *)values{
+    
+    MMEntity * entity = [[((MMRecord *)rec) class] entity];
+    
+    if (entity.idKeys == nil || [entity.idKeys count] == 0) {
+        return @"*, ROWID";
+    }
+    
+    return @"*";
     
 }
 
@@ -933,7 +958,9 @@
     NSMutableArray * paramStringArray = [NSMutableArray array];
     
     for (NSString * pName in params) {
-        [paramStringArray addObject: [NSString stringWithFormat:@" %@ = :%@" , pName, pName ]];
+        if (![pName isEqualToString:@"rowid"]) {
+            [paramStringArray addObject: [NSString stringWithFormat:@" %@ = :%@" , pName, pName ]];
+        }
     }
     
     return [paramStringArray componentsJoinedByString:@","];
