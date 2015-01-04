@@ -169,8 +169,11 @@ static NSString * classPrefix;
     if ([class respondsToSelector:@selector(entityName)]) {
         _name = [class entityName];
     }
-    if ([class respondsToSelector:@selector(entityName)]) {
-        _idKeys = [[class idKeys] copy];
+    if ([class respondsToSelector:@selector(idKeys)]) {
+        NSArray * idKeys = [class idKeys];
+        if(idKeys){
+            _idKeys = [idKeys copy];
+        }
     }
     
     _modelClassName = NSStringFromClass(class);
