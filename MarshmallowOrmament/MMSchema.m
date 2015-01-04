@@ -256,7 +256,8 @@ NSArray * MMGetSubclasses(Class parentClass)
     
     
         if (dict[@"name"]){
-            _name = MMRetain([dict[@"name"] copy]);
+            _name = [dict[@"name"] copy];
+            MMRetain(_name);
         }
         else{
             [MMException(@"Schema Dictionary contains no name", nil, nil) raise];
@@ -267,6 +268,22 @@ NSArray * MMGetSubclasses(Class parentClass)
         else{
             NSLog(@"Notice: MMSchema `%@` has an unset version number. Assuming version 1.0.0.", _name);
             _version = [[MMVersionString alloc] initWithString:@"1.0.0"];
+        }
+        if (dict[@"storeClassName"]){
+            _storeClassName = [dict[@"storeClassName"] copy];
+            
+            MMRetain(_storeClassName);
+        }
+        else{
+            
+        }
+        if (dict[@"cloudClassName"]){
+            _cloudClassName = [dict[@"cloudClassName"] copy];
+            
+            MMRetain(_cloudClassName);
+        }
+        else{
+            
         }
         if ( dict[@"autoEntities"] ){
             //_version = [[MMVersionString alloc] initWithString:(NSString *)dict[@"version"]];
@@ -551,6 +568,10 @@ NSArray * MMGetSubclasses(Class parentClass)
 }
 
 -(NSString *)storeClassName{
+    
+    if (_storeClassName) {
+        return _storeClassName;
+    }
     
     return @"MMSQLiteStore";
     

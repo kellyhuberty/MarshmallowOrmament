@@ -11,8 +11,6 @@
 
 @interface MMCouchbaseStore : MMStore<MMStore>{
     
-    
-    
     CBLManager * _manager;
     CBLDatabase * _db;
     
