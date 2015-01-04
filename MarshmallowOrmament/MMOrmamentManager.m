@@ -241,17 +241,45 @@
     
     if (schema.storeClassName) {
     
-        MMService * store = [[NSClassFromString(schema.storeClassName) alloc] initWithSchema:(schema)];
         
-        [store build:&error];
+        if (NSClassFromString(schema.storeClassName)) {
+            MMService * store = [[NSClassFromString(schema.storeClassName) alloc] initWithSchema:(schema)];
+            
+            BOOL suc = [store build:&error];
+            
+            if(!suc){
+                
+                MMError(@"Error during build for class %@", schema.storeClassName);
+                exit(1);
+            }
+            
+        }
+        else{
+        
+            MMError(@"Unable to build valid store for class %@", schema.storeClassName);
+        }
 
     }
     
     if (schema.cloudClassName) {
         
-        MMService * cloud = [[NSClassFromString(schema.cloudClassName) alloc] initWithSchema:(schema)];
-        
-        [cloud build:&error];
+        if (NSClassFromString(schema.cloudClassName)) {
+
+            MMService * cloud = [[NSClassFromString(schema.cloudClassName) alloc] initWithSchema:(schema)];
+            
+            BOOL suc = [cloud build:&error];
+            
+            if(!suc){
+                
+                MMError(@"Error during build for class %@", schema.cloudClassName);
+                exit(1);
+            }
+            
+        }
+        else{
+            
+            MMError(@"Unable to build valid store for class %@", schema.cloudClassName);
+        }
     
     }
         

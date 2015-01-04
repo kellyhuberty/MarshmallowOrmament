@@ -16,6 +16,8 @@
     if (self = [super init]) {
             //_sqlBindValues = [[NSMutableDictionary alloc]init];
             //_meta = [[MMOrmMeta alloc]init];
+        
+        _order = NSOrderedAscending;
     }
     
     return self;

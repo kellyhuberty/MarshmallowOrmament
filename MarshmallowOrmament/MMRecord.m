@@ -797,7 +797,13 @@ static void setRelationValueIMP(id self, SEL _cmd, id aValue) {
 
 +(NSArray *)idKeys{
     
-    return [[self entity] idKeys];
+    NSArray * keys = nil;
+    
+    if ((keys = [[self entity] idKeys])) {
+        return keys;
+    }
+    
+    return nil;
     
 }
 

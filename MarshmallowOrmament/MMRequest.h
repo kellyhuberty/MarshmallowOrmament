@@ -38,6 +38,8 @@ typedef void (^completionBlock)(MMSet *, NSError *__autoreleasing *);
     int _offset;
     int _limit;
     
+    NSComparisonResult _order;
+    
     NSString * _className;
     NSString * _entityName;
     MMService * _service;
@@ -54,7 +56,7 @@ typedef void (^completionBlock)(MMSet *, NSError *__autoreleasing *);
 
 @property(atomic)int limit;
 @property(atomic)int offset;
-
+@property(atomic)NSComparisonResult order;
 
 //@property(nonatomic, retain)NSString * sqlSelect;
 //@property(nonatomic, retain)NSString * sqlFrom;
