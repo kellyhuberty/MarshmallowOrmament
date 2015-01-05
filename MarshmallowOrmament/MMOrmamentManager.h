@@ -24,4 +24,8 @@
 
 +(NSDictionary *)schemaDictionaryWithName:(NSString *)name version:(NSString *)ver;
 
+
++(MMVersionString *)currentVersionForSchemaName:(NSString *)schemaName;
++(void)setCurrentVersion:(MMVersionString *)version forSchemaName:(NSString *)schemaName;
+
 @end

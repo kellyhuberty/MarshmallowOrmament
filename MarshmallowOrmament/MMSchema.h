@@ -38,6 +38,8 @@
 
 
 +(void)registerSchema:(MMSchema *)schema;
++(MMSchema *)registeredSchemaWithName:(NSString *)name version:(NSString *)version;
+
 +(MMSchema *)currentSchemaWithName:(NSString *)name;
 +(MMSchema *)schemaFromName:(NSString *)name version:(NSString *)ver;
 +(NSArray *)allSchemas;

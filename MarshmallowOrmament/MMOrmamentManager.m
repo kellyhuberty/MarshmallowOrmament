@@ -40,18 +40,17 @@
         
         NSError * error = nil;
         
-        if ( [self versionForSchema:schema.name] == nil ) {
+        if ( [self currentVersionForSchemaName:schema.name] == nil ) {
             //initial data build....
             
             NSLog(@"Building inital store for %@", schema.name);
             
             [[self class] buildServicesForSchema:schema error:&error];
             
-            
         }
         else{
         
-            if ( [schema.version compareVersion:[self versionForSchema:schema.name]] == NSOrderedDescending ) {
+            if ( [schema.version compareVersion:[self currentVersionForSchemaName:schema.name]] == NSOrderedDescending ) {
                 // downgrade schema...
                 
 //                MMSchema *newschema = [self schemaFromPlistPath:[NSString stringWithFormat:@"%@__%@",
@@ -62,18 +61,18 @@
                 
                 
 
-                [[self class] downgradeSchema:schema.name oldVersion:[self versionForSchema:schema.name] newVersion:schema.version error:&error];
+                [[self class] downgradeSchema:schema.name oldVersion:[self currentVersionForSchemaName:schema.name] newVersion:schema.version error:&error];
 
                 
             }
-            else if ( [schema.version compareVersion:[self versionForSchema:schema.name]] == NSOrderedAscending ) {
+            else if ( [schema.version compareVersion:[self currentVersionForSchemaName:schema.name]] == NSOrderedAscending ) {
                 // upgrade schema...
                 
                 
                 //MMSchema * oldschema = [[self class] schemaFromName:[NSString stringWithString:((NSDictionary *)obj)[@"name"] ] version:[MMVersionString stringWithString:((NSDictionary *)obj)[@"version"]]];
                 
                 
-                [[self class] upgradeSchema:schema.name oldVersion:[self versionForSchema:schema.name] newVersion:schema.version error:&error];
+                [[self class] upgradeSchema:schema.name oldVersion:[self currentVersionForSchemaName:schema.name] newVersion:schema.version error:&error];
 
                 
             }
@@ -187,7 +186,7 @@
 //    
 //}
 
-+(MMVersionString *)versionForSchema:(NSString *)schemaName{
++(MMVersionString *)currentVersionForSchemaName:(NSString *)schemaName{
     
     NSDictionary * dict = [[MMPreferences valueForKey:@"MMSchemaVersions"] mutableCopy];
     if (dict[schemaName]) {
@@ -197,7 +196,7 @@
     
 }
 
-+(void)setVersion:(MMVersionString *)version forSchema:(NSString *)schemaName{
++(void)setCurrentVersion:(MMVersionString *)version forSchemaName:(NSString *)schemaName{
     
      NSMutableDictionary * dict = [[MMPreferences valueForKey:@"MMSchemaVersions"] mutableCopy ];
     
@@ -287,7 +286,7 @@
     
     }
         
-    [self setVersion:schema.version forSchema:schema.name];
+    [self setCurrentVersion:schema.version forSchemaName:schema.name];
     
 }
 
@@ -297,7 +296,7 @@
     
     [store build:&error];
     
-    [self setVersion:schema.version forSchema:schema.name];
+    [self setCurrentVersion:schema.version forSchemaName:schema.name];
     
 }
 

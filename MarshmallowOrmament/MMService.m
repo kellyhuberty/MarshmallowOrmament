@@ -73,7 +73,6 @@ static NSMutableDictionary * activeRecords;
 
 +(MMService *)serviceWithSchemaName:(NSString *)schemaName type:(NSString *)storeType version:(MMVersionString *)ver{
 
-    
     if (ver == nil) {
         MMSchema * sc = [MMSchema currentSchemaWithName:schemaName];
         ver = sc.version;
@@ -86,14 +85,17 @@ static NSMutableDictionary * activeRecords;
     NSString * storeName = [NSString stringWithFormat:@"%@__%@__%@", schemaName, ver, storeType];
     MMService * store = nil;
     
-    if ((threadDict = storesByThread[MMORMThreadNSNumber()])) {
-    //    storesByThread[MMORMThreadNSNumber()] = threadDict = [[NSMutableDictionary alloc]init];
-        storesByThread[@1] = threadDict = [[NSMutableDictionary alloc]init];
+//    if ((threadDict = storesByThread[MMORMThreadNSNumber()])) {
+//        storesByThread[MMORMThreadNSNumber()] = threadDict = [[NSMutableDictionary alloc]init];
+//    }
+    
+    if (!(storeDict = storesByThread[@1])) {
+        storesByThread[@1] = storeDict = [[NSMutableDictionary alloc]init];
     }
     
-    if (!(storeDict = threadDict[storeName])) {
-        threadDict[storeName] = storeDict = [[NSMutableDictionary alloc]init];
-    }
+//    if (!(storeDict = threadDict[storeName])) {
+//        threadDict[storeName] = storeDict = [[NSMutableDictionary alloc]init];
+//    }
     
     if (!(store = storeDict[storeName])) {
         storeDict[storeName] = store = [MMService newServiceWithSchemaName:(NSString *)schemaName serviceType:(NSString *)storeType  version:ver];
@@ -102,11 +104,12 @@ static NSMutableDictionary * activeRecords;
     NSLog(@"thread dict %@", store);
     
     return store;
+        
 }
 
 +(MMService *)newServiceWithSchemaName:(NSString *)schemaName serviceType:(NSString *)serviceType version:ver{
     
-    MMSchema * schema = [MMSchema schemaFromName:schemaName version:ver];
+    MMSchema * schema = [MMSchema registeredSchemaWithName:schemaName version:ver];
     
     //+(MMSchema *)schemaFromName:(NSString *)name version:(NSString *)ver{
     

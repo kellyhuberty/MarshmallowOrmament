@@ -13,6 +13,8 @@
 #import "MMSchemaMigration.h"
 #import <objc/runtime.h>
 #import "MMRecord.h"
+#import "MMOrmamentManager.h"
+
 static NSMutableDictionary __strong * globalSchemas;
 
 
@@ -67,7 +69,27 @@ NSArray * MMGetSubclasses(Class parentClass)
 
 +(void)registerSchema:(MMSchema *)schema{
     
-    globalSchemas[schema.name] = schema;
+    NSMutableDictionary * schemaDicts = globalSchemas[schema.name];
+    if (!schemaDicts) {
+        globalSchemas[schema.name] = schemaDicts = [NSMutableDictionary dictionary];
+    }
+    schemaDicts[schema.version] = schema;
+    
+}
+
+
++(MMSchema *)registeredSchemaWithName:(NSString *)name version:(NSString *)version{
+    
+    NSMutableDictionary * schemaDicts = globalSchemas[name];
+    if (!schemaDicts) {
+            //globalSchemas[schema.name] = schemaDicts = [NSMutableDictionary dictionary];
+        return nil;
+    
+    }
+    
+    
+    
+    return [schemaDicts objectForKey:version];
     
 }
 
@@ -117,8 +139,9 @@ NSArray * MMGetSubclasses(Class parentClass)
 
 +(MMSchema *)currentSchemaWithName:(NSString *)name{
     
+    MMVersionString * ver = [MMOrmamentManager currentVersionForSchemaName:name];
     
-    return globalSchemas[name];
+    return [self registeredSchemaWithName:name version:ver];
     
 }
 
