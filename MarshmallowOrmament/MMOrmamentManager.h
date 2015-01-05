@@ -10,7 +10,18 @@
 #import <Foundation/Foundation.h>
 #import "MMSchema.h"
 
-@interface MMOrmamentManager : NSObject
+
+static NSMutableDictionary * sharedManager;
+
+@interface MMOrmamentManager : NSObject{
+    
+    NSMutableDictionary * _schemaCache;
+    NSMutableDictionary * _serviceCache;
+    
+}
+
+
++(MMOrmamentManager *)sharedManager;
 
 +(void)startWithSchemas:(NSArray *)schemas;
 

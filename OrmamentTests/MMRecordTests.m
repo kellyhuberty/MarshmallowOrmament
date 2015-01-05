@@ -457,8 +457,13 @@
     
     note.text = @"meh";
     
-    [note save:&error3];
+    BOOL suc = [note save:&error3];
     
+    //if (!suc) {
+        
+        NSLog(@"desc:::%@", [error localizedDescription]);
+        
+    //}
     
     FMDatabase * db = [((MMSQLiteStore *)[[note class] store]) db];
     

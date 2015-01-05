@@ -90,7 +90,7 @@ static NSMutableDictionary * activeRecords;
 //    }
     
     if (!(storeDict = storesByThread[@1])) {
-        storesByThread[@1] = storeDict = [[NSMutableDictionary alloc]init];
+        storesByThread[@1] = storeDict = [NSMutableDictionary dictionary];
     }
     
 //    if (!(storeDict = threadDict[storeName])) {
@@ -98,7 +98,11 @@ static NSMutableDictionary * activeRecords;
 //    }
     
     if (!(store = storeDict[storeName])) {
-        storeDict[storeName] = store = [MMService newServiceWithSchemaName:(NSString *)schemaName serviceType:(NSString *)storeType  version:ver];
+        
+        store = [MMService newServiceWithSchemaName:(NSString *)schemaName serviceType:(NSString *)storeType  version:ver];
+    
+        storeDict[storeName] = store;
+    
     }
 
     NSLog(@"thread dict %@", store);
