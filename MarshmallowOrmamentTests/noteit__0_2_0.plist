@@ -5,7 +5,7 @@
 	<key>version</key>
 	<string>0.2.0</string>
 	<key>storeClassName</key>
-	<string>MMCouchbaseStore</string>
+	<string>MMSQLiteStore</string>
 	<key>cloudClassName</key>
 	<string>MMRestfulStore</string>
 	<key>name</key>

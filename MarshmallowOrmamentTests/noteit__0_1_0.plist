@@ -5,7 +5,7 @@
 	<key>version</key>
 	<string>0.1.0</string>
 	<key>storeClassName</key>
-	<string>MMCouchbaseStore</string>
+	<string>MMSQLiteStore</string>
 	<key>name</key>
 	<string>noteit</string>
 	<key>entities</key>
