@@ -20,10 +20,10 @@ enum {
 //    NSString * _fillClassName;
 //    NSString * _query;
     
-      MMSet * _groups;
-      int _offset;
-      int _total;
-    
+    MMSet * _groups;
+    int _offset;
+    int _total;
+
     int _maxFetchSize;
 
 }
