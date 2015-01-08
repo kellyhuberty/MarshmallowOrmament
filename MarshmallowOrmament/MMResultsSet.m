@@ -42,6 +42,7 @@
 -(int)total{
     
     @synchronized(self){
+        
         if(MMResultsSetNoTotal){
             
             return [super count];

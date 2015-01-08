@@ -20,11 +20,11 @@ enum {
 //    NSString * _fillClassName;
 //    NSString * _query;
     
-    MMSet * _groups;
+        //MMSet * _groups;
     int _offset;
     int _total;
 
-    int _maxFetchSize;
+        //    int _maxFetchSize;
 
 }
 @property (atomic, readonly)int total;

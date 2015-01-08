@@ -259,9 +259,9 @@
 }
 
 
--(NSArray *)loadRecordOfType:(NSString *)classname withResultsOfQuery:(NSString *)query withParameterDictionary:(NSDictionary *)dictionary{
+-(MMResultsSet *)loadRecordOfType:(NSString *)classname withResultsOfQuery:(NSString *)query withParameterDictionary:(NSDictionary *)dictionary{
 
-    NSArray * array = nil;
+    MMResultsSet * array = nil;
     
     NSError * error = nil;
     
@@ -275,7 +275,7 @@
     
 }
 
--(NSArray *)loadRecordOfType:(NSString *)classname withResultsOfQuery:(NSString *)query withParameterDictionary:(NSDictionary *)dictionary error:(NSError **)error{
+-(MMResultsSet *)loadRecordOfType:(NSString *)classname withResultsOfQuery:(NSString *)query withParameterDictionary:(NSDictionary *)dictionary error:(NSError **)error{
     
     NSMutableArray * __block ret;
     
@@ -324,7 +324,7 @@
         
     }];
     
-    return [NSArray arrayWithArray:ret];
+    return [MMResultsSet arrayWithArray:ret];
 }
 
 
@@ -717,7 +717,7 @@
     
 }
 
--(NSString *)queryWithRequest:(MMSQLiteRequest *)req{
+-(NSString *)queryWithRequest:(MMSQLiteRequest *)req countOnly:(BOOL)onlyCount{
     
     NSMutableString * query = [NSMutableString stringWithString:@""];
     
@@ -730,6 +730,11 @@
     
     if (!sqlSelect) {
         sqlSelect = [NSString stringWithFormat:@" %@.*", [self tableNameWithEntityName:req.entityName]];
+    }
+    else if (onlyCount){
+        
+        sqlSelect = @"COUNT(*)";
+        
     }
     if (!sqlFrom) {
         sqlFrom = [NSString stringWithFormat:@"%@", [self tableNameWithEntityName:req.entityName]];
@@ -768,8 +773,12 @@
     //[self.dbQueue inDatabase:^(FMDatabase * db){
         
         
-        [set addObjectsFromArray:[self loadRecordOfType:req.className withResultsOfQuery:[self queryWithRequest:req] withParameterDictionary:req.sqlBindValues]];
+        //[set addObjectsFromArray:[self loadRecordOfType:req.className withResultsOfQuery:[self queryWithRequest:req countOnly:false] withParameterDictionary:req.sqlBindValues]];
         
+    set = [self loadRecordOfType:req.className withResultsOfQuery:[self queryWithRequest:req countOnly:false] withParameterDictionary:req.sqlBindValues];
+    
+    
+    set.total = [self loadCountOfRequest:[self queryWithRequest:req countOnly:true]];
     
     //}];
     
