@@ -16,7 +16,55 @@
 @implementation MMOrmamentManager
 
 
++(MMOrmamentManager *)sharedManager{
+    
+    if (!sharedManager){
+        
+        //sharedManager =
+        sharedManager = [[[self class] alloc]init];
+        
+        
+    }
+    
+    return sharedManager;
+    
+    
+}
+
+
++(void)resetSharedManager{
+    
+    MMRelease(sharedManager);
+    
+    sharedManager = nil;
+    
+}
+
+-(instancetype)init{
+    
+    if (self = [super init]) {
+        
+        _schemas = [[NSMutableDictionary alloc] init];
+        _services = [[NSMutableDictionary alloc] init];
+        _records = [[NSMutableDictionary alloc] init];
+        
+    }
+    
+    return self;
+}
+
+
 +(void)startWithSchemas:(NSArray *)schemas{
+    
+    MMOrmamentManager * manager = [self sharedManager];
+    
+    [manager startWithSchemas:schemas];
+    
+}
+
+
+
+-(void)startWithSchemas:(NSArray *)schemas{
     
     
     for (NSObject * obj in schemas) {
@@ -27,20 +75,20 @@
             
             if ( ((NSDictionary *)obj)[@"name"] && ((NSDictionary *)obj)[@"version"]) {
 
-                schema = [self schemaFromName:((NSDictionary *)obj)[@"name"] version:((NSDictionary *)obj)[@"version"]];
+                schema = [[self class] schemaFromName:((NSDictionary *)obj)[@"name"] version:((NSDictionary *)obj)[@"version"]];
                 
             }
             
         }
-        else if ([obj isKindOfClass:NSClassFromString(@"MMSchema")]){
-            
-            schema = (MMSchema *)obj;
-            
-        }
+//        else if ([obj isKindOfClass:NSClassFromString(@"MMSchema")]){
+//            
+//            schema = (MMSchema *)obj;
+//            
+//        }
         
         NSError * error = nil;
         
-        if ( [self currentVersionForSchemaName:schema.name] == nil ) {
+        if ( [[self class] currentVersionForSchemaName:schema.name] == nil ) {
             //initial data build....
             
             NSLog(@"Building inital store for %@", schema.name);
@@ -50,7 +98,7 @@
         }
         else{
         
-            if ( [schema.version compareVersion:[self currentVersionForSchemaName:schema.name]] == NSOrderedDescending ) {
+            if ( [schema.version compareVersion:[[self class] currentVersionForSchemaName:schema.name]] == NSOrderedDescending ) {
                 // downgrade schema...
                 
 //                MMSchema *newschema = [self schemaFromPlistPath:[NSString stringWithFormat:@"%@__%@",
@@ -61,18 +109,18 @@
                 
                 
 
-                [[self class] downgradeSchema:schema.name oldVersion:[self currentVersionForSchemaName:schema.name] newVersion:schema.version error:&error];
+                [[self class] downgradeSchema:schema.name oldVersion:[[self class] currentVersionForSchemaName:schema.name] newVersion:schema.version error:&error];
 
                 
             }
-            else if ( [schema.version compareVersion:[self currentVersionForSchemaName:schema.name]] == NSOrderedAscending ) {
+            else if ( [schema.version compareVersion:[[self class] currentVersionForSchemaName:schema.name]] == NSOrderedAscending ) {
                 // upgrade schema...
                 
                 
                 //MMSchema * oldschema = [[self class] schemaFromName:[NSString stringWithString:((NSDictionary *)obj)[@"name"] ] version:[MMVersionString stringWithString:((NSDictionary *)obj)[@"version"]]];
                 
                 
-                [[self class] upgradeSchema:schema.name oldVersion:[self currentVersionForSchemaName:schema.name] newVersion:schema.version error:&error];
+                [[self class] upgradeSchema:schema.name oldVersion:[[self class] currentVersionForSchemaName:schema.name] newVersion:schema.version error:&error];
 
                 
             }

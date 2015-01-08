@@ -15,7 +15,7 @@
 #import "MMRecord.h"
 #import "MMOrmamentManager.h"
 
-static NSMutableDictionary __strong * globalSchemas;
+//static NSMutableDictionary __strong * globalSchemas;
 
 
 @interface MMSchema()
@@ -58,16 +58,19 @@ NSArray * MMGetSubclasses(Class parentClass)
 @implementation MMSchema
 
 
-+(void)initialize{
-    
-    //MMRelease(globalSchemas);
-
-    globalSchemas = [[NSMutableDictionary alloc] init];
-    
-    
-}
+//+(void)initialize{
+//    
+//    //MMRelease(globalSchemas);
+//
+//    globalSchemas = [[NSMutableDictionary alloc] init];
+//    
+//    
+//}
 
 +(void)registerSchema:(MMSchema *)schema{
+    
+    MMOrmamentManager * manager = [MMOrmamentManager sharedManager];
+    NSMutableDictionary * globalSchemas = manager.schemas;
     
     NSMutableDictionary * schemaDicts = globalSchemas[schema.name];
     if (!schemaDicts) {
@@ -80,6 +83,8 @@ NSArray * MMGetSubclasses(Class parentClass)
 
 +(MMSchema *)registeredSchemaWithName:(NSString *)name version:(NSString *)version{
     
+    MMOrmamentManager * manager = [MMOrmamentManager sharedManager];
+    NSMutableDictionary *  globalSchemas = manager.schemas;
     NSMutableDictionary * schemaDicts = globalSchemas[name];
     if (!schemaDicts) {
             //globalSchemas[schema.name] = schemaDicts = [NSMutableDictionary dictionary];
@@ -141,6 +146,8 @@ NSArray * MMGetSubclasses(Class parentClass)
     
     MMVersionString * ver = [MMOrmamentManager currentVersionForSchemaName:name];
     
+    NSLog(@"ver: %@", ver);
+    
     return [self registeredSchemaWithName:name version:ver];
     
 }
@@ -148,7 +155,8 @@ NSArray * MMGetSubclasses(Class parentClass)
 
 +(NSArray *)allSchemas{
     
-    
+    MMOrmamentManager * manager = [MMOrmamentManager sharedManager];
+    NSMutableDictionary *  globalSchemas = manager.schemas;
     return [globalSchemas allValues];
     
 }
