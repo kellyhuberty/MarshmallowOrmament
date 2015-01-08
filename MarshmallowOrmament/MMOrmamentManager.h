@@ -11,17 +11,21 @@
 #import "MMSchema.h"
 
 
-static NSMutableDictionary * sharedManager;
+static NSMutableDictionary __strong * sharedManager;
 
 @interface MMOrmamentManager : NSObject{
     
-    NSMutableDictionary * _schemaCache;
-    NSMutableDictionary * _serviceCache;
-    
+    NSMutableDictionary * _schemas;
+    NSMutableDictionary * _services;
+    NSMutableDictionary * _records;
+
 }
+@property(nonatomic, retain)NSMutableDictionary * schemas;
+@property(nonatomic, retain)NSMutableDictionary * services;
 
 
 +(MMOrmamentManager *)sharedManager;
++(void)resetSharedManager;
 
 +(void)startWithSchemas:(NSArray *)schemas;
 

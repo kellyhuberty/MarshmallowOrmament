@@ -10,6 +10,7 @@
 #import "MMSchema.h"
 #import "MMSQLiteSchema.h"
 #import "MMSQLiteStore.h"
+#import "MMOrmamentManager.h"
 
 //#import <FMDB/FMDB.h>
 
@@ -33,6 +34,9 @@
 - (void)setUp
 {
     [self removeFiles];
+ 
+    [MMOrmamentManager resetSharedManager];
+    
     [super setUp];
     // Put setup code here. This method is called before the invocation of each test method in the class.
 }

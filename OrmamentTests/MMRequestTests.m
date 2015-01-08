@@ -24,6 +24,8 @@
     [self removeFiles];
 
     [MMOrmamentManager unsetVersionForSchema:@"noteit"];
+
+    [MMOrmamentManager resetSharedManager];
     
     [super setUp];
     // Put setup code here. This method is called before the invocation of each test method in the class.
@@ -32,6 +34,7 @@
 - (void)tearDown
 {
     [self removeFiles];
+    
     // Put teardown code here. This method is called after the invocation of each test method in the class.
     [super tearDown];
 }
@@ -113,7 +116,7 @@
     
     XCTAssertNotNil(set, @"Failed to fetch");
     
-    XCTAssertTrue([set count] > 0, @"Failed to fetch");
+    XCTAssertTrue([set count] == 1 , @"Failed to fetch");
 
 
     
@@ -132,6 +135,8 @@
     
     
     MMSQLiteStore * store = ((MMSQLiteStore *)[MMService storeWithSchemaName:@"noteit" version:nil]);
+    
+    NSLog(@"store:*** %@", store);
     
     
     [[store dbQueue] inDatabase:^(FMDatabase *db) {
@@ -160,9 +165,10 @@
         
     }
     //MMLog(@"%@", [error description])
-    
+    NSLog(@"blah");
     NSLog(@"SETCOUNT >>%i",[set count]);
-    
+    NSLog(@"blah");
+
     XCTAssertNotNil(set, @"Failed to fetch");
     
     XCTAssertTrue([set count] == 4, @"Failed to fetch");

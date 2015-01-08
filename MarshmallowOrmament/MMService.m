@@ -10,9 +10,10 @@
 #import "MMORMUtility.h"
 #import "MMRecord.h"
 #import "MMRecordSet.h"
+#import "MMOrmamentManager.h"
 
 
-static NSMutableDictionary * storesByThread;
+//static NSMutableDictionary * storesByThread;
 static NSMutableDictionary * activeRecords;
 
 
@@ -43,7 +44,7 @@ static NSMutableDictionary * activeRecords;
 +(void)initialize{
     
     //MMRelease(storesByThread);
-    storesByThread = [[NSMutableDictionary alloc]init];
+    //storesByThread = [[NSMutableDictionary alloc]init];
     
     activeRecords = [[NSMutableDictionary alloc]init];
     
@@ -75,9 +76,16 @@ static NSMutableDictionary * activeRecords;
 
     if (ver == nil) {
         MMSchema * sc = [MMSchema currentSchemaWithName:schemaName];
+        
+        NSLog(@"schema with name %@", sc);
+        
         ver = sc.version;
     
     }
+    
+    MMOrmamentManager * manager = [MMOrmamentManager sharedManager];
+    
+    NSMutableDictionary * storesByThread = manager.services;
     
     NSMutableDictionary * threadDict;
     NSMutableDictionary * storeDict;
@@ -101,6 +109,10 @@ static NSMutableDictionary * activeRecords;
         
         store = [MMService newServiceWithSchemaName:(NSString *)schemaName serviceType:(NSString *)storeType  version:ver];
     
+        NSLog(@"store with name %@", store);
+
+        
+        
         storeDict[storeName] = store;
     
     }
@@ -113,11 +125,11 @@ static NSMutableDictionary * activeRecords;
 
 +(MMService *)newServiceWithSchemaName:(NSString *)schemaName serviceType:(NSString *)serviceType version:ver{
     
-    MMSchema * schema = [MMSchema registeredSchemaWithName:schemaName version:ver];
+    //MMSchema * schema = [MMSchema registeredSchemaWithName:schemaName version:ver];
     
-    //+(MMSchema *)schemaFromName:(NSString *)name version:(NSString *)ver{
+        MMSchema * schema = [MMSchema schemaFromName:schemaName version:ver];
     
-    
+    NSLog(@"schema with name: %@, %@, %@", schemaName, ver, schema);
     return [[NSClassFromString([schema valueForKey:[NSString stringWithFormat:@"%@ClassName", serviceType]]) alloc]initWithSchema:schema];
     
 }
