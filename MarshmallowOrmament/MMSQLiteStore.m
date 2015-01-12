@@ -275,6 +275,22 @@
     
 }
 
+-(int)loadCountOfRequest:(NSString *)query withParameterDictionary:(NSDictionary *)dictionary{
+    
+        //MMResultsSet * array = nil;
+    
+    NSError * error = nil;
+    
+    if(!(array = [self loadRecordOfType:classname withResultsOfQuery:query withParameterDictionary:dictionary error:&error])){
+        
+        [NSException raise:@"MMInvalidSQLQueryException" format:@"The query performed on this sqlite database is failing. Error:%@", [error localizedDescription]];
+        
+    }
+    
+    return array;
+    
+}
+
 -(MMResultsSet *)loadRecordOfType:(NSString *)classname withResultsOfQuery:(NSString *)query withParameterDictionary:(NSDictionary *)dictionary error:(NSError **)error{
     
     NSMutableArray * __block ret;
@@ -304,6 +320,59 @@
                 NSDictionary * values = [result resultDictionary];
                 
                 //MMRecord * rec = [[ NSClassFromString(classname) alloc]initWithFillValues:values created:YES fromStore:self];
+                
+                MMRecord * rec = [self wrapValues:values intoRecordOfType:classname created:YES];
+                
+                [ret addObject:rec];
+                
+                MMRelease(rec);
+                
+            }
+            
+            [result close];
+            
+        }
+        else{
+            
+            *error = [db lastError];
+            
+        }
+        
+    }];
+    
+    return [MMResultsSet arrayWithArray:ret];
+}
+
+
+-(MMResultsSet *)loadCountOfRequest:(NSString *)query withParameterDictionary:(NSDictionary *)dictionary error:(NSError **)error{
+    
+    NSMutableArray * __block ret;
+    
+    if (! NSClassFromString(classname)) {
+        [NSException raise:@"MMInvalidClassnameException" format:@"The classname provided does not reference a valid class."];
+    }
+    
+    
+    [self.dbQueue inDatabase:^(FMDatabase *db) {
+        
+        FMResultSet * result = nil;
+        
+        if(dictionary && [dictionary count] > 0){
+            result = [db executeQuery:query withParameterDictionary:dictionary];
+        }
+        else{
+            result = [db executeQuery:query];
+        }
+        
+        if (result) {
+            
+            ret = [NSMutableArray array];
+            
+            while ([result next]) {
+                
+                NSDictionary * values = [result resultDictionary];
+                
+                    //MMRecord * rec = [[ NSClassFromString(classname) alloc]initWithFillValues:values created:YES fromStore:self];
                 
                 MMRecord * rec = [self wrapValues:values intoRecordOfType:classname created:YES];
                 
@@ -778,7 +847,7 @@
     set = [self loadRecordOfType:req.className withResultsOfQuery:[self queryWithRequest:req countOnly:false] withParameterDictionary:req.sqlBindValues];
     
     
-    set.total = [self loadCountOfRequest:[self queryWithRequest:req countOnly:true]];
+    set.total = [self loadCountOfRequest:[self queryWithRequest:req countOnly:true] withParameterDictionary:req.sqlBindValues];
     
     //}];
     
