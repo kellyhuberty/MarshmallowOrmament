@@ -7,6 +7,7 @@
 //
 
 #import "MMResultsSet.h"
+#import "MMUtility.h"
 
 @implementation MMResultsSet
 
@@ -31,6 +32,34 @@
 //    
 //    
 //}
+
+
++(MMResultsSet *)mergeWithResultSet:(MMResultsSet *)aSet withSet:(MMResultsSet *)bSet{
+    
+    MMResultsSet * a = [aSet copy];
+    MMResultsSet * b = [bSet copy];
+    
+    MMAutorelease(a);
+    MMAutorelease(b);
+    
+    if (a.count + a.offset == b.offset){
+        
+        [a addObjectsFromArray:b];
+        
+        return a;
+        
+    }
+    else if (b.count + b.offset == a.offset){
+    
+        [b addObjectsFromArray:a];
+        return b;
+        
+    }
+    
+    
+    return nil;
+    
+}
 
 
 

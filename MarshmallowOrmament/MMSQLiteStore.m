@@ -768,7 +768,7 @@
     
     //FMDatabase * db = [self db];
     
-    MMSet * __block set = MMAutorelease([[MMRecordSet alloc]init]);
+    MMResultsSet * __block set = MMAutorelease([[MMResultsSet alloc]init]);
     
     //[self.dbQueue inDatabase:^(FMDatabase * db){
         

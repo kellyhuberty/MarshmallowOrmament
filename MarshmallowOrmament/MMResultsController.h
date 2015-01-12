@@ -1,0 +1,55 @@
+//
+//  MMResultsController.h
+//  Pods
+//
+//  Created by Kelly Huberty on 1/6/15.
+//
+//
+
+#import <Foundation/Foundation.h>
+#import <CoreData/CoreData.h>
+#import "MMRequestable.h"
+#import "MMSet.h"
+@interface MMResultsController : NSObject{
+    
+    id<MMRequestable> _request;
+    MMSet * _results;
+    MMSet * _sections;
+    
+    
+    
+}
+@property(nonatomic, retain)NSSortDescriptor * resultsSort;
+@property(nonatomic, retain)NSSortDescriptor * sectionSort;
+
+@property(nonatomic, readonly) NSArray *sectionIndexTitles;
+@property(nonatomic, readonly) NSArray *fetchedObjects;
+@property(nonatomic, readonly) NSArray *sections;
+
+
+
+-(instancetype)initWithRequest:(id<MMRequestable>)request;
+
+
+
+- (id)objectAtIndexPath:(NSIndexPath *)indexPath;
+
+- (id)objectAtIndexPath:(NSIndexPath *)indexPath
+             faultBlock:(void (^)(NSIndexPath * path))faultBlock
+        completionBlock:(void (^)(NSIndexPath * path, id object))completionBlock;
+
+
+- (id)sectionAtIndex:(NSInteger)index;
+- (id)sectionAtIndex:(NSInteger)index
+          faultBlock:(void (^)(NSInteger * index))faultBlock
+     completionBlock:(void (^)(NSInteger * index, id object))completionBlock;
+
+
+- (NSIndexPath *)indexPathForObject:(id)object;
+- (NSInteger)sectionForSectionIndexTitle:(NSString *)title
+                                 atIndex:(NSInteger)sectionIndex;
+- (NSString *)sectionIndexTitleForSectionName:(NSString *)sectionName;
+
+
+
+@end

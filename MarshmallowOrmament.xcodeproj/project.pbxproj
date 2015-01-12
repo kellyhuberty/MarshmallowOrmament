@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C7199DCC1A637ACF00903D7C /* MMResultsController.m in Sources */ = {isa = PBXBuildFile; fileRef = C7199DC91A637ACF00903D7C /* MMResultsController.m */; };
+		C7199DCD1A637ACF00903D7C /* MMResultsController.m in Sources */ = {isa = PBXBuildFile; fileRef = C7199DC91A637ACF00903D7C /* MMResultsController.m */; };
+		C7199DCE1A637ACF00903D7C /* MMResultsSection.m in Sources */ = {isa = PBXBuildFile; fileRef = C7199DCB1A637ACF00903D7C /* MMResultsSection.m */; };
+		C7199DCF1A637ACF00903D7C /* MMResultsSection.m in Sources */ = {isa = PBXBuildFile; fileRef = C7199DCB1A637ACF00903D7C /* MMResultsSection.m */; };
 		C731719D19873350005F27E6 /* MMConditional.m in Sources */ = {isa = PBXBuildFile; fileRef = C731719C19873350005F27E6 /* MMConditional.m */; };
 		C73171A01987348D005F27E6 /* MMCondition.m in Sources */ = {isa = PBXBuildFile; fileRef = C731719F1987348D005F27E6 /* MMCondition.m */; };
 		C73171A2198899D2005F27E6 /* MMConditionalTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C73171A1198899D2005F27E6 /* MMConditionalTests.m */; };
@@ -88,6 +92,10 @@
 
 /* Begin PBXFileReference section */
 		B21B32DAD641BEE99523B067 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		C7199DC81A637ACF00903D7C /* MMResultsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMResultsController.h; sourceTree = "<group>"; };
+		C7199DC91A637ACF00903D7C /* MMResultsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMResultsController.m; sourceTree = "<group>"; };
+		C7199DCA1A637ACF00903D7C /* MMResultsSection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMResultsSection.h; sourceTree = "<group>"; };
+		C7199DCB1A637ACF00903D7C /* MMResultsSection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMResultsSection.m; sourceTree = "<group>"; };
 		C731719B19873350005F27E6 /* MMConditional.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMConditional.h; sourceTree = "<group>"; };
 		C731719C19873350005F27E6 /* MMConditional.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMConditional.m; sourceTree = "<group>"; };
 		C731719E1987348D005F27E6 /* MMCondition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMCondition.h; sourceTree = "<group>"; };
@@ -226,6 +234,17 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		C7199DBF1A637A8F00903D7C /* ResultsControllers */ = {
+			isa = PBXGroup;
+			children = (
+				C7199DC81A637ACF00903D7C /* MMResultsController.h */,
+				C7199DC91A637ACF00903D7C /* MMResultsController.m */,
+				C7199DCA1A637ACF00903D7C /* MMResultsSection.h */,
+				C7199DCB1A637ACF00903D7C /* MMResultsSection.m */,
+			);
+			name = ResultsControllers;
+			sourceTree = "<group>";
+		};
 		C74388FB1963D134000D50AF = {
 			isa = PBXGroup;
 			children = (
@@ -295,6 +314,7 @@
 				C7B9C654199DA6FF0036F89B /* MMAutoRelatedEntity.h */,
 				C7B9C655199DA6FF0036F89B /* MMAutoRelatedEntity.m */,
 				C774FA391976F40300CDBCB8 /* MMRelationship.h */,
+				C7199DBF1A637A8F00903D7C /* ResultsControllers */,
 				C774FA3A1976F40300CDBCB8 /* MMRelationship.m */,
 				C787917319812F7800C31EA7 /* MMRelation.h */,
 				C787917419812F7800C31EA7 /* MMRelation.m */,
@@ -564,12 +584,14 @@
 				C78852C319D8AE800004D029 /* MMRequestController.m in Sources */,
 				C73171A01987348D005F27E6 /* MMCondition.m in Sources */,
 				C774FA3B1976F40300CDBCB8 /* MMRelationship.m in Sources */,
+				C7199DCC1A637ACF00903D7C /* MMResultsController.m in Sources */,
 				C733B4741979830300116BBC /* MMSQLiteRequest.m in Sources */,
 				C74389351963E458000D50AF /* MMRecord.m in Sources */,
 				C7A3462B1965C66100EC08BB /* MMService.m in Sources */,
 				C744E38C196474DC006A1BA5 /* MMORMUtility.m in Sources */,
 				C7AF99091A4DBC8D0093835D /* MMCouchbaseStore.m in Sources */,
 				C7B9C656199DA6FF0036F89B /* MMAutoRelatedEntity.m in Sources */,
+				C7199DCE1A637ACF00903D7C /* MMResultsSection.m in Sources */,
 				C731719D19873350005F27E6 /* MMConditional.m in Sources */,
 				C7A0C4F3196598BF009EB4E1 /* MMEntity.m in Sources */,
 				C7A346301965F38400EC08BB /* MMOrmamentManager.m in Sources */,
@@ -594,6 +616,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C7199DCD1A637ACF00903D7C /* MMResultsController.m in Sources */,
 				C7AF99061A4A22030093835D /* MMAutoSchemaTests.m in Sources */,
 				C73171A2198899D2005F27E6 /* MMConditionalTests.m in Sources */,
 				C765563E198419BE00F7DFDD /* MMRequestTests.m in Sources */,
@@ -609,6 +632,7 @@
 				C7AF99011A4A204E0093835D /* TSANotebook.m in Sources */,
 				C7AF98FE1A4A20320093835D /* TSANote.m in Sources */,
 				C7A346111965B46500EC08BB /* OrmamentTests.m in Sources */,
+				C7199DCF1A637ACF00903D7C /* MMResultsSection.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
