@@ -277,23 +277,19 @@
 
 -(int)loadCountOfRequest:(NSString *)query withParameterDictionary:(NSDictionary *)dictionary{
     
-        //MMResultsSet * array = nil;
+    int count = MMResultsSetNoOffset;
     
     NSError * error = nil;
     
-    if(!(array = [self loadRecordOfType:classname withResultsOfQuery:query withParameterDictionary:dictionary error:&error])){
-        
-        [NSException raise:@"MMInvalidSQLQueryException" format:@"The query performed on this sqlite database is failing. Error:%@", [error localizedDescription]];
-        
-    }
-    
-    return array;
+    count = [self loadCountOfRequest:query withParameterDictionary:dictionary error:&error];
+
+    return count;
     
 }
 
 -(MMResultsSet *)loadRecordOfType:(NSString *)classname withResultsOfQuery:(NSString *)query withParameterDictionary:(NSDictionary *)dictionary error:(NSError **)error{
     
-    NSMutableArray * __block ret;
+    MMResultsSet * __block ret;
     
     if (! NSClassFromString(classname)) {
         [NSException raise:@"MMInvalidClassnameException" format:@"The classname provided does not reference a valid class."];
@@ -340,18 +336,19 @@
         
     }];
     
-    return [MMResultsSet arrayWithArray:ret];
+    MMResultsSet * resultSet = MMAutorelease([[MMResultsSet alloc]init]);;
+    
+    [resultSet addObjectsFromArray:ret];
+    
+    return resultSet;
 }
 
 
--(MMResultsSet *)loadCountOfRequest:(NSString *)query withParameterDictionary:(NSDictionary *)dictionary error:(NSError **)error{
+-(int)loadCountOfRequest:(NSString *)query withParameterDictionary:(NSDictionary *)dictionary error:(NSError **)error{
     
     NSMutableArray * __block ret;
     
-    if (! NSClassFromString(classname)) {
-        [NSException raise:@"MMInvalidClassnameException" format:@"The classname provided does not reference a valid class."];
-    }
-    
+    int __block count = MMResultsSetNoTotal;
     
     [self.dbQueue inDatabase:^(FMDatabase *db) {
         
@@ -368,21 +365,24 @@
             
             ret = [NSMutableArray array];
             
-            while ([result next]) {
+            if ([result next]) {
                 
                 NSDictionary * values = [result resultDictionary];
                 
                     //MMRecord * rec = [[ NSClassFromString(classname) alloc]initWithFillValues:values created:YES fromStore:self];
                 
-                MMRecord * rec = [self wrapValues:values intoRecordOfType:classname created:YES];
+                //MMRecord * rec = [self wrapValues:values intoRecordOfType:classname created:YES];
                 
-                [ret addObject:rec];
+                //[ret addObject:rec];
                 
-                MMRelease(rec);
+                //MMRelease(rec);
                 
+                count = [(NSNumber *)values[@"count"] intValue];
+
+                [result close];
             }
             
-            [result close];
+
             
         }
         else{
@@ -393,7 +393,7 @@
         
     }];
     
-    return [MMResultsSet arrayWithArray:ret];
+    return count;
 }
 
 
@@ -802,7 +802,7 @@
     }
     else if (onlyCount){
         
-        sqlSelect = @"COUNT(*)";
+        sqlSelect = @"COUNT(*) AS count";
         
     }
     if (!sqlFrom) {
@@ -844,10 +844,12 @@
         
         //[set addObjectsFromArray:[self loadRecordOfType:req.className withResultsOfQuery:[self queryWithRequest:req countOnly:false] withParameterDictionary:req.sqlBindValues]];
         
-    set = [self loadRecordOfType:req.className withResultsOfQuery:[self queryWithRequest:req countOnly:false] withParameterDictionary:req.sqlBindValues];
+    set = [self loadRecordOfType:req.className withResultsOfQuery:[self queryWithRequest:req countOnly:false] withParameterDictionary:req.sqlBindValues error: error];
     
     
-    set.total = [self loadCountOfRequest:[self queryWithRequest:req countOnly:true] withParameterDictionary:req.sqlBindValues];
+    [set setTotal:
+        [self loadCountOfRequest:[self queryWithRequest:(MMSQLiteRequest *)req countOnly:true] withParameterDictionary:req.sqlBindValues error: error]
+     ];
     
     //}];
     

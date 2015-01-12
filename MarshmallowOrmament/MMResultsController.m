@@ -7,11 +7,11 @@
 //
 
 #import "MMResultsController.h"
-#import "MMRequestable.h"
+//#import "MMRequestable.h"
 #import "MMUtility.h"
 @implementation MMResultsController
 
--(instancetype)initWithRequest:(id<MMRequestable>)request{
+-(instancetype)initWithRequest:(MMRequest *)request{
     
     if(self = [self init]){
         
@@ -32,25 +32,23 @@
 -(BOOL)load:(NSError **)error{
     
     
-    _request
+    //_request
     
     
+    return YES;
 }
 
--(BOOL)load:(NSError **)error completionBlock:(void (^)(BOOL success, NSError ** error))compBlock{
+-(void)load:(NSError **)error completionBlock:(void (^)(BOOL success, NSError ** error))compBlock{
     
-    [_request executeWithCompletionBlock:^void (MMSet *set, NSError *__autoreleasing *error) {
+    [_request executeWithCompletionBlock:^void (MMResultsSet *set, NSError *__autoreleasing *error) {
         
         BOOL suc = (set == nil?false:true);
         
-        _results = 
+        _results = [MMResultsSet mergeResultsSet:_results withSet:set];
         
         compBlock(suc, error);
     
     }];
-    
-    
-    
     
 }
 

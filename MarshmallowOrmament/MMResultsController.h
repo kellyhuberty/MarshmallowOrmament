@@ -8,12 +8,12 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
-#import "MMRequestable.h"
+#import "MMRequest.h"
 #import "MMSet.h"
 @interface MMResultsController : NSObject{
     
-    id<MMRequestable> _request;
-    MMSet * _results;
+    MMRequest * _request;
+    MMResultsSet * _results;
     MMSet * _sections;
     
     
@@ -28,21 +28,30 @@
 
 
 
--(instancetype)initWithRequest:(id<MMRequestable>)request;
+-(instancetype)initWithRequest:(MMRequest *)request;
+
+
+
+
+
+-(BOOL)performFetch:(NSError **)error;
+-(BOOL)load:(NSError **)error;
+-(void)load:(NSError **)error completionBlock:(void (^)(BOOL success, NSError ** error))compBlock;
 
 
 
 - (id)objectAtIndexPath:(NSIndexPath *)indexPath;
-
 - (id)objectAtIndexPath:(NSIndexPath *)indexPath
              faultBlock:(void (^)(NSIndexPath * path))faultBlock
         completionBlock:(void (^)(NSIndexPath * path, id object))completionBlock;
+
 
 
 - (id)sectionAtIndex:(NSInteger)index;
 - (id)sectionAtIndex:(NSInteger)index
           faultBlock:(void (^)(NSInteger * index))faultBlock
      completionBlock:(void (^)(NSInteger * index, id object))completionBlock;
+
 
 
 - (NSIndexPath *)indexPathForObject:(id)object;

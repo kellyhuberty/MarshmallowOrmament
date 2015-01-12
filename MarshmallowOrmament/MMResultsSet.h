@@ -33,9 +33,13 @@ enum {
 
 //-()setOffset:(int)offset totalResults:(int)totalResults;
 
++(MMResultsSet *)mergeResultsSet:(MMResultsSet *)aSet withSet:(MMResultsSet *)bSet;
+
+
 -(MMSet *)groupAtIndex:(int)index;
 
-
+-(void)setTotal:(int)total;
+-(void)setOffset:(int)offset;
 
 
 @end

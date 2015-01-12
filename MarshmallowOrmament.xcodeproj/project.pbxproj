@@ -8,9 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		C7199DCC1A637ACF00903D7C /* MMResultsController.m in Sources */ = {isa = PBXBuildFile; fileRef = C7199DC91A637ACF00903D7C /* MMResultsController.m */; };
-		C7199DCD1A637ACF00903D7C /* MMResultsController.m in Sources */ = {isa = PBXBuildFile; fileRef = C7199DC91A637ACF00903D7C /* MMResultsController.m */; };
 		C7199DCE1A637ACF00903D7C /* MMResultsSection.m in Sources */ = {isa = PBXBuildFile; fileRef = C7199DCB1A637ACF00903D7C /* MMResultsSection.m */; };
-		C7199DCF1A637ACF00903D7C /* MMResultsSection.m in Sources */ = {isa = PBXBuildFile; fileRef = C7199DCB1A637ACF00903D7C /* MMResultsSection.m */; };
 		C731719D19873350005F27E6 /* MMConditional.m in Sources */ = {isa = PBXBuildFile; fileRef = C731719C19873350005F27E6 /* MMConditional.m */; };
 		C73171A01987348D005F27E6 /* MMCondition.m in Sources */ = {isa = PBXBuildFile; fileRef = C731719F1987348D005F27E6 /* MMCondition.m */; };
 		C73171A2198899D2005F27E6 /* MMConditionalTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C73171A1198899D2005F27E6 /* MMConditionalTests.m */; };
@@ -616,7 +614,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C7199DCD1A637ACF00903D7C /* MMResultsController.m in Sources */,
 				C7AF99061A4A22030093835D /* MMAutoSchemaTests.m in Sources */,
 				C73171A2198899D2005F27E6 /* MMConditionalTests.m in Sources */,
 				C765563E198419BE00F7DFDD /* MMRequestTests.m in Sources */,
@@ -632,7 +629,6 @@
 				C7AF99011A4A204E0093835D /* TSANotebook.m in Sources */,
 				C7AF98FE1A4A20320093835D /* TSANote.m in Sources */,
 				C7A346111965B46500EC08BB /* OrmamentTests.m in Sources */,
-				C7199DCF1A637ACF00903D7C /* MMResultsSection.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

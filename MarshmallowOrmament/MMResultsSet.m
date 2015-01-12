@@ -34,7 +34,14 @@
 //}
 
 
-+(MMResultsSet *)mergeWithResultSet:(MMResultsSet *)aSet withSet:(MMResultsSet *)bSet{
++(MMResultsSet *)mergeResultsSet:(MMResultsSet *)aSet withSet:(MMResultsSet *)bSet{
+    
+    if (aSet == nil) {
+        return bSet;
+    }
+    if (bSet == nil) {
+        return aSet;
+    }
     
     MMResultsSet * a = [aSet copy];
     MMResultsSet * b = [bSet copy];
@@ -56,7 +63,6 @@
         
     }
     
-    
     return nil;
     
 }
@@ -64,7 +70,15 @@
 
 
 
-
+-(void)setTotal:(int)total{
+    
+    @synchronized(self){
+        
+        _total = total;
+        
+    }
+    
+}
 
 
 

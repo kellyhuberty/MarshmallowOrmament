@@ -70,7 +70,7 @@ typedef void (^completionBlock)(MMSet *, NSError *__autoreleasing *);
 -(id)init;
 -(id)initWithService:(MMService *)store classname:(NSString *)className;
 
--(void)executeWithCompletionBlock:(void (^)(MMRecordSet* set, NSError ** error))block;
+-(void)executeWithCompletionBlock:(void (^)(MMResultsSet* set, NSError ** error))block;
 
 -(void)executeOnStore:(MMService *)store completionBlock:(void (^)(MMRecordSet* set, NSError ** error))block;
 -(void)completedWithResults:(MMSet *)set error:(NSError**)error;
