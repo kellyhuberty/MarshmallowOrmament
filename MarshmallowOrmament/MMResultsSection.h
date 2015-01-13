@@ -8,11 +8,15 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
+#import "MMSet.h"
 @interface MMResultsSection : NSObject<NSFetchedResultsSectionInfo>
 
+/* Section Identifier
+ */
+@property (nonatomic, retain) NSObject * sectionIdentifer;
 /* Name of the section
  */
-@property (nonatomic, readonly) NSString *name;
+@property (nonatomic, retain) NSString *name;
 
 /* Title of the section (used when displaying the index)
  */
@@ -24,6 +28,6 @@
 
 /* Returns the array of objects in the section.
  */
-@property (nonatomic, readonly) NSArray *objects;
+@property (nonatomic, readonly) MMSet *objects;
 
 @end

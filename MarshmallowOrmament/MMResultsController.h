@@ -10,16 +10,21 @@
 #import <CoreData/CoreData.h>
 #import "MMRequest.h"
 #import "MMSet.h"
+#import "MMSectionDescriptor.h"
 @interface MMResultsController : NSObject{
     
     MMRequest * _request;
     MMResultsSet * _results;
     MMSet * _sections;
     
-    
+    MMSectionDescriptor * _sectionDescriptor;
     
 }
+
+@property(nonatomic, retain)MMSectionDescriptor * sectionDescriptor;
+
 @property(nonatomic, retain)NSSortDescriptor * resultsSort;
+
 @property(nonatomic, retain)NSSortDescriptor * sectionSort;
 
 @property(nonatomic, readonly) NSArray *sectionIndexTitles;

@@ -98,9 +98,9 @@
     
 }
 
--(MMSet *)loadRequest:(NSError**) error{
+-(MMResultsSet *)loadRequest:(NSError**) error{
     
-    MMSet * set = [_service executeReadWithRequest:self error:error];
+    MMResultsSet * set = [_service executeReadWithRequest:self error:error];
     
     MMLog(@"RSULT SET %@", set);
     

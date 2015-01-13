@@ -41,7 +41,7 @@
 
 +(NSString *)queryWithRequest:(MMRequest *)req;
 
--(MMSet *)executeReadWithRequest:(MMRequest *)req error:(NSError **)error;
+-(MMResultsSet *)executeReadWithRequest:(MMRequest *)req error:(NSError **)error;
 
 -(BOOL)executeUpdateOnRecord:(MMRecord *)rec withValues:(NSMutableDictionary *)values error:(NSError **)error;
 

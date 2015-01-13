@@ -10,4 +10,24 @@
 
 @implementation MMResultsSection
 
+-(instancetype)init{
+    
+    if(self = [super init]){
+        
+        
+        _objects = [[MMSet alloc]init];
+        
+        
+    }
+    return self;
+    
+}
+
+
+-(NSUInteger)numberOfObjects{
+    
+    return [_objects count];
+    
+}
+
 @end

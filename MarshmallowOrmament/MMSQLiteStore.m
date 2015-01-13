@@ -833,7 +833,7 @@
     
 }
 
--(MMSet *)executeReadWithRequest:(MMRequest *)req error:(NSError **)error{
+-(MMResultsSet *)executeReadWithRequest:(MMRequest *)req error:(NSError **)error{
     
     //FMDatabase * db = [self db];
     

@@ -26,6 +26,7 @@
 		C744E38C196474DC006A1BA5 /* MMORMUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = C744E38B196474DC006A1BA5 /* MMORMUtility.m */; };
 		C75E75F319C4E4E100B2B825 /* OrmamentTests-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C75E75F219C4E4E100B2B825 /* OrmamentTests-Info.plist */; };
 		C765563E198419BE00F7DFDD /* MMRequestTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C765563D198419BE00F7DFDD /* MMRequestTests.m */; };
+		C76F9FAD1A64F1A90086C4C9 /* MMSectionDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = C76F9FAC1A64F1A90086C4C9 /* MMSectionDescriptor.m */; };
 		C774FA3B1976F40300CDBCB8 /* MMRelationship.m in Sources */ = {isa = PBXBuildFile; fileRef = C774FA3A1976F40300CDBCB8 /* MMRelationship.m */; };
 		C787917519812F7800C31EA7 /* MMRelation.m in Sources */ = {isa = PBXBuildFile; fileRef = C787917419812F7800C31EA7 /* MMRelation.m */; };
 		C78852C019D701600004D029 /* MMGroupDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = C78852BF19D701600004D029 /* MMGroupDescriptor.m */; };
@@ -129,6 +130,8 @@
 		C744E38B196474DC006A1BA5 /* MMORMUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMORMUtility.m; sourceTree = "<group>"; };
 		C75E75F219C4E4E100B2B825 /* OrmamentTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "OrmamentTests-Info.plist"; path = "OrmamentTests/OrmamentTests-Info.plist"; sourceTree = "<group>"; };
 		C765563D198419BE00F7DFDD /* MMRequestTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMRequestTests.m; sourceTree = "<group>"; };
+		C76F9FAB1A64F1A90086C4C9 /* MMSectionDescriptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMSectionDescriptor.h; sourceTree = "<group>"; };
+		C76F9FAC1A64F1A90086C4C9 /* MMSectionDescriptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMSectionDescriptor.m; sourceTree = "<group>"; };
 		C774FA391976F40300CDBCB8 /* MMRelationship.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMRelationship.h; sourceTree = "<group>"; };
 		C774FA3A1976F40300CDBCB8 /* MMRelationship.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMRelationship.m; sourceTree = "<group>"; };
 		C787917319812F7800C31EA7 /* MMRelation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMRelation.h; sourceTree = "<group>"; };
@@ -235,6 +238,8 @@
 		C7199DBF1A637A8F00903D7C /* ResultsControllers */ = {
 			isa = PBXGroup;
 			children = (
+				C76F9FAB1A64F1A90086C4C9 /* MMSectionDescriptor.h */,
+				C76F9FAC1A64F1A90086C4C9 /* MMSectionDescriptor.m */,
 				C7199DC81A637ACF00903D7C /* MMResultsController.h */,
 				C7199DC91A637ACF00903D7C /* MMResultsController.m */,
 				C7199DCA1A637ACF00903D7C /* MMResultsSection.h */,
@@ -586,6 +591,7 @@
 				C733B4741979830300116BBC /* MMSQLiteRequest.m in Sources */,
 				C74389351963E458000D50AF /* MMRecord.m in Sources */,
 				C7A3462B1965C66100EC08BB /* MMService.m in Sources */,
+				C76F9FAD1A64F1A90086C4C9 /* MMSectionDescriptor.m in Sources */,
 				C744E38C196474DC006A1BA5 /* MMORMUtility.m in Sources */,
 				C7AF99091A4DBC8D0093835D /* MMCouchbaseStore.m in Sources */,
 				C7B9C656199DA6FF0036F89B /* MMAutoRelatedEntity.m in Sources */,
