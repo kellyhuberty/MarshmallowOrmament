@@ -9,7 +9,8 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 #import "MMSet.h"
-@interface MMResultsSection : NSObject<NSFetchedResultsSectionInfo>
+#import "MMResultsControllerAbstract.h"
+@interface MMResultsSection : NSObject<MMResultsSectionInfo>
 
 /* Section Identifier
  */

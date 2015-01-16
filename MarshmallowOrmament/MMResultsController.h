@@ -11,7 +11,8 @@
 #import "MMRequest.h"
 #import "MMSet.h"
 #import "MMSectionDescriptor.h"
-@interface MMResultsController : NSObject{
+#import "MMResultsControllerAbstract.h"
+@interface MMResultsController : NSObject<MMResultsController>{
     
     MMRequest * _request;
     MMResultsSet * _results;
