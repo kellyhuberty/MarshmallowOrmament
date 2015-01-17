@@ -12,15 +12,32 @@
 #import "MMSet.h"
 #import "MMSectionDescriptor.h"
 #import "MMResultsControllerAbstract.h"
+#import "MMRecordLoadingPlaceholder.h"
+
+@protocol MMResultsControllerDelegate <NSObject>
+
+
+
+@end
+
+
 @interface MMResultsController : NSObject<MMResultsController>{
     
     MMRequest * _request;
     MMResultsSet * _results;
     MMSet * _sections;
     
+    MMRecordLoadingPlaceholder *_leader, *_trailer;
+    
     MMSectionDescriptor * _sectionDescriptor;
     
+    NSUInteger _initalOffset;
+    NSUInteger _loadThreashhold;
+    NSUInteger _pageSize;
+
 }
+
+
 
 @property(nonatomic, retain)MMSectionDescriptor * sectionDescriptor;
 
@@ -47,16 +64,16 @@
 
 
 - (id)objectAtIndexPath:(NSIndexPath *)indexPath;
-- (id)objectAtIndexPath:(NSIndexPath *)indexPath
-             faultBlock:(void (^)(NSIndexPath * path))faultBlock
-        completionBlock:(void (^)(NSIndexPath * path, id object))completionBlock;
+//- (id)objectAtIndexPath:(NSIndexPath *)indexPath
+//             faultBlock:(void (^)(NSIndexPath * path))faultBlock
+//        completionBlock:(void (^)(NSIndexPath * path, id object))completionBlock;
 
 
 
 - (id)sectionAtIndex:(NSInteger)index;
-- (id)sectionAtIndex:(NSInteger)index
-          faultBlock:(void (^)(NSInteger * index))faultBlock
-     completionBlock:(void (^)(NSInteger * index, id object))completionBlock;
+//- (id)sectionAtIndex:(NSInteger)index
+//          faultBlock:(void (^)(NSInteger * index))faultBlock
+//     completionBlock:(void (^)(NSInteger * index, id object))completionBlock;
 
 
 
