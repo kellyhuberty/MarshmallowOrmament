@@ -29,7 +29,7 @@
     if(self = [super init]){
 
         _sections = [[MMSet alloc] init];
-        [_sections addIndexForKey:@"sectionIdentifier" unique:YES];
+        [_sections addIndexForKey:@"sectionIdentifer" unique:YES];
         [_sections addIndexForKey:@"name" unique:YES];
         [_sections addIndexForKey:@"indexTitle" unique:YES];
         //[_sections addIndexForKey:@"" unique:YES];
@@ -68,9 +68,9 @@
 
 -(BOOL)load:(NSError **)error{
     
-    if (_request) {
-        <#statements#>
-    }
+//    if (_request) {
+//        <#statements#>
+//    }
     
     
     _results = [_request loadRequest:error];
@@ -109,14 +109,8 @@
     
     [_request executeWithCompletionBlock:^void (MMResultsSet *set, NSError *__autoreleasing *error) {
         
-        BOOL suc = (set == nil?false:true);
-        
-        [self preMergeProcessResults];
+        BOOL suc = [self integratePayload:set];
 
-        _results = [MMResultsSet mergeResultsSet:_results withSet:set];
-        
-        [self postMergeProcessResults];
-        
         compBlock(suc, error);
     
     }];
@@ -125,20 +119,39 @@
 
 -(BOOL)load:(NSError **)error limit:(NSUInteger)limit offset:(NSUInteger)offset{
     
+    _request.limit = limit;
+    _request.offset = offset;
+    
+    
     MMResultsSet *set = [_request loadRequest:error];
-        
-        BOOL suc = (set == nil?false:true);
+
+    BOOL suc = [self integratePayload:set];
     
-        [self preMergeProcessResults];
-    
-        _results = [MMResultsSet mergeResultsSet:_results withSet:set];
-        
-        [self postMergeProcessResults];
-    
-        
     return suc;
     
 }
+
+
+-(BOOL)integratePayload:(MMResultsSet *)set{
+    
+    BOOL suc = (set == nil?false:true);
+    
+    [self preMergeProcessResults];
+    
+    BOOL additional = (_results == nil?false:true);
+    
+    _results = [MMResultsSet mergeResultsSet:_results withSet:set];
+    
+    [self postMergeProcessResults];
+    
+    if (additional && _delegate && [(NSObject *)_delegate respondsToSelector:@selector(controller:didLoadAdditionalResults:)]) {
+        [_delegate controller:self didLoadAdditionalResults:set];
+    }
+    
+    return suc;
+    
+}
+
 
 -(void)preMergeProcessResults{
     
@@ -174,6 +187,8 @@
         
     }
     
+
+    
 }
 
 
@@ -182,7 +197,7 @@
 
 -(void)addObject:(NSObject *)obj toSectionWithIdentifer:(NSObject *)sectionIdentifier withTitle:(NSString *)sectionTitle{
     
-    MMResultsSection * section = [_sections objectWithValue:sectionIdentifier forKey:@"sectionIdentifier"];
+    MMResultsSection * section = [_sections objectWithValue:sectionIdentifier forKey:@"sectionIdentifer"];
     
     if (!section) {
         section = [[MMResultsSection alloc]init];
@@ -190,7 +205,10 @@
         section.name = sectionTitle;
         section.sectionIdentifer = sectionIdentifier;
         
+        [_sections addObject:section];
     }
+    
+    NSLog(@"_sections: %@", _sections);
     
     [section.objects addObject:obj];
     
