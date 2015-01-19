@@ -36,30 +36,38 @@
 
 +(MMResultsSet *)mergeResultsSet:(MMResultsSet *)aSet withSet:(MMResultsSet *)bSet{
     
-    if (aSet == nil) {
+    if (aSet == nil || [aSet count] == 0) {
         return bSet;
     }
-    if (bSet == nil) {
+    if (bSet == nil || [bSet count] == 0) {
         return aSet;
     }
     
-    MMResultsSet * a = [aSet copy];
-    MMResultsSet * b = [bSet copy];
+    MMResultsSet * a = aSet;
+    MMResultsSet * b = bSet;
     
-    MMAutorelease(a);
-    MMAutorelease(b);
+    MMResultsSet * retSet = [[MMResultsSet alloc]init];
     
     if (a.count + a.offset == b.offset){
         
-        [a addObjectsFromArray:b];
+        [retSet addObjectsFromArray:a];
+        [retSet addObjectsFromArray:b];
         
-        return a;
+        retSet.total = a.total;
+        retSet.offset = a.offset;
+
+        return retSet;
         
     }
     else if (b.count + b.offset == a.offset){
     
-        [b addObjectsFromArray:a];
-        return b;
+        [retSet addObjectsFromArray:b];
+        [retSet addObjectsFromArray:a];
+        
+        retSet.total = b.total;
+        retSet.offset = b.offset;
+        
+        return retSet;
         
     }
     
@@ -86,7 +94,7 @@
     
     @synchronized(self){
         
-        if(MMResultsSetNoTotal){
+        if(_total == MMResultsSetNoTotal){
             
             return [super count];
             

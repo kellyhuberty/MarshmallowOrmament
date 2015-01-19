@@ -14,12 +14,12 @@
 #import "MMResultsControllerAbstract.h"
 #import "MMRecordLoadingPlaceholder.h"
 
-@protocol MMResultsControllerDelegate <NSObject>
 
+@protocol MMResultsControllerDelegate <NSFetchedResultsControllerDelegate>
 
+-(void)controller:(id<MMResultsController>)controller didLoadAdditionalResults:(MMResultsSet *)results;
 
 @end
-
 
 @interface MMResultsController : NSObject<MMResultsController>{
     
@@ -35,6 +35,8 @@
     NSUInteger _loadThreashhold;
     NSUInteger _pageSize;
 
+    id<MMResultsControllerDelegate> __unsafe_unretained _delegate;
+    
 }
 
 
@@ -49,7 +51,7 @@
 @property(nonatomic, readonly) NSArray *fetchedObjects;
 @property(nonatomic, readonly) NSArray *sections;
 
-
+@property(nonatomic, assign) id<MMResultsControllerDelegate> delegate;
 
 -(instancetype)initWithRequest:(MMRequest *)request;
 
@@ -58,6 +60,7 @@
 
 
 -(BOOL)performFetch:(NSError **)error;
+-(BOOL)initialLoad:(NSError **)error;
 -(BOOL)load:(NSError **)error;
 -(void)load:(NSError **)error completionBlock:(void (^)(BOOL success, NSError ** error))compBlock;
 
@@ -85,3 +88,9 @@
 
 
 @end
+
+
+
+
+
+

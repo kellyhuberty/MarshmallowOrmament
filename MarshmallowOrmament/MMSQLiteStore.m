@@ -551,7 +551,6 @@
     
     NSLog(@"SETT:%@", set);
     
-    
     return set;
 }
 
@@ -825,9 +824,9 @@
         [query appendFormat:@" WHERE %@", sqlWhere];
     }
     
-    if (sqlLimit) {
-        [query appendFormat:@" LIMIT %@", sqlLimit];
-    }
+//    if (sqlLimit) {
+//        [query appendFormat:@" LIMIT %@", sqlLimit];
+//    }
     
     return [NSString stringWithString:query];
     
@@ -846,6 +845,7 @@
         
     set = [self loadRecordOfType:req.className withResultsOfQuery:[self queryWithRequest:req countOnly:false] withParameterDictionary:req.sqlBindValues error: error];
     
+    set.offset = req.offset;
     
     [set setTotal:
         [self loadCountOfRequest:[self queryWithRequest:(MMSQLiteRequest *)req countOnly:true] withParameterDictionary:req.sqlBindValues error: error]
