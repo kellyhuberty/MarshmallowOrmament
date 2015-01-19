@@ -21,7 +21,12 @@
     
     [self removeFiles];
 
-    [MMOrmamentManager unsetVersionForSchema:@"noteit"];
+    [MMService unsetVersionForSchemaName:@"noteit" type:@"cloud"];
+    [MMService unsetVersionForSchemaName:@"noteit" type:@"store"];
+
+        //    [MMSchema unsetVersionForSchemaName:@"noteit"];
+
+    
     
     [MMOrmamentManager resetSharedManager];
     

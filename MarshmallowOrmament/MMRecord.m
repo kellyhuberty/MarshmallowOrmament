@@ -800,6 +800,9 @@ static void setRelationValueIMP(id self, SEL _cmd, id aValue) {
     NSArray * keys = nil;
     
     if ((keys = [[self entity] idKeys])) {
+        
+        NSLog(@"idKEys : %@", keys);
+        
         return keys;
     }
     

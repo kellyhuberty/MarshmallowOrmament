@@ -88,45 +88,9 @@
         
         NSError * error = nil;
         
-        if ( [[self class] currentVersionForSchemaName:schema.name] == nil ) {
-            //initial data build....
-            
-            NSLog(@"Building inital store for %@", schema.name);
-            
-            [[self class] buildServicesForSchema:schema error:&error];
-            
-        }
-        else{
         
-            if ( [schema.version compareVersion:[[self class] currentVersionForSchemaName:schema.name]] == NSOrderedDescending ) {
-                // downgrade schema...
-                
-//                MMSchema *newschema = [self schemaFromPlistPath:[NSString stringWithFormat:@"%@__%@",
-//                                                                 [NSString stringWithString:((NSDictionary *)obj)[@"name"] ],
-//                                                                 [MMVersionString stringWithString:((NSDictionary *)obj)[@"version"]]
-//                                                                 ]];
-                //MMSchema *newschema = [[self class] schemaFromName:[NSString stringWithString:((NSDictionary *)obj)[@"name"] ] version:[MMVersionString stringWithString:((NSDictionary *)obj)[@"version"]]];
-                
-                
-
-                [[self class] downgradeSchema:schema.name oldVersion:[[self class] currentVersionForSchemaName:schema.name] newVersion:schema.version error:&error];
-
-                
-            }
-            else if ( [schema.version compareVersion:[[self class] currentVersionForSchemaName:schema.name]] == NSOrderedAscending ) {
-                // upgrade schema...
-                
-                
-                //MMSchema * oldschema = [[self class] schemaFromName:[NSString stringWithString:((NSDictionary *)obj)[@"name"] ] version:[MMVersionString stringWithString:((NSDictionary *)obj)[@"version"]]];
-                
-                
-                [[self class] upgradeSchema:schema.name oldVersion:[[self class] currentVersionForSchemaName:schema.name] newVersion:schema.version error:&error];
-
-                
-            }
-            
-        }
         
+        [self _startSchemaServices:schema];
         
         [MMSchema registerSchema:schema];
 
@@ -135,8 +99,10 @@
     
 }
 
-
+#pragma mark Schema acquistion from file.
 +(MMSchema *)schemaFromName:(NSString *)name version:(NSString *)ver{
+    
+    NSLog(@"schemaFromName:%@ version:%@", name, ver);
     
     NSLog(@"schema name file:%@", [NSString stringWithFormat:@"%@__%@", name, [[MMVersionString stringWithString:ver] pathString]]);
     
@@ -153,28 +119,29 @@
 }
 
 
++(NSString *)schemaIdentifierStringFromName:(NSString *)name version:(NSString *)ver{
+    
+        //NSLog(@"schema name file:%@", [NSString stringWithFormat:@"%@__%@", name, [[MMVersionString stringWithString:ver] pathString]]);
+    
+        //return [self schemaFromPlistPath: [NSString stringWithFormat:@"%@__%@", name, [[MMVersionString stringWithString:ver] pathString]]];
+    
+    return [NSString stringWithFormat:@"%@__%@", name, [[MMVersionString stringWithString:ver] pathString]];
+    
+}
+
 +(NSString *)schemaPathWithName:(NSString *)name version:(NSString *)ver{
     
     return [self bundlePlistPathWithName:[self schemaIdentifierStringFromName:name version:ver]];
     
 }
 
+
+
 +(NSString *)bundlePlistPathWithName:(NSString *)name{
     
     
     return [[NSBundle bundleForClass:[self class]] pathForResource:name ofType:@"plist"];
 
-    
-}
-
-
-+(NSString *)schemaIdentifierStringFromName:(NSString *)name version:(NSString *)ver{
-    
-    //NSLog(@"schema name file:%@", [NSString stringWithFormat:@"%@__%@", name, [[MMVersionString stringWithString:ver] pathString]]);
-    
-    //return [self schemaFromPlistPath: [NSString stringWithFormat:@"%@__%@", name, [[MMVersionString stringWithString:ver] pathString]]];
-    
-    return [NSString stringWithFormat:@"%@__%@", name, [[MMVersionString stringWithString:ver] pathString]];
     
 }
 
@@ -234,46 +201,6 @@
 //    
 //}
 
-+(MMVersionString *)currentVersionForSchemaName:(NSString *)schemaName{
-    
-    NSDictionary * dict = [[MMPreferences valueForKey:@"MMSchemaVersions"] mutableCopy];
-    if (dict[schemaName]) {
-        return [MMVersionString stringWithString:dict[schemaName]];
-    }
-    return nil;
-    
-}
-
-+(void)setCurrentVersion:(MMVersionString *)version forSchemaName:(NSString *)schemaName{
-    
-     NSMutableDictionary * dict = [[MMPreferences valueForKey:@"MMSchemaVersions"] mutableCopy ];
-    
-    if (!dict) {
-        dict = [NSMutableDictionary dictionary];
-    }
-    
-    
-    dict[schemaName] = version;
-    
-    [MMPreferences setValue:dict forKey:@"MMSchemaVersions"];
-    
-}
-
-
-+(void)unsetVersionForSchema:(NSString *)schemaName{
-    
-    NSMutableDictionary * dict = [[MMPreferences valueForKey:@"MMSchemaVersions"] mutableCopy];
-    
-    if (!dict) {
-        dict = [NSMutableDictionary dictionary];
-    }
-    
-    [dict removeObjectForKey:schemaName];
-    
-    [MMPreferences setValue:dict forKey:@"MMSchemaVersions"];
-    
-}
-
 
 +(BOOL)checkSchemas:(NSError **)error{
     
@@ -288,65 +215,100 @@
     return nil;
 }
 
-+(void)buildServicesForSchema:(MMSchema *)schema error:(NSError **)error{
++(void)buildServiceType:(NSString *)serviceType forSchema:(MMSchema *)schema error:(NSError **)error{
     
-    if (schema.storeClassName) {
+    NSString * serviceClassName;
+    
+    if ((serviceClassName = [schema valueForKey:[NSString stringWithFormat:@"%@ClassName", serviceType]])) {
     
         
-        if (NSClassFromString(schema.storeClassName)) {
-            MMService * store = [[NSClassFromString(schema.storeClassName) alloc] initWithSchema:(schema)];
+        if (NSClassFromString(serviceClassName)) {
+            MMService * store = [[NSClassFromString(serviceClassName) alloc] initWithSchema:(schema)];
             
             BOOL suc = [store build:&error];
             
             if(!suc){
                 
-                MMError(@"Error during build for class %@", schema.storeClassName);
+                MMError(@"Error during build for class %@", serviceClassName);
                 exit(1);
-            }
-            
-        }
-        else{
-        
-            MMError(@"Unable to build valid store for class %@", schema.storeClassName);
-        }
-
-    }
-    
-    if (schema.cloudClassName) {
-        
-        if (NSClassFromString(schema.cloudClassName)) {
-
-            MMService * cloud = [[NSClassFromString(schema.cloudClassName) alloc] initWithSchema:(schema)];
-            
-            BOOL suc = [cloud build:&error];
-            
-            if(!suc){
+            }else{
                 
-                MMError(@"Error during build for class %@", schema.cloudClassName);
-                exit(1);
+                [MMService setCurrentVersion:schema.version forSchemaName:schema.name type:serviceType];
+                
             }
             
         }
         else{
-            
-            MMError(@"Unable to build valid store for class %@", schema.cloudClassName);
-        }
-    
-    }
         
-    [self setCurrentVersion:schema.version forSchemaName:schema.name];
+            MMError(@"Unable to build valid store for class %@", serviceType);
+        }
+
+    }
+    
+        
+        //    [self setCurrentVersion:schema.version forSchemaName:schema.name];
     
 }
 
-+(void)resetStoreForStoreForSchema:(MMSchema *)schema error:(NSError **)error{
+
+-(void)_startSchemaServices:(MMSchema *)schema{
     
-    MMService * store = [[NSClassFromString(schema.storeClassName) alloc] initWithSchema:(schema)];
+    NSArray * serviceTypes = @[@"store", @"cloud"];
     
-    [store build:&error];
     
-    [self setCurrentVersion:schema.version forSchemaName:schema.name];
+    
+    
+    for (NSString * type in serviceTypes) {
+        
+        
+        NSError * error;
+        
+        NSString * classname = [schema valueForKey:[NSString stringWithFormat:@"%@ClassName", type]];
+        
+        if (!classname) {
+            continue;
+        }
+    
+        NSLog(@"currentVersionForSchema %@" , [MMService currentVersionForSchemaName:schema.name type:type]);
+        
+        if ( [MMService currentVersionForSchemaName:schema.name type:type] == nil ) {
+                //initial data build....
+            
+            NSLog(@"Building inital store for %@", schema.name);
+            
+            [[self class] buildServiceType:type forSchema:schema error:&error];
+            
+        }
+        else{
+            
+            if ( [schema.version compareVersion:[MMService currentVersionForSchemaName:schema.name type:type]] == NSOrderedDescending ) {
+                    // downgrade schema...
+                
+                [[self class] downgradeSchema:schema.name oldVersion:[MMService currentVersionForSchemaName:schema.name type:type] newVersion:schema.version error:&error];
+                
+            }
+            else if ( [schema.version compareVersion:[MMService currentVersionForSchemaName:schema.name type:type]] == NSOrderedAscending ) {
+                    // upgrade schema...
+                
+                
+                    //MMSchema * oldschema = [[self class] schemaFromName:[NSString stringWithString:((NSDictionary *)obj)[@"name"] ] version:[MMVersionString stringWithString:((NSDictionary *)obj)[@"version"]]];
+                
+                
+                [[self class] upgradeSchema:schema.name oldVersion:[MMService currentVersionForSchemaName:schema.name type:type] newVersion:schema.version error:&error];
+                
+                
+            }
+            
+        }
+        
+        
+        
+        
+    }
+
     
 }
+
 
 //+(NSArray *)buildSchemaMigrationsWithName:(NSString *)schemaName olderSchema:(MMSchema *)olderSchema newerSchema:(MMSchema *)newerSchema error:(NSError **)error{
 //    

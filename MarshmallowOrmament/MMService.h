@@ -65,4 +65,11 @@
 +(void)removeRecordFromActiveRecords:(MMRecord *)rec;
 +(MMRecord *)retrieveActiveRecord:(NSString *)hash;
 
+
+
++(MMVersionString *)currentVersionForSchemaName:(NSString *)schemaName type:(NSString *)type;
++(void)setCurrentVersion:(MMVersionString *)version forSchemaName:(NSString *)schemaName type:(NSString *)type;
++(void)unsetVersionForSchemaName:(NSString *)schemaName type:(NSString *)type;
+
+
 @end

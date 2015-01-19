@@ -14,7 +14,7 @@
 #import <objc/runtime.h>
 #import "MMRecord.h"
 #import "MMOrmamentManager.h"
-
+#import "MMPreferences.h"
 //static NSMutableDictionary __strong * globalSchemas;
 
 
@@ -100,7 +100,7 @@ NSArray * MMGetSubclasses(Class parentClass)
 
 +(MMSchema *)schemaFromName:(NSString *)name version:(NSString *)ver{
     
-    NSLog(@"schema name file:%@", [NSString stringWithFormat:@"%@__%@", name, [[MMVersionString stringWithString:ver] pathString]]);
+    NSLog(@"schema name:%@ ver:%@", name, ver);
     
     return MMAutorelease([[MMSchema alloc]initWithDictionary:[self schemaDictionaryWithName:name version:ver]]);
     
@@ -144,7 +144,7 @@ NSArray * MMGetSubclasses(Class parentClass)
 
 +(MMSchema *)currentSchemaWithName:(NSString *)name{
     
-    MMVersionString * ver = [MMOrmamentManager currentVersionForSchemaName:name];
+    MMVersionString * ver = [[self class] currentVersionForSchemaName:name];
     
     NSLog(@"ver: %@", ver);
     
@@ -555,6 +555,46 @@ NSArray * MMGetSubclasses(Class parentClass)
 
 
 
+
++(MMVersionString *)currentVersionForSchemaName:(NSString *)schemaName{
+    
+    NSDictionary * dict = [[MMPreferences valueForKey:@"MMSchemaVersions"] mutableCopy];
+    if (dict[schemaName]) {
+        return [MMVersionString stringWithString:dict[schemaName]];
+    }
+    return nil;
+    
+}
+
++(void)setCurrentVersion:(MMVersionString *)version forSchemaName:(NSString *)schemaName{
+    
+    NSMutableDictionary * dict = [[MMPreferences valueForKey:@"MMSchemaVersions"] mutableCopy ];
+    
+    if (!dict) {
+        dict = [NSMutableDictionary dictionary];
+    }
+    
+    
+    dict[schemaName] = version;
+    
+    [MMPreferences setValue:dict forKey:@"MMSchemaVersions"];
+    
+}
+
+
++(void)unsetVersionForSchemaName:(NSString *)schemaName{
+    
+    NSMutableDictionary * dict = [[MMPreferences valueForKey:@"MMSchemaVersions"] mutableCopy];
+    
+    if (!dict) {
+        dict = [NSMutableDictionary dictionary];
+    }
+    
+    [dict removeObjectForKey:schemaName];
+    
+    [MMPreferences setValue:dict forKey:@"MMSchemaVersions"];
+    
+}
 
 
 

@@ -35,12 +35,12 @@ static NSMutableDictionary __strong * sharedManager;
 
 +(NSArray *)migrationMapForSchemaName:(NSString *)schemaName;
 
-+(void)unsetVersionForSchema:(NSString *)schemaName;
+    //+(void)unsetVersionForSchema:(NSString *)schemaName;
 
 +(NSDictionary *)schemaDictionaryWithName:(NSString *)name version:(NSString *)ver;
 
 
 +(MMVersionString *)currentVersionForSchemaName:(NSString *)schemaName;
-+(void)setCurrentVersion:(MMVersionString *)version forSchemaName:(NSString *)schemaName;
+    //+(void)setCurrentVersion:(MMVersionString *)version forSchemaName:(NSString *)schemaName;
 
 @end

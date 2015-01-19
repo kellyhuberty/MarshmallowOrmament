@@ -47,8 +47,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "82"
             endingLineNumber = "82"
-            landmarkName = "+schemaDictionaryWithName:version:"
-            landmarkType = "5">
+            landmarkName = "@implementation MMSchema"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -79,8 +79,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "64"
             endingLineNumber = "64"
-            landmarkName = "+initialize"
-            landmarkType = "5">
+            landmarkName = "@implementation MMSchema"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -122,13 +122,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MarshmallowOrmament/MMService.m"
-            timestampString = "438275327.771668"
+            timestampString = "443339994.799212"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "151"
-            endingLineNumber = "151"
-            landmarkName = "-wrapData:intoRecordsOfType:inSet:created:"
-            landmarkType = "5">
+            startingLineNumber = "157"
+            endingLineNumber = "157"
+            landmarkName = "@implementation MMService"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -160,22 +160,6 @@
             startingLineNumber = "781"
             endingLineNumber = "781"
             landmarkName = "+primaryKeyWhereClauseForRecord:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MarshmallowOrmament/MMResultsController.m"
-            timestampString = "443084902.422794"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "85"
-            endingLineNumber = "85"
-            landmarkName = "-loadPrevious"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

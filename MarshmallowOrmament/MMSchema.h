@@ -41,6 +41,12 @@
 +(MMSchema *)registeredSchemaWithName:(NSString *)name version:(NSString *)version;
 
 +(MMSchema *)currentSchemaWithName:(NSString *)name;
+
++(MMVersionString *)currentVersionForSchemaName:(NSString *)schemaName;
++(void)setCurrentVersion:(MMVersionString *)version forSchemaName:(NSString *)schemaName;
++(void)unsetVersionForSchemaName:(NSString *)schemaName;
+
+
 +(MMSchema *)schemaFromName:(NSString *)name version:(NSString *)ver;
 +(NSArray *)allSchemas;
 

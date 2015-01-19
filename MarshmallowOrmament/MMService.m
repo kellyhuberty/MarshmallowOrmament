@@ -11,7 +11,7 @@
 #import "MMRecord.h"
 #import "MMRecordSet.h"
 #import "MMOrmamentManager.h"
-
+#import "MMPreferences.h"
 
 //static NSMutableDictionary * storesByThread;
 static NSMutableDictionary * activeRecords;
@@ -77,8 +77,8 @@ static NSMutableDictionary * activeRecords;
     if (ver == nil) {
         MMSchema * sc = [MMSchema currentSchemaWithName:schemaName];
         
-        NSLog(@"schema with name %@", sc);
-        
+        NSLog(@"schema with name %@", schemaName);
+
         ver = sc.version;
     
     }
@@ -123,9 +123,15 @@ static NSMutableDictionary * activeRecords;
         
 }
 
-+(MMService *)newServiceWithSchemaName:(NSString *)schemaName serviceType:(NSString *)serviceType version:ver{
++(MMService *)newServiceWithSchemaName:(NSString *)schemaName serviceType:(NSString *)serviceType version:(MMVersionString *)ver{
     
     //MMSchema * schema = [MMSchema registeredSchemaWithName:schemaName version:ver];
+    
+    if (ver == nil) {
+        ver = [MMService currentVersionForSchemaName:schemaName type:serviceType];
+    
+    }
+    
     
         MMSchema * schema = [MMSchema schemaFromName:schemaName version:ver];
     
@@ -245,6 +251,55 @@ static NSMutableDictionary * activeRecords;
 
 }
 
+
+
+
+
+
++(MMVersionString *)currentVersionForSchemaName:(NSString *)schemaName type:(NSString *)type{
+    
+    NSDictionary * dict = [[MMPreferences valueForKey:@"MMServiceVersions"] mutableCopy];
+    
+    NSString * key = [NSString stringWithFormat:@"%@_%@",schemaName, type];
+    
+    if (dict[key]) {
+        return [MMVersionString stringWithString:dict[key]];
+    }
+    return nil;
+    
+}
++(void)setCurrentVersion:(MMVersionString *)version forSchemaName:(NSString *)schemaName type:(NSString *)type{
+    
+    NSMutableDictionary * dict = [[MMPreferences valueForKey:@"MMServiceVersions"] mutableCopy ];
+    
+    NSString * key = [NSString stringWithFormat:@"%@_%@",schemaName, type];
+    
+    if (!dict) {
+        dict = [NSMutableDictionary dictionary];
+    }
+    
+    dict[key] = version;
+    
+    [MMPreferences setValue:dict forKey:@"MMServiceVersions"];
+    
+    
+}
+
++(void)unsetVersionForSchemaName:(NSString *)schemaName type:(NSString *)type{
+    
+    NSMutableDictionary * dict = [[MMPreferences valueForKey:@"MMServiceVersions"] mutableCopy];
+    
+    NSString * key = [NSString stringWithFormat:@"%@_%@",schemaName, type];
+    
+    if (!dict) {
+        dict = [NSMutableDictionary dictionary];
+    }
+    
+    [dict removeObjectForKey:key];
+    
+    [MMPreferences setValue:dict forKey:@"MMServiceVersions"];
+    
+}
 
 
 @end
