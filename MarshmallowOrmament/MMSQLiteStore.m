@@ -239,7 +239,7 @@
     if ([className isEqualToString:@"NSString"]) {
         return @"TEXT";
     }
-    if ([ className isEqualToString:(@"NSNumber") ]) {
+    //if ([ className isEqualToString:(@"NSNumber") ]) {
         if([primativeType isEqualToString:@"integer"] || [primativeType isEqualToString:@"int"]){
             return @"INTEGER";
         }
@@ -249,7 +249,7 @@
         if([primativeType isEqualToString:@"float"] || [primativeType isEqualToString:@"double"] ){
             return @"REAL";
         }
-    }
+    //}
     if ([className isEqualToString:@"NSDate"]) {
         return @"TEXT";
     }

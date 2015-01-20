@@ -169,8 +169,8 @@ static NSString * classPrefix;
     if ([class respondsToSelector:@selector(entityName)]) {
         _name = [class entityName];
     }
-    if ([class respondsToSelector:@selector(idKeys)]) {
-        NSArray * idKeys = [class idKeys];
+    if ([class respondsToSelector:@selector(idKeysForRecordEntity)]) {
+        NSArray * idKeys = [class idKeysForRecordEntity];
         if(idKeys){
             _idKeys = [idKeys copy];
         }

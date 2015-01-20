@@ -106,13 +106,15 @@
     
     NSLog(@"schema name file:%@", [NSString stringWithFormat:@"%@__%@", name, [[MMVersionString stringWithString:ver] pathString]]);
     
-    return MMAutorelease([[MMSchema alloc]initWithDictionary:[self schemaDictionaryWithName:name version:ver]]);
+    NSLog(@"schema dictionary:%@", [self schemaDictionaryWithName:name version:ver]);
+
+    return [[MMSchema alloc]initWithDictionary:[self schemaDictionaryWithName:name version:ver]];
     
 }
 
 +(NSDictionary *)schemaDictionaryWithName:(NSString *)name version:(NSString *)ver{
     
-    NSDictionary * dictionary = [NSDictionary dictionaryWithContentsOfFile:[self schemaPathWithName:name version:ver ]];
+    NSDictionary * dictionary = [NSDictionary dictionaryWithContentsOfFile:[self schemaPathWithName:name version:ver]];
     
     return dictionary;
     

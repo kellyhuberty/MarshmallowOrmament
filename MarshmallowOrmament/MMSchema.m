@@ -280,8 +280,7 @@ NSArray * MMGetSubclasses(Class parentClass)
 
 
 -(BOOL)loadFromDictionary:(NSDictionary *)dict error:(NSError **)error{
-    
-        //self = [self init];
+
     
     NSLog(@"schema name___%@", dict[@"name"]);
     
