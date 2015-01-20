@@ -68,11 +68,6 @@
 
 -(BOOL)load:(NSError **)error{
     
-//    if (_request) {
-//        <#statements#>
-//    }
-    
-    
     _results = [_request loadRequest:error];
     
     [self postMergeProcessResults];
@@ -109,6 +104,9 @@
     
     [_request executeWithCompletionBlock:^void (MMResultsSet *set, NSError *__autoreleasing *error) {
         
+        _request.limit = limit;
+        _request.offset = offset;
+        
         BOOL suc = [self integratePayload:set];
 
         compBlock(suc, error);
@@ -121,7 +119,6 @@
     
     _request.limit = limit;
     _request.offset = offset;
-    
     
     MMResultsSet *set = [_request loadRequest:error];
 
@@ -170,6 +167,11 @@
         [_results insertObject:_leader atIndex:0];
     }
     
+    for (MMResultsSection * section in _sections) {
+        
+        [section.objects removeAllObjects];
+        
+    }
     
     for (NSObject * obj in _results) {
         
@@ -178,6 +180,7 @@
             NSObject * sectionIdentifier = _sectionDescriptor.sectionIdentifierBlock(obj);
             NSObject * sectionTitle = _sectionDescriptor.sectionTitleBlock(obj);
             [self addObject:obj toSectionWithIdentifer:sectionIdentifier withTitle:sectionTitle];
+        
         }
         else{
             
@@ -186,8 +189,6 @@
         }
         
     }
-    
-
     
 }
 

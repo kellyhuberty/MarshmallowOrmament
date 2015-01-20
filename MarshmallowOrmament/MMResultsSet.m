@@ -43,12 +43,18 @@
         return aSet;
     }
     
+    NSLog(@"a offset: %i, count: %i", aSet.offset, aSet.count);
+    NSLog(@"b offset: %i, count: %i", bSet.offset, bSet.count);
+
+    
     MMResultsSet * a = aSet;
     MMResultsSet * b = bSet;
     
     MMResultsSet * retSet = [[MMResultsSet alloc]init];
     
-    if (a.count + a.offset == b.offset){
+    if ((a.count + a.offset) == b.offset){
+        
+        NSLog(@"a offset:first");
         
         [retSet addObjectsFromArray:a];
         [retSet addObjectsFromArray:b];
@@ -59,8 +65,10 @@
         return retSet;
         
     }
-    else if (b.count + b.offset == a.offset){
+    else if ((b.count + b.offset) == a.offset){
     
+        NSLog(@"b offset:first");
+        
         [retSet addObjectsFromArray:b];
         [retSet addObjectsFromArray:a];
         
@@ -71,7 +79,7 @@
         
     }
     
-    return nil;
+    return b;
     
 }
 
