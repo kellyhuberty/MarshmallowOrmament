@@ -39,6 +39,7 @@
         _loadThreashhold = 20;
         _pageSize = 20;
         _initalOffset = 0;
+        _results = [[MMResultsSet alloc]init];
     }
     
     return self;
@@ -55,12 +56,14 @@
 
 -(BOOL)initialLoad:(NSError **)error{
     
+     [_results removeAllObjects];
     return [self load:error limit:_pageSize offset:_initalOffset];
     
 }
 
 -(void)initialLoad:(NSError **)error  completionBlock:(void (^)(BOOL success, NSError ** error))compBlock{
     
+    [_results removeAllObjects];
     [self load:error limit:_pageSize offset:_initalOffset completionBlock:compBlock];
     
 }
@@ -137,7 +140,73 @@
     
     BOOL additional = (_results == nil?false:true);
     
-    _results = [MMResultsSet mergeResultsSet:_results withSet:set];
+    //_results = [MMResultsSet mergeResultsSet:_results withSet:set];
+    //Merge logic
+    
+
+    
+    
+    
+    
+    //set.offset
+    NSUInteger offset = set.offset;
+    NSUInteger total = set.total;
+    NSUInteger count = set.count;
+    _results.total = total;
+    
+    
+    if ([_results count] == 0) {
+        
+        [_results addObjectsFromArray:set];
+        _results.offset = set.offset;
+    }
+    
+    
+    if (offset > _results.offset + _results.count) {
+        while (_results.offset + _results.count < set.offset + set.count ) {
+            [_results addObject:[NSNull null]];
+        }
+    }
+    
+    if (_results.offset > offset) {
+        
+        int inFront = _results.offset - offset;
+        
+        _results.offset = _results.offset - inFront;
+
+        while (inFront > 0){
+            [_results insertObject:[NSNull null] atIndex:0];
+            --inFront;
+        }
+        
+    }
+
+    
+    int i = set.offset - 1;
+    
+    for (NSObject * obj in set) {
+        
+        ++i;
+        
+        
+        NSObject *old = _results[i];
+        
+        
+        if (![old isKindOfClass:[NSNull class]]) {
+            if (old != obj) {
+                //Do some magic to verifiy validity.
+            }
+        }
+        
+        [_results replaceObjectAtIndex:i withObject:obj];
+        
+            
+    }
+    
+    
+    
+    
+    
     
     [self postMergeProcessResults];
     
@@ -235,7 +304,7 @@
     if ( i < _loadThreashhold && _results.offset != 0 ) {
         [self loadPrevious];
     }
-    if ( ((i > _results.count) - _loadThreashhold) && ((_results.offset + _results.count) < _results.total) ) {
+    if ( ((i - 1 > _results.count) - _loadThreashhold) && ((_results.offset + _results.count) < _results.total) ) {
         [self loadNext];
     }
     
