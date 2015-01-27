@@ -36,9 +36,9 @@
         
         _leader = [[MMRecordLoadingPlaceholder alloc]init];
         _trailer = [[MMRecordLoadingPlaceholder alloc]init];
-        _loadThreashhold = 20;
+        _loadThreashhold = 1;
         _pageSize = 20;
-        _initalOffset = 0;
+        _initalOffset = 10;
         _results = [[MMResultsSet alloc]init];
     }
     
@@ -82,6 +82,14 @@
 -(void)loadPrevious{
     
     int offset = _results.offset -_pageSize;
+    
+    if ([_results[0] isKindOfClass:[MMRecordLoadingPlaceholder class]]) {
+        --offset;
+    }
+    if ([[_results lastObject] isKindOfClass:[MMRecordLoadingPlaceholder class]]) {
+        --offset;
+    }
+    
     if (offset < 0) {
         offset = 0;
     }
@@ -99,16 +107,25 @@
 
 -(void)loadNext{
     
-    [self load:nil limit:_pageSize offset:(_results.offset + _results.count) completionBlock:^(BOOL suc, NSError ** error){}];
+    int offset = (_results.offset + _results.count);
+    
+    if ([_results[0] isKindOfClass:[MMRecordLoadingPlaceholder class]]) {
+        --offset;
+    }
+    if ([[_results lastObject] isKindOfClass:[MMRecordLoadingPlaceholder class]]) {
+        --offset;
+    }
+    
+    [self load:nil limit:_pageSize offset:offset completionBlock:^(BOOL suc, NSError ** error){}];
     
 }
 
 -(void)load:(NSError **)error limit:(NSUInteger)limit offset:(NSUInteger)offset completionBlock:(void (^)(BOOL success, NSError ** error))compBlock{
     
+    _request.limit = limit;
+    _request.offset = offset;
+    
     [_request executeWithCompletionBlock:^void (MMResultsSet *set, NSError *__autoreleasing *error) {
-        
-        _request.limit = limit;
-        _request.offset = offset;
         
         BOOL suc = [self integratePayload:set];
 
@@ -134,6 +151,9 @@
 
 -(BOOL)integratePayload:(MMResultsSet *)set{
     
+    @synchronized(_results){
+    
+    
     BOOL suc = (set == nil?false:true);
     
     [self preMergeProcessResults];
@@ -147,22 +167,25 @@
     
     
     
-    
     //set.offset
     NSUInteger offset = set.offset;
     NSUInteger total = set.total;
     NSUInteger count = set.count;
     _results.total = total;
-    
-    
+    NSLog(@"integrating payload offset: %i, total: %i, count: %i", offset, total, count);
+    NSLog(@"integrating payload offset: %i, total: %i, count: %i", _results.offset, _results.total, _results.count);
+
     if ([_results count] == 0) {
-        
+        @synchronized(set){
         [_results addObjectsFromArray:set];
-        _results.offset = set.offset;
+        }
+            _results.offset = set.offset;
+        
+        
     }
     
-    
-    if (offset > _results.offset + _results.count) {
+            //int i;
+    if (offset >= _results.offset + _results.count) {
         while (_results.offset + _results.count < set.offset + set.count ) {
             [_results addObject:[NSNull null]];
         }
@@ -182,11 +205,11 @@
     }
 
     
-    int i = set.offset - 1;
+    int i = set.offset - _results.offset;
     
     for (NSObject * obj in set) {
         
-        ++i;
+        
         
         
         NSObject *old = _results[i];
@@ -200,7 +223,8 @@
         
         [_results replaceObjectAtIndex:i withObject:obj];
         
-            
+        ++i;
+        
     }
     
     
@@ -215,26 +239,28 @@
     }
     
     return suc;
-    
+    }
 }
 
 
 -(void)preMergeProcessResults{
     
-    [_results removeObject:_leader];
-    [_results removeObject:_trailer];
+        //[_results removeObject:_leader];
+        //[_results removeObject:_trailer];
     
 }
 
 
 -(void)postMergeProcessResults{
     
-    if (_results.total != _results.count) {
-        [_results addObject:_trailer];
-    }
-    if (_results.offset != 0) {
-        [_results insertObject:_leader atIndex:0];
-    }
+    NSLog(@"total:%i/count:%i",_results.total, _results.count);
+    
+//    if (_results.total != _results.count) {
+//        [_results addObject:_trailer];
+//    }
+//    if (_results.offset != 0) {
+//        [_results insertObject:_leader atIndex:0];
+//    }
     
     for (MMResultsSection * section in _sections) {
         
@@ -301,10 +327,10 @@
     
     NSUInteger i =[_results indexOfObject:rec];
     
-    if ( i < _loadThreashhold && _results.offset != 0 ) {
+    if ( i == 1 && _results.offset != 0 ) {
         [self loadPrevious];
     }
-    if ( ((i - 1 > _results.count) - _loadThreashhold) && ((_results.offset + _results.count) < _results.total) ) {
+    if ( ((_results.count - i) == _loadThreashhold) && ((_results.offset + _results.count) < _results.total) ) {
         [self loadNext];
     }
     

@@ -17,7 +17,7 @@
     if (self = [super init]) {
         //_sqlBindValues = [[NSMutableDictionary alloc]init];
     
-        _offset = MMResultsSetNoTotal;
+        _offset = 0;
         _total = MMResultsSetNoOffset;
     
     }

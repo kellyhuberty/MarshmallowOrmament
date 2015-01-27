@@ -11,7 +11,7 @@
 
 enum {
     MMResultsSetNoTotal = -1,
-    MMResultsSetNoOffset = -1
+    MMResultsSetNoOffset = 0
 };
 
 @interface MMResultsSet : MMSet{

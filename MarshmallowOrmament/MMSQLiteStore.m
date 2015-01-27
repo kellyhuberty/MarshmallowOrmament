@@ -393,6 +393,8 @@
         
     }];
     
+    NSLog(@"load Count : %i", count);
+    
     return count;
 }
 
@@ -799,7 +801,7 @@
     if (!sqlSelect) {
         sqlSelect = [NSString stringWithFormat:@" %@.*", [self tableNameWithEntityName:req.entityName]];
     }
-    else if (onlyCount){
+    if (onlyCount){
         
         sqlSelect = @"COUNT(*) AS count";
         
@@ -823,10 +825,12 @@
     if (sqlWhere) {
         [query appendFormat:@" WHERE %@", sqlWhere];
     }
-    
-//    if (sqlLimit) {
-//        [query appendFormat:@" LIMIT %@", sqlLimit];
-//    }
+    if (!onlyCount) {
+        if (sqlLimit) {
+            [query appendFormat:@"%@", sqlLimit];
+        }
+    }
+
     
     return [NSString stringWithString:query];
     
