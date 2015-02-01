@@ -113,7 +113,7 @@
     
 }
 
--(NSObject *)metaForServiceType:(NSString * )serviceType{
+-(NSDictionary *)metaForServiceType:(NSString * )serviceType{
     
     NSMutableDictionary * metaObj = nil;
     

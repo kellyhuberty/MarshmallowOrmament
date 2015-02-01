@@ -73,3 +73,13 @@
 
 
 @end
+
+
+typedef enum : NSUInteger {
+   
+    MMCrudOperationCreate,
+    MMCrudOperationRead,
+    MMCrudOperationUpdate,
+    MMCrudOperationDelete
+    
+} MMCrudOperation;

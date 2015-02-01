@@ -127,7 +127,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "151"
             endingLineNumber = "151"
-            landmarkName = "-wrapData:intoRecordsOfType:inSet:created:"
+            landmarkName = "+newStoreWithSchemaName:version:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
