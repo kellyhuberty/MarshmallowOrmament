@@ -55,6 +55,15 @@
     return YES;
 }
 
+-(void)executeWithCompletionBlock:(completionBlock) block{
+    
+    if(!_completionBlock){
+        self.completionBlock = block;
+    }
+    [self executeOnStore:_service error:nil completionBlock:_completionBlock];
+    
+}
+
 -(void)executeWithError:(NSError **)error completionBlock:(completionBlock) block{
     
     if(!_completionBlock){
@@ -81,8 +90,7 @@
     
     NSOperationQueue * queue = [store operationQueue] ;
     
-    [queue addOperations:a waitUntilFinished:_synchronous];
-
+    [queue addOperations:@[a] waitUntilFinished:_synchronous];
     
     //[a start];
     
