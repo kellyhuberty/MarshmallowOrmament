@@ -123,6 +123,8 @@ static NSMutableDictionary * activeRecords;
         
 }
 
+
+
 +(MMService *)newServiceWithSchemaName:(NSString *)schemaName serviceType:(NSString *)serviceType version:(MMVersionString *)ver{
     
     //MMSchema * schema = [MMSchema registeredSchemaWithName:schemaName version:ver];
@@ -139,9 +141,6 @@ static NSMutableDictionary * activeRecords;
     return [[NSClassFromString([schema valueForKey:[NSString stringWithFormat:@"%@ClassName", serviceType]]) alloc]initWithSchema:schema];
     
 }
-
-
-
 
 
 +(MMService *)newStoreWithSchemaName:(NSString *)schemaName version:ver{
@@ -268,6 +267,7 @@ static NSMutableDictionary * activeRecords;
     return nil;
     
 }
+
 +(void)setCurrentVersion:(MMVersionString *)version forSchemaName:(NSString *)schemaName type:(NSString *)type{
     
     NSMutableDictionary * dict = [[MMPreferences valueForKey:@"MMServiceVersions"] mutableCopy ];

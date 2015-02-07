@@ -114,7 +114,7 @@ typedef enum{
 +(MMEntity *)entity;
 +(MMService *)store;
 +(MMRequest *)newStoreRequest;
-
++(MMRequest *)newCloudRequest;
 
 +(instancetype)create;
 
