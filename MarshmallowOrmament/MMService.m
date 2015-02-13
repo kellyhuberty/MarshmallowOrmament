@@ -191,7 +191,8 @@ static NSMutableDictionary * activeRecords;
     
         //+(MMSchema *)schemaFromName:(NSString *)name version:(NSString *)ver{
     
-    
+    [NSException raise:NSInternalInconsistencyException
+                format:@"You must override %@ in class %@", NSStringFromSelector(_cmd), NSStringFromClass([self class])];
         //return [[NSClassFromString([schema valueForKey:[NSString stringWithFormat:@"%@ClassName", serviceType]]) alloc]initWithSchema:schema];
     
     return nil;
@@ -214,6 +215,17 @@ static NSMutableDictionary * activeRecords;
     return rec;
     
 }
+
+
+
+-(BOOL)build:(NSError **)error{
+    
+
+    return YES;
+    
+}
+
+
 
 
 +(void)addRecordToActiveRecords:(MMRecord *)rec{
