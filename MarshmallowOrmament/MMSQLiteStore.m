@@ -727,6 +727,11 @@
         
         NSString * key = idKeys[0];
         
+        MMAttribute * attr = [entity attributeWithName:key];
+        if (!attr) {
+            [NSException raise:@"MMInvalidDataException" format:@"Can't find key %@ for attribute in %@", key, NSStringFromSelector(_cmd)];
+        }
+        
         NSString * className = [[entity attributeWithName:key] classname];
         NSString * primativeName = [[entity attributeWithName:key] primativeType];
         

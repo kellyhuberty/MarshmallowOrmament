@@ -292,6 +292,8 @@
     
     _classname = mmCopy([self verify:[dict objectForKey:@"classname"] class:[NSString class] name:@"classname"]);
     
+    _classname = mmCopy([self verify:[dict objectForKey:@"className"] class:[NSString class] name:@"classname"]);
+    
     _controlName = mmCopy([self verify:[dict objectForKey:@"controlname"] class:[NSString class] name:@"controlname"]);
     //_controlName = [dict objectForKey:@"controlname"];
     
@@ -307,9 +309,14 @@
     _defaultValue = mmCopy([self verify:[dict objectForKey:@"default"] class:[NSObject class] name:@"default"]);
     //_defaultValue = [dict objectForKey:@"default"];
     
-    _primativeType = mmCopy([self verify:[dict objectForKey:@"primativetype"] class:[NSString class] name:@"primativetype"]);
+    _primativeType = mmCopy([self verify:[dict objectForKey:@"primativeType"] class:[NSString class] name:@"primativetype"]);
     
-    _primativeType = mmCopy([self verify:[dict objectForKey:@"primative"] class:[NSString class] name:@"primative"]);
+    _primativeType = mmCopy([self verify:[dict objectForKey:@"primativetype"] class:[NSString class] name:@"primativetype"]);
+
+    _primativeType = mmCopy([self verify:[dict objectForKey:@"primative"] class:[NSString class] name:@"primativetype"]);
+
+    
+    
     
     
     //_storeName = mmCopy((NSString *)[self verify:[dict objectForKey:@"storename"] class:[NSString class] name:@"storename"]);
@@ -391,9 +398,14 @@
     return YES;
 }
 
-
-
 -(id)verify:(NSObject*)obj class:(Class)class name:(NSString *)name{
+
+    self
+
+}
+
+
+-(id)verify:(NSObject*)obj class:(Class)class name:(NSString *)name currentValue:(id)value{
     
     MMLog(@"value:%@ class:%@ name:%@", obj, class, name);
     
@@ -410,6 +422,7 @@
         }
     }
     else{
+        obj = value;
         if ([name isEqualToString:@"name"] || [name isEqualToString:@"classname"]) {
             [NSException raise:@"MMInvalidArgumentException" format:@"No Setting for: %@"];
         }

@@ -110,7 +110,7 @@ static void setValueIMP(id self, SEL _cmd, id aValue) {
         key = [NSStringFromSelector(_cmd) mutableCopy];
         
         
-        NSLog(@"settingggg");
+        MMDebug(@"settingggg");
         
         // delete "set" and ":" and lowercase first letter
         //[key deleteCharactersInRange:NSMakeRange(0, 3)];
@@ -263,7 +263,7 @@ static void setRelationValueIMP(id self, SEL _cmd, id aValue) {
         [_values addEntriesFromDictionary:values];
         //[self registerNotificationHash];
         
-        NSLog(@"values %@", values);
+        MMDebug(@"values %@", values);
     }
     
     return self;
@@ -801,7 +801,7 @@ static void setRelationValueIMP(id self, SEL _cmd, id aValue) {
     
     if ((keys = [[self entity] idKeys])) {
         
-        NSLog(@"idKEys : %@", keys);
+        MMDebug(@"idKEys : %@", keys);
         
         return keys;
     }
@@ -823,12 +823,15 @@ static void setRelationValueIMP(id self, SEL _cmd, id aValue) {
     
     NSMutableDictionary * dict = [[NSMutableDictionary alloc]init];
     
-    NSLog(@"ID values: %@", values);
+    MMDebug(@"ID values: %@", values);
     
     for ( NSString * key in keys ) {
-        
-        dict[key] = values[key];
-        
+        if (values[key] != nil) {
+            dict[key] = values[key];
+        }
+        else{
+            dict[key] = [NSNull null];
+        }
     }
     
     return [NSDictionary dictionaryWithDictionary:dict];
@@ -1090,7 +1093,7 @@ static void setRelationValueIMP(id self, SEL _cmd, id aValue) {
     
 
     
-    NSLog(@"blah sel %@", NSStringFromSelector(aSEL));
+    MMDebug(@"blah sel %@", NSStringFromSelector(aSEL));
     
     NSString * type = getPropertyTypeName([self class], key);
     
