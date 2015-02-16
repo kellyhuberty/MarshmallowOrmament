@@ -570,6 +570,8 @@
                             [[self class] foreignAttributeNameForRelation:relationship]
                             ];
         
+        MMDebug(query);
+        
         for (MMRecord * recf in set) {
             
             success = [db executeUpdate:query withParameterDictionary:@{
@@ -735,9 +737,13 @@
         NSString * className = [[entity attributeWithName:key] classname];
         NSString * primativeName = [[entity attributeWithName:key] primativeType];
         
-        MMError(@"primativeName:%@ classNAme: %@ ", className, primativeName);
+        MMDebug(@"name: key: %@ primativeName:%@ classNAme: %@ ", entity.name, key, className, primativeName);
+        
+        
         
         if ([className isEqualToString:@"NSNumber"] && [primativeName isEqualToString:@"int"]) {
+        
+            
             return key;
         }
         

@@ -83,6 +83,8 @@
 +(MMAttribute *)attributeWithName:(NSString *)aName displayName:(NSString *)aDisplayName controlClassName:(NSString *)controlClassName enforcedClassName:(NSString *)aClassName;
 +(MMAttribute *)attributeWithName:(NSString *)aName displayName:(NSString *)aDisplayName controlClassName:(NSString *)controlClassName controlPropertyName:(NSString *)propertyName controlOptions:(NSDictionary *)dictionary;
 
+-(id)verify:(NSObject*)obj class:(Class)class name:(NSString *)name currentValue:(id)value throwIfNull:(BOOL)throws;
+
 +(NSString *)defaultPropertyNameForDescriptor:(MMAttribute *)attr;
 +(NSString *)defaultControlNameForDescriptor:(MMAttribute *)attr;
 

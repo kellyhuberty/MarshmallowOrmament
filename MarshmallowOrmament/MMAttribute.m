@@ -290,9 +290,9 @@
     
     _displayName = mmCopy([self verify:[dict objectForKey:@"displayname"] class:[NSString class] name:@"displayname"]);
     
-    _classname = mmCopy([self verify:[dict objectForKey:@"classname"] class:[NSString class] name:@"classname"]);
+    _classname = mmCopy([self verify:[dict objectForKey:@"classname"] class:[NSString class] name:@"classname" currentValue:_classname throwIfNull:NO]);
     
-    _classname = mmCopy([self verify:[dict objectForKey:@"className"] class:[NSString class] name:@"classname"]);
+    _classname = mmCopy([self verify:[dict objectForKey:@"className"] class:[NSString class] name:@"classname" currentValue:_classname throwIfNull:YES]);
     
     _controlName = mmCopy([self verify:[dict objectForKey:@"controlname"] class:[NSString class] name:@"controlname"]);
     //_controlName = [dict objectForKey:@"controlname"];
@@ -309,11 +309,11 @@
     _defaultValue = mmCopy([self verify:[dict objectForKey:@"default"] class:[NSObject class] name:@"default"]);
     //_defaultValue = [dict objectForKey:@"default"];
     
-    _primativeType = mmCopy([self verify:[dict objectForKey:@"primativeType"] class:[NSString class] name:@"primativetype"]);
+    _primativeType = mmCopy([self verify:[dict objectForKey:@"primativeType"] class:[NSString class] name:@"primativetype" currentValue:_primativeType throwIfNull:NO]);
     
-    _primativeType = mmCopy([self verify:[dict objectForKey:@"primativetype"] class:[NSString class] name:@"primativetype"]);
+    _primativeType = mmCopy([self verify:[dict objectForKey:@"primativetype"] class:[NSString class] name:@"primativetype" currentValue:_primativeType throwIfNull:NO]);
 
-    _primativeType = mmCopy([self verify:[dict objectForKey:@"primative"] class:[NSString class] name:@"primativetype"]);
+    _primativeType = mmCopy([self verify:[dict objectForKey:@"primative"] class:[NSString class] name:@"primativetype" currentValue:_primativeType throwIfNull:YES]);
 
     
     
@@ -400,12 +400,12 @@
 
 -(id)verify:(NSObject*)obj class:(Class)class name:(NSString *)name{
 
-    self
+    return [self verify:obj class:class name:name currentValue:nil throwIfNull:YES];
 
 }
 
 
--(id)verify:(NSObject*)obj class:(Class)class name:(NSString *)name currentValue:(id)value{
+-(id)verify:(NSObject*)obj class:(Class)class name:(NSString *)name currentValue:(id)value throwIfNull:(BOOL)throws{
     
     MMLog(@"value:%@ class:%@ name:%@", obj, class, name);
     
@@ -423,11 +423,12 @@
     }
     else{
         obj = value;
-        if ([name isEqualToString:@"name"] || [name isEqualToString:@"classname"]) {
+    }
+    if (!obj) {
+        if (([name isEqualToString:@"name"] || [name isEqualToString:@"classname"]) && throws) {
             [NSException raise:@"MMInvalidArgumentException" format:@"No Setting for: %@"];
         }
     }
-    
     return obj;
 }
 
