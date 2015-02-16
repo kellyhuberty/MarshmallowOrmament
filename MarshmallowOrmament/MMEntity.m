@@ -197,7 +197,22 @@ static NSString * classPrefix;
     
     //Grab Relationships
         if ([aClass respondsToSelector:@selector(relationshipsForRecordEntity)]) {
-            [_relationships addObjectsFromArray:[aClass relationshipsForRecordEntity]];
+            
+            
+            NSMutableArray * relationships = [NSMutableArray array];
+
+            
+            NSArray * relArray = [aClass relationshipsForRecordEntity];
+            
+            
+            for (MMRelationship * rel in relArray) {
+                    //MMRelationship * rel = [MMRelationship relationshipWithDictionary:relDict];
+                rel.recordEntityName = self.name;
+                [relationships addObject:rel];
+            }
+            
+            
+            [_relationships addObjectsFromArray: relationships];
         }
     
         

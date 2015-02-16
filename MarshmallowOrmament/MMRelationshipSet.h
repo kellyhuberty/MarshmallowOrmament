@@ -28,11 +28,11 @@
 
     
 }
-@property (nonatomic, retain)MMRecord * record;
-@property (nonatomic, retain)MMRelationship * relationship;
-@property (nonatomic, retain)MMRequest * request;
-@property (nonatomic)BOOL fetched;
-@property (nonatomic, readonly)BOOL dirty;
+@property (atomic, retain)MMRecord * record;
+@property (atomic, retain)MMRelationship * relationship;
+@property (atomic, retain)MMRequest * request;
+@property (atomic)BOOL fetched;
+@property (atomic, readonly)BOOL dirty;
 
 
 -(BOOL)fetch:(NSError **)error;

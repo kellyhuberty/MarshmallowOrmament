@@ -506,7 +506,17 @@
     
     request.sqlWhere = [[self class]primaryKeyWhereClauseForRecord:record];
     
-    [request.sqlBindValues addEntriesFromDictionary:[record idValues]];//[[self class]primaryKeyWhereClauseForRecord:record];
+    
+    NSDictionary * idValues = [record idValues];
+    
+    
+    @synchronized(request.sqlBindValues){
+        for (NSString * key in [idValues allKeys]) {
+            request.sqlBindValues[key] = idValues[key];
+        }
+    }
+    
+        //request.sqlBindValues[key] idValues;//[[self class]primaryKeyWhereClauseForRecord:record];
 
     
     NSLog(@"%@ %@ %@",request.sqlSelect, request.sqlFrom, request.sqlWhere);
@@ -574,13 +584,17 @@
         
         for (MMRecord * recf in set) {
             
+            
+            MMDebug(@"(:local: %@, :foreign: %@)", [[self class] rowidColumnValueForRecord:record], [[self class] rowidColumnValueForRecord:recf]);
+
+            
             success = [db executeUpdate:query withParameterDictionary:@{
                                                              @"local":[[self class] rowidColumnValueForRecord:record],
                                                              @"foreign":[[self class] rowidColumnValueForRecord:recf]
                                                                  }];
             if (!success) {
                 
-                NSLog(@"unable to update  %@", [[db lastError] localizedDescription]);
+                NSLog(@"unable to update  %@", [db lastError]);
                 
                 *error = [db lastError];
             }
@@ -737,13 +751,9 @@
         NSString * className = [[entity attributeWithName:key] classname];
         NSString * primativeName = [[entity attributeWithName:key] primativeType];
         
-        MMDebug(@"name: key: %@ primativeName:%@ classNAme: %@ ", entity.name, key, className, primativeName);
+        MMDebug(@"name: %@ key: %@ primativeName:%@ classNAme: %@ ", entity.name, key, primativeName, className);
         
-        
-        
-        if ([className isEqualToString:@"NSNumber"] && [primativeName isEqualToString:@"int"]) {
-        
-            
+        if ([className isEqualToString:@"NSNumber"] || [primativeName isEqualToString:@"int"]) {
             return key;
         }
         
@@ -855,15 +865,18 @@
     
     //[self.dbQueue inDatabase:^(FMDatabase * db){
         
-        
+    
+    MMSQLiteRequest * request = (MMSQLiteRequest *)req;
+    
+    
         //[set addObjectsFromArray:[self loadRecordOfType:req.className withResultsOfQuery:[self queryWithRequest:req countOnly:false] withParameterDictionary:req.sqlBindValues]];
         
-    set = [self loadRecordOfType:req.className withResultsOfQuery:[self queryWithRequest:req countOnly:false] withParameterDictionary:req.sqlBindValues error: error];
+    set = [self loadRecordOfType:req.className withResultsOfQuery:[self queryWithRequest:request countOnly:false] withParameterDictionary:request.sqlBindValues error: error];
     
     set.offset = req.offset;
     
     [set setTotal:
-        [self loadCountOfRequest:[self queryWithRequest:(MMSQLiteRequest *)req countOnly:true] withParameterDictionary:req.sqlBindValues error: error]
+        [self loadCountOfRequest:[self queryWithRequest:(MMSQLiteRequest *)request countOnly:true] withParameterDictionary:request.sqlBindValues error: error]
      ];
     
     //}];

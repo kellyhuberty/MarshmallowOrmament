@@ -19,10 +19,10 @@
     NSMutableDictionary * _sqlBindValues;
     
 }
-@property(nonatomic, retain)NSString * sqlSelect;
-@property(nonatomic, retain)NSString * sqlFrom;
-@property(nonatomic, retain)NSString * sqlWhere;
-@property(nonatomic, retain, readonly)NSMutableDictionary * sqlBindValues;
+@property(atomic, retain)NSString * sqlSelect;
+@property(atomic, retain)NSString * sqlFrom;
+@property(atomic, retain)NSString * sqlWhere;
+@property(atomic, retain, readonly)NSMutableDictionary * sqlBindValues;
     //@property(nonatomic, retain)NSString * sqliteQuery;
 
 @end

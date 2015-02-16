@@ -276,7 +276,7 @@ static void setRelationValueIMP(id self, SEL _cmd, id aValue) {
     
     if (self != nil) {
         @synchronized(self){
-            _inserted = YES;
+            _inserted = inserted;
         }
         @synchronized(_values){
             [_values addEntriesFromDictionary:values];

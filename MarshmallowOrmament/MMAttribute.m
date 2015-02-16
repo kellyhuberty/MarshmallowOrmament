@@ -314,10 +314,6 @@
     _primativeType = mmCopy([self verify:[dict objectForKey:@"primativetype"] class:[NSString class] name:@"primativetype" currentValue:_primativeType throwIfNull:NO]);
 
     _primativeType = mmCopy([self verify:[dict objectForKey:@"primative"] class:[NSString class] name:@"primativetype" currentValue:_primativeType throwIfNull:YES]);
-
-    
-    
-    
     
     //_storeName = mmCopy((NSString *)[self verify:[dict objectForKey:@"storename"] class:[NSString class] name:@"storename"]);
     

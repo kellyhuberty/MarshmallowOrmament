@@ -38,7 +38,7 @@
         _trailer = [[MMRecordLoadingPlaceholder alloc]init];
         _loadThreashhold = 1;
         _pageSize = 20;
-        _initalOffset = 10;
+        _initalOffset = 0;
         _results = [[MMResultsSet alloc]init];
     }
     
