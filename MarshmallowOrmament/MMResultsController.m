@@ -36,7 +36,7 @@
         
         _leader = [[MMRecordLoadingPlaceholder alloc]init];
         _trailer = [[MMRecordLoadingPlaceholder alloc]init];
-        _loadThreashhold = 1;
+        _loadThreashhold = 20;
         _pageSize = 20;
         _initalOffset = 0;
         _results = [[MMResultsSet alloc]init];
@@ -151,8 +151,9 @@
 
 -(BOOL)integratePayload:(MMResultsSet *)set{
     
-    @synchronized(_results){
+    NSLock * lock = [[NSLock alloc]init];
     
+    [lock lock];
     
     BOOL suc = (set == nil?false:true);
     
@@ -176,9 +177,9 @@
     NSLog(@"integrating payload offset: %i, total: %i, count: %i", _results.offset, _results.total, _results.count);
 
     if ([_results count] == 0) {
-        @synchronized(set){
+        //@synchronized(set){
         [_results addObjectsFromArray:set];
-        }
+        //}
             _results.offset = set.offset;
         
         
@@ -238,8 +239,11 @@
         [_delegate controller:self didLoadAdditionalResults:set];
     }
     
+        
+    [lock unlock];
+    
     return suc;
-    }
+    
 }
 
 
@@ -262,10 +266,12 @@
 //        [_results insertObject:_leader atIndex:0];
 //    }
     
+    //@synchronized(section.objects){
+    
     for (MMResultsSection * section in _sections) {
-        
-        [section.objects removeAllObjects];
-        
+         //@synchronized(section.objects){
+             [section.objects removeAllObjects];
+         //}
     }
     
     for (NSObject * obj in _results) {
@@ -284,6 +290,8 @@
         }
         
     }
+        
+    //}
     
 }
 
@@ -305,9 +313,10 @@
     }
     
     NSLog(@"_sections: %@", _sections);
-    
+    //@synchronized(section.objects){
+
     [section.objects addObject:obj];
-    
+    //}
 }
 
 
@@ -323,7 +332,21 @@
 -(id)objectAtIndexPath:(NSIndexPath *)indexPath{
     MMResultsSection * section = _sections[indexPath.section];
     
-    id rec = section.objects[indexPath.row];
+    id rec;
+    
+    @try {
+        rec = section.objects[indexPath.row];
+
+    }
+    @catch (NSException *exception) {
+        rec = [[MMRecordLoadingPlaceholder alloc]init];
+    }
+    @finally {
+        
+    }
+    
+    
+    
     
     NSUInteger i =[_results indexOfObject:rec];
     

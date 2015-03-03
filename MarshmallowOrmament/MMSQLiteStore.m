@@ -815,6 +815,8 @@
     NSString * sqlSelect = req.sqlSelect;
     NSString * sqlFrom = req.sqlFrom;
     NSString * sqlWhere = req.sqlWhere;
+    NSString * sqlGroupBy = req.sqlGroupBy;
+    NSString * sqlOrderBy = req.sqlOrderBy;
     NSString * sqlLimit = nil;
 
     //[self tableNameWithEntityName:req.entityName]
@@ -845,6 +847,12 @@
     
     if (sqlWhere) {
         [query appendFormat:@" WHERE %@", sqlWhere];
+    }
+    if (sqlGroupBy) {
+        [query appendFormat:@" GROUP BY %@ ", sqlGroupBy];
+    }
+    if (sqlOrderBy) {
+        [query appendFormat:@" ORDER BY %@ ", sqlOrderBy];
     }
     if (!onlyCount) {
         if (sqlLimit) {
