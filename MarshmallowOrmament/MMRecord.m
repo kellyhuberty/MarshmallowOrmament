@@ -430,7 +430,6 @@ static void setRelationValueIMP(id self, SEL _cmd, id aValue) {
     
     NSOperationQueue * queue = [[NSOperationQueue alloc] init];
     
-    
     [queue addOperationWithBlock:^(){
         
         BOOL suc = [self save:&error];
@@ -450,6 +449,7 @@ static void setRelationValueIMP(id self, SEL _cmd, id aValue) {
 
         if ([self valid:error] && [self validForUpdate:error]) {
             suc = [[[self class] store] executeCreateOnRecord:self withValues:_values error:error];
+            [self sendOperationNotification:MMCrudOperationCreate forRecord:self onService:[[self class] store]];
         }
     
         if (suc) {
@@ -461,6 +461,7 @@ static void setRelationValueIMP(id self, SEL _cmd, id aValue) {
         
         if ([self valid:error] && [self validForCreate:error]) {
             suc = [[[self class] store] executeUpdateOnRecord:self withValues:_values error:error];
+            [self sendOperationNotification:MMCrudOperationUpdate forRecord:self onService:[[self class] store]];
         }
         
         //[self executeUpdateOnRecord:self withValues:_values error:error];
@@ -475,6 +476,18 @@ static void setRelationValueIMP(id self, SEL _cmd, id aValue) {
 
 }
 
+-(void)sendOperationNotification:(MMCrudOperation)operation forRecord:(MMRecord *)record onService:(MMService *)service{
+    
+    NSNotificationCenter * center = [NSNotificationCenter defaultCenter];
+    
+    NSString * changeStr = [NSString stringWithFormat:@"MMRecordChangeNotification+%@", [[record class] entityName]];
+    NSString * formalStr = [NSString stringWithFormat:@"MMRecord%@Notification+%@", [[record class] entityName]];
+
+    [NSNotification notificationWithName:@"MMRecordChangeNotification" object:self];
+    [NSNotification notificationWithName:@"MMRecordChangeNotification" object:self];
+
+    
+}
 
 
 -(void)push:(NSError **)error completionBlock:( void (^)(MMRecord * record, BOOL success, NSError **))completionBlock{

@@ -14,7 +14,31 @@
 #import "MMPreferences.h"
 
 //static NSMutableDictionary * storesByThread;
+
+NSString * MMStringFromCrudOperation(MMCrudOperation op){
+    switch (op) {
+        case MMCrudOperationCreate:
+            return @"Create";
+            break;
+        case MMCrudOperationRead:
+            return @"Read";
+            break;
+        case MMCrudOperationUpdate:
+            return @"Update";
+            break;
+        case MMCrudOperationDelete:
+            return @"Destroy";
+            break;
+        default:
+            break;
+    }
+    
+}
+
+
+
 static NSMutableDictionary * activeRecords;
+
 
 
 @interface MMService(){
