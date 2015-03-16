@@ -372,29 +372,25 @@ static void setRelationValueIMP(id self, SEL _cmd, id aValue) {
 
 
 
--(void)registerNotificationHash{
-    
-    NSNotificationCenter * center = [NSNotificationCenter defaultCenter];
-    
-    [center addObserver:self selector:@selector(receiveRecordChangeNotification:) name:[NSString stringWithFormat:@"__%@__CHANGED", [self idHash]] object:self];
-    
-    
-    
-}
+//-(void)registerNotificationHash{
+//    
+//    NSNotificationCenter * center = [NSNotificationCenter defaultCenter];
+//    
+//    [center addObserver:self selector:@selector(receiveRecordChangeNotification:) name:[NSString stringWithFormat:@"__%@__CHANGED", [self idHash]] object:self];
+//    
+//    
+//    
+//}
+//
+//-(void)sendRecordChangeNotification:(NSNotification *) notification{
+//    
+//    NSNotificationCenter * center = [NSNotificationCenter defaultCenter];
+//
+//    [center postNotificationName:[NSString stringWithFormat:@"__%@__CHANGED", [self idHash]] object:self userInfo:@{@"store":[[self class]store]}];
+//    
+//}
 
--(void)sendRecordChangeNotification:(NSNotification *) notification{
-    
-    NSNotificationCenter * center = [NSNotificationCenter defaultCenter];
 
-    [center postNotificationName:[NSString stringWithFormat:@"__%@__CHANGED", [self idHash]] object:self userInfo:@{@"store":[[self class]store]}];
-    
-}
-
--(void)receiveRecordChangeNotification:(NSNotification *) notification{
-    
-    
-    
-}
 
 
 //-(void)_setDirty{
@@ -476,18 +472,6 @@ static void setRelationValueIMP(id self, SEL _cmd, id aValue) {
 
 }
 
--(void)sendOperationNotification:(MMCrudOperation)operation forRecord:(MMRecord *)record onService:(MMService *)service{
-    
-    NSNotificationCenter * center = [NSNotificationCenter defaultCenter];
-    
-    NSString * changeStr = [NSString stringWithFormat:@"MMRecordChangeNotification+%@", [[record class] entityName]];
-    NSString * formalStr = [NSString stringWithFormat:@"MMRecord%@Notification+%@", [[record class] entityName]];
-
-    [NSNotification notificationWithName:@"MMRecordChangeNotification" object:self];
-    [NSNotification notificationWithName:@"MMRecordChangeNotification" object:self];
-
-    
-}
 
 
 -(void)push:(NSError **)error completionBlock:( void (^)(MMRecord * record, BOOL success, NSError **))completionBlock{
@@ -651,6 +635,56 @@ static void setRelationValueIMP(id self, SEL _cmd, id aValue) {
     //return @"noteit";
     return nil;
 }
+
+
+#pragma mark persistence notifciations
+
+-(void)sendOperationNotification:(MMCrudOperation)operation forRecord:(MMRecord *)record onService:(MMService *)service{
+    
+    NSNotificationCenter * center = [NSNotificationCenter defaultCenter];
+    
+    NSString * changeStr = [NSString stringWithFormat:@"MMRecordOperationNotification"];
+    NSString * formalStr = [NSString stringWithFormat:@"MMEntityOperationNotification+%@", [[self class]entityName] ];
+    
+    NSNotification * notification = [NSNotification notificationWithName:changeStr object:self userInfo:@{
+                                                                                                          @"operationName":MMStringFromCrudOperation(operation),
+                                                                                                          @"operation":[NSNumber numberWithInteger:operation],
+                                                                                                          @"classname":NSClassFromString([self class])
+                                                                                                          }];
+    
+    NSNotification * entitynotification = [NSNotification notificationWithName:changeStr object:self userInfo:@{
+                                                                                                                @"operationName":MMStringFromCrudOperation(operation),
+                                                                                                                @"operation":[NSNumber numberWithInteger:operation],
+                                                                                                                @"classname":NSClassFromString([self class])
+                                                                                                                }];
+    
+    [center postNotification:notification];
+    [center postNotification:entitynotification];
+    
+    
+    //[NSNotification notificationWithName:@"MMRecordChangeNotification" object:self];
+    //[NSNotification notificationWithName:@"MMRecordChangeNotification" object:self];
+    
+    
+}
+
+
+-(void)registerForRecordChangesWithTarget:(id)target selector:(SEL)aSelector{
+    NSNotificationCenter * center = [NSNotificationCenter defaultCenter];
+    [center addObserver:target selector:aSelector name:@"MMRecordOperationNotification" object:self];
+    
+    
+}
+
++(void)registerForEntityChangesWithTarget:(id)target selector:(SEL)aSelector{
+    
+    
+    NSNotificationCenter * center = [NSNotificationCenter defaultCenter];
+    NSString * formalStr = [NSString stringWithFormat:@"MMEntityOperationNotification+%@", [[self class]entityName] ];
+    [center addObserver:target selector:aSelector name:formalStr object:nil];
+    
+}
+
 
 #pragma mark MMRecordEntityConfiguration Protocol
 

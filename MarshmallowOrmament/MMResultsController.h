@@ -19,6 +19,8 @@
 
 -(void)controller:(id<MMResultsController>)controller didLoadAdditionalResults:(MMResultsSet *)results;
 
+-(void)controllerDidLoadChanges:(id<MMResultsController>)controller;
+
 @end
 
 @interface MMResultsController : NSObject<MMResultsController>{

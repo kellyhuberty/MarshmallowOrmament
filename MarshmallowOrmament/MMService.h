@@ -83,3 +83,5 @@ typedef enum : NSUInteger {
     MMCrudOperationDelete
     
 } MMCrudOperation;
+
+NSString * MMStringFromCrudOperation(MMCrudOperation op);

@@ -149,6 +149,11 @@ typedef enum{
 
 
 
+
+-(void)registerForRecordChangesWithTarget:(id)target selector:(SEL)aSelector;
+-(void)registerForEntityChangesWithTarget:(id)target selector:(SEL)aSelector;
+
+
 @end
 
 

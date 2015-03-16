@@ -9,6 +9,7 @@
 #import "MMResultsController.h"
 #import "MMResultsSection.h"
 #import "MMUtility.h"
+#import "MMRecord.h"
 #import <UIKit/UIKit.h>
 @implementation MMResultsController
 
@@ -16,9 +17,9 @@
     
     if(self = [self init]){
         
-        _request = request;
-        MMRetain(_request);
         
+        self.request = request;
+    
     }
     
     return self;
@@ -145,6 +146,30 @@
     BOOL suc = [self integratePayload:set];
     
     return suc;
+    
+}
+
+-(void)setRequest:(MMRequest *)request{
+    @synchronized(self){
+        
+        _request = request;
+        
+        [self registerForNotifications];
+    
+    }
+}
+
+-(void)registerForNotifications{
+    
+    
+    Class aClass = NSStringFromClass( _request.className );
+    
+    if ([aClass isKindOfClass:[MMRecord class]] ) {
+        
+        aClass r
+        
+    }
+    
     
 }
 
