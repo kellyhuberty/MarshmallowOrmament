@@ -649,13 +649,13 @@ static void setRelationValueIMP(id self, SEL _cmd, id aValue) {
     NSNotification * notification = [NSNotification notificationWithName:changeStr object:self userInfo:@{
                                                                                                           @"operationName":MMStringFromCrudOperation(operation),
                                                                                                           @"operation":[NSNumber numberWithInteger:operation],
-                                                                                                          @"classname":NSClassFromString([self class])
+                                                                                                          @"classname":NSStringFromClass([self class])
                                                                                                           }];
     
     NSNotification * entitynotification = [NSNotification notificationWithName:changeStr object:self userInfo:@{
                                                                                                                 @"operationName":MMStringFromCrudOperation(operation),
                                                                                                                 @"operation":[NSNumber numberWithInteger:operation],
-                                                                                                                @"classname":NSClassFromString([self class])
+                                                                                                                @"classname":NSStringFromClass([self class])
                                                                                                                 }];
     
     [center postNotification:notification];
@@ -677,7 +677,6 @@ static void setRelationValueIMP(id self, SEL _cmd, id aValue) {
 }
 
 +(void)registerForEntityChangesWithTarget:(id)target selector:(SEL)aSelector{
-    
     
     NSNotificationCenter * center = [NSNotificationCenter defaultCenter];
     NSString * formalStr = [NSString stringWithFormat:@"MMEntityOperationNotification+%@", [[self class]entityName] ];

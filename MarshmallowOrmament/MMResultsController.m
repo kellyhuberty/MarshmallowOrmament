@@ -161,13 +161,28 @@
 
 -(void)registerForNotifications{
     
+    MMDebug(@"req: %@", _request.className);
     
-    Class aClass = NSStringFromClass( _request.className );
+    Class aClass = NSClassFromString( _request.className );
     
     if ([aClass isKindOfClass:[MMRecord class]] ) {
         
-        aClass r
+        [((MMRecord *)aClass) registerForRecordChangesWithTarget:self selector:@selector(entityDidChangeNotification:)];
         
+    }
+    
+    
+}
+
+
+-(void)entityDidChangeNotification:(NSNotification *)notification{
+    
+    
+    [self initialLoad:nil];
+    
+    
+    if (_delegate && [(NSObject *)_delegate respondsToSelector:@selector(controllerDidLoadChanges:)]) {
+        [_delegate controllerDidLoadChanges:self];
     }
     
     

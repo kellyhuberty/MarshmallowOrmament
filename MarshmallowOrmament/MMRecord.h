@@ -145,14 +145,11 @@ typedef enum{
 +(BOOL)executeReadOnRecord:(MMRecord *)record withValues:(NSMutableDictionary *)dictionary error:(NSError **)err;
 +(BOOL)executeUpdateOnRecord:(MMRecord *)record withValues:(NSMutableDictionary *)dictionary error:(NSError **)err;
 +(BOOL)executeDestroyOnRecord:(MMRecord *)record withValues:(NSMutableDictionary *)dictionary error:(NSError **)err;
-+(MMService *)store;
-
 
 
 
 -(void)registerForRecordChangesWithTarget:(id)target selector:(SEL)aSelector;
--(void)registerForEntityChangesWithTarget:(id)target selector:(SEL)aSelector;
-
++(void)registerForEntityChangesWithTarget:(id)target selector:(SEL)aSelector;
 
 @end
 
