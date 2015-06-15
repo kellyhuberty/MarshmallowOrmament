@@ -80,15 +80,8 @@
             }
             
         }
-//        else if ([obj isKindOfClass:NSClassFromString(@"MMSchema")]){
-//            
-//            schema = (MMSchema *)obj;
-//            
-//        }
         
         NSError * error = nil;
-        
-        
         
         [self _startSchemaServices:schema];
         
@@ -278,7 +271,16 @@
             
             NSLog(@"Building inital store for %@", schema.name);
             
-            [[self class] buildServiceType:type forSchema:schema error:&error];
+            if (schema.autoBuild) {
+                
+                [[self class] buildServiceType:type forSchema:schema error:&error];
+            
+            }
+            else{
+                
+                
+                
+            }
             
         }
         else{

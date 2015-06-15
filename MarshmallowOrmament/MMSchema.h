@@ -26,7 +26,8 @@
     MMSet * _migrations;
     
     BOOL _autoEntities;
-    
+    BOOL _autoBuild;
+
 }
 @property(nonatomic)MMVersionString * version;
 @property(nonatomic, retain)NSString * name;
@@ -35,6 +36,7 @@
 @property(nonatomic, retain)NSString * cloudClassName;
 @property(nonatomic, retain)MMSet * migrations;
 @property(nonatomic)BOOL autoEntities;
+@property(nonatomic)BOOL autoBuild;
 
 
 +(void)registerSchema:(MMSchema *)schema;
