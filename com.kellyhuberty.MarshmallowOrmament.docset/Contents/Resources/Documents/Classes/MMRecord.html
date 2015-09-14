@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+
+	<title>MMRecord Class Reference</title>
+
+	<link rel="stylesheet" href="../css/style.css">
+	<meta name="viewport" content="initial-scale=1, maximum-scale=1.4">
+	<meta name="generator" content="appledoc 2.2.1 (build 1333)">
+</head>
+<body class="appledoc">
+	<header>
+		<div class="container" class="hide-in-xcode">
+			
+			<h1 id="library-title">
+				<a href="../index.html">MarshmallowOrmament </a>
+			</h1>
+
+			<p id="developer-home">
+				<a href="../index.html">KellyHuberty</a>
+			</p>
+			
+		</div>
+	</header>
+
+	<aside>
+		<div class="container">
+			<nav>
+				<ul id="header-buttons" role="toolbar">
+					<li><a href="../index.html">Index</a></li>
+<li><a href="../hierarchy.html">Hierarchy</a></li>
+
+					<li id="on-this-page" role="navigation">
+						<label>
+							On This Page
+
+							<div class="chevron">
+								<div class="chevy chevron-left"></div>
+								<div class="chevy chevron-right"></div>
+							</div>
+
+							<select id="jump-to">
+	<option value="top">Jump To&#133;</option>
+	
+
+	
+	
+	<option value="tasks">Tasks</option>
+	
+	
+
+	
+	
+	<optgroup label="Properties">
+		
+		<option value="//api/name/deleted">deleted</option>
+		
+		<option value="//api/name/dirty">dirty</option>
+		
+		<option value="//api/name/inserted">inserted</option>
+		
+	</optgroup>
+	
+
+	
+	<optgroup label="Class Methods">
+		
+		<option value="//api/name/attributes">+ attributes</option>
+		
+		<option value="//api/name/create">+ create</option>
+		
+		<option value="//api/name/create:">+ create:</option>
+		
+		<option value="//api/name/entity">+ entity</option>
+		
+		<option value="//api/name/executeCreateOnRecord:withValues:error:">+ executeCreateOnRecord:withValues:error:</option>
+		
+		<option value="//api/name/executeDestroyOnRecord:withValues:error:">+ executeDestroyOnRecord:withValues:error:</option>
+		
+		<option value="//api/name/executeReadOnRecord:withValues:error:">+ executeReadOnRecord:withValues:error:</option>
+		
+		<option value="//api/name/executeUpdateOnRecord:withValues:error:">+ executeUpdateOnRecord:withValues:error:</option>
+		
+		<option value="//api/name/newCloudRequest">+ newCloudRequest</option>
+		
+		<option value="//api/name/newStoreRequest">+ newStoreRequest</option>
+		
+		<option value="//api/name/registerForEntityChangesWithTarget:selector:">+ registerForEntityChangesWithTarget:selector:</option>
+		
+		<option value="//api/name/store">+ store</option>
+		
+	</optgroup>
+	
+
+	
+	<optgroup label="Instance Methods">
+		
+		<option value="//api/name/destroy">- destroy</option>
+		
+		<option value="//api/name/destroy:">- destroy:</option>
+		
+		<option value="//api/name/init">- init</option>
+		
+		<option value="//api/name/registerForRecordChangesWithTarget:selector:">- registerForRecordChangesWithTarget:selector:</option>
+		
+		<option value="//api/name/revert">- revert</option>
+		
+		<option value="//api/name/save">- save</option>
+		
+		<option value="//api/name/save:">- save:</option>
+		
+		<option value="//api/name/valid:">- valid:</option>
+		
+		<option value="//api/name/validForCreate:">- validForCreate:</option>
+		
+		<option value="//api/name/validForUpdate:">- validForUpdate:</option>
+		
+	</optgroup>
+	
+	
+</select>
+						</label>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</aside>
+
+	<article>
+		<div id="overview_contents" class="container">
+			<div id="content">
+				<main role="main">
+					<h1 class="title">MMRecord Class Reference</h1>
+
+					
+					<div class="section section-specification"><table cellspacing="0"><tbody>
+						<tr>
+	<th>Inherits from</th>
+	<td>NSObject</td>
+</tr><tr>
+	<th>Conforms to</th>
+	<td><a href="../Protocols/MMRecord.html">MMRecord</a></td>
+</tr><tr>
+	<th>Declared in</th>
+	<td>MMRecord.h</td>
+</tr>
+						</tbody></table></div>
+					
+
+                    
+
+					
+					
+					<div class="section section-tasks">
+						<a title="Tasks" name="tasks"></a>
+						
+
+						
+						
+
+						<div class="task-list">
+							<div class="section-method">
+	<a name="//api/name/deleted" title="deleted"></a>
+	<h3 class="method-title"><code><a href="#//api/name/deleted">&nbsp;&nbsp;deleted</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+
+			<div class="method-subsection method-declaration"><code>@property (atomic, readonly) BOOL deleted</code></div>
+
+		    
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/inserted" title="inserted"></a>
+	<h3 class="method-title"><code><a href="#//api/name/inserted">&nbsp;&nbsp;inserted</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+
+			<div class="method-subsection method-declaration"><code>@property (atomic, readonly) BOOL inserted</code></div>
+
+		    
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/dirty" title="dirty"></a>
+	<h3 class="method-title"><code><a href="#//api/name/dirty">&nbsp;&nbsp;dirty</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+
+			<div class="method-subsection method-declaration"><code>@property (atomic) BOOL dirty</code></div>
+
+		    
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/attributes" title="attributes"></a>
+	<h3 class="method-title"><code><a href="#//api/name/attributes">+&nbsp;attributes</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+
+			<div class="method-subsection method-declaration"><code>+ (MMSet *)attributes</code></div>
+
+		    
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/entity" title="entity"></a>
+	<h3 class="method-title"><code><a href="#//api/name/entity">+&nbsp;entity</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+
+			<div class="method-subsection method-declaration"><code>+ (MMEntity *)entity</code></div>
+
+		    
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/store" title="store"></a>
+	<h3 class="method-title"><code><a href="#//api/name/store">+&nbsp;store</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+
+			<div class="method-subsection method-declaration"><code>+ (MMService *)store</code></div>
+
+		    
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/newStoreRequest" title="newStoreRequest"></a>
+	<h3 class="method-title"><code><a href="#//api/name/newStoreRequest">+&nbsp;newStoreRequest</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+
+			<div class="method-subsection method-declaration"><code>+ (MMRequest *)newStoreRequest</code></div>
+
+		    
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/newCloudRequest" title="newCloudRequest"></a>
+	<h3 class="method-title"><code><a href="#//api/name/newCloudRequest">+&nbsp;newCloudRequest</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+
+			<div class="method-subsection method-declaration"><code>+ (MMRequest *)newCloudRequest</code></div>
+
+		    
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/create" title="create"></a>
+	<h3 class="method-title"><code><a href="#//api/name/create">+&nbsp;create</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+
+			<div class="method-subsection method-declaration"><code>+ (instancetype)create</code></div>
+
+		    
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/init" title="init"></a>
+	<h3 class="method-title"><code><a href="#//api/name/init">&ndash;&nbsp;init</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+
+			<div class="method-subsection method-declaration"><code>- (id)init</code></div>
+
+		    
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/save:" title="save:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/save:">&ndash;&nbsp;save:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+
+			<div class="method-subsection method-declaration"><code>- (BOOL)save:(NSError **)<em>error</em></code></div>
+
+		    
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/save" title="save"></a>
+	<h3 class="method-title"><code><a href="#//api/name/save">&ndash;&nbsp;save</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+
+			<div class="method-subsection method-declaration"><code>- (BOOL)save</code></div>
+
+		    
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/create:" title="create:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/create:">+&nbsp;create:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+
+			<div class="method-subsection method-declaration"><code>+ (instancetype)create:(NSDictionary *)<em>values</em></code></div>
+
+		    
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/destroy:" title="destroy:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/destroy:">&ndash;&nbsp;destroy:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+
+			<div class="method-subsection method-declaration"><code>- (BOOL)destroy:(NSError **)<em>error</em></code></div>
+
+		    
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/destroy" title="destroy"></a>
+	<h3 class="method-title"><code><a href="#//api/name/destroy">&ndash;&nbsp;destroy</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+
+			<div class="method-subsection method-declaration"><code>- (BOOL)destroy</code></div>
+
+		    
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/revert" title="revert"></a>
+	<h3 class="method-title"><code><a href="#//api/name/revert">&ndash;&nbsp;revert</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+
+			<div class="method-subsection method-declaration"><code>- (void)revert</code></div>
+
+		    
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/valid:" title="valid:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/valid:">&ndash;&nbsp;valid:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+
+			<div class="method-subsection method-declaration"><code>- (BOOL)valid:(NSError **)<em>err</em></code></div>
+
+		    
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/validForUpdate:" title="validForUpdate:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/validForUpdate:">&ndash;&nbsp;validForUpdate:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+
+			<div class="method-subsection method-declaration"><code>- (BOOL)validForUpdate:(NSError **)<em>err</em></code></div>
+
+		    
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/validForCreate:" title="validForCreate:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/validForCreate:">&ndash;&nbsp;validForCreate:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+
+			<div class="method-subsection method-declaration"><code>- (BOOL)validForCreate:(NSError **)<em>err</em></code></div>
+
+		    
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/executeCreateOnRecord:withValues:error:" title="executeCreateOnRecord:withValues:error:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/executeCreateOnRecord:withValues:error:">+&nbsp;executeCreateOnRecord:withValues:error:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+
+			<div class="method-subsection method-declaration"><code>+ (BOOL)executeCreateOnRecord:(MMRecord *)<em>record</em> withValues:(NSMutableDictionary *)<em>dictionary</em> error:(NSError **)<em>err</em></code></div>
+
+		    
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/executeReadOnRecord:withValues:error:" title="executeReadOnRecord:withValues:error:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/executeReadOnRecord:withValues:error:">+&nbsp;executeReadOnRecord:withValues:error:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+
+			<div class="method-subsection method-declaration"><code>+ (BOOL)executeReadOnRecord:(MMRecord *)<em>record</em> withValues:(NSMutableDictionary *)<em>dictionary</em> error:(NSError **)<em>err</em></code></div>
+
+		    
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/executeUpdateOnRecord:withValues:error:" title="executeUpdateOnRecord:withValues:error:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/executeUpdateOnRecord:withValues:error:">+&nbsp;executeUpdateOnRecord:withValues:error:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+
+			<div class="method-subsection method-declaration"><code>+ (BOOL)executeUpdateOnRecord:(MMRecord *)<em>record</em> withValues:(NSMutableDictionary *)<em>dictionary</em> error:(NSError **)<em>err</em></code></div>
+
+		    
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/executeDestroyOnRecord:withValues:error:" title="executeDestroyOnRecord:withValues:error:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/executeDestroyOnRecord:withValues:error:">+&nbsp;executeDestroyOnRecord:withValues:error:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+
+			<div class="method-subsection method-declaration"><code>+ (BOOL)executeDestroyOnRecord:(MMRecord *)<em>record</em> withValues:(NSMutableDictionary *)<em>dictionary</em> error:(NSError **)<em>err</em></code></div>
+
+		    
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/registerForRecordChangesWithTarget:selector:" title="registerForRecordChangesWithTarget:selector:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/registerForRecordChangesWithTarget:selector:">&ndash;&nbsp;registerForRecordChangesWithTarget:selector:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+
+			<div class="method-subsection method-declaration"><code>- (void)registerForRecordChangesWithTarget:(id)<em>target</em> selector:(SEL)<em>aSelector</em></code></div>
+
+		    
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/registerForEntityChangesWithTarget:selector:" title="registerForEntityChangesWithTarget:selector:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/registerForEntityChangesWithTarget:selector:">+&nbsp;registerForEntityChangesWithTarget:selector:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+
+			<div class="method-subsection method-declaration"><code>+ (void)registerForEntityChangesWithTarget:(id)<em>target</em> selector:(SEL)<em>aSelector</em></code></div>
+
+		    
+		</div>
+	</div>
+</div>
+						</div>
+						
+					</div>
+					
+					
+
+                    
+				</main>
+
+				<footer>
+					<div class="footer-copyright">
+						
+						<p class="copyright">Copyright &copy; 2015 KellyHuberty. All rights reserved. Updated: 2015-06-16</p>
+						
+						
+						<p class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.2.1 (build 1333)</a>.</p>
+						
+					</div>
+				</footer>
+			</div>
+		</div>
+	</article>
+
+	<script src="../js/script.js"></script>
+</body>
+</html>

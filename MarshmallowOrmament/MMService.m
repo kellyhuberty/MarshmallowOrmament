@@ -96,57 +96,93 @@ static NSMutableDictionary * activeRecords;
 //    
 //}
 
-+(MMService *)serviceWithSchemaName:(NSString *)schemaName type:(NSString *)storeType version:(MMVersionString *)ver{
+//+(MMService *)serviceWithSchemaName:(NSString *)schemaName type:(NSString *)storeType version:(MMVersionString *)ver{
+//
+//    if (ver == nil) {
+//        MMSchema * sc = [MMSchema currentSchemaWithName:schemaName];
+//        
+//        NSLog(@"schema with name %@", schemaName);
+//
+//        ver = sc.version;
+//    
+//    }
+//    
+//    MMOrmamentManager * manager = [MMOrmamentManager sharedManager];
+//    
+//    NSMutableDictionary * storesByThread = manager.services;
+//    
+//    NSMutableDictionary * threadDict;
+//    NSMutableDictionary * storeDict;
+//    
+//    NSString * storeName = [NSString stringWithFormat:@"%@__%@__%@", schemaName, ver, storeType];
+//    MMService * store = nil;
+//    
+////    if ((threadDict = storesByThread[MMORMThreadNSNumber()])) {
+////        storesByThread[MMORMThreadNSNumber()] = threadDict = [[NSMutableDictionary alloc]init];
+////    }
+//    
+//    if (!(storeDict = storesByThread[@1])) {
+//        storesByThread[@1] = storeDict = [NSMutableDictionary dictionary];
+//    }
+//    
+////    if (!(storeDict = threadDict[storeName])) {
+////        threadDict[storeName] = storeDict = [[NSMutableDictionary alloc]init];
+////    }
+//    
+//    if (!(store = storeDict[storeName])) {
+//        
+//        store = [MMService newServiceWithSchemaName:(NSString *)schemaName serviceType:(NSString *)storeType  version:ver];
+//    
+//        NSLog(@"store with name %@", store);
+//
+//        
+//        
+//        storeDict[storeName] = store;
+//    
+//    }
+//
+//    NSLog(@"thread dict %@", store);
+//    
+//    return store;
+//        
+//}
 
+
++(MMService *)serviceWithSchemaName:(NSString *)schemaName type:(NSString *)storeType version:(MMVersionString *)ver{
+    
     if (ver == nil) {
-        MMSchema * sc = [MMSchema currentSchemaWithName:schemaName];
+        MMSchema * sc = [MMSchema registeredSchemaWithName:schemaName];
         
         NSLog(@"schema with name %@", schemaName);
-
+        
         ver = sc.version;
-    
+        
     }
     
     MMOrmamentManager * manager = [MMOrmamentManager sharedManager];
     
-    NSMutableDictionary * storesByThread = manager.services;
-    
-    NSMutableDictionary * threadDict;
-    NSMutableDictionary * storeDict;
+    NSMutableDictionary * services = manager.services;
     
     NSString * storeName = [NSString stringWithFormat:@"%@__%@__%@", schemaName, ver, storeType];
-    MMService * store = nil;
+    MMService * service = nil;
     
-//    if ((threadDict = storesByThread[MMORMThreadNSNumber()])) {
-//        storesByThread[MMORMThreadNSNumber()] = threadDict = [[NSMutableDictionary alloc]init];
-//    }
-    
-    if (!(storeDict = storesByThread[@1])) {
-        storesByThread[@1] = storeDict = [NSMutableDictionary dictionary];
+    if (!(service = services[storeName])) {
+        
+        service = [MMService newServiceWithSchemaName:(NSString *)schemaName serviceType:(NSString *)storeType  version:ver];
+        
+        NSLog(@"store with name %@", service);
+        
+        
+        
+        services[storeName] = service;
+        
     }
     
-//    if (!(storeDict = threadDict[storeName])) {
-//        threadDict[storeName] = storeDict = [[NSMutableDictionary alloc]init];
-//    }
+    NSLog(@"thread dict %@", service);
     
-    if (!(store = storeDict[storeName])) {
-        
-        store = [MMService newServiceWithSchemaName:(NSString *)schemaName serviceType:(NSString *)storeType  version:ver];
+    return service;
     
-        NSLog(@"store with name %@", store);
-
-        
-        
-        storeDict[storeName] = store;
-    
-    }
-
-    NSLog(@"thread dict %@", store);
-    
-    return store;
-        
 }
-
 
 
 +(MMService *)newServiceWithSchemaName:(NSString *)schemaName serviceType:(NSString *)serviceType version:(MMVersionString *)ver{

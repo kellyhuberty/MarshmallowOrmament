@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+
+	<title>MMStore Protocol Reference</title>
+
+	<link rel="stylesheet" href="../css/style.css">
+	<meta name="viewport" content="initial-scale=1, maximum-scale=1.4">
+	<meta name="generator" content="appledoc 2.2.1 (build 1333)">
+</head>
+<body class="appledoc">
+	<header>
+		<div class="container" class="hide-in-xcode">
+			
+			<h1 id="library-title">
+				<a href="../index.html">MarshmallowOrmament </a>
+			</h1>
+
+			<p id="developer-home">
+				<a href="../index.html">KellyHuberty</a>
+			</p>
+			
+		</div>
+	</header>
+
+	<aside>
+		<div class="container">
+			<nav>
+				<ul id="header-buttons" role="toolbar">
+					<li><a href="../index.html">Index</a></li>
+<li><a href="../hierarchy.html">Hierarchy</a></li>
+
+					<li id="on-this-page" role="navigation">
+						<label>
+							On This Page
+
+							<div class="chevron">
+								<div class="chevy chevron-left"></div>
+								<div class="chevy chevron-right"></div>
+							</div>
+
+							<select id="jump-to">
+	<option value="top">Jump To&#133;</option>
+	
+
+	
+	
+	<option value="tasks">Tasks</option>
+	
+	
+
+	
+	
+
+	
+
+	
+	<optgroup label="Instance Methods">
+		
+		<option value="//api/name/addRecords:toRelationship:onRecord:error:">- addRecords:toRelationship:onRecord:error:</option>
+		
+		<option value="//api/name/build:">- build:</option>
+		
+		<option value="//api/name/buildRelationshipObjectWithRelationship:record:values:">- buildRelationshipObjectWithRelationship:record:values:</option>
+		
+		<option value="//api/name/executeCreateOnRecord:withValues:error:">- executeCreateOnRecord:withValues:error:</option>
+		
+		<option value="//api/name/executeDestroyOnRecord:withValues:error:">- executeDestroyOnRecord:withValues:error:</option>
+		
+		<option value="//api/name/executeReadWithRequest:error:">- executeReadWithRequest:error:</option>
+		
+		<option value="//api/name/executeUpdateOnRecord:withValues:error:">- executeUpdateOnRecord:withValues:error:</option>
+		
+		<option value="//api/name/newRequestForClassname:">- newRequestForClassname:</option>
+		
+		<option value="//api/name/removeRecords:fromRelationship:onRecord:error:">- removeRecords:fromRelationship:onRecord:error:</option>
+		
+	</optgroup>
+	
+	
+</select>
+						</label>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</aside>
+
+	<article>
+		<div id="overview_contents" class="container">
+			<div id="content">
+				<main role="main">
+					<h1 class="title">MMStore Protocol Reference</h1>
+
+					
+					<div class="section section-specification"><table cellspacing="0"><tbody>
+						<tr>
+	<th>Conforms to</th>
+	<td>NSObject</td>
+</tr><tr>
+	<th>Declared in</th>
+	<td>MMStore.h</td>
+</tr>
+						</tbody></table></div>
+					
+
+                    
+
+					
+					
+					<div class="section section-tasks">
+						<a title="Tasks" name="tasks"></a>
+						
+
+						
+						
+
+						<div class="task-list">
+							<div class="section-method">
+	<a name="//api/name/executeUpdateOnRecord:withValues:error:" title="executeUpdateOnRecord:withValues:error:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/executeUpdateOnRecord:withValues:error:">&ndash;&nbsp;executeUpdateOnRecord:withValues:error:</a></code>
+<span class="task-item-suffix">required method</span></h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+
+			<div class="method-subsection method-declaration"><code>- (BOOL)executeUpdateOnRecord:(MMRecord *)<em>rec</em> withValues:(NSMutableDictionary *)<em>values</em> error:(NSError **)<em>error</em></code></div>
+
+		    
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/executeCreateOnRecord:withValues:error:" title="executeCreateOnRecord:withValues:error:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/executeCreateOnRecord:withValues:error:">&ndash;&nbsp;executeCreateOnRecord:withValues:error:</a></code>
+<span class="task-item-suffix">required method</span></h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+
+			<div class="method-subsection method-declaration"><code>- (BOOL)executeCreateOnRecord:(MMRecord *)<em>rec</em> withValues:(NSMutableDictionary *)<em>values</em> error:(NSError **)<em>error</em></code></div>
+
+		    
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/executeDestroyOnRecord:withValues:error:" title="executeDestroyOnRecord:withValues:error:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/executeDestroyOnRecord:withValues:error:">&ndash;&nbsp;executeDestroyOnRecord:withValues:error:</a></code>
+<span class="task-item-suffix">required method</span></h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+
+			<div class="method-subsection method-declaration"><code>- (BOOL)executeDestroyOnRecord:(MMRecord *)<em>rec</em> withValues:(NSMutableDictionary *)<em>values</em> error:(NSError **)<em>error</em></code></div>
+
+		    
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/buildRelationshipObjectWithRelationship:record:values:" title="buildRelationshipObjectWithRelationship:record:values:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/buildRelationshipObjectWithRelationship:record:values:">&ndash;&nbsp;buildRelationshipObjectWithRelationship:record:values:</a></code>
+<span class="task-item-suffix">required method</span></h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+
+			<div class="method-subsection method-declaration"><code>- (MMRelationshipSet *)buildRelationshipObjectWithRelationship:(MMRelationship *)<em>relationship</em> record:(MMRecord *)<em>record</em> values:(NSDictionary *)<em>values</em></code></div>
+
+		    
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/addRecords:toRelationship:onRecord:error:" title="addRecords:toRelationship:onRecord:error:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/addRecords:toRelationship:onRecord:error:">&ndash;&nbsp;addRecords:toRelationship:onRecord:error:</a></code>
+<span class="task-item-suffix">required method</span></h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+
+			<div class="method-subsection method-declaration"><code>- (BOOL)addRecords:(NSArray *)<em>set</em> toRelationship:(MMRelationship *)<em>relationship</em> onRecord:(MMRecord *)<em>record</em> error:(NSError **)<em>error</em></code></div>
+
+		    
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/removeRecords:fromRelationship:onRecord:error:" title="removeRecords:fromRelationship:onRecord:error:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/removeRecords:fromRelationship:onRecord:error:">&ndash;&nbsp;removeRecords:fromRelationship:onRecord:error:</a></code>
+<span class="task-item-suffix">required method</span></h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+
+			<div class="method-subsection method-declaration"><code>- (BOOL)removeRecords:(NSArray *)<em>set</em> fromRelationship:(MMRelationship *)<em>relationship</em> onRecord:(MMRecord *)<em>record</em> error:(NSError **)<em>error</em></code></div>
+
+		    
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/executeReadWithRequest:error:" title="executeReadWithRequest:error:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/executeReadWithRequest:error:">&ndash;&nbsp;executeReadWithRequest:error:</a></code>
+<span class="task-item-suffix">required method</span></h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+
+			<div class="method-subsection method-declaration"><code>- (MMSet *)executeReadWithRequest:(MMRequest *)<em>req</em> error:(NSError **)<em>error</em></code></div>
+
+		    
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/newRequestForClassname:" title="newRequestForClassname:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/newRequestForClassname:">&ndash;&nbsp;newRequestForClassname:</a></code>
+<span class="task-item-suffix">required method</span></h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+
+			<div class="method-subsection method-declaration"><code>- (MMRequest *)newRequestForClassname:(NSString *)<em>className</em></code></div>
+
+		    
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/build:" title="build:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/build:">&ndash;&nbsp;build:</a></code>
+<span class="task-item-suffix">required method</span></h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+
+			<div class="method-subsection method-declaration"><code>- (BOOL)build:(NSError **)<em>error</em></code></div>
+
+		    
+		</div>
+	</div>
+</div>
+						</div>
+						
+					</div>
+					
+					
+
+                    
+				</main>
+
+				<footer>
+					<div class="footer-copyright">
+						
+						<p class="copyright">Copyright &copy; 2015 KellyHuberty. All rights reserved. Updated: 2015-06-16</p>
+						
+						
+						<p class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.2.1 (build 1333)</a>.</p>
+						
+					</div>
+				</footer>
+			</div>
+		</div>
+	</article>
+
+	<script src="../js/script.js"></script>
+</body>
+</html>

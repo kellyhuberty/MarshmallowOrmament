@@ -24,7 +24,7 @@ static NSMutableDictionary __strong * sharedManager;
 @property(nonatomic, retain)NSMutableDictionary * services;
 
 
-+(MMOrmamentManager *)sharedManager;
++(instancetype)sharedManager;
 +(void)resetSharedManager;
 
 +(void)startWithSchemas:(NSArray *)schemas;

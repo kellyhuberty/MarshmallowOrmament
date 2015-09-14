@@ -13,10 +13,13 @@
 @interface MMSqliteSchemaMigration : MMSchemaMigration{
     
     
+    NSMutableArray* _upgradeSql;
+    NSMutableArray* _downgradeSql;
     
     
     
 }
-
-
+@property(nonatomic, readonly)NSMutableArray * upgradeSql;
+@property(nonatomic, readonly)NSMutableArray * downgradeSql;
+//@property(nonatomic, retain)BOOL _createNewStoreFile;
 @end

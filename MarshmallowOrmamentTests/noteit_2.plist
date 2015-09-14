@@ -6,6 +6,8 @@
 	<string>0.1.0</string>
 	<key>name</key>
 	<string>noteit</string>
+	<key>autoBuild</key>
+	<true/>
 	<key>entities</key>
 	<array>
 		<dict>

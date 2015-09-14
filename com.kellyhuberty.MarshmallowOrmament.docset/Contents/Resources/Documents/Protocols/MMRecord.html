@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+
+	<title>MMRecord Protocol Reference</title>
+
+	<link rel="stylesheet" href="../css/style.css">
+	<meta name="viewport" content="initial-scale=1, maximum-scale=1.4">
+	<meta name="generator" content="appledoc 2.2.1 (build 1333)">
+</head>
+<body class="appledoc">
+	<header>
+		<div class="container" class="hide-in-xcode">
+			
+			<h1 id="library-title">
+				<a href="../index.html">MarshmallowOrmament </a>
+			</h1>
+
+			<p id="developer-home">
+				<a href="../index.html">KellyHuberty</a>
+			</p>
+			
+		</div>
+	</header>
+
+	<aside>
+		<div class="container">
+			<nav>
+				<ul id="header-buttons" role="toolbar">
+					<li><a href="../index.html">Index</a></li>
+<li><a href="../hierarchy.html">Hierarchy</a></li>
+
+					<li id="on-this-page" role="navigation">
+						<label>
+							On This Page
+
+							<div class="chevron">
+								<div class="chevy chevron-left"></div>
+								<div class="chevy chevron-right"></div>
+							</div>
+
+							<select id="jump-to">
+	<option value="top">Jump To&#133;</option>
+	
+
+	
+	
+	<option value="tasks">Tasks</option>
+	
+	
+
+	
+	
+	<optgroup label="Properties">
+		
+		<option value="//api/name/attributes">attributes</option>
+		
+		<option value="//api/name/deleted">deleted</option>
+		
+		<option value="//api/name/dirty">dirty</option>
+		
+		<option value="//api/name/inserted">inserted</option>
+		
+	</optgroup>
+	
+
+	
+	<optgroup label="Class Methods">
+		
+		<option value="//api/name/entityName">+ entityName</option>
+		
+		<option value="//api/name/idHashWithIdValues:">+ idHashWithIdValues:</option>
+		
+		<option value="//api/name/idKeys">+ idKeys</option>
+		
+		<option value="//api/name/idValuesWithValues:">+ idValuesWithValues:</option>
+		
+		<option value="//api/name/metaForRecordEntity">+ metaForRecordEntity</option>
+		
+		<option value="//api/name/schemaName">+ schemaName</option>
+		
+	</optgroup>
+	
+
+	
+	<optgroup label="Instance Methods">
+		
+		<option value="//api/name/create">- create</option>
+		
+		<option value="//api/name/create:">- create:</option>
+		
+		<option value="//api/name/destroy">- destroy</option>
+		
+		<option value="//api/name/idHash">- idHash</option>
+		
+		<option value="//api/name/idValues">- idValues</option>
+		
+		<option value="//api/name/initWithFillValues:created:fromStore:">- initWithFillValues:created:fromStore:</option>
+		
+		<option value="//api/name/logValues">- logValues</option>
+		
+		<option value="//api/name/revert">- revert</option>
+		
+		<option value="//api/name/save">- save</option>
+		
+		<option value="//api/name/save:">- save:</option>
+		
+		<option value="//api/name/valid:">- valid:</option>
+		
+		<option value="//api/name/validForCreate:">- validForCreate:</option>
+		
+		<option value="//api/name/validForUpdate:">- validForUpdate:</option>
+		
+	</optgroup>
+	
+	
+</select>
+						</label>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</aside>
+
+	<article>
+		<div id="overview_contents" class="container">
+			<div id="content">
+				<main role="main">
+					<h1 class="title">MMRecord Protocol Reference</h1>
+
+					
+					<div class="section section-specification"><table cellspacing="0"><tbody>
+						<tr>
+	<th>Declared in</th>
+	<td>MMRecord.h</td>
+</tr>
+						</tbody></table></div>
+					
+
+                    
+
+					
+					
+					<div class="section section-tasks">
+						<a title="Tasks" name="tasks"></a>
+						
+
+						
+						
+
+						<div class="task-list">
+							<div class="section-method">
+	<a name="//api/name/entityName" title="entityName"></a>
+	<h3 class="method-title"><code><a href="#//api/name/entityName">+&nbsp;entityName</a></code>
+<span class="task-item-suffix">required method</span></h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+
+			<div class="method-subsection method-declaration"><code>+ (NSString *)entityName</code></div>
+
+		    
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/schemaName" title="schemaName"></a>
+	<h3 class="method-title"><code><a href="#//api/name/schemaName">+&nbsp;schemaName</a></code>
+<span class="task-item-suffix">required method</span></h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+
+			<div class="method-subsection method-declaration"><code>+ (NSString *)schemaName</code></div>
+
+		    
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/metaForRecordEntity" title="metaForRecordEntity"></a>
+	<h3 class="method-title"><code><a href="#//api/name/metaForRecordEntity">+&nbsp;metaForRecordEntity</a></code>
+<span class="task-item-suffix">required method</span></h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+
+			<div class="method-subsection method-declaration"><code>+ (NSDictionary *)metaForRecordEntity</code></div>
+
+		    
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/idKeys" title="idKeys"></a>
+	<h3 class="method-title"><code><a href="#//api/name/idKeys">+&nbsp;idKeys</a></code>
+<span class="task-item-suffix">required method</span></h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+
+			<div class="method-subsection method-declaration"><code>+ (NSArray *)idKeys</code></div>
+
+		    
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/idValues" title="idValues"></a>
+	<h3 class="method-title"><code><a href="#//api/name/idValues">&ndash;&nbsp;idValues</a></code>
+<span class="task-item-suffix">required method</span></h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+
+			<div class="method-subsection method-declaration"><code>- (NSDictionary *)idValues</code></div>
+
+		    
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/idValuesWithValues:" title="idValuesWithValues:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/idValuesWithValues:">+&nbsp;idValuesWithValues:</a></code>
+<span class="task-item-suffix">required method</span></h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+
+			<div class="method-subsection method-declaration"><code>+ (NSDictionary *)idValuesWithValues:(NSDictionary *)<em>values</em></code></div>
+
+		    
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/idHash" title="idHash"></a>
+	<h3 class="method-title"><code><a href="#//api/name/idHash">&ndash;&nbsp;idHash</a></code>
+<span class="task-item-suffix">required method</span></h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+
+			<div class="method-subsection method-declaration"><code>- (NSString *)idHash</code></div>
+
+		    
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/idHashWithIdValues:" title="idHashWithIdValues:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/idHashWithIdValues:">+&nbsp;idHashWithIdValues:</a></code>
+<span class="task-item-suffix">required method</span></h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+
+			<div class="method-subsection method-declaration"><code>+ (NSString *)idHashWithIdValues:(NSDictionary *)<em>idValues</em></code></div>
+
+		    
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/initWithFillValues:created:fromStore:" title="initWithFillValues:created:fromStore:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/initWithFillValues:created:fromStore:">&ndash;&nbsp;initWithFillValues:created:fromStore:</a></code>
+<span class="task-item-suffix">required method</span></h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+
+			<div class="method-subsection method-declaration"><code>- (instancetype)initWithFillValues:(NSDictionary *)<em>values</em> created:(BOOL)<em>inserted</em> fromStore:(MMService *)<em>store</em></code></div>
+
+		    
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/create" title="create"></a>
+	<h3 class="method-title"><code><a href="#//api/name/create">&ndash;&nbsp;create</a></code>
+<span class="task-item-suffix">required method</span></h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+
+			<div class="method-subsection method-declaration"><code>- (instancetype)create</code></div>
+
+		    
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/create:" title="create:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/create:">&ndash;&nbsp;create:</a></code>
+<span class="task-item-suffix">required method</span></h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+
+			<div class="method-subsection method-declaration"><code>- (instancetype)create:(NSDictionary *)<em>values</em></code></div>
+
+		    
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/destroy" title="destroy"></a>
+	<h3 class="method-title"><code><a href="#//api/name/destroy">&ndash;&nbsp;destroy</a></code>
+<span class="task-item-suffix">required method</span></h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+
+			<div class="method-subsection method-declaration"><code>- (BOOL)destroy</code></div>
+
+		    
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/save:" title="save:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/save:">&ndash;&nbsp;save:</a></code>
+<span class="task-item-suffix">required method</span></h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+
+			<div class="method-subsection method-declaration"><code>- (BOOL)save:(NSError **)<em>error</em></code></div>
+
+		    
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/save" title="save"></a>
+	<h3 class="method-title"><code><a href="#//api/name/save">&ndash;&nbsp;save</a></code>
+<span class="task-item-suffix">required method</span></h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+
+			<div class="method-subsection method-declaration"><code>- (BOOL)save</code></div>
+
+		    
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/revert" title="revert"></a>
+	<h3 class="method-title"><code><a href="#//api/name/revert">&ndash;&nbsp;revert</a></code>
+<span class="task-item-suffix">required method</span></h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+
+			<div class="method-subsection method-declaration"><code>- (void)revert</code></div>
+
+		    
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/valid:" title="valid:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/valid:">&ndash;&nbsp;valid:</a></code>
+<span class="task-item-suffix">required method</span></h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+
+			<div class="method-subsection method-declaration"><code>- (BOOL)valid:(NSError **)<em>err</em></code></div>
+
+		    
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/validForUpdate:" title="validForUpdate:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/validForUpdate:">&ndash;&nbsp;validForUpdate:</a></code>
+<span class="task-item-suffix">required method</span></h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+
+			<div class="method-subsection method-declaration"><code>- (BOOL)validForUpdate:(NSError **)<em>err</em></code></div>
+
+		    
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/validForCreate:" title="validForCreate:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/validForCreate:">&ndash;&nbsp;validForCreate:</a></code>
+<span class="task-item-suffix">required method</span></h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+
+			<div class="method-subsection method-declaration"><code>- (BOOL)validForCreate:(NSError **)<em>err</em></code></div>
+
+		    
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/logValues" title="logValues"></a>
+	<h3 class="method-title"><code><a href="#//api/name/logValues">&ndash;&nbsp;logValues</a></code>
+<span class="task-item-suffix">required method</span></h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+
+			<div class="method-subsection method-declaration"><code>- (void)logValues</code></div>
+
+		    
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/attributes" title="attributes"></a>
+	<h3 class="method-title"><code><a href="#//api/name/attributes">&nbsp;&nbsp;attributes</a></code>
+<span class="task-item-suffix">required method</span></h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+
+			<div class="method-subsection method-declaration"><code>@property (atomic, readonly) NSArray *attributes</code></div>
+
+		    
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/deleted" title="deleted"></a>
+	<h3 class="method-title"><code><a href="#//api/name/deleted">&nbsp;&nbsp;deleted</a></code>
+<span class="task-item-suffix">required method</span></h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+
+			<div class="method-subsection method-declaration"><code>@property (atomic, readonly) BOOL deleted</code></div>
+
+		    
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/inserted" title="inserted"></a>
+	<h3 class="method-title"><code><a href="#//api/name/inserted">&nbsp;&nbsp;inserted</a></code>
+<span class="task-item-suffix">required method</span></h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+
+			<div class="method-subsection method-declaration"><code>@property (atomic, readonly) BOOL inserted</code></div>
+
+		    
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/dirty" title="dirty"></a>
+	<h3 class="method-title"><code><a href="#//api/name/dirty">&nbsp;&nbsp;dirty</a></code>
+<span class="task-item-suffix">required method</span></h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+
+			<div class="method-subsection method-declaration"><code>@property (atomic, readonly) BOOL dirty</code></div>
+
+		    
+		</div>
+	</div>
+</div>
+						</div>
+						
+					</div>
+					
+					
+
+                    
+				</main>
+
+				<footer>
+					<div class="footer-copyright">
+						
+						<p class="copyright">Copyright &copy; 2015 KellyHuberty. All rights reserved. Updated: 2015-06-16</p>
+						
+						
+						<p class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.2.1 (build 1333)</a>.</p>
+						
+					</div>
+				</footer>
+			</div>
+		</div>
+	</article>
+
+	<script src="../js/script.js"></script>
+</body>
+</html>

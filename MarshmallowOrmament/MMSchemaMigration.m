@@ -55,6 +55,15 @@
         if (!_fromVersion) {
             [NSException raise:@"MMInvaildInitailizerDictionary" format:@"the init dict does not contain a fromVersion string."];
         }
+
+        if (dictionary[@"toVersion"]) {
+            _fromVersion = [MMVersionString stringWithString:dictionary[@"fromVersion"]];
+        }
+        
+        if (!_fromVersion) {
+            [NSException raise:@"MMInvaildInitailizerDictionary" format:@"the init dict does not contain a toVersion string."];
+        }
+        
         
         //_className = [MMVersionString stringWithString:dictionary[@"className"]];
         //selfentityDictionarys;

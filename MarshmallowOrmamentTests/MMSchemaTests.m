@@ -207,7 +207,7 @@
     
     [MMLogger setEnabled];
     
-    NSLog(@"build sql :%@", [error localizedDescription]);
+    NSLog(@"build sql error:%@", [error localizedDescription]);
     
     //[schema log];
     

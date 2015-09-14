@@ -14,30 +14,95 @@
 -(BOOL)upgradeStore:(MMService *)oldStore toStore:(MMService *)newStore error:(NSError **)error{
     
     
-    [self setupNewFile];
-    [self renameEntityTables];
+    //[self setupNewFile];
+    //[self renameEntityTables];
     
     //self upgradeStore:<#(MMStore *)#> toStore:<#(MMStore *)#> error:<#(NSError *__autoreleasing *)#>
-    [self migrateStore];
+    //[self migrateStore];
+    BOOL __block success = NO;
     
+    for (NSString * sql in self.upgradeSql) {
     
-    [self removeOldEntityTables];
+        [((MMSQLiteStore *)oldStore).dbQueue inDatabase:^(FMDatabase * db){
+            
+            success = [db executeUpdate:sql withParameterDictionary:nil];
+            
+            if (!success) {
+                
+                NSLog(@"unable to update  %@", [db lastError]);
+                
+                *error = [db lastError];
+            }
+            
+        }];
     
-    return NO;
+        if (!success) {
+            return NO;
+        }
+        
+    }
+    
+    return YES;
 
 }
 
-
+/*!
+ /param oldStore The old store in question.
+ */
 -(BOOL)downgradeStore:(MMService *)oldStore toStore:(MMService *)newStore error:(NSError **)error{
     
     
+    BOOL __block success = NO;
+
+    
+    for (NSString * sql in self.downgradeSql) {
+    
+        [((MMSQLiteStore *)oldStore).dbQueue inDatabase:^(FMDatabase * db){
+            
+            success = [db executeUpdate:sql withParameterDictionary:nil];
+            
+            if (!success) {
+                
+                NSLog(@"unable to update  %@", [db lastError]);
+                
+                *error = [db lastError];
+            }
+            
+        }];
+        
+        if (!success) {
+            return NO;
+        }
+    
+    }
+    
+    return YES;
+}
+
+
+-(instancetype)initWithDictionary:(NSDictionary *)dictionary{
+    
+    if(self = [super initWithDictionary:dictionary]){
+        
+        if ([dictionary[@"upgradeSql"] isKindOfClass:[NSArray class]]) {
+            _upgradeSql = [NSMutableArray arrayWithArray:dictionary[@"upgradeSql"]];
+        }
+        if ([dictionary[@"upgradeSql"] isKindOfClass:[NSString class]]) {
+            _upgradeSql = [NSMutableArray arrayWithArray:@[dictionary[@"upgradeSql"]]];
+        }
+        
+        if ([dictionary[@"downgradeSql"] isKindOfClass:[NSArray class]]) {
+            _downgradeSql = [NSMutableArray arrayWithArray:dictionary[@"downgradeSql"]];
+        }
+        if ([dictionary[@"downgradeSql"] isKindOfClass:[NSString class]]) {
+            _downgradeSql = [NSMutableArray arrayWithArray:@[dictionary[@"downgradeSql"]]];
+        }
+        
+    }
     
     
+    return self;
     
-    
-    
-    
-    return NO;
 }
 
 

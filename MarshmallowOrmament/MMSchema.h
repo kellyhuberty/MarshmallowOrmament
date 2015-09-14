@@ -37,10 +37,11 @@
 @property(nonatomic, retain)MMSet * migrations;
 @property(nonatomic)BOOL autoEntities;
 @property(nonatomic)BOOL autoBuild;
-
+@property(nonatomic)NSString * storeMigrationDelegateClassname;
+@property(nonatomic)NSString * cloudMigrationDelegateClassname;
 
 +(void)registerSchema:(MMSchema *)schema;
-+(MMSchema *)registeredSchemaWithName:(NSString *)name version:(NSString *)version;
++(MMSchema *)registeredSchemaWithName:(NSString *)name;
 
 +(MMSchema *)currentSchemaWithName:(NSString *)name;
 

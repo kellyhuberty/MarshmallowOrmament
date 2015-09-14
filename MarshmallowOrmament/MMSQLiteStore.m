@@ -11,9 +11,11 @@
 #import "MMAttribute.h"
 #import "MMRecord.h"
 #import "MMSQLiteRequest.h"
+#import "MMRelationship.h"
+#import "MMSQLiteRelater.h"
 
 #import <objc/runtime.h>
-
+ 
 //#import <sqlite3.h>
 
 
@@ -66,9 +68,15 @@
     
     NSString * dataDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
     
-    NSLog(@" db dir :%@", [NSString stringWithFormat:@"%@/%@__%@.db", dataDir, _schema.name, [_schema.version pathString]]);
+    NSLog(@"PATHS::: %@", NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES));
     
-    return [NSString stringWithFormat:@"%@/%@__%@.db", dataDir, _schema.name, [ver pathString]];
+    //NSLog(@" db dir :%@", [NSString stringWithFormat:@"%@/%@__%@.db", dataDir, _schema.name, [_schema.version pathString]]);
+    
+    NSString * path = [NSString stringWithFormat:@"%@/%@__%@.db", dataDir, _schema.name, [_schema.version pathString]];
+    
+    NSLog(@" db dir :%@", path);
+    
+    return path;
     
 }
 
@@ -77,7 +85,11 @@
     
     //BOOL worked = [[self db] executeUpdate:[self buildSql] withErrorAndBindings:error];
     
-    BOOL worked = [[self db] executeStatements:[self buildSchemaSql]];
+    
+    FMDatabase * db = [self db];
+    
+    
+    BOOL worked = [db executeStatements:[self buildSchemaSql]];
 
     
     NSLog(@"err---   %@", [self buildSchemaSql]);
@@ -408,40 +420,45 @@
 
 
 +(NSString *)buildJoinSqlWithRelationship:(MMRelationship *)relationship{
+//    
+//    NSMutableString * clause = [NSMutableString stringWithString:@""];
+//    
+//    NSEnumerator * enu = [relationship.joins objectEnumerator];
+//    
+//    MMRelation * rel = nil;
+//    
+//    while (rel = (MMRelation *)[enu nextObject]) {
+//    
+//        if (![clause isEqualToString:@""]) {
+//            
+//            [clause appendFormat:@"%@ JOIN %@ ON %@.%@ = %@.%@",
+//                rel.entityName,
+//                rel.referencingEntityName,
+//                rel.entityName,
+//                rel.key,
+//                rel.referencingEntityName,
+//                rel.referencingKey
+//             ];
+//        
+//        }else{
+//        
+//            [clause appendFormat:@" JOIN %@ ON %@.%@ = %@.%@",
+//                                rel.referencingEntityName,
+//                                rel.entityName,
+//                                rel.key,
+//                                rel.referencingEntityName,
+//                                rel.referencingKey
+//             ];
+//            
+//        }
+//    }
+//    
+//    return [NSString stringWithString:clause];
     
-    NSMutableString * clause = [NSMutableString stringWithString:@""];
+    MMSQLiteRelater * relater = relationship.storeRelater;
     
-    NSEnumerator * enu = [relationship.links objectEnumerator];
     
-    MMRelation * rel = nil;
-    
-    while (rel = (MMRelation *)[enu nextObject]) {
-    
-        if (![clause isEqualToString:@""]) {
-            
-            [clause appendFormat:@"%@ JOIN %@ ON %@.%@ = %@.%@",
-                rel.entityName,
-                rel.referencingEntityName,
-                rel.entityName,
-                rel.key,
-                rel.referencingEntityName,
-                rel.referencingKey
-             ];
-        
-        }else{
-        
-            [clause appendFormat:@" JOIN %@ ON %@.%@ = %@.%@",
-                                rel.referencingEntityName,
-                                rel.entityName,
-                                rel.key,
-                                rel.referencingEntityName,
-                                rel.referencingKey
-             ];
-            
-        }
-    }
-    
-    return [NSString stringWithString:clause];
+    return @"";
 }
 
 
@@ -474,7 +491,7 @@
     
     MMRelationshipSet * set = nil;
     
-    if(relationship.autoRelate){
+    if(!relationship.storeRelater){
         
         set = [self buildAutomaticRelationshipSetWithRelationship:relationship record:record values:values];
         
@@ -913,13 +930,16 @@
 
 -(BOOL)executeCreateOnRecord:(MMRecord *)rec withValues:(NSMutableDictionary *)values error:(NSError **)error{
     
-    
     BOOL __block success = NO;
     
     [self.dbQueue inDatabase:^(FMDatabase * db){
-
+        
         success = [db executeUpdate:[[self class] buildInsertQueryForRecord:rec values:values] withParameterDictionary:values];
 
+        if ([[values allKeys]count] == 0) {
+            NSLog(@"issue");
+        }
+        
         [self refreshRecord:rec withValues:values forRowId:[db lastInsertRowId] database:db];
         
         if ( ! success ) {
@@ -970,7 +990,7 @@
     
     [self.dbQueue inDatabase:^(FMDatabase * db){
 
-        [db executeUpdate:[[self class] buildDeleteQueryForRecord:rec values:values] withParameterDictionary:[rec idValues]];
+        success = [db executeUpdate:[[self class] buildDeleteQueryForRecord:rec values:values] withParameterDictionary:[rec idValues]];
     
         if ( ! success ) {
             [self generateDatabaseErrorWithDatabase:db error:error ];
@@ -1088,7 +1108,18 @@
 
 -(void)generateDatabaseErrorWithDatabase:(FMDatabase *)db error:(NSError **)error{
     
+    NSLog(@"DATABASE ERR::: %@", db.databasePath);
+    NSLog(@"DATABASE CODE::: %i", [db lastErrorCode]);
+    NSLog(@"DATABASE MSG::: %@", [db lastErrorMessage]);
+
     
+    
+    NSError * lastError = [db lastError];
+    
+    
+    *error = lastError;
+    
+    //NSError * lastError = NSError errorWithDomain:@"com.kellyhuberty.MarshmallowOrmament" code: userInfo:<#(NSDictionary *)#>
     
     
     

@@ -10,6 +10,8 @@
 #import "TSTNote.h"
 #import "MMSQLiteStore.h"
 #import "MMOrmamentManager.h"
+#import "MMOrmManager.h"
+
 @interface MMRecordTests : XCTestCase
 
 @end
@@ -42,6 +44,14 @@
     [super tearDown];
 }
 
+-(void)open{
+    
+//    [MMOrmamentManager startWithSchemas:@[     @{
+//                                                   @"name":@"noteit",@"version":@"0.1.0"
+//                                                   }]];
+    [MMOrmManager startWithSchemas:@[@"noteit"]];
+
+}
 
 - (void)removeFiles
 {
@@ -119,7 +129,7 @@
     [MMOrmamentManager startWithSchemas:@[     @{
                                                @"name":@"noteit",@"version":@"0.1.0"
                                                }]];
-    
+    //[MMOrmamentManager startWithSchemas:@[@"noteit"]];
     
     TSTNote * note = [TSTNote create];
     
@@ -139,16 +149,16 @@
     
     MMSetArcEnabled();
     
+[self open];
     
-    [MMOrmamentManager startWithSchemas:@[     @{
-                                                     @"name":@"noteit",@"version":@"0.1.0"
-                                                     }]];
-    
+    //[MMOrmamentManager startWithSchemas:@[@"noteit"]];
     
     TSTNote * note = [TSTNote create:@{@"text":@"blah"}];
     
     //note.text = @"blah";
     // note.date = [NSDate date];
+    NSLog(@"note.text %@", note.text);
+    
     
     XCTAssertTrue([note.text isEqualToString:@"blah"], @"is true");
     
@@ -164,9 +174,8 @@
     MMSetArcEnabled();
 
     
-    [MMOrmamentManager startWithSchemas:@[     @{
-                                                     @"name":@"noteit",@"version":@"0.1.0"
-                                                     }]];
+[self open];
+    //[MMOrmamentManager startWithSchemas:@[@"noteit"]];
     
     
     TSTNote * note = [TSTNote create];
@@ -257,9 +266,8 @@
     MMSetArcEnabled();
     
     
-    [MMOrmamentManager startWithSchemas:@[     @{
-                                                     @"name":@"noteit",@"version":@"0.1.0"
-                                                     }]];
+[self open];
+    //[MMOrmamentManager startWithSchemas:@[@"noteit"]];
     
     //[note logValues];
     
@@ -338,9 +346,8 @@
     MMSetArcEnabled();
     
     
-    [MMOrmamentManager startWithSchemas:@[     @{
-                                                     @"name":@"noteit",@"version":@"0.1.0"
-                                                     }]];
+[self open];
+    //[MMOrmamentManager startWithSchemas:@[@"noteit"]];
     
     //[note logValues];
     
@@ -426,9 +433,8 @@
     MMSetArcEnabled();
     
     
-    [MMOrmamentManager startWithSchemas:@[     @{
-                                                     @"name":@"noteit",@"version":@"0.1.0"
-                                                     }]];
+[self open];
+    //[MMOrmamentManager startWithSchemas:@[@"noteit"]];
     
     
     TSTNote * note = [TSTNote create];
@@ -503,9 +509,8 @@
     MMSetArcEnabled();
     
     
-    [MMOrmamentManager startWithSchemas:@[     @{
-                                                     @"name":@"noteit",@"version":@"0.1.0"
-                                                     }]];
+[self open];
+    //[MMOrmamentManager startWithSchemas:@[@"noteit"]];
     
     
     TSTNote * note = [TSTNote create];
@@ -584,9 +589,8 @@
     
     MMSetArcEnabled();
     
-    [MMOrmamentManager startWithSchemas:@[@{
-                                                     @"name":@"noteit",@"version":@"0.1.0"
-                                                     }]];
+[self open];
+    //[MMOrmamentManager startWithSchemas:@[@"noteit"]];
     
     TSTNote * note = [TSTNote create];
     
@@ -635,9 +639,8 @@
     
     MMSetArcEnabled();
     
-    [MMOrmamentManager startWithSchemas:@[@{
-                                                @"name":@"noteit",@"version":@"0.1.0"
-                                                }]];
+[self open];
+    //[MMOrmamentManager startWithSchemas:@[@"noteit"]];
     
     NSMutableArray * notes = [NSMutableArray array];
     
@@ -688,9 +691,8 @@
     
     MMSetArcEnabled();
     
-    [MMOrmamentManager startWithSchemas:@[@{
-                                              @"name":@"noteit",@"version":@"0.1.0"
-                                              }]];
+[self open];
+    //[MMOrmamentManager startWithSchemas:@[@"noteit"]];
     
     NSMutableArray * notes = [NSMutableArray array];
     

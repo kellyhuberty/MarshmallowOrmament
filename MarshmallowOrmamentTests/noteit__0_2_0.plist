@@ -10,6 +10,8 @@
 	<string>MMRestfulStore</string>
 	<key>name</key>
 	<string>noteit</string>
+	<key>autoBuild</key>
+	<true/>
 	<key>migration</key>
 	<dict>
 		<key>className</key>

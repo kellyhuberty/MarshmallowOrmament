@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		C7199DCC1A637ACF00903D7C /* MMResultsController.m in Sources */ = {isa = PBXBuildFile; fileRef = C7199DC91A637ACF00903D7C /* MMResultsController.m */; };
 		C7199DCE1A637ACF00903D7C /* MMResultsSection.m in Sources */ = {isa = PBXBuildFile; fileRef = C7199DCB1A637ACF00903D7C /* MMResultsSection.m */; };
+		C7265A711B5BF33200866343 /* noteit.plist in Resources */ = {isa = PBXBuildFile; fileRef = C75F60241B5BF0AC005A3DD6 /* noteit.plist */; };
+		C729C40C1B5CBE74008E5FEB /* MMServiceMigrationDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C729C40B1B5CBE74008E5FEB /* MMServiceMigrationDelegate.m */; };
 		C731719D19873350005F27E6 /* MMConditional.m in Sources */ = {isa = PBXBuildFile; fileRef = C731719C19873350005F27E6 /* MMConditional.m */; };
 		C73171A01987348D005F27E6 /* MMCondition.m in Sources */ = {isa = PBXBuildFile; fileRef = C731719F1987348D005F27E6 /* MMCondition.m */; };
 		C73171A2198899D2005F27E6 /* MMConditionalTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C73171A1198899D2005F27E6 /* MMConditionalTests.m */; };
@@ -24,10 +26,16 @@
 		C743890F1963D134000D50AF /* MarshmallowOrmament.m in Sources */ = {isa = PBXBuildFile; fileRef = C743890E1963D134000D50AF /* MarshmallowOrmament.m */; };
 		C74389351963E458000D50AF /* MMRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = C74389341963E458000D50AF /* MMRecord.m */; };
 		C744E38C196474DC006A1BA5 /* MMORMUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = C744E38B196474DC006A1BA5 /* MMORMUtility.m */; };
+		C7459CD41B39076900936E86 /* TSMItem.m in Sources */ = {isa = PBXBuildFile; fileRef = C7459CCF1B39076900936E86 /* TSMItem.m */; };
+		C7459CD51B39076900936E86 /* TSMNote.m in Sources */ = {isa = PBXBuildFile; fileRef = C7459CD11B39076900936E86 /* TSMNote.m */; };
+		C7459CD61B39076900936E86 /* TSMNotebook.m in Sources */ = {isa = PBXBuildFile; fileRef = C7459CD31B39076900936E86 /* TSMNotebook.m */; };
+		C7459CD91B3BC5C500936E86 /* MMRelater.m in Sources */ = {isa = PBXBuildFile; fileRef = C7459CD81B3BC5C500936E86 /* MMRelater.m */; };
+		C7459CDC1B3D176B00936E86 /* MMSQLiteMutation.m in Sources */ = {isa = PBXBuildFile; fileRef = C7459CDB1B3D176B00936E86 /* MMSQLiteMutation.m */; };
 		C75E75F319C4E4E100B2B825 /* OrmamentTests-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C75E75F219C4E4E100B2B825 /* OrmamentTests-Info.plist */; };
 		C765563E198419BE00F7DFDD /* MMRequestTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C765563D198419BE00F7DFDD /* MMRequestTests.m */; };
 		C76F9FAD1A64F1A90086C4C9 /* MMSectionDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = C76F9FAC1A64F1A90086C4C9 /* MMSectionDescriptor.m */; };
 		C774FA3B1976F40300CDBCB8 /* MMRelationship.m in Sources */ = {isa = PBXBuildFile; fileRef = C774FA3A1976F40300CDBCB8 /* MMRelationship.m */; };
+		C775304E1B4CD8900093170D /* MMOrmManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C775304D1B4CD8900093170D /* MMOrmManager.m */; };
 		C787917519812F7800C31EA7 /* MMRelation.m in Sources */ = {isa = PBXBuildFile; fileRef = C787917419812F7800C31EA7 /* MMRelation.m */; };
 		C78852C019D701600004D029 /* MMGroupDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = C78852BF19D701600004D029 /* MMGroupDescriptor.m */; };
 		C78852C319D8AE800004D029 /* MMRequestController.m in Sources */ = {isa = PBXBuildFile; fileRef = C78852C219D8AE800004D029 /* MMRequestController.m */; };
@@ -36,6 +44,7 @@
 		C78C42FD1A1B1CB3005FB127 /* MMSchemaObject.m in Sources */ = {isa = PBXBuildFile; fileRef = C78C42FC1A1B1CB3005FB127 /* MMSchemaObject.m */; };
 		C78C43001A1BA2AE005FB127 /* MMOrmMeta.m in Sources */ = {isa = PBXBuildFile; fileRef = C78C42FF1A1BA2AE005FB127 /* MMOrmMeta.m */; };
 		C794F4A61A68D0400019294C /* MMRecordLoadingPlaceholder.m in Sources */ = {isa = PBXBuildFile; fileRef = C794F4A51A68D0400019294C /* MMRecordLoadingPlaceholder.m */; };
+		C79C6F7C1B31131A00EBAB55 /* MMSQLiteRelater.m in Sources */ = {isa = PBXBuildFile; fileRef = C79C6F7B1B31131A00EBAB55 /* MMSQLiteRelater.m */; };
 		C7A0C4F3196598BF009EB4E1 /* MMEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = C7A0C4F2196598BF009EB4E1 /* MMEntity.m */; };
 		C7A345FC1965A78A00EC08BB /* MMSQLiteSchema.m in Sources */ = {isa = PBXBuildFile; fileRef = C7A345FB1965A78A00EC08BB /* MMSQLiteSchema.m */; };
 		C7A345FF1965A7E100EC08BB /* MMSchema.m in Sources */ = {isa = PBXBuildFile; fileRef = C7A345FE1965A7E100EC08BB /* MMSchema.m */; };
@@ -96,6 +105,8 @@
 		C7199DC91A637ACF00903D7C /* MMResultsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMResultsController.m; sourceTree = "<group>"; };
 		C7199DCA1A637ACF00903D7C /* MMResultsSection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMResultsSection.h; sourceTree = "<group>"; };
 		C7199DCB1A637ACF00903D7C /* MMResultsSection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMResultsSection.m; sourceTree = "<group>"; };
+		C729C40A1B5CBE74008E5FEB /* MMServiceMigrationDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMServiceMigrationDelegate.h; sourceTree = "<group>"; };
+		C729C40B1B5CBE74008E5FEB /* MMServiceMigrationDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMServiceMigrationDelegate.m; sourceTree = "<group>"; };
 		C731719B19873350005F27E6 /* MMConditional.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMConditional.h; sourceTree = "<group>"; };
 		C731719C19873350005F27E6 /* MMConditional.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMConditional.m; sourceTree = "<group>"; };
 		C731719E1987348D005F27E6 /* MMCondition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMCondition.h; sourceTree = "<group>"; };
@@ -129,12 +140,25 @@
 		C74389341963E458000D50AF /* MMRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMRecord.m; sourceTree = "<group>"; };
 		C744E38A196474DC006A1BA5 /* MMORMUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMORMUtility.h; sourceTree = "<group>"; };
 		C744E38B196474DC006A1BA5 /* MMORMUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMORMUtility.m; sourceTree = "<group>"; };
+		C7459CCE1B39076900936E86 /* TSMItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSMItem.h; sourceTree = "<group>"; };
+		C7459CCF1B39076900936E86 /* TSMItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSMItem.m; sourceTree = "<group>"; };
+		C7459CD01B39076900936E86 /* TSMNote.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSMNote.h; sourceTree = "<group>"; };
+		C7459CD11B39076900936E86 /* TSMNote.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSMNote.m; sourceTree = "<group>"; };
+		C7459CD21B39076900936E86 /* TSMNotebook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSMNotebook.h; sourceTree = "<group>"; };
+		C7459CD31B39076900936E86 /* TSMNotebook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSMNotebook.m; sourceTree = "<group>"; };
+		C7459CD71B3BC5C500936E86 /* MMRelater.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMRelater.h; sourceTree = "<group>"; };
+		C7459CD81B3BC5C500936E86 /* MMRelater.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMRelater.m; sourceTree = "<group>"; };
+		C7459CDA1B3D176B00936E86 /* MMSQLiteMutation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMSQLiteMutation.h; sourceTree = "<group>"; };
+		C7459CDB1B3D176B00936E86 /* MMSQLiteMutation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMSQLiteMutation.m; sourceTree = "<group>"; };
 		C75E75F219C4E4E100B2B825 /* OrmamentTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "OrmamentTests-Info.plist"; path = "OrmamentTests/OrmamentTests-Info.plist"; sourceTree = "<group>"; };
+		C75F60241B5BF0AC005A3DD6 /* noteit.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = noteit.plist; sourceTree = "<group>"; };
 		C765563D198419BE00F7DFDD /* MMRequestTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMRequestTests.m; sourceTree = "<group>"; };
 		C76F9FAB1A64F1A90086C4C9 /* MMSectionDescriptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMSectionDescriptor.h; sourceTree = "<group>"; };
 		C76F9FAC1A64F1A90086C4C9 /* MMSectionDescriptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMSectionDescriptor.m; sourceTree = "<group>"; };
 		C774FA391976F40300CDBCB8 /* MMRelationship.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMRelationship.h; sourceTree = "<group>"; };
 		C774FA3A1976F40300CDBCB8 /* MMRelationship.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMRelationship.m; sourceTree = "<group>"; };
+		C775304C1B4CD8900093170D /* MMOrmManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MMOrmManager.h; path = ../MMOrmManager.h; sourceTree = "<group>"; };
+		C775304D1B4CD8900093170D /* MMOrmManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MMOrmManager.m; path = ../MMOrmManager.m; sourceTree = "<group>"; };
 		C787917319812F7800C31EA7 /* MMRelation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMRelation.h; sourceTree = "<group>"; };
 		C787917419812F7800C31EA7 /* MMRelation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMRelation.m; sourceTree = "<group>"; };
 		C78852BE19D701600004D029 /* MMGroupDescriptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMGroupDescriptor.h; sourceTree = "<group>"; };
@@ -151,6 +175,8 @@
 		C78C42FF1A1BA2AE005FB127 /* MMOrmMeta.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMOrmMeta.m; sourceTree = "<group>"; };
 		C794F4A41A68D0400019294C /* MMRecordLoadingPlaceholder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMRecordLoadingPlaceholder.h; sourceTree = "<group>"; };
 		C794F4A51A68D0400019294C /* MMRecordLoadingPlaceholder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMRecordLoadingPlaceholder.m; sourceTree = "<group>"; };
+		C79C6F7A1B31131A00EBAB55 /* MMSQLiteRelater.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MMSQLiteRelater.h; path = MarshmallowOrmament/MMSQLiteRelater.h; sourceTree = "<group>"; };
+		C79C6F7B1B31131A00EBAB55 /* MMSQLiteRelater.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MMSQLiteRelater.m; path = MarshmallowOrmament/MMSQLiteRelater.m; sourceTree = "<group>"; };
 		C7A0C4EC1965984C009EB4E1 /* MMSchemaTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MMSchemaTests.m; path = ../MarshmallowOrmamentTests/MMSchemaTests.m; sourceTree = "<group>"; };
 		C7A0C4F1196598BF009EB4E1 /* MMEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMEntity.h; sourceTree = "<group>"; };
 		C7A0C4F2196598BF009EB4E1 /* MMEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMEntity.m; sourceTree = "<group>"; };
@@ -256,6 +282,10 @@
 		C74388FB1963D134000D50AF = {
 			isa = PBXGroup;
 			children = (
+				C79C6F7A1B31131A00EBAB55 /* MMSQLiteRelater.h */,
+				C79C6F7B1B31131A00EBAB55 /* MMSQLiteRelater.m */,
+				C7459CDA1B3D176B00936E86 /* MMSQLiteMutation.h */,
+				C7459CDB1B3D176B00936E86 /* MMSQLiteMutation.m */,
 				C75E75F219C4E4E100B2B825 /* OrmamentTests-Info.plist */,
 				C733B4721979830300116BBC /* MMSQLiteRequest.h */,
 				C733B4731979830300116BBC /* MMSQLiteRequest.m */,
@@ -311,6 +341,8 @@
 				C78C42FC1A1B1CB3005FB127 /* MMSchemaObject.m */,
 				C7A3462E1965F38400EC08BB /* MMOrmamentManager.h */,
 				C7A3462F1965F38400EC08BB /* MMOrmamentManager.m */,
+				C775304C1B4CD8900093170D /* MMOrmManager.h */,
+				C775304D1B4CD8900093170D /* MMOrmManager.m */,
 				C7A346311966E9B100EC08BB /* MMSchemaMigration.h */,
 				C7A346321966E9B100EC08BB /* MMSchemaMigration.m */,
 				C7A3463B196B522D00EC08BB /* MMSqliteSchemaMigration.h */,
@@ -322,8 +354,10 @@
 				C7B9C654199DA6FF0036F89B /* MMAutoRelatedEntity.h */,
 				C7B9C655199DA6FF0036F89B /* MMAutoRelatedEntity.m */,
 				C774FA391976F40300CDBCB8 /* MMRelationship.h */,
-				C7199DBF1A637A8F00903D7C /* ResultsControllers */,
 				C774FA3A1976F40300CDBCB8 /* MMRelationship.m */,
+				C7459CD71B3BC5C500936E86 /* MMRelater.h */,
+				C7459CD81B3BC5C500936E86 /* MMRelater.m */,
+				C7199DBF1A637A8F00903D7C /* ResultsControllers */,
 				C787917319812F7800C31EA7 /* MMRelation.h */,
 				C787917419812F7800C31EA7 /* MMRelation.m */,
 				C74389331963E458000D50AF /* MMRecord.h */,
@@ -336,6 +370,8 @@
 				C731719F1987348D005F27E6 /* MMCondition.m */,
 				C7A345FD1965A7E100EC08BB /* MMSchema.h */,
 				C7A345FE1965A7E100EC08BB /* MMSchema.m */,
+				C729C40A1B5CBE74008E5FEB /* MMServiceMigrationDelegate.h */,
+				C729C40B1B5CBE74008E5FEB /* MMServiceMigrationDelegate.m */,
 				C7A345FA1965A78A00EC08BB /* MMSQLiteSchema.h */,
 				C7A345FB1965A78A00EC08BB /* MMSQLiteSchema.m */,
 				C7CE8A7D1A180B0400F2CBB0 /* MMCloud.h */,
@@ -382,6 +418,7 @@
 				C7BEB0F0196C8C4900575D45 /* TSTMigration1.h */,
 				C7BEB0F1196C8C4900575D45 /* TSTMigration1.m */,
 				C7A0C4F41965992C009EB4E1 /* noteit__0_1_0.plist */,
+				C75F60241B5BF0AC005A3DD6 /* noteit.plist */,
 				C7CEBE9E19E322A40094E4A8 /* noteit__0_2_0.plist */,
 				C7A3463E196C1ED000EC08BB /* noteit_2.plist */,
 				C743891F1963D134000D50AF /* MarshmallowOrmamentTests-Info.plist */,
@@ -393,6 +430,12 @@
 		C7A3460A1965B46500EC08BB /* OrmamentTests */ = {
 			isa = PBXGroup;
 			children = (
+				C7459CCE1B39076900936E86 /* TSMItem.h */,
+				C7459CCF1B39076900936E86 /* TSMItem.m */,
+				C7459CD01B39076900936E86 /* TSMNote.h */,
+				C7459CD11B39076900936E86 /* TSMNote.m */,
+				C7459CD21B39076900936E86 /* TSMNotebook.h */,
+				C7459CD31B39076900936E86 /* TSMNotebook.m */,
 				C7AF98FC1A4A20320093835D /* TSANote.h */,
 				C7AF98FD1A4A20320093835D /* TSANote.m */,
 				C7AF98FF1A4A204E0093835D /* TSANotebook.h */,
@@ -441,6 +484,7 @@
 				C74389011963D134000D50AF /* Frameworks */,
 				C74389021963D134000D50AF /* CopyFiles */,
 				238F4A8677294A7E97C29910 /* Copy Pods Resources */,
+				C79C6F791B30CD2A00EBAB55 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -460,6 +504,7 @@
 				C7A346031965B46500EC08BB /* Frameworks */,
 				C7A346041965B46500EC08BB /* Resources */,
 				B5A7BE3CA35614B0014B599D /* Copy Pods Resources */,
+				C79C6F781B30CC5700EBAB55 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -508,6 +553,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C7265A711B5BF33200866343 /* noteit.plist in Resources */,
 				C75E75F319C4E4E100B2B825 /* OrmamentTests-Info.plist in Resources */,
 				C7A3461F1965B9E900EC08BB /* noteit__0_1_0.plist in Resources */,
 				C7E2F52C19ED72C000B2064F /* noteit__0_2_0.plist in Resources */,
@@ -563,6 +609,32 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		C79C6F781B30CC5700EBAB55 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "";
+		};
+		C79C6F791B30CD2A00EBAB55 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "APPLEDOC_PATH=`which appledoc`\nif [ $APPLEDOC_PATH ]; then\n\nappledoc  --project-name ${PROJECT_NAME}  --project-company \"KellyHuberty\"  --company-id \"com.kellyhuberty\"  --ignore \".m\"  --ignore \"Pods\"  --explicit-crossref  --keep-undocumented-objects  --keep-undocumented-members  --no-repeat-first-par  --no-warn-missing-arg  --no-warn-undocumented-object  --no-warn-undocumented-member  --no-warn-empty-description  --docset-bundle-id ${PROJECT_NAME}  --docset-bundle-name ${PROJECT_NAME}  --docset-install-path ${PROJECT_DIR}  --output ${PROJECT_DIR}  ${PROJECT_DIR}\n\nfi";
+		};
 		EF78FFD8F8FB4FDCB2E78701 /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -585,6 +657,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C7459CDC1B3D176B00936E86 /* MMSQLiteMutation.m in Sources */,
 				C7A346281965C64F00EC08BB /* MMSQLiteStore.m in Sources */,
 				C78C42FD1A1B1CB3005FB127 /* MMSchemaObject.m in Sources */,
 				C733B47119797D6500116BBC /* MMRequest.m in Sources */,
@@ -598,14 +671,18 @@
 				C7A3462B1965C66100EC08BB /* MMService.m in Sources */,
 				C76F9FAD1A64F1A90086C4C9 /* MMSectionDescriptor.m in Sources */,
 				C744E38C196474DC006A1BA5 /* MMORMUtility.m in Sources */,
+				C7459CD91B3BC5C500936E86 /* MMRelater.m in Sources */,
 				C7AF99091A4DBC8D0093835D /* MMCouchbaseStore.m in Sources */,
 				C7B9C656199DA6FF0036F89B /* MMAutoRelatedEntity.m in Sources */,
+				C729C40C1B5CBE74008E5FEB /* MMServiceMigrationDelegate.m in Sources */,
 				C7199DCE1A637ACF00903D7C /* MMResultsSection.m in Sources */,
 				C731719D19873350005F27E6 /* MMConditional.m in Sources */,
+				C79C6F7C1B31131A00EBAB55 /* MMSQLiteRelater.m in Sources */,
 				C7A0C4F3196598BF009EB4E1 /* MMEntity.m in Sources */,
 				C7A346301965F38400EC08BB /* MMOrmamentManager.m in Sources */,
 				C7432B191A1D3AE800DEC85F /* MMAttribute.m in Sources */,
 				C743890F1963D134000D50AF /* MarshmallowOrmament.m in Sources */,
+				C775304E1B4CD8900093170D /* MMOrmManager.m in Sources */,
 				C78C42F71A1AA4F4005FB127 /* MMStore.m in Sources */,
 				C7A3463D196B522D00EC08BB /* MMSqliteSchemaMigration.m in Sources */,
 				C7CE8A7F1A180B0400F2CBB0 /* MMCloud.m in Sources */,
@@ -632,7 +709,10 @@
 				C7F2145F196CF05A00002371 /* MMRecordTests.m in Sources */,
 				C73171A81992B6CB005F27E6 /* MMRelationshipTests.m in Sources */,
 				C7A346181965B4B000EC08BB /* MMSchemaTests.m in Sources */,
+				C7459CD51B39076900936E86 /* TSMNote.m in Sources */,
+				C7459CD61B39076900936E86 /* TSMNotebook.m in Sources */,
 				C7AF99041A4A20660093835D /* TSAItem.m in Sources */,
+				C7459CD41B39076900936E86 /* TSMItem.m in Sources */,
 				C73171A51991DEE2005F27E6 /* TSTNotebook.m in Sources */,
 				C7A346221965C1D900EC08BB /* TSTNote.m in Sources */,
 				C7A3462D1965F09E00EC08BB /* MMORMBootstrapTests.m in Sources */,
@@ -755,6 +835,7 @@
 				DSTROOT = /tmp/MarshmallowOrmament.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MarshmallowOrmament/MarshmallowOrmament-Prefix.pch";
+				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -768,6 +849,7 @@
 				DSTROOT = /tmp/MarshmallowOrmament.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MarshmallowOrmament/MarshmallowOrmament-Prefix.pch";
+				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -779,6 +861,7 @@
 			baseConfigurationReference = EA40C49C3D687741A0791EB5 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
+				BUNDLE_LOADER = "";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
@@ -797,7 +880,8 @@
 					"$(PROJECT_DIR)/Pods/build/Debug-iphoneos",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos8.0;
+				SDKROOT = iphoneos;
+				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
 			name = Debug;
@@ -821,7 +905,8 @@
 					"$(PROJECT_DIR)/Pods/build/Debug-iphoneos",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos8.0;
+				SDKROOT = iphoneos;
+				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
 			name = Release;

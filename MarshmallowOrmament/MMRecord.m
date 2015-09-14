@@ -259,9 +259,10 @@ static void setRelationValueIMP(id self, SEL _cmd, id aValue) {
     
     if (self != nil) {
         _inserted = NO;
-
-        [_values addEntriesFromDictionary:values];
-        //[self registerNotificationHash];
+        @synchronized(_values){
+            [_values addEntriesFromDictionary:values];
+        }
+            //[self registerNotificationHash];
         
         MMDebug(@"values %@", values);
     }
@@ -322,9 +323,9 @@ static void setRelationValueIMP(id self, SEL _cmd, id aValue) {
 
 +(instancetype)create{
     
-    return MMAutorelease([[[self class] alloc] init]);
+    id blah = MMAutorelease([[[self class] alloc] init]);
     
-    
+    return blah;
     //return rec;
 }
 
@@ -607,8 +608,9 @@ static void setRelationValueIMP(id self, SEL _cmd, id aValue) {
 
 +(MMEntity *)entity{
     
-    return [[[self store] schema] entityForName:[self entityName]];
+    MMEntity * entity = [[[self store] schema] entityForName:[self entityName]];
     
+    return entity;
 }
 
 +(MMService *)store{

@@ -16,7 +16,7 @@
 @implementation MMOrmamentManager
 
 
-+(MMOrmamentManager *)sharedManager{
++(instancetype)sharedManager{
     
     if (!sharedManager){
         
@@ -266,7 +266,7 @@
     
         NSLog(@"currentVersionForSchema %@" , [MMService currentVersionForSchemaName:schema.name type:type]);
         
-        if ( [MMService currentVersionForSchemaName:schema.name type:type] == nil ) {
+        if ( [MMService currentVersionForSchemaName:schema.name type:type] == nil && schema.autoBuild) {
                 //initial data build....
             
             NSLog(@"Building inital store for %@", schema.name);
@@ -279,11 +279,15 @@
             else{
                 
                 
-                
             }
             
         }
         else{
+
+            if ([MMService currentVersionForSchemaName:schema.name type:type] == nil) {
+                [MMService setCurrentVersion:[MMVersionString stringWithString:@"0.0.0"] forSchemaName:schema.name type:type];
+            }
+
             
             if ( [schema.version compareVersion:[MMService currentVersionForSchemaName:schema.name type:type]] == NSOrderedDescending ) {
                     // downgrade schema...

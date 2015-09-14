@@ -1,0 +1,1064 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+
+	<title>MMEntity Class Reference</title>
+
+	<link rel="stylesheet" href="../css/style.css">
+	<meta name="viewport" content="initial-scale=1, maximum-scale=1.4">
+	<meta name="generator" content="appledoc 2.2.1 (build 1333)">
+</head>
+<body class="appledoc">
+	<header>
+		<div class="container" class="hide-in-xcode">
+			
+			<h1 id="library-title">
+				<a href="../index.html">MarshmallowOrmament </a>
+			</h1>
+
+			<p id="developer-home">
+				<a href="../index.html">KellyHuberty</a>
+			</p>
+			
+		</div>
+	</header>
+
+	<aside>
+		<div class="container">
+			<nav>
+				<ul id="header-buttons" role="toolbar">
+					<li><a href="../index.html">Index</a></li>
+<li><a href="../hierarchy.html">Hierarchy</a></li>
+
+					<li id="on-this-page" role="navigation">
+						<label>
+							On This Page
+
+							<div class="chevron">
+								<div class="chevy chevron-left"></div>
+								<div class="chevy chevron-right"></div>
+							</div>
+
+							<select id="jump-to">
+	<option value="top">Jump To&#133;</option>
+	
+	<option value="overview">Overview</option>
+	
+
+	
+	
+	<option value="tasks">Tasks</option>
+	
+	
+
+	
+	
+	<optgroup label="Properties">
+		
+		<option value="//api/name/attributes">attributes</option>
+		
+		<option value="//api/name/idKeys">idKeys</option>
+		
+		<option value="//api/name/modelClassName">modelClassName</option>
+		
+		<option value="//api/name/name">name</option>
+		
+		<option value="//api/name/relationships">relationships</option>
+		
+		<option value="//api/name/storeClassName">storeClassName</option>
+		
+		<option value="//api/name/storeName">storeName</option>
+		
+		<option value="//api/name/uniqueIndex">uniqueIndex</option>
+		
+	</optgroup>
+	
+
+	
+	<optgroup label="Class Methods">
+		
+		<option value="//api/name/entityWithRecordClass:">+ entityWithRecordClass:</option>
+		
+		<option value="//api/name/initialize">+ initialize</option>
+		
+		<option value="//api/name/loadEntityFile">+ loadEntityFile</option>
+		
+		<option value="//api/name/setModelClassNamePrefix:">+ setModelClassNamePrefix:</option>
+		
+	</optgroup>
+	
+
+	
+	<optgroup label="Instance Methods">
+		
+		<option value="//api/name/attributeWithName:">- attributeWithName:</option>
+		
+		<option value="//api/name/dealloc">- dealloc</option>
+		
+		<option value="//api/name/entityDescription">- entityDescription</option>
+		
+		<option value="//api/name/entityMapForAPIName:">- entityMapForAPIName:</option>
+		
+		<option value="//api/name/idKeys">- idKeys</option>
+		
+		<option value="//api/name/init">- init</option>
+		
+		<option value="//api/name/initWithDictionary:">- initWithDictionary:</option>
+		
+		<option value="//api/name/log">- log</option>
+		
+		<option value="//api/name/relationshipWithName:">- relationshipWithName:</option>
+		
+		<option value="//api/name/setDefaultEntityMap:">- setDefaultEntityMap:</option>
+		
+		<option value="//api/name/setEntityDescription:">- setEntityDescription:</option>
+		
+		<option value="//api/name/setEntityMap:forAPIName:">- setEntityMap:forAPIName:</option>
+		
+		<option value="//api/name/setName:">- setName:</option>
+		
+		<option value="//api/name/setUniqueIndex:">- setUniqueIndex:</option>
+		
+		<option value="//api/name/setup">- setup</option>
+		
+		<option value="//api/name/sqlAttributeNames">- sqlAttributeNames</option>
+		
+	</optgroup>
+	
+	
+</select>
+						</label>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</aside>
+
+	<article>
+		<div id="overview_contents" class="container">
+			<div id="content">
+				<main role="main">
+					<h1 class="title">MMEntity Class Reference</h1>
+
+					
+					<div class="section section-specification"><table cellspacing="0"><tbody>
+						<tr>
+	<th>Inherits from</th>
+	<td><a href="../Classes/MMSchemaObject.html">MMSchemaObject</a> : NSObject</td>
+</tr><tr>
+	<th>Declared in</th>
+	<td>MMEntity.h</td>
+</tr>
+						</tbody></table></div>
+					
+
+                    
+					
+					<div class="section section-overview">
+						<a title="Overview" name="overview"></a>
+						<h2 class="subtitle subtitle-overview">Overview</h2>
+						<p>A MMEntity is an object used to describe your application&rsquo;s internal representation of its data for use in a MMRecord, MMStore, associated model objects and virtually every API in Marshmallow. An entity object stores the attribute types, display names, order in a list, and enforeced classes of all record objects. Typically an entity is created once, defined with a name string that identifies it globally, and then stored statically for use across your entire application.</p>
+
+<p>MMEntitys can be defined in a varity of ways. They can be defined programmatically, using <a href="MMKeyValueDescriptor%20Class%20Reference">MMKeyValueDescriptor</a> to define each attribute, using dictionarys to assign values to each attribute, and a couple of different ways using plist files to define data in your appication.</p>
+
+<p>Stores and Records without an MMEntity object defining the names,classes and additional vars of data are useless, and can not store record data of any type.</p>
+
+<h2>Defining an Entity Programmatically</h2>
+
+<h2>Defining an Entity using XML .plists Files</h2>
+					</div>
+					
+					
+
+					
+					
+					<div class="section section-tasks">
+						<a title="Tasks" name="tasks"></a>
+						
+
+						
+						
+
+						<div class="task-list">
+							<div class="section-method">
+	<a name="//api/name/name" title="name"></a>
+	<h3 class="method-title"><code><a href="#//api/name/name">&nbsp;&nbsp;name</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+
+			<div class="method-subsection method-declaration"><code>@property (nonatomic, retain) NSString *name</code></div>
+
+		    
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/storeName" title="storeName"></a>
+	<h3 class="method-title"><code><a href="#//api/name/storeName">&nbsp;&nbsp;storeName</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+
+			<div class="method-subsection method-declaration"><code>@property (nonatomic, retain) NSString *storeName</code></div>
+
+		    
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/modelClassName" title="modelClassName"></a>
+	<h3 class="method-title"><code><a href="#//api/name/modelClassName">&nbsp;&nbsp;modelClassName</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+
+			<div class="method-subsection method-declaration"><code>@property (nonatomic, retain) NSString *modelClassName</code></div>
+
+		    
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/uniqueIndex" title="uniqueIndex"></a>
+	<h3 class="method-title"><code><a href="#//api/name/uniqueIndex">&nbsp;&nbsp;uniqueIndex</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+
+			<div class="method-subsection method-declaration"><code>@property (nonatomic, retain) NSArray *uniqueIndex</code></div>
+
+		    
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/idKeys" title="idKeys"></a>
+	<h3 class="method-title"><code><a href="#//api/name/idKeys">&nbsp;&nbsp;idKeys</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+
+			<div class="method-subsection method-declaration"><code>@property (nonatomic, retain) NSArray *idKeys</code></div>
+
+		    
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/storeClassName" title="storeClassName"></a>
+	<h3 class="method-title"><code><a href="#//api/name/storeClassName">&nbsp;&nbsp;storeClassName</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+
+			<div class="method-subsection method-declaration"><code>@property (nonatomic, retain) NSString *storeClassName</code></div>
+
+		    
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/attributes" title="attributes"></a>
+	<h3 class="method-title"><code><a href="#//api/name/attributes">&nbsp;&nbsp;attributes</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+
+			<div class="method-subsection method-declaration"><code>@property (nonatomic, retain) MMSet *attributes</code></div>
+
+		    
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/relationships" title="relationships"></a>
+	<h3 class="method-title"><code><a href="#//api/name/relationships">&nbsp;&nbsp;relationships</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+
+			<div class="method-subsection method-declaration"><code>@property (nonatomic, retain) MMSet *relationships</code></div>
+
+		    
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/init" title="init"></a>
+	<h3 class="method-title"><code><a href="#//api/name/init">&ndash;&nbsp;init</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+
+			<div class="method-subsection method-declaration"><code>- (id)init</code></div>
+
+		    
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/entityWithRecordClass:" title="entityWithRecordClass:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/entityWithRecordClass:">+&nbsp;entityWithRecordClass:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+
+			<div class="method-subsection method-declaration"><code>+ (instancetype)entityWithRecordClass:(Class)<em>aClass</em></code></div>
+
+		    
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/initWithDictionary:" title="initWithDictionary:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/initWithDictionary:">&ndash;&nbsp;initWithDictionary:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+
+			<div class="method-subsection method-declaration"><code>- (id)initWithDictionary:(NSDictionary *)<em>dict</em></code></div>
+
+		    
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/dealloc" title="dealloc"></a>
+	<h3 class="method-title"><code><a href="#//api/name/dealloc">&ndash;&nbsp;dealloc</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+
+			<div class="method-subsection method-declaration"><code>- (void)dealloc</code></div>
+
+		    
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/setEntityMap:forAPIName:" title="setEntityMap:forAPIName:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/setEntityMap:forAPIName:">&ndash;&nbsp;setEntityMap:forAPIName:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Sets an entity map for the given
+Sets the given Entity Map defining the mapping of data for the given api specified by apiName</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (void)setEntityMap:(MMDataMap *)<em>map</em> forAPIName:(NSString *)<em>apiName</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>map</code></th>
+						<td><p>Entity Map defining the mapping of data for the given api specified by apiName</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>newModel</code></th>
+						<td><p>a model object which is linked to that particular MMRecord.</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>An instance of MMRecord;</p>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">MMEntity.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/entityMapForAPIName:" title="entityMapForAPIName:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/entityMapForAPIName:">&ndash;&nbsp;entityMapForAPIName:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Returns the given Entity Map for the given apiName. If an entity isn&rsquo;t specified for the given apiName,
+the default Entity Map is returned in it&rsquo;s place.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (MMDataMap *)entityMapForAPIName:(NSString *)<em>apiName</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>apiName</code></th>
+						<td><p>String specifing the</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>An instance of MMRecord;</p>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">MMEntity.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/setDefaultEntityMap:" title="setDefaultEntityMap:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/setDefaultEntityMap:">&ndash;&nbsp;setDefaultEntityMap:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Sets the default Entity Map. If the default entity map is not specified, the first entity map set
+for the entity will be used.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (void)setDefaultEntityMap:(MMDataMap *)<em>map</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>map</code></th>
+						<td><p>The entity map to use as default</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">MMEntity.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/setName:" title="setName:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/setName:">&ndash;&nbsp;setName:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Sets the entity&rsquo;s name. This name should be the same as it&rsquo;s corresponding core data entity and
+is used to register and retrieve the entity at runtime.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (void)setName:(NSString *)<em>name</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>name</code></th>
+						<td><p>The name to use.</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">MMEntity.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/setEntityDescription:" title="setEntityDescription:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/setEntityDescription:">&ndash;&nbsp;setEntityDescription:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Sets the entity&rsquo;s core data entity description.
+@param entityDescription</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (void)setEntityDescription:(NSEntityDescription *)<em>entityDescription</em></code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">MMEntity.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/entityDescription" title="entityDescription"></a>
+	<h3 class="method-title"><code><a href="#//api/name/entityDescription">&ndash;&nbsp;entityDescription</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Retrieves the entity&rsquo;s core data description.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (NSEntityDescription *)entityDescription</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">MMEntity.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/setUniqueIndex:" title="setUniqueIndex:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/setUniqueIndex:">&ndash;&nbsp;setUniqueIndex:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Set&rsquo;s the entity&rsquo;s unique index</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (void)setUniqueIndex:(NSArray *)<em>index</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>index</code></th>
+						<td><p>Array containing strings that specify an Item&rsquo;s unique Identifing attributes.
+@discussion</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">MMEntity.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/idKeys" title="idKeys"></a>
+	<h3 class="method-title"><code><a href="#//api/name/idKeys">&ndash;&nbsp;idKeys</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>the entity&rsquo;s unique index</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (NSArray *)idKeys</code></div>
+
+		    
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>index Array containing strings that specify an Item&rsquo;s unique Identifing attributes.</p>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">MMEntity.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/setModelClassNamePrefix:" title="setModelClassNamePrefix:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/setModelClassNamePrefix:">+&nbsp;setModelClassNamePrefix:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Set&rsquo;s the prefix for all model classes used as Marshmallow records</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>+ (void)setModelClassNamePrefix:(NSString *)<em>prefix</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>prefix</code></th>
+						<td><p>first letters of every class</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>If defined, all entity classes will be assumed to be of the format {CLass Prefix}{Core data entity name}
+For instance, if the class prefix is set in this method as &ldquo;SM&rdquo;, the resulting class for the Core data entity person will be
+SMPerson.</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">MMEntity.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/sqlAttributeNames" title="sqlAttributeNames"></a>
+	<h3 class="method-title"><code><a href="#//api/name/sqlAttributeNames">&ndash;&nbsp;sqlAttributeNames</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Returns the names of the SQL attributes for this entity&rsquo;s sql table representation. If a SQL attribute name is not specified, the
+attribute will default to its default name.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (NSDictionary *)sqlAttributeNames</code></div>
+
+		    
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>NSDictionary with the keys representing the attribute names and the values representing the table names.</p>
+			</div>
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>If defined, all entity classes will be assumed to be of the format {CLass Prefix}{Core data entity name}
+For instance, if the class prefix is set in this method as &ldquo;SM&rdquo;, the resulting class for the Core data entity person will be
+SMPerson.</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">MMEntity.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/attributeWithName:" title="attributeWithName:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/attributeWithName:">&ndash;&nbsp;attributeWithName:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Returns the names of the SQL attributes for this entity&rsquo;s sql table representation. If a SQL attribute name is not specified, the
+attribute will default to its default name.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (MMAttribute *)attributeWithName:(NSString *)<em>name</em></code></div>
+
+		    
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>NSDictionary with the keys representing the attribute names and the values representing the table names.</p>
+			</div>
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>If defined, all entity classes will be assumed to be of the format {CLass Prefix}{Core data entity name}
+For instance, if the class prefix is set in this method as &ldquo;SM&rdquo;, the resulting class for the Core data entity person will be
+SMPerson.</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">MMEntity.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/relationshipWithName:" title="relationshipWithName:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/relationshipWithName:">&ndash;&nbsp;relationshipWithName:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+
+			<div class="method-subsection method-declaration"><code>- (MMRelationship *)relationshipWithName:(NSString *)<em>name</em></code></div>
+
+		    
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/log" title="log"></a>
+	<h3 class="method-title"><code><a href="#//api/name/log">&ndash;&nbsp;log</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+
+			<div class="method-subsection method-declaration"><code>- (void)log</code></div>
+
+		    
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/initialize" title="initialize"></a>
+	<h3 class="method-title"><code><a href="#//api/name/initialize">+&nbsp;initialize</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+
+			<div class="method-subsection method-declaration"><code>+ (void)initialize</code></div>
+
+		    
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/loadEntityFile" title="loadEntityFile"></a>
+	<h3 class="method-title"><code><a href="#//api/name/loadEntityFile">+&nbsp;loadEntityFile</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+
+			<div class="method-subsection method-declaration"><code>+ (void)loadEntityFile</code></div>
+
+		    
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/setup" title="setup"></a>
+	<h3 class="method-title"><code><a href="#//api/name/setup">&ndash;&nbsp;setup</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+
+			<div class="method-subsection method-declaration"><code>- (void)setup</code></div>
+
+		    
+		</div>
+	</div>
+</div>
+						</div>
+						
+					</div>
+					
+					
+
+                    
+				</main>
+
+				<footer>
+					<div class="footer-copyright">
+						
+						<p class="copyright">Copyright &copy; 2015 KellyHuberty. All rights reserved. Updated: 2015-06-16</p>
+						
+						
+						<p class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.2.1 (build 1333)</a>.</p>
+						
+					</div>
+				</footer>
+			</div>
+		</div>
+	</article>
+
+	<script src="../js/script.js"></script>
+</body>
+</html>
