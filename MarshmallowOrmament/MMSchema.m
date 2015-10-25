@@ -442,15 +442,7 @@ NSArray * MMGetSubclasses(Class parentClass)
 
 -(MMEntity *)entityForName:(NSString *)entityName{
     
-    if ( [_entities count] == 0){
-        NSLog(@"crap");
-    }
-    
-    
     return [_entities objectWithValue:entityName forKey:@"name"];
-    
-
-    
     
 }
 

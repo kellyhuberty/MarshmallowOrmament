@@ -7,13 +7,13 @@
 //
 
 #import "MMCloud.h"
-
+#import "MMOrmManager.h"
 @implementation MMCloud
 
 
 +(MMService *)cloudWithSchemaName:(NSString *)schemaName version:(MMVersionString *)ver{
     
-    return [self serviceWithSchemaName:schemaName type:@"cloud" version:ver];
+    return [[MMOrmManager manager] serviceWithType:@"cloud" schemaName:schemaName];
     
 }
 

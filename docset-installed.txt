@@ -1,4 +1,4 @@
 Documentation set was installed to Xcode!
 
-Path: ~/Projects/MarshmallowOrmament/com.kellyhuberty.MarshmallowOrmament.docset
-Time: 2015-06-16 22:12:52 +0000
+Path: /Users/kellyhuberty/Projects/MarshmallowOrmament/com.kellyhuberty.MarshmallowOrmament.docset
+Time: 2015-10-23 05:15:15 +0000

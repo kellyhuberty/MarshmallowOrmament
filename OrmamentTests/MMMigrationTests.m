@@ -43,26 +43,26 @@
     MMVersionString * old = [MMVersionString stringWithString:@"0.1.0"];
     MMVersionString * new = [MMVersionString stringWithString:@"0.2.0"];
 
-    
-    MMService * oldStore = [MMService storeWithSchemaName:@"noteit" version:[MMVersionString stringWithString:@"0.1.0"]];
-    MMService * newStore = [MMService storeWithSchemaName:@"noteit" version:[MMVersionString stringWithString:@"0.2.0"]];
-
+//    
+//    MMService * oldStore = [MMService storeWithSchemaName:@"noteit" version:[MMVersionString stringWithString:@"0.1.0"]];
+//    MMService * newStore = [MMService storeWithSchemaName:@"noteit" version:[MMVersionString stringWithString:@"0.2.0"]];
+//
     
     //[MMStore storeWithSchemaName:@"noteit" version:[MMVersionString stringWithString:@"0.0.1"]];
     
-    
-    NSDictionary * dict =[MMOrmamentManager schemaDictionaryWithName:@"noteit" version:new];
-
-    
-    MMSqliteSchemaMigration * migration = [MMSqliteSchemaMigration migrationWithDictionary:dict[@"migrations"]];
-    
-    //migration
-    
-    NSError * error = nil;
-    
-    [migration upgradeStore:oldStore toStore:newStore error:&error];
-    
-    XCTAssertNil((error), @"Pass");
+//    
+//    NSDictionary * dict =[MMOrmamentManager schemaDictionaryWithName:@"noteit" version:new];
+//
+//    
+//    MMSqliteSchemaMigration * migration = [MMSqliteSchemaMigration migrationWithDictionary:dict[@"migrations"]];
+//    
+//    //migration
+//    
+//    NSError * error = nil;
+//    
+//    [migration upgradeStore:oldStore toStore:newStore error:&error];
+//    
+//    XCTAssertNil((error), @"Pass");
 
     //XCTAssertTrue((error == nil));
 

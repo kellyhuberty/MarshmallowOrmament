@@ -148,8 +148,8 @@
 		C7459CD31B39076900936E86 /* TSMNotebook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSMNotebook.m; sourceTree = "<group>"; };
 		C7459CD71B3BC5C500936E86 /* MMRelater.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMRelater.h; sourceTree = "<group>"; };
 		C7459CD81B3BC5C500936E86 /* MMRelater.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMRelater.m; sourceTree = "<group>"; };
-		C7459CDA1B3D176B00936E86 /* MMSQLiteMutation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMSQLiteMutation.h; sourceTree = "<group>"; };
-		C7459CDB1B3D176B00936E86 /* MMSQLiteMutation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMSQLiteMutation.m; sourceTree = "<group>"; };
+		C7459CDA1B3D176B00936E86 /* MMSQLiteMutation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MMSQLiteMutation.h; path = MarshmallowOrmament/MMSQLiteMutation.h; sourceTree = "<group>"; };
+		C7459CDB1B3D176B00936E86 /* MMSQLiteMutation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MMSQLiteMutation.m; path = MarshmallowOrmament/MMSQLiteMutation.m; sourceTree = "<group>"; };
 		C75E75F219C4E4E100B2B825 /* OrmamentTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "OrmamentTests-Info.plist"; path = "OrmamentTests/OrmamentTests-Info.plist"; sourceTree = "<group>"; };
 		C75F60241B5BF0AC005A3DD6 /* noteit.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = noteit.plist; sourceTree = "<group>"; };
 		C765563D198419BE00F7DFDD /* MMRequestTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMRequestTests.m; sourceTree = "<group>"; };
@@ -157,8 +157,8 @@
 		C76F9FAC1A64F1A90086C4C9 /* MMSectionDescriptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMSectionDescriptor.m; sourceTree = "<group>"; };
 		C774FA391976F40300CDBCB8 /* MMRelationship.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMRelationship.h; sourceTree = "<group>"; };
 		C774FA3A1976F40300CDBCB8 /* MMRelationship.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMRelationship.m; sourceTree = "<group>"; };
-		C775304C1B4CD8900093170D /* MMOrmManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MMOrmManager.h; path = ../MMOrmManager.h; sourceTree = "<group>"; };
-		C775304D1B4CD8900093170D /* MMOrmManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MMOrmManager.m; path = ../MMOrmManager.m; sourceTree = "<group>"; };
+		C775304C1B4CD8900093170D /* MMOrmManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMOrmManager.h; sourceTree = "<group>"; };
+		C775304D1B4CD8900093170D /* MMOrmManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMOrmManager.m; sourceTree = "<group>"; };
 		C787917319812F7800C31EA7 /* MMRelation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMRelation.h; sourceTree = "<group>"; };
 		C787917419812F7800C31EA7 /* MMRelation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMRelation.m; sourceTree = "<group>"; };
 		C78852BE19D701600004D029 /* MMGroupDescriptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMGroupDescriptor.h; sourceTree = "<group>"; };
@@ -633,7 +633,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "APPLEDOC_PATH=`which appledoc`\nif [ $APPLEDOC_PATH ]; then\n\nappledoc  --project-name ${PROJECT_NAME}  --project-company \"KellyHuberty\"  --company-id \"com.kellyhuberty\"  --ignore \".m\"  --ignore \"Pods\"  --explicit-crossref  --keep-undocumented-objects  --keep-undocumented-members  --no-repeat-first-par  --no-warn-missing-arg  --no-warn-undocumented-object  --no-warn-undocumented-member  --no-warn-empty-description  --docset-bundle-id ${PROJECT_NAME}  --docset-bundle-name ${PROJECT_NAME}  --docset-install-path ${PROJECT_DIR}  --output ${PROJECT_DIR}  ${PROJECT_DIR}\n\nfi";
+			shellScript = "# APPLEDOC_PATH=`which appledoc`\n# if [ $APPLEDOC_PATH ]; then\n#\n# appledoc  --project-name ${PROJECT_NAME}  --project-company \"KellyHuberty\"  --company-id \"com.kellyhuberty\"  --ignore \".m\"  --ignore \"Pods\"  --explicit-crossref  --keep-undocumented-objects  --keep-undocumented-members  --no-repeat-first-par  --no-warn-missing-arg  --no-warn-undocumented-object  --no-warn-undocumented-member  --no-warn-empty-description  --docset-bundle-id ${PROJECT_NAME}  --docset-bundle-name ${PROJECT_NAME}  --docset-install-path ${PROJECT_DIR}  --output ${PROJECT_DIR}  ${PROJECT_DIR}\n#\n# fi";
 		};
 		EF78FFD8F8FB4FDCB2E78701 /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;

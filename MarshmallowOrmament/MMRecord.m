@@ -22,6 +22,7 @@
 #import "MMAdapter.h"
 
 #import "MMAttribute.h"
+#import "MMOrmManager.h"
 
 static void setValueIMP(id self, SEL _cmd, id aValue);
 
@@ -615,8 +616,9 @@ static void setRelationValueIMP(id self, SEL _cmd, id aValue) {
 
 +(MMService *)store{
     
-    return [MMService storeWithSchemaName:[self schemaName] version:nil];
+    MMStore * store = [[MMOrmManager manager] serviceWithType:@"store" schemaName:[self schemaName]];
     
+    return store;
 }
 
 +(NSString *)schemaName{
@@ -1129,6 +1131,20 @@ static void setRelationValueIMP(id self, SEL _cmd, id aValue) {
         
         
     }
+    if ([key hasPrefix:@"get"]) {
+        
+        
+        [key deleteCharactersInRange:NSMakeRange(0, 3)];
+        NSString *firstChar = [key substringToIndex:1];
+        [key replaceCharactersInRange:NSMakeRange(0, 1) withString:[firstChar lowercaseString]];
+        
+        attr = [[self entity] attributeWithName:key];
+        rel = [[self entity] relationshipWithName:key];
+        
+        
+    }
+    
+    
     
     if (attr == nil && rel == nil) {
 //        NSException * e = [NSException exceptionWithName:@"InvalidPropertyNameException" reason:[NSString stringWithFormat:@"The class %@ does not implement the selector %@ either dynamically or conventionally.",NSStringFromClass([self class]) ,NSStringFromSelector(aSEL) ] userInfo:@{}];

@@ -30,7 +30,7 @@
 
     
     
-    [MMOrmamentManager resetSharedManager];
+    [MMOrmManager resetManager];
     
     [super setUp];
     // Put setup code here. This method is called before the invocation of each test method in the class.
@@ -126,9 +126,6 @@
     MMSetArcEnabled();
 
     
-    [MMOrmamentManager startWithSchemas:@[     @{
-                                               @"name":@"noteit",@"version":@"0.1.0"
-                                               }]];
     //[MMOrmamentManager startWithSchemas:@[@"noteit"]];
     
     TSTNote * note = [TSTNote create];
@@ -658,8 +655,7 @@
 
     [self archiveDatabaseFileForTest:@"testBasicRead"];
 
-    MMSQLiteStore * str = [MMService storeWithSchemaName:@"noteit" version:nil];
-    
+    MMSQLiteStore * str = [[MMOrmManager manager] serviceWithType:@"store" schemaName:@"noteit"];    
     if (!str) {
         XCTFail(@"No Store availible...");
     }
@@ -710,7 +706,7 @@
     
     [self archiveDatabaseFileForTest:@"testBasicRead"];
     
-    MMSQLiteStore * str = [MMService storeWithSchemaName:@"noteit" version:nil];
+    MMSQLiteStore * str = [[MMOrmManager manager] serviceWithType:@"store" schemaName:@"noteit"];
     
     if (!str) {
         XCTFail(@"No Store availible...");

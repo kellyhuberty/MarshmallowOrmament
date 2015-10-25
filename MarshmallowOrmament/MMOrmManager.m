@@ -28,7 +28,7 @@ static MMOrmManager * manager = nil;
     
 }
 
-+(void)resetSharedManager{
++(void)resetManager{
     
     manager = nil;
     
@@ -50,7 +50,7 @@ static MMOrmManager * manager = nil;
 
 +(void)startWithSchemas:(NSArray *)schemas{
     
-    [self resetSharedManager];
+    [self resetManager];
     
     MMOrmManager * manager = [self manager];
     
@@ -113,6 +113,7 @@ static MMOrmManager * manager = nil;
         
         MMService * service = [[NSClassFromString(serviceClassName) alloc] initWithSchema:(schema)];
         
+        [self setService:service forType:type schemaName:schema.name];
         
         NSLog(@"currentVersionForSchema %@" , [MMService currentVersionForSchemaName:schema.name type:type]);
         
@@ -129,19 +130,16 @@ static MMOrmManager * manager = nil;
             
             if (schema.autoBuild) {
                 
-                //[[self class] buildServiceType:type forSchema:schema error:&error];
-                
                 [service build:&error];
                 
             }
             else{
                 
-                if (migrator) {
-                    migrator = [[self class] migrationDelegateForSchema:schema serviceType:type];
-                }
-
-                [migrator buildService:service schema:schema error:&error];
+                migrator = [[self class] migrationDelegateForSchema:schema serviceType:type];
                 
+                if (migrator) {
+                    [migrator buildService:service schema:schema error:&error];
+                }
             }
             
         }
@@ -224,6 +222,36 @@ static MMOrmManager * manager = nil;
     
     
     //    [self setCurrentVersion:schema.version forSchemaName:schema.name];
+    
+}
+
+
+
+
+
+
+
+-(MMSchema *)schemaWithName:(NSString *)name{
+    
+    return [_schemas objectForKey:name];
+    
+}
+
+-(MMService *)serviceWithType:(NSString *)type schemaName:(NSString *)name{
+
+    NSString * storeName = [NSString stringWithFormat:@"%@__%@", name, type];
+    
+    return [_services objectForKey:storeName];
+    
+}
+
+-(void)setService:(MMService *)service forType:(NSString *)type schemaName:(NSString *)name{
+    
+    
+    NSString * storeName = [NSString stringWithFormat:@"%@__%@", name, type];
+
+    [_services setObject:service forKey:storeName];
+    
     
 }
 

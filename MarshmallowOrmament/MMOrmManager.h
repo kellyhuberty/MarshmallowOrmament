@@ -7,7 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-
+@class MMSchema;
+@class MMService;
 @interface MMOrmManager : NSObject{
     
     
@@ -20,9 +21,14 @@
 
 
 +(instancetype)manager;
-+(void)resetSharedManager;
++(void)resetManager;
 -(void)loadSchemasAtURLs:(NSArray *)scheamas;
 +(void)startWithSchemas:(NSArray *)schemas;
 -(void)startWithSchemas:(NSArray *)schemas;
+
+-(MMSchema *)schemaWithName:(NSString *)name;
+
+-(MMService *)serviceWithType:(NSString *)type schemaName:(NSString *)name;
+
 
 @end

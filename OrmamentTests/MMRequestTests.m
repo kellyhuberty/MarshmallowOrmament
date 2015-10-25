@@ -70,113 +70,113 @@
     
 }
 
-- (void)testBasicReadMAnualWhereClause
-{
-    
-    MMSetArcEnabled();
-    
-    
-    [MMOrmamentManager startWithSchemas:@[     @{
-                                                     @"name":@"noteit",@"version":@"0.1.0"
-                                                     }]];
-    
-    
-    MMSQLiteStore * store = ((MMSQLiteStore *)[MMService storeWithSchemaName:@"noteit" version:nil]);
-    
-    
-    [[store dbQueue] inDatabase:^(FMDatabase *db) {
-        [db executeUpdate:
-         @"INSERT INTO notebook (id, title, description) VALUES (2, 'correct notebook', 'the right one'),(1, 'incorrect notebook', 'the wrong one')"
-         ];
-        
-        
-       [db executeUpdate:
-         @"INSERT INTO note (notebookid ,created, text) VALUES (2,1,'note1'),(2,1, 'note2'),(2,1, 'note3'),(2,1, 'note4')"
-         ];
-        
-    }];
-    
+//- (void)testBasicReadMAnualWhereClause
+//{
+//    
+//    MMSetArcEnabled();
+//    
+//    
+//    [MMOrmamentManager startWithSchemas:@[     @{
+//                                                     @"name":@"noteit",@"version":@"0.1.0"
+//                                                     }]];
+//    
+//    
+//    MMSQLiteStore * store = ((MMSQLiteStore *)[MMService storeWithSchemaName:@"noteit" version:nil]);
+//    
+//    
+//    [[store dbQueue] inDatabase:^(FMDatabase *db) {
+//        [db executeUpdate:
+//         @"INSERT INTO notebook (id, title, description) VALUES (2, 'correct notebook', 'the right one'),(1, 'incorrect notebook', 'the wrong one')"
+//         ];
+//        
+//        
+//       [db executeUpdate:
+//         @"INSERT INTO note (notebookid ,created, text) VALUES (2,1,'note1'),(2,1, 'note2'),(2,1, 'note3'),(2,1, 'note4')"
+//         ];
+//        
+//    }];
+//    
+//
+//    
+//    MMSQLiteRequest * req = [TSTNote newStoreRequest];
+//    
+//    req.sqlWhere = @" id = 1 ";
+//    
+//    NSError * error;
+//    
+//    MMSet * set = [req executeOnStore:nil error:&error];
+//    
+//    if (error) {
+//        
+//        NSLog(@"ERROR %@", [error description]);
+//        
+//    }
+//    //MMLog(@"%@", [error description])
+//    
+//    NSLog(@"SETCOUNT >>%i",[set count]);
+//    
+//    XCTAssertNotNil(set, @"Failed to fetch");
+//    
+//    XCTAssertTrue([set count] == 1 , @"Failed to fetch");
+//
+//
+//    
+//}
 
-    
-    MMSQLiteRequest * req = [TSTNote newStoreRequest];
-    
-    req.sqlWhere = @" id = 1 ";
-    
-    NSError * error;
-    
-    MMSet * set = [req executeOnStore:nil error:&error];
-    
-    if (error) {
-        
-        NSLog(@"ERROR %@", [error description]);
-        
-    }
-    //MMLog(@"%@", [error description])
-    
-    NSLog(@"SETCOUNT >>%i",[set count]);
-    
-    XCTAssertNotNil(set, @"Failed to fetch");
-    
-    XCTAssertTrue([set count] == 1 , @"Failed to fetch");
 
-
-    
-}
-
-
-- (void)testBasicReadAllObjects
-{
-    
-    MMSetArcEnabled();
-    
-    
-    [MMOrmamentManager startWithSchemas:@[     @{
-                                                     @"name":@"noteit",@"version":@"0.1.0"
-                                                     }]];
-    
-    
-    MMSQLiteStore * store = ((MMSQLiteStore *)[MMService storeWithSchemaName:@"noteit" version:nil]);
-    
-    NSLog(@"store:*** %@", store);
-    
-    
-    [[store dbQueue] inDatabase:^(FMDatabase *db) {
-        [db executeUpdate:
-                             @"INSERT INTO notebook (id, title, description) VALUES (2, 'correct notebook', 'the right one'),(1, 'incorrect notebook', 'the wrong one')"
-                             ];
-        
-        
-        [db executeUpdate:
-                              @"INSERT INTO note (notebookid ,created, text) VALUES (2,1,'note1'),(2,1, 'note2'),(2,1, 'note3'),(2,1, 'note4')"
-                              ];
-        
-    }];
-    
-    
-    
-    MMRequest * req = [TSTNote newStoreRequest];
-    
-    //req.sqlWhere = @" id = 1 ";
-    
-    NSError * error;
-    
-    MMSet * set = [req executeOnStore:nil error:&error];
-    if (error) {
-        NSLog(@"ERROR %@", [error description]);
-        
-    }
-    //MMLog(@"%@", [error description])
-    NSLog(@"blah");
-    NSLog(@"SETCOUNT >>%i",[set count]);
-    NSLog(@"blah");
-
-    XCTAssertNotNil(set, @"Failed to fetch");
-    
-    XCTAssertTrue([set count] == 4, @"Failed to fetch");
-    
-    
-    
-}
+//- (void)testBasicReadAllObjects
+//{
+//    
+//    MMSetArcEnabled();
+//    
+//    
+//    [MMOrmManager startWithSchemas:@[     @{
+//                                                     @"name":@"noteit",@"version":@"0.1.0"
+//                                                     }]];
+//    
+//    
+//    MMSQLiteStore * store = ((MMSQLiteStore *)[MMService storeWithSchemaName:@"noteit" version:nil]);
+//    
+//    NSLog(@"store:*** %@", store);
+//    
+//    
+//    [[store dbQueue] inDatabase:^(FMDatabase *db) {
+//        [db executeUpdate:
+//                             @"INSERT INTO notebook (id, title, description) VALUES (2, 'correct notebook', 'the right one'),(1, 'incorrect notebook', 'the wrong one')"
+//                             ];
+//        
+//        
+//        [db executeUpdate:
+//                              @"INSERT INTO note (notebookid ,created, text) VALUES (2,1,'note1'),(2,1, 'note2'),(2,1, 'note3'),(2,1, 'note4')"
+//                              ];
+//        
+//    }];
+//    
+//    
+//    
+//    MMRequest * req = [TSTNote newStoreRequest];
+//    
+//    //req.sqlWhere = @" id = 1 ";
+//    
+//    NSError * error;
+//    
+//    MMSet * set = [req executeOnStore:nil error:&error];
+//    if (error) {
+//        NSLog(@"ERROR %@", [error description]);
+//        
+//    }
+//    //MMLog(@"%@", [error description])
+//    NSLog(@"blah");
+//    NSLog(@"SETCOUNT >>%i",[set count]);
+//    NSLog(@"blah");
+//
+//    XCTAssertNotNil(set, @"Failed to fetch");
+//    
+//    XCTAssertTrue([set count] == 4, @"Failed to fetch");
+//    
+//    
+//    
+//}
 
 
 @end

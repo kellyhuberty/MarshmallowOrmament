@@ -463,24 +463,24 @@
     
     NSArray * migrations = [self buildSchemaMigrationsForName:schemaName fromVersion:oldVersion toVersion:newVersion];
     
-    //NSError * error;
-    
-    for (MMSchemaMigration * migration in migrations) {
-        
-        MMService * oldStore = [MMService storeWithSchemaName:schemaName version:migration.fromVersion];
-        MMService * newStore = [MMService storeWithSchemaName:schemaName version:migration.toVersion];
-
-        
-        BOOL success = [migration upgradeStore:oldStore toStore:newStore error:error];
-        
-        if (!success) {
-            MMLog(@"Migration falied %@", [*error localizedDescription] );
-            //NSString * str = [*error localizedDescription];
-            
-        }
-        
-        
-    }
+//    //NSError * error;
+//    
+//    for (MMSchemaMigration * migration in migrations) {
+//        
+//        MMService * oldStore = [MMService storeWithSchemaName:schemaName version:migration.fromVersion];
+//        MMService * newStore = [MMService storeWithSchemaName:schemaName version:migration.toVersion];
+//
+//        
+//        BOOL success = [migration upgradeStore:oldStore toStore:newStore error:error];
+//        
+//        if (!success) {
+//            MMLog(@"Migration falied %@", [*error localizedDescription] );
+//            //NSString * str = [*error localizedDescription];
+//            
+//        }
+//        
+//        
+//    }
     
 }
 

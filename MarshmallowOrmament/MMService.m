@@ -10,7 +10,7 @@
 #import "MMORMUtility.h"
 #import "MMRecord.h"
 #import "MMRecordSet.h"
-#import "MMOrmamentManager.h"
+#import "MMOrmManager.h"
 #import "MMPreferences.h"
 
 //static NSMutableDictionary * storesByThread;
@@ -83,12 +83,12 @@ static NSMutableDictionary * activeRecords;
     return _operationQueue;
 }
 
-
-+(MMService *)storeWithSchemaName:(NSString *)schemaName version:(MMVersionString *)ver{
-    
-    return [self serviceWithSchemaName:schemaName type:@"store" version:ver];
-    
-}
+//
+//+(MMService *)storeWithSchemaName:(NSString *)schemaName version:(MMVersionString *)ver{
+//    
+//    return [self serviceWithSchemaName:schemaName type:@"store" version:ver];
+//    
+//}
 
 //+(MMService *)cloudWithSchemaName:(NSString *)schemaName version:(MMVersionString *)ver{
 //    
@@ -148,71 +148,71 @@ static NSMutableDictionary * activeRecords;
 //}
 
 
-+(MMService *)serviceWithSchemaName:(NSString *)schemaName type:(NSString *)storeType version:(MMVersionString *)ver{
-    
-    if (ver == nil) {
-        MMSchema * sc = [MMSchema registeredSchemaWithName:schemaName];
-        
-        NSLog(@"schema with name %@", schemaName);
-        
-        ver = sc.version;
-        
-    }
-    
-    MMOrmamentManager * manager = [MMOrmamentManager sharedManager];
-    
-    NSMutableDictionary * services = manager.services;
-    
-    NSString * storeName = [NSString stringWithFormat:@"%@__%@__%@", schemaName, ver, storeType];
-    MMService * service = nil;
-    
-    if (!(service = services[storeName])) {
-        
-        service = [MMService newServiceWithSchemaName:(NSString *)schemaName serviceType:(NSString *)storeType  version:ver];
-        
-        NSLog(@"store with name %@", service);
-        
-        
-        
-        services[storeName] = service;
-        
-    }
-    
-    NSLog(@"thread dict %@", service);
-    
-    return service;
-    
-}
-
-
-+(MMService *)newServiceWithSchemaName:(NSString *)schemaName serviceType:(NSString *)serviceType version:(MMVersionString *)ver{
-    
-    //MMSchema * schema = [MMSchema registeredSchemaWithName:schemaName version:ver];
-    
-    if (ver == nil) {
-        ver = [MMService currentVersionForSchemaName:schemaName type:serviceType];
-    
-    }
-    
-    
-        MMSchema * schema = [MMSchema schemaFromName:schemaName version:ver];
-    
-    NSLog(@"schema with name: %@, %@, %@", schemaName, ver, schema);
-    return [[NSClassFromString([schema valueForKey:[NSString stringWithFormat:@"%@ClassName", serviceType]]) alloc]initWithSchema:schema];
-    
-}
-
-
-+(MMService *)newStoreWithSchemaName:(NSString *)schemaName version:ver{
-    
-    MMSchema * schema = [MMSchema schemaFromName:schemaName version:ver];
-    
-    //+(MMSchema *)schemaFromName:(NSString *)name version:(NSString *)ver{
-
-    
-    return [[NSClassFromString(schema.storeClassName) alloc]initWithSchema:schema];
-
-}
+//+(MMService *)serviceWithSchemaName:(NSString *)schemaName type:(NSString *)storeType version:(MMVersionString *)ver{
+//    
+//    if (ver == nil) {
+//        MMSchema * sc = [MMSchema registeredSchemaWithName:schemaName];
+//        
+//        NSLog(@"schema with name %@", schemaName);
+//        
+//        ver = sc.version;
+//        
+//    }
+//    
+//    MMOrmManager * manager = [MMOrmManager manager];
+//    
+//    NSMutableDictionary * services = manager.services;
+//    
+//    NSString * storeName = [NSString stringWithFormat:@"%@__%@__%@", schemaName, ver, storeType];
+//    MMService * service = nil;
+//    
+//    if (!(service = services[storeName])) {
+//        
+//        service = [MMService newServiceWithSchemaName:(NSString *)schemaName serviceType:(NSString *)storeType  version:ver];
+//        
+//        NSLog(@"store with name %@", service);
+//        
+//        
+//        
+//        services[storeName] = service;
+//        
+//    }
+//    
+//    NSLog(@"thread dict %@", service);
+//    
+//    return service;
+//    
+//}
+//
+//
+//+(MMService *)newServiceWithSchemaName:(NSString *)schemaName serviceType:(NSString *)serviceType version:(MMVersionString *)ver{
+//    
+//    //MMSchema * schema = [MMSchema registeredSchemaWithName:schemaName version:ver];
+//    
+//    if (ver == nil) {
+//        ver = [MMService currentVersionForSchemaName:schemaName type:serviceType];
+//    
+//    }
+//    
+//    
+//        MMSchema * schema = [MMSchema schemaFromName:schemaName version:ver];
+//    
+//    NSLog(@"schema with name: %@, %@, %@", schemaName, ver, schema);
+//    return [[NSClassFromString([schema valueForKey:[NSString stringWithFormat:@"%@ClassName", serviceType]]) alloc]initWithSchema:schema];
+//    
+//}
+//
+//
+//+(MMService *)newStoreWithSchemaName:(NSString *)schemaName version:ver{
+//    
+//    MMSchema * schema = [[MMOrmManager manager] schemaWithName:schemaName];
+//    
+//    //+(MMSchema *)schemaFromName:(NSString *)name version:(NSString *)ver{
+//
+//    
+//    return [[NSClassFromString(schema.storeClassName) alloc]initWithSchema:schema];
+//
+//}
 
 
 -(MMSet *)wrapData:(NSArray *)array intoRecordsOfType:(NSString *)classname inSet:(MMSet *)set created:(BOOL)created{
@@ -246,10 +246,6 @@ static NSMutableDictionary * activeRecords;
 }
 
 -(MMRequest *)newRequestForClassname:(NSString *)className{
-    
-        //MMSchema * schema = [MMSchema schemaFromName:schemaName version:ver];
-    
-        //+(MMSchema *)schemaFromName:(NSString *)name version:(NSString *)ver{
     
     [NSException raise:NSInternalInconsistencyException
                 format:@"You must override %@ in class %@", NSStringFromSelector(_cmd), NSStringFromClass([self class])];
