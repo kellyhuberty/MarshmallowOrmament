@@ -1006,7 +1006,6 @@
     
     MMSQLiteRequest * req = [[MMSQLiteRequest alloc]initWithService:self classname:className];
     
-    MMAutorelease(req);
     
     return req;
     

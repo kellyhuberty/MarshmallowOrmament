@@ -96,6 +96,8 @@ static NSString * classPrefix;
         _attributes = [[MMSet alloc]init];
         [_attributes addIndexForKey:@"name" unique:YES];
         [_attributes addIndexForKey:@"autoincrement" unique:NO];
+        [_attributes addIndexForKey:@"classname" unique:NO];
+        [_attributes addIndexForKey:@"primativeType" unique:NO];
 
         
         

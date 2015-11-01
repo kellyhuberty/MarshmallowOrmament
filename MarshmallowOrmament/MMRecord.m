@@ -474,7 +474,21 @@ static void setRelationValueIMP(id self, SEL _cmd, id aValue) {
 
 }
 
+-(BOOL)save{
 
+    BOOL suc = false;
+    
+    NSError * error;
+    
+    suc = [self save:&error];
+
+    if (!suc) {
+        NSLog(@"MMLog save error: %@", [error localizedDescription]);
+    }
+    
+    return suc;
+    
+}
 
 -(void)push:(NSError **)error completionBlock:( void (^)(MMRecord * record, BOOL success, NSError **))completionBlock{
     
@@ -1093,6 +1107,44 @@ static void setRelationValueIMP(id self, SEL _cmd, id aValue) {
 //}
 
 
+-(id)valueForKey:(NSString *)key{
+    
+    MMEntity * entity = [[self class] entity];
+    
+    MMAttribute * attr = [entity attributeWithName:key];
+    MMRelationship * rel = [entity relationshipWithName:key];
+    
+    if (attr == nil && rel == nil) {
+        
+        [super valueForKey:key];
+        
+    }
+    
+    return valueIMP(self, NSSelectorFromString(key));
+    
+}
+
+-(void)setValue:(id)value forKey:(NSString *)key{
+    
+    MMEntity * entity = [[self class] entity];
+    
+    MMAttribute * attr = [entity attributeWithName:key];
+    MMRelationship * rel = [entity relationshipWithName:key];
+    
+    if (attr == nil && rel == nil) {
+        
+        [super setValue:value forKey:key];
+        
+    }
+    
+    NSString *firstChar = [key substringToIndex:1];
+    key = [key stringByReplacingCharactersInRange:NSMakeRange(0, 1) withString:[firstChar uppercaseString]];
+    
+    return setValueIMP(self, NSSelectorFromString([NSString stringWithFormat:@"set%@", key]), value);
+    
+}
+
+
 -(void)recacheActiveStore{
     
     [MMService addRecordToActiveRecords:self];
@@ -1104,9 +1156,12 @@ static void setRelationValueIMP(id self, SEL _cmd, id aValue) {
 
 +(BOOL)resolveInstanceMethod:(SEL)aSEL {
     
+    
+    MMEntity * entity = [self entity];
+    
     NSMutableString * key = [NSStringFromSelector(aSEL) mutableCopy];
-    MMAttribute * attr = [[self entity] attributeWithName:key];
-    MMRelationship * rel = [[self entity] relationshipWithName:key];
+    MMAttribute * attr = [entity attributeWithName:key];
+    MMRelationship * rel = [entity relationshipWithName:key];
 
     
     
@@ -1120,8 +1175,8 @@ static void setRelationValueIMP(id self, SEL _cmd, id aValue) {
         NSString *firstChar = [key substringToIndex:1];
         [key replaceCharactersInRange:NSMakeRange(0, 1) withString:[firstChar lowercaseString]];
     
-        attr = [[self entity] attributeWithName:key];
-        rel = [[self entity] relationshipWithName:key];
+        attr = [entity attributeWithName:key];
+        rel = [entity relationshipWithName:key];
         
         
         if (attr || rel) {
@@ -1147,11 +1202,11 @@ static void setRelationValueIMP(id self, SEL _cmd, id aValue) {
     
     
     if (attr == nil && rel == nil) {
-//        NSException * e = [NSException exceptionWithName:@"InvalidPropertyNameException" reason:[NSString stringWithFormat:@"The class %@ does not implement the selector %@ either dynamically or conventionally.",NSStringFromClass([self class]) ,NSStringFromSelector(aSEL) ] userInfo:@{}];
-//        
-//        @throw e;
-
-        return false;
+        NSException * e = [NSException exceptionWithName:@"InvalidPropertyNameException" reason:[NSString stringWithFormat:@"The class %@ does not implement the selector %@ either dynamically or conventionally.",NSStringFromClass([self class]) ,NSStringFromSelector(aSEL) ] userInfo:@{}];
+        
+        @throw e;
+        //NSLog(@"selector::: %@", NSStringFromSelector(aSEL));
+        return [super resolveInstanceMethod:aSEL];
     
     }
     
@@ -1231,10 +1286,8 @@ static void setRelationValueIMP(id self, SEL _cmd, id aValue) {
 //    } else {
 //        class_addMethod([self class], aSEL,(IMP)valueIMP, "@@:");
 //    }
-    return NO;
+    return [super resolveInstanceMethod:aSEL];
 }
-
-
 
 
 @end

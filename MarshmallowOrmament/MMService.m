@@ -262,9 +262,33 @@ static NSMutableDictionary * activeRecords;
     Class class = NSClassFromString(classname);
     
     MMRecord * rec = [[self class] retrieveActiveRecord:[class idHashWithIdValues:[class idValuesWithValues:values]]];
+    
+    MMEntity * entity = [NSClassFromString(classname) entity];
+    
+    NSArray * dateObjects = [entity.attributes objectsWithValue:@"NSDate" forKey:@"classname"];
+    
+    NSMutableDictionary * newValues = [values mutableCopy];
+    
+    for (MMAttribute * attr in dateObjects) {
         
+        NSObject * obj = newValues[attr.name];
+        
+        if ([obj isKindOfClass:[NSNumber class]]) {
+            obj = [NSDate dateWithTimeIntervalSince1970:[(NSNumber*)obj integerValue]];
+        }
+        if ([obj isKindOfClass:[NSString class]]) {
+            //obj = [NSDate dateWithTimeIntervalSince1970:[ integerValue]];
+        }
+        
+        newValues[attr.name] = obj;
+        
+    }
+    
+    
+    
+    
     if (rec == nil) {
-        rec = [[NSClassFromString(classname) alloc] initWithFillValues:values created:created fromStore:self];
+        rec = [[NSClassFromString(classname) alloc] initWithFillValues:newValues created:created fromStore:self];
         [[self class] addRecordToActiveRecords:rec];
     }
 

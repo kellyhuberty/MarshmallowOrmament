@@ -17,8 +17,7 @@
     
     if(self = [self init]){
         
-        
-        self.request = request;
+        _request = request;
     
     }
     
@@ -58,7 +57,7 @@
 -(BOOL)initialLoad:(NSError **)error{
     
      [_results removeAllObjects];
-    return [self load:error limit:_pageSize offset:_initalOffset];
+    return [self load:nil limit:_pageSize offset:_initalOffset];
     
 }
 
@@ -149,15 +148,15 @@
     
 }
 
--(void)setRequest:(MMRequest *)request{
-    @synchronized(self){
-        
-        _request = request;
-        
-        [self registerForNotifications];
-    
-    }
-}
+//-(void)setRequest:(MMRequest *)request{
+//    @synchronized(self){
+//        
+//        _request = request;
+//        
+//        [self registerForNotifications];
+//    
+//    }
+//}
 
 -(void)registerForNotifications{
     
@@ -191,9 +190,9 @@
 
 -(BOOL)integratePayload:(MMResultsSet *)set{
     
-    NSLock * lock = [[NSLock alloc]init];
-    
-    [lock lock];
+//    NSLock * lock = [[NSLock alloc]init];
+//    
+//    [lock lock];
     
     BOOL suc = (set == nil?false:true);
     
@@ -280,7 +279,7 @@
     }
     
         
-    [lock unlock];
+    //[lock unlock];
     
     return suc;
     
@@ -362,7 +361,7 @@
 
 -(void)addObjectToDefaultSection:(NSObject *)obj{
     
-    NSLog(@"obj:  %@", obj);
+   // NSLog(@"obj:  %@", obj);
     
     [self addObject:obj toSectionWithIdentifer:@"MMDEFAULTSECTION" withTitle:@"MMDEFAULTSECTION"];
     
@@ -427,8 +426,9 @@
 - (NSInteger)sectionForSectionIndexTitle:(NSString *)title
                                  atIndex:(NSInteger)sectionIndex{
     return nil;
-    //return _sections objectsWithValue:<#(id<NSCopying>)#> forKey:<#(NSString *)#>;
+
 }
+
 - (NSString *)sectionIndexTitleForSectionName:(NSString *)sectionName{
     
     

@@ -81,14 +81,14 @@
 - (void)testGetHasManyNORelationshipResults
 {
     
-    MMSetArcEnabled();
-    
-    
-    [MMOrmManager startWithSchemas:@[     @{
-                                                     @"name":@"noteit",@"version":@"0.1.0"
-                                                     }]];
-    
-    
+//    MMSetArcEnabled();
+//    
+//    
+//    [MMOrmManager startWithSchemas:@[     @{
+//                                                     @"name":@"noteit",@"version":@"0.1.0"
+//                                                     }]];
+    [MMOrmManager startWithSchemas:@[@"noteit"]];
+
     
     
     MMSQLiteStore * store = ((MMSQLiteStore *)[[MMOrmManager manager] serviceWithType:@"store" schemaName:@"noteit"]);
@@ -145,12 +145,13 @@
 - (void)testGetHasManyYESRelationshipResults
 {
     
-    MMSetArcEnabled();
-    
-    
-    [MMOrmManager startWithSchemas:@[     @{
-                                                     @"name":@"noteit",@"version":@"0.1.0"
-                                                     }]];
+    //    MMSetArcEnabled();
+    //
+    //
+    //    [MMOrmManager startWithSchemas:@[     @{
+    //                                                     @"name":@"noteit",@"version":@"0.1.0"
+    //                                                     }]];
+    [MMOrmManager startWithSchemas:@[@"noteit"]];
     
     
     MMSQLiteStore * store = ((MMSQLiteStore *)[[MMOrmManager manager] serviceWithType:@"store" schemaName:@"noteit"]);
@@ -206,12 +207,13 @@
 - (void)testGetBadRelationshipResults
 {
     
-    MMSetArcEnabled();
-    
-    
-    [MMOrmManager startWithSchemas:@[@{
-                                                     @"name":@"noteit",@"version":@"0.1.0"
-                                                     }]];
+    //    MMSetArcEnabled();
+    //
+    //
+    //    [MMOrmManager startWithSchemas:@[     @{
+    //                                                     @"name":@"noteit",@"version":@"0.1.0"
+    //                                                     }]];
+    [MMOrmManager startWithSchemas:@[@"noteit"]];
     
     
     MMSQLiteStore * store = ((MMSQLiteStore *)[[MMOrmManager manager] serviceWithType:@"store" schemaName:@"noteit"]);
@@ -279,12 +281,13 @@
 - (void)testAddItemToRelationshipHasManyNO
 {
     
-    MMSetArcEnabled();
-    
-    
-    [MMOrmManager startWithSchemas:@[     @{
-                                                     @"name":@"noteit",@"version":@"0.1.0"
-                                                     }]];
+    //    MMSetArcEnabled();
+    //
+    //
+    //    [MMOrmManager startWithSchemas:@[     @{
+    //                                                     @"name":@"noteit",@"version":@"0.1.0"
+    //                                                     }]];
+    [MMOrmManager startWithSchemas:@[@"noteit"]];
     
     MMSQLiteStore * store = ((MMSQLiteStore *)[[MMOrmManager manager] serviceWithType:@"store" schemaName:@"noteit"]);
     
@@ -383,12 +386,13 @@
 - (void)testRemoveItemToRelationshipHasManyNO
 {
     
-    MMSetArcEnabled();
-    
-    
-    [MMOrmManager startWithSchemas:@[     @{
-                                                     @"name":@"noteit",@"version":@"0.1.0"
-                                                     }]];
+    //    MMSetArcEnabled();
+    //
+    //
+    //    [MMOrmManager startWithSchemas:@[     @{
+    //                                                     @"name":@"noteit",@"version":@"0.1.0"
+    //                                                     }]];
+    [MMOrmManager startWithSchemas:@[@"noteit"]];
     
     
     

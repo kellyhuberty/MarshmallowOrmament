@@ -42,7 +42,6 @@
 }
 
 
-
 @property(nonatomic, retain)MMSectionDescriptor * sectionDescriptor;
 
 @property(nonatomic, retain)NSSortDescriptor * resultsSort;
@@ -54,6 +53,7 @@
 @property(nonatomic, readonly) NSArray *sections;
 
 @property(nonatomic, assign) id<MMResultsControllerDelegate> delegate;
+@property(atomic)MMRequest * request;
 
 -(instancetype)initWithRequest:(MMRequest *)request;
 
