@@ -215,6 +215,13 @@ static NSMutableDictionary * activeRecords;
 //}
 
 
+-(void)prepareForMigrationAttemptFromVersion:(MMVersionString *)versionString{
+    
+    
+}
+
+
+
 -(MMSet *)wrapData:(NSArray *)array intoRecordsOfType:(NSString *)classname inSet:(MMSet *)set created:(BOOL)created{
     
     if (!set) {

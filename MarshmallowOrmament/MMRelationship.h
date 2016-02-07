@@ -24,8 +24,12 @@
     BOOL _shareable;
     
     NSString * _className;
-    NSString * _entityName;
-    NSString * _recordEntityName;
+    NSString * _relatedEntityName;
+    NSString * _localEntityName;
+    
+    
+    
+    
     
     BOOL _autoRelate;
     NSString * _autoRelateName;
@@ -34,18 +38,23 @@
 
 
 
-@property(nonatomic, retain)NSString * recordEntityName;
-@property(nonatomic, retain)NSString * entityName;
+@property(nonatomic, retain)NSString * localEntityName;
+@property(nonatomic, retain)NSString * relatedEntityName;
 @property(nonatomic, retain)NSString * className;
 @property(nonatomic, retain)MMSet * links;
 @property(nonatomic, retain)NSString * name;
 @property(nonatomic) BOOL hasMany;
-//@property(nonatomic) BOOL autoRelate;
+@property(nonatomic) BOOL autoRelate;
 @property(nonatomic, readonly) NSNumber * autoRelateNumber;
 @property(nonatomic) BOOL shareable;
 @property(nonatomic, retain)NSString * autoRelateName;
 @property(nonatomic, retain)MMRelater * cloudRelater;
 @property(nonatomic, retain)MMRelater * storeRelater;
+
+
+
+
+
 
 +(instancetype)relationshipWithDictionary:(NSDictionary *)dict;
 -(NSArray *)allLinks;

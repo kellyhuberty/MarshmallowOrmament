@@ -50,6 +50,14 @@
     MMSet * _relationships;
 
     
+    
+    
+    NSMutableDictionary * _attributeGetterSelectorCache;
+    NSMutableDictionary * _attributeSetterSelectorCache;
+    
+    NSMutableDictionary * _relationshipGetterSelectorCache;
+    NSMutableDictionary * _relationshipSetterSelectorCache;
+    
     //NSMutableArray * _attributeOrder;
     //MMSet * _attributes;
 
@@ -191,6 +199,15 @@ the entity's unique index
 //-(void)setup;
 //-(void)dealloc;
 
+
+
+-(MMRelationship *)relationshipWithGetterSelectorName:(NSString *)selectorName;
+
+-(MMRelationship *)relationshipWithSetterSelectorName:(NSString *)selectorName;
+
+-(MMAttribute *)attributeWithGetterSelectorName:(NSString *)selectorName;
+
+-(MMAttribute *)attributeWithSetterSelectorName:(NSString *)selectorName;
 
 
 @end

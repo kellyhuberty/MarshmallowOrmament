@@ -17,7 +17,7 @@
 			<string>note</string>
 			<key>id_keys</key>
 			<array>
-				<string>id</string>
+				<string>identifier</string>
 			</array>
 			<key>modelclassname</key>
 			<string>TSTNote</string>
@@ -43,7 +43,7 @@
 				</dict>
 				<dict>
 					<key>name</key>
-					<string>id</string>
+					<string>identifier</string>
 					<key>displayname</key>
 					<string></string>
 					<key>classname</key>
@@ -149,13 +149,13 @@
 			<string>notebook</string>
 			<key>id_keys</key>
 			<array>
-				<string>id</string>
+				<string>identifier</string>
 			</array>
 			<key>attributes</key>
 			<array>
 				<dict>
 					<key>name</key>
-					<string>id</string>
+					<string>identifier</string>
 					<key>displayname</key>
 					<string></string>
 					<key>classname</key>

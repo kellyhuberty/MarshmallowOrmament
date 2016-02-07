@@ -487,6 +487,8 @@ NSArray * MMGetSubclasses(Class parentClass)
             entityName = [((id<MMRecord>)class) entityName];
             
         }
+            
+
         
         if ( [self.name isEqualToString:schemaName] && entityName) {
             

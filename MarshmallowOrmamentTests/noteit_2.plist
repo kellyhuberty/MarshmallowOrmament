@@ -19,7 +19,7 @@
 			<array>
 				<dict>
 					<key>name</key>
-					<string>id</string>
+					<string>identifier</string>
 					<key>displayname</key>
 					<string></string>
 					<key>classname</key>
@@ -118,7 +118,7 @@
 			<array>
 				<dict>
 					<key>name</key>
-					<string>id</string>
+					<string>identifier</string>
 					<key>displayname</key>
 					<string></string>
 					<key>classname</key>

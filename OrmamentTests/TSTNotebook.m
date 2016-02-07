@@ -10,7 +10,7 @@
 
 @implementation TSTNotebook
 
-@dynamic id;
+@dynamic identifier;
 @dynamic title;
 @dynamic description;
 @dynamic notes;
@@ -29,7 +29,7 @@
 
 +(NSArray *)idKeys{
     
-    return @[@"id"];
+    return @[@"identifier"];
     
 }
 

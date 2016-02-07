@@ -72,6 +72,8 @@
 +(void)unsetVersionForSchemaName:(NSString *)schemaName type:(NSString *)type;
 
 
+-(void)prepareForMigrationAttemptFromVersion:(MMVersionString *)versionString;
+
 @end
 
 

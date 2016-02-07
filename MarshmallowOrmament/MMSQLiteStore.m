@@ -13,6 +13,7 @@
 #import "MMSQLiteRequest.h"
 #import "MMRelationship.h"
 #import "MMSQLiteRelater.h"
+#import "MMSQLiteJoin.h"
 
 #import <objc/runtime.h>
  
@@ -321,7 +322,7 @@
         
         if (result) {
             
-            ret = [NSMutableArray array];
+            ret = [[MMResultsSet alloc]init];
             
             while ([result next]) {
                 
@@ -342,7 +343,7 @@
         }
         else{
             
-            *error = [db lastError];
+           // *error = [db lastError];
             
         }
         
@@ -399,7 +400,7 @@
         }
         else{
             
-            *error = [db lastError];
+            //*error = [db lastError];
             
         }
         
@@ -420,45 +421,71 @@
 
 
 +(NSString *)buildJoinSqlWithRelationship:(MMRelationship *)relationship{
-//    
-//    NSMutableString * clause = [NSMutableString stringWithString:@""];
-//    
-//    NSEnumerator * enu = [relationship.joins objectEnumerator];
-//    
-//    MMRelation * rel = nil;
-//    
-//    while (rel = (MMRelation *)[enu nextObject]) {
-//    
-//        if (![clause isEqualToString:@""]) {
-//            
-//            [clause appendFormat:@"%@ JOIN %@ ON %@.%@ = %@.%@",
-//                rel.entityName,
-//                rel.referencingEntityName,
-//                rel.entityName,
-//                rel.key,
-//                rel.referencingEntityName,
-//                rel.referencingKey
-//             ];
-//        
-//        }else{
-//        
-//            [clause appendFormat:@" JOIN %@ ON %@.%@ = %@.%@",
-//                                rel.referencingEntityName,
-//                                rel.entityName,
-//                                rel.key,
-//                                rel.referencingEntityName,
-//                                rel.referencingKey
-//             ];
-//            
-//        }
+    
+    NSMutableString * clause = [NSMutableString stringWithString:@""];
+    
+    MMSQLiteRelater * relater = nil;
+    
+    
+    if([relationship.storeRelater isKindOfClass:[MMSQLiteRelater class]]){
+        
+        relater = (MMSQLiteRelater*)relationship.storeRelater;
+        
+    }
+    
+    MMSQLiteJoin * join = nil;
+    
+    for (int i = 0; i < [relater.joins count]; ++i) {
+    
+        //join = (MMSQLiteJoin *)[enu nextObject];
+        
+        join = (MMSQLiteJoin *)[relater.joins objectAtIndex:i];
+        
+        if (![clause isEqualToString:@""]) {
+            
+            [clause appendFormat:@" %@ %@",
+             join.joinType,
+             join.rightTableName
+             ];
+            
+        }else{
+            
+            [clause appendFormat:@"%@ %@ %@",
+                    join.leftTableName,
+                    join.joinType,
+                    join.rightTableName
+             ];
+            
+        }
+        
+        MMSet * conditionals = [join allConditionals];
+        if ([conditionals count] > 0) {
+            [clause appendFormat:@" ON "];
+        }
+        
+        for (MMSQLiteConditional * conditional in [join allConditionals] ) {
+            [clause appendFormat:@" %@.%@ %@ %@.%@",
+             join.leftTableName,
+             conditional.leftAttributeName,
+             conditional.operation,
+             join.rightTableName,
+             conditional.rightAttributeName
+             ];
+        }
+
+    }
+    
+    return [NSString stringWithString:clause];
+    
+//    MMSQLiteRelater * relater = relationship.storeRelater;
+//    if (![relater isKindOfClass:[MMSQLiteRelater class]]) {
+//        return;
 //    }
-//    
-//    return [NSString stringWithString:clause];
-    
-    MMSQLiteRelater * relater = relationship.storeRelater;
     
     
-    return @"";
+    
+    
+    //return @"";
 }
 
 
@@ -466,8 +493,8 @@
     
     NSMutableString * clause = [NSMutableString stringWithString:@""];
     
-    MMEntity * local = [self.schema entityForName:relationship.recordEntityName];
-    MMEntity * foreign = [self.schema entityForName:relationship.entityName];
+    MMEntity * local = [self.schema entityForName:relationship.localEntityName];
+    MMEntity * foreign = [self.schema entityForName:relationship.relatedEntityName];
     MMAutoRelatedEntity * inter = (MMAutoRelatedEntity *)[self.schema entityForName:relationship.autoRelateName];
     
     [clause appendFormat:@"%@ JOIN %@ ON %@.%@ = %@.%@ JOIN %@ ON %@.%@ = %@.%@",
@@ -517,7 +544,7 @@
     
     request.className = relationship.className;
     
-    request.sqlSelect = [NSString stringWithFormat:@"%@.*", relationship.entityName];
+    request.sqlSelect = [NSString stringWithFormat:@"%@.*", relationship.relatedEntityName];
     
     request.sqlFrom = [NSString stringWithFormat:@"%@", [self buildJoinSqlWithAutoRelationship:relationship]];
     
@@ -562,11 +589,13 @@
     
     MMRelationshipSet * set = [[MMRelationshipSet alloc]init];
     
-    MMSQLiteRequest * request = MMAutorelease([[MMRequest alloc] init]);
+    set.relationship = relationship;
+    
+    MMSQLiteRequest * request = [[MMSQLiteRequest alloc] init];
     
     request.className = relationship.className;
     
-    request.sqlSelect = [NSString stringWithFormat:@"%@.*", relationship.entityName];
+    request.sqlSelect = [NSString stringWithFormat:@"%@.*", relationship.relatedEntityName];
     
     request.sqlFrom = [NSString stringWithFormat:@"%@", [[self class] buildJoinSqlWithRelationship:relationship]];
     
@@ -589,36 +618,52 @@
     
     NSLog(@"unable to update");
     
-    [self.dbQueue inDatabase:^(FMDatabase *db) {
-
-        NSString * query = [NSString stringWithFormat:@" INSERT OR REPLACE INTO `%@` (`%@`, `%@`) VALUES (:local, :foreign)",
-                            relationship.autoRelateName,
-                            [[self class] localAttributeNameForRelation:relationship],
-                            [[self class] foreignAttributeNameForRelation:relationship]
-                            ];
-        
-        MMDebug(query);
-        
-        for (MMRecord * recf in set) {
+    
+    if (relationship.autoRelate) {
+        [self.dbQueue inDatabase:^(FMDatabase *db) {
             
+            NSString * query = [NSString stringWithFormat:@" INSERT OR REPLACE INTO `%@` (`%@`, `%@`) VALUES (:local, :foreign)",
+                                relationship.autoRelateName,
+                                [[self class] localAttributeNameForRelation:relationship],
+                                [[self class] foreignAttributeNameForRelation:relationship]
+                                ];
             
-            MMDebug(@"(:local: %@, :foreign: %@)", [[self class] rowidColumnValueForRecord:record], [[self class] rowidColumnValueForRecord:recf]);
-
+            MMDebug(query);
             
-            success = [db executeUpdate:query withParameterDictionary:@{
-                                                             @"local":[[self class] rowidColumnValueForRecord:record],
-                                                             @"foreign":[[self class] rowidColumnValueForRecord:recf]
-                                                                 }];
-            if (!success) {
+            for (MMRecord * recf in set) {
                 
-                NSLog(@"unable to update  %@", [db lastError]);
                 
-                *error = [db lastError];
+                MMDebug(@"(:local: %@, :foreign: %@)", [[self class] rowidColumnValueForRecord:record], [[self class] rowidColumnValueForRecord:recf]);
+                
+                
+                success = [db executeUpdate:query withParameterDictionary:@{
+                                                                            @"local":[[self class] rowidColumnValueForRecord:record],
+                                                                            @"foreign":[[self class] rowidColumnValueForRecord:recf]
+                                                                            }];
+                if (!success) {
+                    
+                    NSLog(@"unable to update  %@", [db lastError]);
+                    
+                    *error = [db lastError];
+                }
+                
             }
             
+        }];
+    } else {
+        
+        if ([relationship.storeRelater isKindOfClass:[MMSQLiteRelater class]]) {
+            if (((MMSQLiteRelater *)relationship.storeRelater).addToRelationship) {
+                ((MMSQLiteRelater *)relationship.storeRelater).addToRelationship(self, relationship, record, set);
+            }
         }
         
-    }];
+        
+        
+        NSLog(@"Add records %@ to relationship %@ on record %@", set, relationship, record);
+        
+    }
+
     
     return YES;
 
@@ -629,28 +674,32 @@
     
     BOOL __block success;
     
-    [self.dbQueue inDatabase:^(FMDatabase *db) {
-        
-        NSString * query = [NSString stringWithFormat:@"DELETE FROM `%@` WHERE `%@` = :local AND `%@` =  :foreign)",
-                            relationship.autoRelateName,
-                            [[self class] localAttributeNameForRelation:relationship],
-                            [[self class] foreignAttributeNameForRelation:relationship]
-                            ];
-        
-        for (MMRecord * recf in set) {
+    
+    if (relationship.autoRelate) {
+
+        [self.dbQueue inDatabase:^(FMDatabase *db) {
             
-             success = [db executeUpdate:query withParameterDictionary:@{
-                                                             @"local":[[self class] rowidColumnValueForRecord:record],
-                                                             @"foreign":[[self class] rowidColumnValueForRecord:recf]
-                                                             }];
+            NSString * query = [NSString stringWithFormat:@"DELETE FROM `%@` WHERE `%@` = :local AND `%@` =  :foreign)",
+                                relationship.autoRelateName,
+                                [[self class] localAttributeNameForRelation:relationship],
+                                [[self class] foreignAttributeNameForRelation:relationship]
+                                ];
             
-            if (!success) {
-                *error = [db lastError];
+            for (MMRecord * recf in set) {
+                
+                 success = [db executeUpdate:query withParameterDictionary:@{
+                                                                 @"local":[[self class] rowidColumnValueForRecord:record],
+                                                                 @"foreign":[[self class] rowidColumnValueForRecord:recf]
+                                                                 }];
+                
+                if (!success) {
+                    *error = [db lastError];
+                }
+                
             }
             
-        }
-        
-    }];
+        }];
+    }
     
     return success;
 }
@@ -660,7 +709,7 @@
 
 +(NSString *)localAttributeNameForRelation:(MMRelationship *)relationship{
     
-    NSString * name = [NSString stringWithFormat:@"%@__id", relationship.recordEntityName];
+    NSString * name = [NSString stringWithFormat:@"%@__id", relationship.localEntityName];
     
     //    if ([relationship onSelf]) {
     //        name = [NSString stringWithFormat:@"%@__%@", relationship.name, name];
@@ -673,7 +722,7 @@
 
 +(NSString *)foreignAttributeNameForRelation:(MMRelationship *)relationship{
     
-    NSString * name = [NSString stringWithFormat:@"%@__id", relationship.entityName];
+    NSString * name = [NSString stringWithFormat:@"%@__id", relationship.relatedEntityName];
     
     
     //[self.attributes objectWithValue:name forKey:@"name"];
@@ -963,22 +1012,24 @@
     
     //NSLog(@"REFRESHED VALUES %@", [NSString stringWithFormat:@"SELECT * FROM %@ WHERE `%@` = :%@", [[self class] tableNameForRecord:rec] , rowIdKey, rowIdKey]);
     
-        FMResultSet * res = [db executeQuery:[NSString stringWithFormat:@"SELECT %@ FROM %@ WHERE `%@` = :%@",
-                                              [[self class] buildSelectColumnsClauseForRecord:rec values:values],
-                                              [[self class] tableNameForRecord:rec],
-                                              rowIdKey,
-                                              rowIdKey]
-                                withParameterDictionary:@{rowIdKey:[NSNumber numberWithLongLong:rowId]}];
-        
-        crap = [res next];
-        
-        [values addEntriesFromDictionary: [res resultDictionary]];
-        
-        [res close];
-        
+    FMResultSet * res = [db executeQuery:[NSString stringWithFormat:@"SELECT %@ FROM %@ WHERE `%@` = :%@",
+                                          [[self class] buildSelectColumnsClauseForRecord:rec values:values],
+                                          [[self class] tableNameForRecord:rec],
+                                          rowIdKey,
+                                          rowIdKey]
+                 withParameterDictionary:@{rowIdKey:[NSNumber numberWithLongLong:rowId]}];
+    
+    crap = [res next];
+    
+    NSDictionary * resultsDictionary = [res resultDictionary];
+    
+    [values addEntriesFromDictionary: [res resultDictionary]];
+    
+    [res close];
     
     
-    NSLog(@"REFRESHED VALUES %@", values);
+    
+    NSLog(@"REFRESHED VALUES %@", resultsDictionary);
     
     return crap;
     
@@ -1021,16 +1072,17 @@
 
 +(NSString *)buildInsertQueryForRecord:(MMRecord *)rec values:(NSDictionary *)values{
     
-    NSLog(@" insert %@", [NSString stringWithFormat:@"INSERT INTO %@ (%@) VALUES (%@)",[[self class] tableNameForRecord:rec], [self buildList:[values allKeys]], [self buildParameterList:[values allKeys]] ]);
+    NSString * query = [NSString stringWithFormat:@"INSERT INTO %@ (%@) VALUES (%@)",[[self class] tableNameForRecord:rec], [self buildList:[values allKeys]], [self buildParameterList:[values allKeys]] ];
     
-    return [NSString stringWithFormat:@"INSERT INTO %@ (%@) VALUES (%@)",[[self class] tableNameForRecord:rec], [self buildList:[values allKeys]], [self buildParameterList:[values allKeys]] ];
+    NSLog(@" insert %@", query);
     
+    return  query ;
 }
 
 
 +(NSString *)buildSelectQueryForRecord:(MMRecord *)rec values:(NSDictionary *)values{
     
-    return [NSString stringWithFormat:@"SELECT * FROM %@ WHERE %@",
+    return [NSString stringWithFormat:@"SELECT rowid, * FROM %@ WHERE %@",
                         [self buildSelectColumnsClauseForRecord:rec values:values],
                         [self tableNameForRecord:rec],
                         [self primaryKeyWhereClauseForRecord:rec]
@@ -1101,6 +1153,21 @@
     return [paramStringArray componentsJoinedByString:@","];
     
 }
+
+
+-(void)prepareForMigrationAttemptFromVersion:(MMVersionString *)versionString{
+    
+    NSString * oldPath = [self dbPathWithVersion:versionString];
+    NSString * newPath = [self dbPathWithVersion:_schema.version];
+
+    _db = nil;
+    
+    NSFileManager * fileManager = [NSFileManager defaultManager];
+    
+    [fileManager copyItemAtPath:oldPath toPath:newPath error:nil];
+    
+}
+
 
 #pragma Mark end MMSQLiteRecord stuff
 

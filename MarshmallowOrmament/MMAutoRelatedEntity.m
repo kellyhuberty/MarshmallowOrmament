@@ -108,7 +108,7 @@
 
 -(NSString *)localAttributeNameForRelation:(MMRelationship *)relationship{
     
-    NSString * name = [NSString stringWithFormat:@"%@__id", relationship.recordEntityName];
+    NSString * name = [NSString stringWithFormat:@"%@__id", relationship.localEntityName];
     
 //    if ([relationship onSelf]) {
 //        name = [NSString stringWithFormat:@"%@__%@", relationship.name, name];
@@ -121,7 +121,7 @@
 
 -(NSString *)foreignAttributeNameForRelation:(MMRelationship *)relationship{
     
-    NSString * name = [NSString stringWithFormat:@"%@__id", relationship.entityName];
+    NSString * name = [NSString stringWithFormat:@"%@__id", relationship.relatedEntityName];
     
     
     //[self.attributes objectWithValue:name forKey:@"name"];

@@ -15,7 +15,7 @@
     
 }
 
-@property(nonatomic)int id;
+@property(nonatomic)int identifier;
 @property(nonatomic)NSString * title;
 @property(nonatomic)NSString * description;
 @property(nonatomic)MMRelationshipSet * notes;

@@ -7,7 +7,14 @@
 //
 
 #import "MMSchemaObject.h"
-
-@interface MMRelater : MMSchemaObject
+@class MMRelationship;
+@interface MMRelater : MMSchemaObject{
+    
+    
+    MMRelationship * __weak _relationship;
+    
+    
+}
+@property(nonatomic, weak)MMRelationship * relationship;
 
 @end

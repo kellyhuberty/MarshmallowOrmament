@@ -73,6 +73,9 @@ static MMOrmManager * manager = nil;
         else if([obj isKindOfClass:[NSString class]]){
             schema = [[MMSchema alloc] initWithFilename:(NSString *)obj];
         }
+        else if([obj isKindOfClass:[MMSchema class]]){
+            schema = (MMSchema*)obj;
+        }
 //        else if([obj isKindOfClass:[NSString class]]){
 //            schema = [[MMSchema alloc] initWithFilename:(NSString *)obj];
 //        }
@@ -115,15 +118,18 @@ static MMOrmManager * manager = nil;
         
         [self setService:service forType:type schemaName:schema.name];
         
-        NSLog(@"currentVersionForSchema %@" , [MMService currentVersionForSchemaName:schema.name type:type]);
+        MMVersionString * currentVersion = [MMService currentVersionForSchemaName:schema.name type:type];
+        
+        NSLog(@"currentVersionForSchema %@" , currentVersion);
+        
+        [service prepareForMigrationAttemptFromVersion:currentVersion];
         
         id<MMServiceMigrationDelegate>migrator = nil;
         
-        MMVersionString * currentVersion = [MMService currentVersionForSchemaName:schema.name type:type];
 
         
         
-        if ( currentVersion == nil ) {
+        if ( !currentVersion ) {
             //initial data build....
             
             NSLog(@"Building inital store for %@", schema.name);
@@ -145,7 +151,6 @@ static MMOrmManager * manager = nil;
         }
         else if( ![schema.version isEqualToString: currentVersion ]  ){
             //This is
-            
             
             if ( [schema.version compareVersion:[MMService currentVersionForSchemaName:schema.name type:type]] == NSOrderedDescending ) {
                 // downgrade schema...
@@ -171,6 +176,8 @@ static MMOrmManager * manager = nil;
             }
             
         }
+        
+        [MMService setCurrentVersion:schema.version forSchemaName:schema.name type:type];
         
     }
     

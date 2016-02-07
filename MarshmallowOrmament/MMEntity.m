@@ -13,6 +13,9 @@
 #import "MMRelationship.h"
 #import "MMRecord.h"
 #import "MMProperty.h"
+
+#import <objc/runtime.h>
+
 @interface MMEntity ()
 
 +(void)initialize;
@@ -48,24 +51,24 @@ static NSString * classPrefix;
 //    
 //}
 
-+(void)loadEntityFile{
-    
-    
-    NSDictionary * dict = [MMPreferences grabPreferenceList:@"descriptors.plist"];
-    
-    if ([dict valueForKey:@"root"]) {
-        dict = [dict valueForKey:@"root"];
-    }
-    
-    
-    
-    if (dict != nil) {
-        NSDictionary * entities = [dict valueForKey:@"entities"];
-    }
-    
-    
-    MMLog(@"loading entity descriptors");
-}
+//+(void)loadEntityFile{
+//    
+//    
+//    NSDictionary * dict = [MMPreferences grabPreferenceList:@"descriptors.plist"];
+//    
+//    if ([dict valueForKey:@"root"]) {
+//        dict = [dict valueForKey:@"root"];
+//    }
+//    
+//    
+//    
+//    if (dict != nil) {
+//        NSDictionary * entities = [dict valueForKey:@"entities"];
+//    }
+//    
+//    
+//    MMLog(@"loading entity descriptors");
+//}
 
 //+(void)iterateEntities:(NSDictionary *)dict{
 //    
@@ -108,7 +111,7 @@ static NSString * classPrefix;
         [_relationships addIndexForKey:@"autoRelateName" unique:NO];
 
         //[_relationships addIndexForKey:@"autoRelate" unique:NO];
-
+        
     }
     
     return self;
@@ -138,7 +141,7 @@ static NSString * classPrefix;
 
 +(instancetype)entityWithRecordClass:(Class)aClass{
     
-    NSObject * instance = [[self alloc]initWithRecordClass:aClass];
+    MMEntity * instance = [[self alloc]initWithRecordClass:aClass];
     
     MMAutorelease(instance);
     
@@ -187,15 +190,22 @@ static NSString * classPrefix;
                 //MMAttribute * descriptor = [MMAttribute attributeWithDictionary:attDict];
             MMAttribute * attribute = [MMAttribute attributeWithProperty:prop];
             
-            if ([aClass respondsToSelector:@selector(configureRecordEntityAttribute:fromProperty:)]) {
-                [aClass configureRecordEntityAttribute:attribute fromProperty:prop];
-            }
+            Class attributeClass = NSClassFromString(attribute.classname);
             
-            [attributes addObject:attribute];
+            if ( [attributeClass isSubclassOfClass:[MMRecord class]] || [attributeClass isSubclassOfClass:[MMRelationshipSet class]] ) {
+                
+            }else{
+                            
+                if ([aClass respondsToSelector:@selector(configureRecordEntityAttribute:fromProperty:)]) {
+                    [aClass configureRecordEntityAttribute:attribute fromProperty:prop];
+                }
+                
+                [attributes addObject:attribute];
+                
+            }
         }
         [_attributes addObjectsFromArray:attributes];
         
-    
     
     //Grab Relationships
         if ([aClass respondsToSelector:@selector(relationshipsForRecordEntity)]) {
@@ -209,7 +219,7 @@ static NSString * classPrefix;
             
             for (MMRelationship * rel in relArray) {
                     //MMRelationship * rel = [MMRelationship relationshipWithDictionary:relDict];
-                rel.recordEntityName = self.name;
+                rel.localEntityName = self.name;
                 [relationships addObject:rel];
             }
             
@@ -217,8 +227,9 @@ static NSString * classPrefix;
             [_relationships addObjectsFromArray: relationships];
         }
     
-        
-        
+        [self buildDynamicSelectorCache];
+
+    
     //Entity meta
         NSDictionary * metaDict;
 
@@ -271,11 +282,12 @@ static NSString * classPrefix;
         
         for (NSDictionary * relDict in relationshipDicts) {
             MMRelationship * rel = [MMRelationship relationshipWithDictionary:relDict];
-            rel.recordEntityName = self.name;
+            rel.localEntityName = self.name;
             [relationships addObject:rel];
         }
         [_relationships addObjectsFromArray:relationships];
         
+        [self buildDynamicSelectorCache];
         
     }
     
@@ -284,6 +296,76 @@ static NSString * classPrefix;
 
 
 
+
+
+-(void)buildDynamicSelectorCache{
+    
+    
+    _attributeGetterSelectorCache = [[NSMutableDictionary alloc]init];
+    _attributeSetterSelectorCache = [[NSMutableDictionary alloc]init];
+    _relationshipGetterSelectorCache = [[NSMutableDictionary alloc]init];
+    _relationshipSetterSelectorCache = [[NSMutableDictionary alloc]init];
+    
+    
+    @try {
+    
+    
+    for (MMAttribute * attr in _attributes) {
+
+        objc_property_t prop = class_getProperty(NSClassFromString(_modelClassName), [attr.name UTF8String]);
+        
+        const char *setterName = property_copyAttributeValue(prop, "S");
+        if (setterName == NULL) {
+            NSMutableString * attrName = [attr.name mutableCopy];
+            NSString * firstChar = [attrName substringWithRange:NSMakeRange(0, 1)];
+            [attrName replaceCharactersInRange:NSMakeRange(0, 1) withString:[firstChar uppercaseString]];
+            [_attributeSetterSelectorCache setValue:attr forKey:[NSString stringWithFormat:@"set%@:", attrName]];
+        }else{
+            [_attributeSetterSelectorCache setValue:attr forKey:[NSString stringWithUTF8String:setterName]];
+        }
+        
+        const char *getterName = property_copyAttributeValue(prop, "G");
+        if (getterName == NULL) {
+            [_attributeGetterSelectorCache setValue:attr forKey:[NSString stringWithFormat:@"%@", attr.name]];
+        }else{
+            [_attributeGetterSelectorCache setValue:attr forKey:[NSString stringWithUTF8String:getterName]];
+        }
+        
+    }
+    for (MMRelationship * rel in _relationships) {
+        
+        objc_property_t prop = class_getProperty(NSClassFromString(_modelClassName), [rel.name UTF8String]);
+        
+        const char *setterName = property_copyAttributeValue(prop, "S");
+        if (setterName == NULL) {
+            NSMutableString * relName = [rel.name mutableCopy];
+            NSString * firstChar = [relName substringWithRange:NSMakeRange(0, 1)];
+            [relName replaceCharactersInRange:NSMakeRange(0, 1) withString:[firstChar uppercaseString]];
+            [_relationshipSetterSelectorCache setValue:rel forKey:[NSString stringWithFormat:@"set%@:", relName]];
+        }else{
+            [_relationshipSetterSelectorCache setValue:rel forKey:[NSString stringWithUTF8String:setterName]];
+        }
+        
+        const char *getterName = property_copyAttributeValue(prop, "G");
+        if (getterName == NULL) {
+            [_relationshipGetterSelectorCache setValue:rel forKey:[NSString stringWithFormat:@"%@", rel.name]];
+        }else{
+            [_relationshipGetterSelectorCache setValue:rel forKey:[NSString stringWithUTF8String:getterName]];
+        }
+        
+    }
+    
+        
+        
+    }
+    @catch (NSException *exception) {
+        @throw exception;
+    }
+    @finally {
+        
+    }
+    
+}
 
 
 /*
@@ -406,9 +488,39 @@ static NSString * classPrefix;
         //NSLog(@"attr blah %@", [_attributes objectWithValue:name forKey:@"name"]);
         return [_relationships objectWithValue:name forKey:@"name"];
     }
-    //NSLog(@"FUCK");exit(1);
+
     return nil;
 }
+
+
+
+-(MMRelationship *)relationshipWithGetterSelectorName:(NSString *)selectorName{
+    MMRelationship * rel = nil;
+    rel = [_relationshipGetterSelectorCache objectForKey:selectorName];
+    return rel;
+}
+
+-(MMRelationship *)relationshipWithSetterSelectorName:(NSString *)selectorName{
+    MMRelationship * rel = nil;
+    rel = [_relationshipSetterSelectorCache objectForKey:selectorName];
+    return rel;
+}
+
+-(MMAttribute *)attributeWithGetterSelectorName:(NSString *)selectorName{
+    MMAttribute * attr = nil;
+    attr = [_attributeGetterSelectorCache objectForKey:selectorName];
+    return attr;
+}
+
+-(MMAttribute *)attributeWithSetterSelectorName:(NSString *)selectorName{
+    MMAttribute * attr = nil;
+    attr = [_attributeSetterSelectorCache objectForKey:selectorName];
+    return attr;
+}
+
+
+
+
 
 
 /*
@@ -557,7 +669,7 @@ static NSString * classPrefix;
     
     NSArray * keys = nil;
     
-    if (keys = [_attributes objectsWithValue:[NSNumber numberWithBool:YES] forKey:@"autoincrement"]) {
+    if ((keys = [_attributes objectsWithValue:[NSNumber numberWithBool:YES] forKey:@"autoincrement"])) {
         return [keys copy];
     }
 

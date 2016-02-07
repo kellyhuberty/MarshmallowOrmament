@@ -36,6 +36,10 @@
 		C76F9FAD1A64F1A90086C4C9 /* MMSectionDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = C76F9FAC1A64F1A90086C4C9 /* MMSectionDescriptor.m */; };
 		C774FA3B1976F40300CDBCB8 /* MMRelationship.m in Sources */ = {isa = PBXBuildFile; fileRef = C774FA3A1976F40300CDBCB8 /* MMRelationship.m */; };
 		C775304E1B4CD8900093170D /* MMOrmManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C775304D1B4CD8900093170D /* MMOrmManager.m */; };
+		C77CA3061C4D7C9F00DF8E42 /* MMManualMigrationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C77CA3051C4D7C9F00DF8E42 /* MMManualMigrationTests.m */; };
+		C77CA3081C4D7D3E00DF8E42 /* MMManualRelationshipTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C77CA3071C4D7D3E00DF8E42 /* MMManualRelationshipTests.m */; };
+		C77CA30B1C4D7FFE00DF8E42 /* TSTMigrator.m in Sources */ = {isa = PBXBuildFile; fileRef = C77CA30A1C4D7FFE00DF8E42 /* TSTMigrator.m */; };
+		C77CA30D1C50A04E00DF8E42 /* noteit_manual.plist in Resources */ = {isa = PBXBuildFile; fileRef = C77CA30C1C50A04E00DF8E42 /* noteit_manual.plist */; };
 		C787917519812F7800C31EA7 /* MMRelation.m in Sources */ = {isa = PBXBuildFile; fileRef = C787917419812F7800C31EA7 /* MMRelation.m */; };
 		C78852C019D701600004D029 /* MMGroupDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = C78852BF19D701600004D029 /* MMGroupDescriptor.m */; };
 		C78852C319D8AE800004D029 /* MMRequestController.m in Sources */ = {isa = PBXBuildFile; fileRef = C78852C219D8AE800004D029 /* MMRequestController.m */; };
@@ -159,6 +163,11 @@
 		C774FA3A1976F40300CDBCB8 /* MMRelationship.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMRelationship.m; sourceTree = "<group>"; };
 		C775304C1B4CD8900093170D /* MMOrmManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMOrmManager.h; sourceTree = "<group>"; };
 		C775304D1B4CD8900093170D /* MMOrmManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMOrmManager.m; sourceTree = "<group>"; };
+		C77CA3051C4D7C9F00DF8E42 /* MMManualMigrationTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMManualMigrationTests.m; sourceTree = "<group>"; };
+		C77CA3071C4D7D3E00DF8E42 /* MMManualRelationshipTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMManualRelationshipTests.m; sourceTree = "<group>"; };
+		C77CA3091C4D7FFE00DF8E42 /* TSTMigrator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSTMigrator.h; sourceTree = "<group>"; };
+		C77CA30A1C4D7FFE00DF8E42 /* TSTMigrator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSTMigrator.m; sourceTree = "<group>"; };
+		C77CA30C1C50A04E00DF8E42 /* noteit_manual.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = noteit_manual.plist; sourceTree = "<group>"; };
 		C787917319812F7800C31EA7 /* MMRelation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMRelation.h; sourceTree = "<group>"; };
 		C787917419812F7800C31EA7 /* MMRelation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMRelation.m; sourceTree = "<group>"; };
 		C78852BE19D701600004D029 /* MMGroupDescriptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMGroupDescriptor.h; sourceTree = "<group>"; };
@@ -417,10 +426,13 @@
 			children = (
 				C7BEB0F0196C8C4900575D45 /* TSTMigration1.h */,
 				C7BEB0F1196C8C4900575D45 /* TSTMigration1.m */,
+				C77CA3091C4D7FFE00DF8E42 /* TSTMigrator.h */,
+				C77CA30A1C4D7FFE00DF8E42 /* TSTMigrator.m */,
 				C7A0C4F41965992C009EB4E1 /* noteit__0_1_0.plist */,
 				C75F60241B5BF0AC005A3DD6 /* noteit.plist */,
 				C7CEBE9E19E322A40094E4A8 /* noteit__0_2_0.plist */,
 				C7A3463E196C1ED000EC08BB /* noteit_2.plist */,
+				C77CA30C1C50A04E00DF8E42 /* noteit_manual.plist */,
 				C743891F1963D134000D50AF /* MarshmallowOrmamentTests-Info.plist */,
 				C74389201963D134000D50AF /* InfoPlist.strings */,
 			);
@@ -456,6 +468,8 @@
 				C73171A1198899D2005F27E6 /* MMConditionalTests.m */,
 				C7A3462C1965F09E00EC08BB /* MMORMBootstrapTests.m */,
 				C7E1FA3A19E7307300AB3842 /* MMMigrationTests.m */,
+				C77CA3051C4D7C9F00DF8E42 /* MMManualMigrationTests.m */,
+				C77CA3071C4D7D3E00DF8E42 /* MMManualRelationshipTests.m */,
 				C7A346101965B46500EC08BB /* OrmamentTests.m */,
 				C7A3460B1965B46500EC08BB /* Supporting Files */,
 			);
@@ -554,6 +568,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C7265A711B5BF33200866343 /* noteit.plist in Resources */,
+				C77CA30D1C50A04E00DF8E42 /* noteit_manual.plist in Resources */,
 				C75E75F319C4E4E100B2B825 /* OrmamentTests-Info.plist in Resources */,
 				C7A3461F1965B9E900EC08BB /* noteit__0_1_0.plist in Resources */,
 				C7E2F52C19ED72C000B2064F /* noteit__0_2_0.plist in Resources */,
@@ -689,6 +704,7 @@
 				C789AFA0196EC2FD008BBA72 /* MMResultsSet.m in Sources */,
 				C794F4A61A68D0400019294C /* MMRecordLoadingPlaceholder.m in Sources */,
 				C7BEB0F2196C8C4900575D45 /* TSTMigration1.m in Sources */,
+				C77CA30B1C4D7FFE00DF8E42 /* TSTMigrator.m in Sources */,
 				C78C43001A1BA2AE005FB127 /* MMOrmMeta.m in Sources */,
 				C733B46B19782D1700116BBC /* MMRecordSet.m in Sources */,
 				C7A345FC1965A78A00EC08BB /* MMSQLiteSchema.m in Sources */,
@@ -714,12 +730,14 @@
 				C7AF99041A4A20660093835D /* TSAItem.m in Sources */,
 				C7459CD41B39076900936E86 /* TSMItem.m in Sources */,
 				C73171A51991DEE2005F27E6 /* TSTNotebook.m in Sources */,
+				C77CA3081C4D7D3E00DF8E42 /* MMManualRelationshipTests.m in Sources */,
 				C7A346221965C1D900EC08BB /* TSTNote.m in Sources */,
 				C7A3462D1965F09E00EC08BB /* MMORMBootstrapTests.m in Sources */,
 				C7A346251965C20C00EC08BB /* TSTItem.m in Sources */,
 				C7E1FA3B19E7307300AB3842 /* MMMigrationTests.m in Sources */,
 				C7AF99011A4A204E0093835D /* TSANotebook.m in Sources */,
 				C7AF98FE1A4A20320093835D /* TSANote.m in Sources */,
+				C77CA3061C4D7C9F00DF8E42 /* MMManualMigrationTests.m in Sources */,
 				C7A346111965B46500EC08BB /* OrmamentTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -94,7 +94,7 @@
     MMSQLiteStore * store = ((MMSQLiteStore *)[[MMOrmManager manager] serviceWithType:@"store" schemaName:@"noteit"]);
 
     [[store db]executeUpdate:
-     @"INSERT INTO notebook (id, title, description) VALUES (2, 'correct notebook', 'the right one'),(1, 'incorrect notebook', 'the wrong one')"
+     @"INSERT INTO notebook (identifier, title, description) VALUES (2, 'correct notebook', 'the right one'),(1, 'incorrect notebook', 'the wrong one')"
      ];
     
     [[store db]executeUpdate:
@@ -108,7 +108,7 @@
     
     MMSQLiteRequest * req = [TSTNote newStoreRequest];
     
-    req.sqlWhere = @" id = 1 ";
+    req.sqlWhere = @" identifier = 1 ";
     
     NSError * error;
     
@@ -157,7 +157,7 @@
     MMSQLiteStore * store = ((MMSQLiteStore *)[[MMOrmManager manager] serviceWithType:@"store" schemaName:@"noteit"]);
     
     [[store db]executeUpdate:
-     @"INSERT INTO notebook (id, title, description) VALUES (2, 'correct notebook', 'the right one'),(1, 'incorrect notebook', 'the wrong one')"
+     @"INSERT INTO notebook (identifier, title, description) VALUES (2, 'correct notebook', 'the right one'),(1, 'incorrect notebook', 'the wrong one')"
      ];
     
     [[store db]executeUpdate:
@@ -171,7 +171,7 @@
     
     MMSQLiteRequest * req = [TSTNotebook newStoreRequest];
     
-    req.sqlWhere = @" id = 2 ";
+    req.sqlWhere = @" identifier = 2 ";
     
     NSError * error;
     
@@ -219,7 +219,7 @@
     MMSQLiteStore * store = ((MMSQLiteStore *)[[MMOrmManager manager] serviceWithType:@"store" schemaName:@"noteit"]);
     
     [[store db]executeUpdate:
-     @"INSERT INTO notebook (id, title, description) VALUES (2, 'correct notebook', 'the right one'),(1, 'incorrect notebook', 'the wrong one')"
+     @"INSERT INTO notebook (identifier, title, description) VALUES (2, 'correct notebook', 'the right one'),(1, 'incorrect notebook', 'the wrong one')"
      ];
     
     [[store db]executeUpdate:
@@ -233,7 +233,7 @@
     
     MMSQLiteRequest * req = [TSTNotebook newStoreRequest];
     
-    req.sqlWhere = @" id = 2 ";
+    req.sqlWhere = @" identifier = 2 ";
     
     NSError * error;
     
@@ -292,7 +292,7 @@
     MMSQLiteStore * store = ((MMSQLiteStore *)[[MMOrmManager manager] serviceWithType:@"store" schemaName:@"noteit"]);
     
     [[store db]executeUpdate:
-     @"INSERT INTO notebook (id, title, description) VALUES (2, 'correct notebook', 'the right one'),(1, 'incorrect notebook', 'the wrong one')"
+     @"INSERT INTO notebook (identifier, title, description) VALUES (2, 'correct notebook', 'the right one'),(1, 'incorrect notebook', 'the wrong one')"
      ];
     
     [[store db]executeUpdate:
@@ -302,7 +302,7 @@
     
     MMSQLiteRequest * req = [TSTNote newStoreRequest];
     
-    req.sqlWhere = @" id = 1 ";
+    req.sqlWhere = @" identifier = 1 ";
     
     NSError * error;
     
@@ -322,7 +322,7 @@
 
     MMSQLiteRequest * nbReq = [TSTNotebook newStoreRequest];
     
-    nbReq.sqlWhere = @" id = 1 ";
+    nbReq.sqlWhere = @" identifier = 1 ";
     
     NSError * nberror;
     

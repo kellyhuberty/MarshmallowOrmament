@@ -29,7 +29,7 @@
 
 +(NSArray *)idKeys{
     
-    return @[@"id"];
+    return @[@"identifier"];
     
 }
 

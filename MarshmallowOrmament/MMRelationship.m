@@ -40,7 +40,7 @@
         
         _links = [[MMSet alloc]init];
         _hasMany = YES;
-        _autoRelate = YES;
+        _autoRelate = NO;
 
     }
     
@@ -91,10 +91,10 @@
     }
     
     _className = [dict[@"className"] copy];
-    _entityName = [dict[@"entityName"] copy];
+    _relatedEntityName = [dict[@"entityName"] copy];
 
-    if (!_entityName) {
-        _entityName = [[NSClassFromString(_className) entityName]copy];
+    if (!_relatedEntityName) {
+        _relatedEntityName = [[NSClassFromString(_className) entityName]copy];
     }
         
     
@@ -110,7 +110,7 @@
     
     MMLog(@"            name:%@", _name);
     MMLog(@"            classname: %@", _className);
-    MMLog(@"            classname: %@", _entityName);
+    MMLog(@"            classname: %@", _relatedEntityName);
     
     for (MMRelation * relation in _links) {
         
@@ -125,7 +125,7 @@
 
 -(BOOL)onSelf{
     
-    return [_entityName isEqualToString:_recordEntityName];
+    return [_relatedEntityName isEqualToString:_localEntityName];
     
 }
 
@@ -136,6 +136,20 @@
     
 }
 
+
+-(void)setCloudRelater:(MMRelater *)cloudRelater{
+    
+    cloudRelater.relationship = self;
+    _cloudRelater = cloudRelater;
+    
+}
+
+-(void)setStoreRelater:(MMRelater *)storeRelater{
+    
+    storeRelater.relationship = self;
+    _storeRelater = storeRelater;
+    
+}
 
 
 

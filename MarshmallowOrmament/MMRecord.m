@@ -46,7 +46,10 @@ id valueIMP(id self, SEL _cmd) {
         Ivar ivar = class_getInstanceVariable([self class], "_values");
         //[self didAccessValueForKey:NSStringFromSelector(_cmd)];
         value = [((NSMutableDictionary *)object_getIvar(self, ivar)) objectForKey:NSStringFromSelector(_cmd)];
-            
+        
+        if (value == [NSNull null]) {
+            value = nil;
+        }
     }
     return value;
 
@@ -122,7 +125,8 @@ static void setValueIMP(id self, SEL _cmd, id aValue) {
         
         
         key = [key stringByReplacingCharactersInRange:NSMakeRange(0, 3) withString:@""];
-        key = [key stringByReplacingCharactersInRange:NSMakeRange([key length] - 1, 1) withString:@""];
+        //key = [key stringByReplacingCharactersInRange:NSMakeRange([key length] - 1, 1) withString:@""];
+        key = [key stringByReplacingOccurrencesOfString:@":" withString:@""];
         NSString *firstChar = [key substringToIndex:1];
         key = [key stringByReplacingCharactersInRange:NSMakeRange(0, 1) withString:[firstChar lowercaseString]];
 
@@ -218,7 +222,7 @@ static void setRelationValueIMP(id self, SEL _cmd, id aValue) {
     
     MMService * store = [[((MMRecord *)self) class] store];
     MMEntity * entity = [[((MMRecord *)self) class] entity];
-    MMRelationship * relationship = [entity relationshipWithName:NSStringFromSelector(_cmd)];
+    MMRelationship * relationship = [entity relationshipWithName:key];
     
     if (!relationship.hasMany) {
         
@@ -591,7 +595,19 @@ static void setRelationValueIMP(id self, SEL _cmd, id aValue) {
     
 }
 
-
+-(BOOL)destroy{
+    
+    
+    
+    //if ([self valid:error] && [self validForCreate:error]) {
+    //return [self executeDestroyForValues:_values error:error];
+    return [self destroy:nil];
+    
+    //}
+    
+    
+    
+}
 
 
 //-(BOOL)destroy;
@@ -637,8 +653,9 @@ static void setRelationValueIMP(id self, SEL _cmd, id aValue) {
 
 +(NSString *)schemaName{
     
-    
-    [NSException raise:@"MMSchemaNameException" format:@"Record class %@ has no implementation for +schemaName.", NSStringFromClass(self)];
+    NSLog(@"[WARNING]:Record class %@ has no implementation for +schemaName.", NSStringFromClass(self));
+
+    //[NSException raise:@"MMSchemaNameException" format:@"Record class %@ has no implementation for +schemaName.", NSStringFromClass(self)];
     
     //return @"noteit";
     return nil;
@@ -647,8 +664,8 @@ static void setRelationValueIMP(id self, SEL _cmd, id aValue) {
 
 +(NSString *)entityName{
     
-    
-    [NSException raise:@"MMEntityNameException" format:@"Record class %@ has no implementation for entityName.", NSStringFromClass(self)];
+    NSLog(@"[WARNING]:Record class %@ has no implementation for +entityName.", NSStringFromClass(self));
+    //[NSException raise:@"MMEntityNameException" format:@"Record class %@ has no implementation for entityName.", NSStringFromClass(self)];
     
     //return @"noteit";
     return nil;
@@ -1153,58 +1170,91 @@ static void setRelationValueIMP(id self, SEL _cmd, id aValue) {
 
 
 
+-(NSString *)description{
+    
+    return [NSString stringWithFormat:@"%@ \nvalues:\n %@", [super description], _values];
+    
+}
+
+
+
+
 
 +(BOOL)resolveInstanceMethod:(SEL)aSEL {
     
     
     MMEntity * entity = [self entity];
     
-    NSMutableString * key = [NSStringFromSelector(aSEL) mutableCopy];
-    MMAttribute * attr = [entity attributeWithName:key];
-    MMRelationship * rel = [entity relationshipWithName:key];
-
     
+    NSString * selectorName = NSStringFromSelector(aSEL);
+    
+    //NSMutableString * key = [NSStringFromSelector(aSEL) mutableCopy];
+    MMAttribute * attr = nil;
+    MMRelationship * rel = nil;
+    NSString * propertyName = nil;
+
     
     BOOL setter = NO;
     
-    if ([key hasPrefix:@"set"]) {
+    //entity retrieve
+    //test for getter
+    if ( (attr = [entity attributeWithGetterSelectorName:selectorName]) ){
+        setter = NO;
+        propertyName = attr.name;
+    }
+    else if ( (attr = [entity attributeWithSetterSelectorName:selectorName]) ){
+        setter = YES;
+        propertyName = attr.name;
+    }
+    else if ( (rel = [entity relationshipWithGetterSelectorName:selectorName]) ){
+        setter = NO;
+        propertyName = rel.name;
+    }
+    else if ( (rel = [entity relationshipWithSetterSelectorName:selectorName]) ){
+        setter = YES;
+        propertyName = rel.name;
+    }
+    
+    
 
-    
-        [key deleteCharactersInRange:NSMakeRange(0, 3)];
-        [key deleteCharactersInRange:NSMakeRange([key length] - 1, 1)];
-        NSString *firstChar = [key substringToIndex:1];
-        [key replaceCharactersInRange:NSMakeRange(0, 1) withString:[firstChar lowercaseString]];
-    
-        attr = [entity attributeWithName:key];
-        rel = [entity relationshipWithName:key];
-        
-        
-        if (attr || rel) {
-            setter = YES;
-        }
-        
-        
-        
-    }
-    if ([key hasPrefix:@"get"]) {
-        
-        
-        [key deleteCharactersInRange:NSMakeRange(0, 3)];
-        NSString *firstChar = [key substringToIndex:1];
-        [key replaceCharactersInRange:NSMakeRange(0, 1) withString:[firstChar lowercaseString]];
-        
-        attr = [[self entity] attributeWithName:key];
-        rel = [[self entity] relationshipWithName:key];
-        
-        
-    }
+//    if ([key hasPrefix:@"set"]) {
+//
+//    
+//        [key deleteCharactersInRange:NSMakeRange(0, 3)];
+//        [key deleteCharactersInRange:NSMakeRange([key length] - 1, 1)];
+//        NSString *firstChar = [key substringToIndex:1];
+//        [key replaceCharactersInRange:NSMakeRange(0, 1) withString:[firstChar lowercaseString]];
+//    
+//        attr = [entity attributeWithName:key];
+//        rel = [entity relationshipWithName:key];
+//        
+//        
+//        if (attr || rel) {
+//            setter = YES;
+//        }
+//        
+//        
+//        
+//    }
+//    if ([key hasPrefix:@"get"]) {
+//        
+//        
+//        [key deleteCharactersInRange:NSMakeRange(0, 3)];
+//        NSString *firstChar = [key substringToIndex:1];
+//        [key replaceCharactersInRange:NSMakeRange(0, 1) withString:[firstChar lowercaseString]];
+//        
+//        attr = [[self entity] attributeWithName:key];
+//        rel = [[self entity] relationshipWithName:key];
+//        
+//        
+//    }
     
     
     
     if (attr == nil && rel == nil) {
-        NSException * e = [NSException exceptionWithName:@"InvalidPropertyNameException" reason:[NSString stringWithFormat:@"The class %@ does not implement the selector %@ either dynamically or conventionally.",NSStringFromClass([self class]) ,NSStringFromSelector(aSEL) ] userInfo:@{}];
+        //NSException * e = [NSException exceptionWithName:@"InvalidPropertyNameException" reason:[NSString stringWithFormat:@"The class %@ does not implement the selector %@ either dynamically or conventionally.",NSStringFromClass([self class]) ,NSStringFromSelector(aSEL) ] userInfo:@{}];
         
-        @throw e;
+        //@throw e;
         //NSLog(@"selector::: %@", NSStringFromSelector(aSEL));
         return [super resolveInstanceMethod:aSEL];
     
@@ -1214,7 +1264,7 @@ static void setRelationValueIMP(id self, SEL _cmd, id aValue) {
     
     MMDebug(@"blah sel %@", NSStringFromSelector(aSEL));
     
-    NSString * type = getPropertyTypeName([self class], key);
+    NSString * type = getPropertyTypeName([self class], propertyName);
     
     
     if (rel != nil) {
