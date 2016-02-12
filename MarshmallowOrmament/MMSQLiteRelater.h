@@ -9,6 +9,10 @@
 #import "MMRelationship.h"
 #import "MMRelater.h"
 #import "MMSQLiteJoin.h"
+
+#pragma clang diagnostic ignored "-Wnullability-completeness"
+
+
 @class MMRecord;
 @class MMService;
 @class MMEntity;
@@ -90,7 +94,18 @@ typedef NS_ENUM(NSUInteger, MMSQLiteRelaterMutationOptions) {
 
 
 
--(void)foreignKeyForEntity:(MMSQLiteEntityType)type;
+
+-(NSString *)recordEntityName;
+-(NSString *)recordEntityAttribute;
+-(NSString *)intermediateTable;
+-(NSString *)recordIntermediateAttribute;
+-(NSString *)relatedIntermediateAttribute;
+-(NSString *)relatedEntityName;
+-(NSString *)relatedEntityAttribute;
+
+
+
+
 
 @end
 

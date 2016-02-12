@@ -17,7 +17,7 @@
 
 -(id)init;
 -(id)initWithDictionary:(NSDictionary *)dict;
-
+-(BOOL)loadMetaFromDictionary:(NSDictionary *)dict error:(NSError **)error;
 
 -(NSObject *)metaForKeyPath:(NSString *)keyPath;
 -(void)setMeta:(NSObject *)obj forKeyPath:(NSString *)keyPath;

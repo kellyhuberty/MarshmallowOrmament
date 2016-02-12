@@ -7,7 +7,7 @@
 //
 
 #import "TSTNotebook.h"
-
+#import "TSTNote.h"
 @implementation TSTNotebook
 
 @dynamic identifier;
@@ -36,6 +36,18 @@
 +(NSDictionary *)metaForRecordEntity{
     
     return @{};
+    
+}
+
++(NSArray *)relationshipsForRecordEntity{
+    
+    MMRelationship * rel = [self createRelationshipNamed:@"notes"
+                                           toRecordClass:[TSTNote class]
+                                                 hasMany:YES
+                                            storeRelator:nil
+                                            cloudRelater:nil];
+    
+    return @[rel];
     
 }
 

@@ -18,7 +18,7 @@
 
 id fetchRelationshipSet(MMRecord * self, NSString * key, MMRelationship* relationship);
 
-@class MMRecord;
+@class MMRecord, MMSchema;
 typedef enum{
     MMRecordUninserted,
     MMRecordClean,
@@ -31,6 +31,7 @@ typedef enum{
 
 +(NSString *)entityName;
 +(NSString *)schemaName;
++(MMSchema *)schema;
 +(NSDictionary *)metaForRecordEntity;
 
 +(NSArray *)idKeys;
@@ -68,16 +69,19 @@ typedef enum{
 
 @protocol MMRecordEntityCofiguration
 
+@optional
 +(NSArray *)idKeysForRecordEntity;
 +(NSDictionary *)metaForRecordEntity;
 +(void)configureRecordEntityAttribute:(MMAttribute *)attribute fromProperty:(MMProperty *)prop;
 +(NSArray *)relationshipsForRecordEntity;
++(MMRelationship *)createRelationshipNamed:(NSString *)name toEntityNamed:(NSString *)relatedEntityNamed hasMany:(BOOL)hasMany storeRelator:(MMRelater *)storeRelator cloudRelater:(MMRelater *)cloudRelater;
++(MMRelationship *)createRelationshipNamed:(NSString *)name toRecordClass:(Class)recordClass hasMany:(BOOL)hasMany storeRelator:(MMRelater *)storeRelator cloudRelater:(MMRelater *)cloudRelater;
 
 @end
 
 
 
-@interface MMRecord : NSObject<MMRecord>{
+@interface MMRecord : NSObject<MMRecord, MMRecordEntityCofiguration>{
     
     //MMEntity * _entity;
     //

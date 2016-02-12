@@ -7,7 +7,7 @@
 //
 
 #import "TSTNote.h"
-
+#import "MMSQLiteRelater.h"
 @implementation TSTNote
 
 @dynamic text;
@@ -55,5 +55,20 @@
     return nil;
     
 }
+
++(NSArray *)relationshipsForRecordEntity{
+    
+    MMRelationship * rel = [self createRelationshipNamed:@"notebook"
+                                           toRecordClass:[TSTNotebook class]
+                                                 hasMany:NO
+                                            storeRelator:nil
+                                            cloudRelater:nil];
+    
+    return @[rel];
+    
+}
+
+
+
 
 @end

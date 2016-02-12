@@ -8,7 +8,9 @@
 
 #import "MMRelationship.h"
 #import "MMService.h"
-
+#import "MMSet.h"
+#import "MMRelation.h"
+#import "MMRelater.h"
 @implementation MMRelationship
 
 
@@ -28,16 +30,71 @@
 //}
 
 
-+(instancetype)relationshipWithDictionary:(NSDictionary *)dict{
++(instancetype)relationshipWithDictionary:(NSDictionary *)dict schema:(MMSchema *)schema{
     
-    return MMAutorelease([[[self class] alloc] initWithDictionary:dict]);
+    return MMAutorelease([[[self class] alloc] initWithDictionary:dict schema:schema]);
     
 }
 
--(instancetype)init{
+
+
+//+(instancetype)hasManyRelationshipWithName:(NSString *)name localClass:(Class)localClass relatedClass:(Class)relatedClass storeRelater:(MMRelater *)storeRelator cloudRelater:(MMRelater *)cloudRelator{
+//    
+//    return [[[self class] alloc] initWithSchema:<#(MMSchema *)#>];
+//
+//    
+//    
+//}
+//
+//
+//+(instancetype)hasOneRelationshipWithName:(NSString *)name localClass:(Class)localClass relatedClass:(Class)relatedClass storeRelater:(MMRelater *)storeRelator cloudRelater:(MMRelater *)cloudRelator{
+//    
+//    
+//    
+//    
+//    
+//}
+
+
+
+-(id)init{
+    NSAssert(false, @"%@ can not be instantiated with init. Use initWithSchema:", NSStringFromClass([self class]));
+    return nil;
+}
+
+-(id)initWithDictionary:(NSDictionary *)dict{
+    NSAssert(false, @"%@ can not be instantiated with initWithDictionary:. Use initWithDictionary:schema:", NSStringFromClass([self class]));
+    return nil;
+}
+
+-(id)initWithDictionary:(NSDictionary *)dict schema:(MMSchema *)schema{
+    
+    //    NSArray * arr = [dict allKeys];
+    //
+    //    NSPredicate * pred = [NSPredicate predicateWithFormat:@"SELF CONTAINS[c] %@", @"."];
+    //
+    //    NSArray * attrKeys = [arr filteredArrayUsingPredicate:pred];
+    //
+    
+    if(self = [self initWithSchema:schema]){
+        
+        NSError * error;
+        
+        [self loadFromDictionary:dict error:&error];
+        
+        [self loadMetaFromDictionary:dict error:&error];
+        
+        
+    }
+    
+    return self;
+    
+}
+
+-(instancetype)initWithSchema:(MMSchema *)schema{
     
     if(self = [super init]){
-        
+        _schema = schema;
         _links = [[MMSet alloc]init];
         _hasMany = YES;
         _autoRelate = NO;

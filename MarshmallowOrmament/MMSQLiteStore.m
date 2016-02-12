@@ -420,7 +420,7 @@
 }
 
 
-+(NSString *)buildJoinSqlWithRelationship:(MMRelationship *)relationship{
++(NSString *)buildRelationshipReadSqlWithRelationship:(MMRelationship *)relationship{
     
     NSMutableString * clause = [NSMutableString stringWithString:@""];
     
@@ -433,59 +433,37 @@
         
     }
     
-    MMSQLiteJoin * join = nil;
     
-    for (int i = 0; i < [relater.joins count]; ++i) {
-    
-        //join = (MMSQLiteJoin *)[enu nextObject];
-        
-        join = (MMSQLiteJoin *)[relater.joins objectAtIndex:i];
-        
-        if (![clause isEqualToString:@""]) {
-            
-            [clause appendFormat:@" %@ %@",
-             join.joinType,
-             join.rightTableName
-             ];
-            
-        }else{
-            
-            [clause appendFormat:@"%@ %@ %@",
-                    join.leftTableName,
-                    join.joinType,
-                    join.rightTableName
-             ];
-            
-        }
-        
-        MMSet * conditionals = [join allConditionals];
-        if ([conditionals count] > 0) {
-            [clause appendFormat:@" ON "];
-        }
-        
-        for (MMSQLiteConditional * conditional in [join allConditionals] ) {
-            [clause appendFormat:@" %@.%@ %@ %@.%@",
-             join.leftTableName,
-             conditional.leftAttributeName,
-             conditional.operation,
-             join.rightTableName,
-             conditional.rightAttributeName
-             ];
-        }
+    NSString* sql =nil;
 
-    }
     
-    return [NSString stringWithString:clause];
+    sql = [NSString stringWithFormat:@"SELECT %@.* FROM %@ JOIN ON (%@.%@ = %@.%@",
+             [relater relatedEntityName],
+             [relater recordEntityName],
+             [relater relatedEntityName],
+             [relater recordEntityName],
+             [relater recordEntityAttribute],
+             [relater relatedEntityName],
+             [relater relatedEntityAttribute]
+             ];
     
-//    MMSQLiteRelater * relater = relationship.storeRelater;
-//    if (![relater isKindOfClass:[MMSQLiteRelater class]]) {
-//        return;
-//    }
+    
+    sql = [NSString stringWithFormat:@"SELECT %@.* FROM %@ JOIN %@ WHERE %@.%@ = %@.%@",
+           [relater relatedEntityName],
+           [relater recordEntityName],
+           [relater relatedEntityName],
+           [relater recordEntityName],
+           [relater recordEntityAttribute],
+           [relater relatedEntityName],
+           [relater relatedEntityAttribute]
+           ];
     
     
     
     
-    //return @"";
+    
+    
+    return @"sql";
 }
 
 
@@ -597,7 +575,7 @@
     
     request.sqlSelect = [NSString stringWithFormat:@"%@.*", relationship.relatedEntityName];
     
-    request.sqlFrom = [NSString stringWithFormat:@"%@", [[self class] buildJoinSqlWithRelationship:relationship]];
+    request.sqlFrom = [NSString stringWithFormat:@"%@", [[self class] buildRelationshipReadSqlWithRelationship:relationship]];
     
     request.sqlWhere = [[self class]primaryKeyWhereClauseForRecord:record];
     

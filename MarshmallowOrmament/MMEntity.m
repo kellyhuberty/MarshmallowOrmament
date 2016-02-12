@@ -281,7 +281,10 @@ static NSString * classPrefix;
         NSMutableArray * relationships = [NSMutableArray array];
         
         for (NSDictionary * relDict in relationshipDicts) {
-            MMRelationship * rel = [MMRelationship relationshipWithDictionary:relDict];
+            
+            MMSchema * schema = [MMSchema registeredSchemaWithName:[(NSClassFromString(_modelClassName)) schemaName]];
+            
+            MMRelationship * rel = [MMRelationship relationshipWithDictionary:relDict schema:schema];
             rel.localEntityName = self.name;
             [relationships addObject:rel];
         }

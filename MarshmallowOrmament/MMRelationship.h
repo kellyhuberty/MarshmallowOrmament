@@ -7,11 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "MMSet.h"
-#import "MMRelation.h"
-#import "MMSchemaObject.h"
-#import "MMRelater.h"
 
+#import "MMSchemaObject.h"
+@class MMSet, MMSchemaObject, MMRelater, MMSchema, MMEntity;
 @interface MMRelationship : MMSchemaObject{
     
     NSString * _name;
@@ -37,7 +35,7 @@
 }
 
 
-
+@property(nonatomic, retain)MMSchema * schema;
 @property(nonatomic, retain)NSString * localEntityName;
 @property(nonatomic, retain)NSString * relatedEntityName;
 @property(nonatomic, retain)NSString * className;
@@ -57,11 +55,24 @@
 
 
 +(instancetype)relationshipWithDictionary:(NSDictionary *)dict;
++(instancetype)relationshipWithDictionary:(NSDictionary *)dict schema:(MMSchema *)schema;
+
++(instancetype)relationshipWithName:(NSString *)name schemaName:(NSString *)schemaName localEntityName:(NSString *)localEntityName relatedEntityName:(NSString *)relatedEntityName storeRelater:(MMRelater *)storeRelator cloudRelater:(MMRelater *)cloudRelator;
+
+-(instancetype)initWithName:(NSString *)name schemaName:(NSString *)schemaName localEntityName:(NSString *)localEntityName relatedEntityName:(NSString *)relatedEntityName storeRelater:(MMRelater *)storeRelator cloudRelater:(MMRelater *)cloudRelator;
+
+//+(instancetype)hasManyRelationshipWithName:(NSString *)name localClass:(Class)localClass relatedClass:(Class)relatedClass storeRelater:(MMRelater *)storeRelator cloudRelater:(MMRelater *)cloudRelator;
+//+(instancetype)hasOneRelationshipWithName:(NSString *)name localClass:(Class)localClass relatedClass:(Class)relatedClass storeRelater:(MMRelater *)storeRelator cloudRelater:(MMRelater *)cloudRelator;
+
 -(NSArray *)allLinks;
 -(void)addAllLinks:(NSArray *)links;
 -(void)log;
 
 
 -(BOOL)onSelf;
+
+
+-(MMEntity *)localEntity;
+-(MMEntity *)relatedEntity;
 
 @end
