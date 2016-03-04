@@ -89,10 +89,9 @@ typedef NS_ENUM(NSUInteger, MMSQLiteRelaterMutationOptions) {
 
 
 //+(MMSQLiteRelater *)relaterWithIntermediateTableName:(nullable NSString*)intermediateTable foreignKeyToRecordName:(NSString *)foreignKeyToRecordColumnName foreignKeyToRelatedName:(NSString *)foreignKeyToRelatedColumnName;
-+(MMSQLiteRelater *)relaterWithRecordEntity:(MMEntity *)recordEntity relatedEntity:(MMEntity *)relatedEntity ForeignKeyName:(NSString *)foreignKeyColumnName onEntity:(MMSQLiteRelaterKeyOptions)keyOptions andMutationOptions:(MMSQLiteRelaterMutationOptions)mutationOptions;
+//+(MMSQLiteRelater *)relaterWithRecordEntity:(MMEntity *)recordEntity relatedEntity:(MMEntity *)relatedEntity ForeignKeyName:(NSString *)foreignKeyColumnName onEntity:(MMSQLiteRelaterKeyOptions)keyOptions andMutationOptions:(MMSQLiteRelaterMutationOptions)mutationOptions;
 
-
-
++(MMSQLiteRelater *)relaterWithforeignKeyName:(NSString *)foreignKeyColumnName onEntity:(MMSQLiteRelaterKeyOptions)keyOptions andMutationOptions:(MMSQLiteRelaterMutationOptions)mutationOptions;
 
 
 -(NSString *)recordEntityName;
@@ -104,7 +103,8 @@ typedef NS_ENUM(NSUInteger, MMSQLiteRelaterMutationOptions) {
 -(NSString *)relatedEntityAttribute;
 
 
-
+-(NSString *)tableToUpdateName;
+-(NSString *)tableToUpdatePrimaryKeyColumnName;
 
 
 @end

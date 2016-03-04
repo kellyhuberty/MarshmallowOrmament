@@ -284,7 +284,7 @@ static NSString * classPrefix;
             
             MMSchema * schema = [MMSchema registeredSchemaWithName:[(NSClassFromString(_modelClassName)) schemaName]];
             
-            MMRelationship * rel = [MMRelationship relationshipWithDictionary:relDict schema:schema];
+            MMRelationship * rel = [MMRelationship relationshipWithDictionary:relDict];
             rel.localEntityName = self.name;
             [relationships addObject:rel];
         }

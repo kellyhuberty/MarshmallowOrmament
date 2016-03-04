@@ -8,6 +8,8 @@
 
 #import "TSTNotebook.h"
 #import "TSTNote.h"
+#import "MMSQLiteRelater.h"
+
 @implementation TSTNotebook
 
 @dynamic identifier;
@@ -27,7 +29,7 @@
     
 }
 
-+(NSArray *)idKeys{
++(NSArray *)idKeysForRecordEntity{
     
     return @[@"identifier"];
     
@@ -44,8 +46,9 @@
     MMRelationship * rel = [self createRelationshipNamed:@"notes"
                                            toRecordClass:[TSTNote class]
                                                  hasMany:YES
-                                            storeRelator:nil
+                                            storeRelator:[MMSQLiteRelater relaterWithforeignKeyName:@"notebookId" onEntity:MMSQLiteForeignKeyOnRelated andMutationOptions:MMSQLiteNullForeignKey]
                                             cloudRelater:nil];
+
     
     return @[rel];
     

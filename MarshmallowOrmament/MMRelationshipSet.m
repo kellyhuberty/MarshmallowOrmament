@@ -137,7 +137,7 @@
 
 -(BOOL)objectIsValidForRelationship:(NSObject *)obj{
     
-    if ( ! [obj isKindOfClass:NSClassFromString(_relationship.className)] ) {
+    if ( ! [obj isKindOfClass:NSClassFromString(_relationship.relatedClassName)] ) {
         
         [NSException raise:@"MMInvalidObjectInRelationship" format:@"The object of class %@ is not valid for the relationship %@", [obj class], _relationship.name];
         

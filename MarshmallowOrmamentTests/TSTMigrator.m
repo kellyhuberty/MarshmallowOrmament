@@ -68,11 +68,11 @@
                              `text` TEXT ,\
                              `latitude` REAL ,\
                              `longitude` REAL  ,\
-                                PRIMARY KEY (id) ON CONFLICT ROLLBACK );"];
+                                PRIMARY KEY (identifier) ON CONFLICT ROLLBACK );"];
         [self runQuery:@"CREATE TABLE `notebook` (  `identifier` INTEGER ,\
                                  `title` TEXT ,\
                                  `description` TEXT  ,\
-                                PRIMARY KEY (id) ON CONFLICT ROLLBACK );"];
+                                PRIMARY KEY (identifier) ON CONFLICT ROLLBACK );"];
     
     
     }

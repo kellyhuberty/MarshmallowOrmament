@@ -24,13 +24,46 @@
 - (void)setUp {
     [super setUp];
     
+    [self removeFiles];
+    
     MMSchema * schema = [[MMSchema alloc]initWithFilename:@"noteit_manual"];
 
+    
+    [MMService unsetVersionForSchemaName:@"noteit" type:@"store"];
     
     [MMOrmManager startWithSchemas:@[schema]];
     
     // Put setup code here. This method is called before the invocation of each test method in the class.
 }
+
+
+- (void)removeFiles
+{
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSString *libraryPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    
+    
+    NSArray * pathsToDelete = @[
+                                [libraryPath stringByAppendingPathComponent:@"noteit__0_1.db"],
+                                ];
+    
+    for (NSString * filePath in pathsToDelete) {
+        
+        NSError *error;
+        BOOL success = [fileManager removeItemAtPath:filePath error:&error];
+        if (success) {
+            //UIAlertView *removeSuccessFulAlert=[[UIAlertView alloc]initWithTitle:@"Congratulation:" message:@"Successfully removed" delegate:self cancelButtonTitle:@"Close" otherButtonTitles:nil];
+            //[removeSuccessFulAlert show];
+        }
+        else
+        {
+            NSLog(@"Could not delete file@: %@ -:%@ ",filePath ,[error localizedDescription]);
+        }
+        
+    }
+    
+}
+
 
 - (void)tearDown {
     // Put teardown code here. This method is called after the invocation of each test method in the class.
@@ -42,7 +75,7 @@
     // Use XCTAssert and related functions to verify your tests produce the correct results.
 }
 
-- (void)testForeignKeyOnRecord_AddItem {
+- (void)testForeignKeyOnRecord_AddItem_PersistenceCheck {
     
     TSTNote * note = [TSTNote create];
     note.text = @"note text";
@@ -54,14 +87,27 @@
     [notebook save];
     
     
-    XCTAssertEqual([notebook.notes count], 1);
-    XCTAssertEqualObjects([notebook.notes objectAtIndex:0], note);
+    FMResultSet * resultSet = [((MMSQLiteStore *)[[note class] store]).db executeQuery:@"SELECT notebook.* FROM note join notebook ON (notebook.identifier = note.notebookId) WHERE note.identifier = :PARAM" withParameterDictionary:@{@"PARAM":[NSNumber numberWithInt:note.identifier]} ];
+    
+    NSMutableArray * array = [NSMutableArray array];
+    
+    while ([resultSet next]) {
+        
+        NSDictionary * values = [resultSet resultDictionary];
+        
+        [array addObject:values];
+        
+    }
+    
+    
+    
+    XCTAssertEqual([array count], 1);
     //[(MMSQLiteStore *)[TSTNote store] db]executeQuery:@"SELECT * FROM note WHERE"
     
     
 }
 
-- (void)testForeignKeyOnRelationship_AddItem {
+- (void)testForeignKeyOnRelationship_AddItem_PersistenceCheck {
     
     TSTNote * note = [TSTNote create];
     note.text = @"note text";

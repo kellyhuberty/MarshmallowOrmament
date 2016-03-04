@@ -44,7 +44,7 @@
     
 }
 
-+(NSArray *)idKeys{
++(NSArray *)idKeysForRecordEntity{
     
     return @[@"identifier"];
     
@@ -58,11 +58,13 @@
 
 +(NSArray *)relationshipsForRecordEntity{
     
+    
     MMRelationship * rel = [self createRelationshipNamed:@"notebook"
                                            toRecordClass:[TSTNotebook class]
                                                  hasMany:NO
-                                            storeRelator:nil
+                                            storeRelator:[MMSQLiteRelater relaterWithforeignKeyName:@"notebookId" onEntity:MMSQLiteForeignKeyOnTarget andMutationOptions:MMSQLiteNullForeignKey]
                                             cloudRelater:nil];
+    
     
     return @[rel];
     

@@ -8,6 +8,8 @@
 
 #import "MMSQLiteRelater.h"
 #import "MMEntity.h"
+#import "MMRecord.h"
+
 @implementation MMSQLiteRelater
 
 -(id)init{
@@ -23,22 +25,19 @@
     
 }
 
--(MMSQLiteRelater *)initWithRecordEntity:(MMEntity *)recordEntity relatedEntity:(MMEntity *)relatedEntity foreignKeyName:(NSString *)foreignKeyColumnName withRelatorOptions:(MMSQLiteRelaterKeyOptions)keyOptions andMutationOptions:(MMSQLiteRelaterMutationOptions)mutationOptions{
+-(MMSQLiteRelater *)initWithForeignKeyName:(NSString *)foreignKeyColumnName withRelatorOptions:(MMSQLiteRelaterKeyOptions)keyOptions andMutationOptions:(MMSQLiteRelaterMutationOptions)mutationOptions{
     self = [super init];
-    
-    _recordEntity = recordEntity;
-    _relatedEntity = relatedEntity;
+
     _foreignKeyColumnName = foreignKeyColumnName;
     _mutationOptions = mutationOptions;
+    _keyOptions = keyOptions;
     
     return self;
 }
 
-+(MMSQLiteRelater *)relaterWithRecordEntity:(MMEntity *)recordEntity relatedEntity:(MMEntity *)relatedEntity ForeignKeyName:(NSString *)foreignKeyColumnName onEntity:(MMSQLiteRelaterKeyOptions)keyOptions andMutationOptions:(MMSQLiteRelaterMutationOptions)mutationOptions{
++(MMSQLiteRelater *)relaterWithforeignKeyName:(NSString *)foreignKeyColumnName onEntity:(MMSQLiteRelaterKeyOptions)keyOptions andMutationOptions:(MMSQLiteRelaterMutationOptions)mutationOptions{
     
-    MMSQLiteRelater * rel = [[self alloc]initWithRecordEntity:recordEntity
-                                                relatedEntity:relatedEntity
-                                               foreignKeyName:foreignKeyColumnName
+    MMSQLiteRelater * rel = [[self alloc]initWithForeignKeyName:foreignKeyColumnName
                                            withRelatorOptions:keyOptions
                                            andMutationOptions:mutationOptions];
     
@@ -60,7 +59,14 @@
     if (_keyOptions == MMSQLiteForeignKeyOnTarget) {
         return _foreignKeyColumnName;
     }
-    return [_recordEntity.idKeys objectAtIndex:0];
+    
+    if([NSClassFromString(_relationship.localClassName) isSubclassOfClass:[MMRecord class]]){
+        
+        NSArray* idKeys = [[NSClassFromString(_relationship.localClassName) entity] idKeys];
+        return [idKeys objectAtIndex:0];
+    }
+    
+    return nil;
 }
 
 
@@ -91,11 +97,52 @@
 
 -(NSString *)relatedEntityAttribute{
     
-    if (_keyOptions == MMSQLiteForeignKeyOnTarget) {
+    if (_keyOptions == MMSQLiteForeignKeyOnRelated) {
         return _foreignKeyColumnName;
     }
-    return [_relatedEntity.idKeys objectAtIndex:0];
+    
+    if([NSClassFromString(_relationship.relatedClassName) isSubclassOfClass:[MMRecord class]]){
+        return [[[NSClassFromString(_relationship.relatedClassName) entity] idKeys] objectAtIndex:0];
+    }
+    
+    return nil;
 }
+
+
+-(NSString *)tableToUpdateName{
+    
+    if (self.keyOptions == MMSQLiteForeignKeyOnTarget) {
+        return _relationship.localEntityName;
+    }
+    else if(self.keyOptions == MMSQLiteForeignKeyOnRelated){
+        
+        return [_relationship relatedEntityName];
+        
+    }
+    else if ([self intermediateTable]) {
+        return [self intermediateTable];
+    }
+    
+    return nil;
+    
+}
+
+-(NSString *)tableToUpdatePrimaryKeyColumnName{
+    
+    if (self.keyOptions == MMSQLiteForeignKeyOnTarget) {
+        return self.recordEntityAttribute;
+    }
+    else if(self.keyOptions == MMSQLiteForeignKeyOnRelated){
+        
+        return self.relatedEntityAttribute;
+        
+    }
+    
+    return nil;
+    
+}
+
+
 
 
 

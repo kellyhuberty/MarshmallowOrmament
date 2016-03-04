@@ -770,27 +770,46 @@ static void setRelationValueIMP(id self, SEL _cmd, id aValue) {
 }
 
 
-+(MMRelationship *)createRelationshipNamed:(NSString *)name toEntityNamed:(NSString *)relatedEntityNamed hasMany:(BOOL)hasMany storeRelator:(MMRelater *)storeRelator cloudRelater:(MMRelater *)cloudRelater{
-    
-    return [[MMRelationship alloc]initWithName:name
-                                    schemaName:[self schemaName]
-                               localEntityName:[self entityName]
-                             relatedEntityName:relatedEntityNamed
-                                  storeRelater:storeRelator
-                                  cloudRelater:cloudRelater];
-    
-}
-
-
 +(MMRelationship *)createRelationshipNamed:(NSString *)name toRecordClass:(Class)recordClass hasMany:(BOOL)hasMany storeRelator:(MMRelater *)storeRelator cloudRelater:(MMRelater *)cloudRelater{
     
+    
+    
+//    return [[MMRelationship alloc]initWithName:name
+//                                    schemaName:[self schemaName]
+//                               localEntityName:[self entityName]
+//                             relatedEntityName:relatedEntityNamed
+//                                  storeRelater:storeRelator
+//                                  cloudRelater:cloudRelater];
+
     NSString * relatedEntityName = nil;
     if ([recordClass respondsToSelector:@selector(entityName)]) {
         relatedEntityName = [recordClass entityName];
     }
     
-    return [self createRelationshipNamed:name toEntityNamed:relatedEntityName hasMany:hasMany storeRelator:storeRelator cloudRelater:cloudRelater];
+    NSAssert(relatedEntityName, @"Class [%@] does not conform to entityName", NSStringFromClass(recordClass));
+    
+    return [MMRelationship relationshipWithName:name
+                                localEntityName:[self entityName]
+                                     localClass:[self class]
+                                        hasMany:hasMany
+                            ofRelatedEntityName:relatedEntityName
+                                   relatedClass:recordClass
+                                   storeRelater:storeRelator
+                                   cloudRelater:cloudRelater];
+    
+    
 }
+
+//
+//+(MMRelationship *)createRelationshipNamed:(NSString *)name toRecordClass:(Class)recordClass hasMany:(BOOL)hasMany storeRelator:(MMRelater *)storeRelator cloudRelater:(MMRelater *)cloudRelater{
+//    
+//    NSString * relatedEntityName = nil;
+//    if ([recordClass respondsToSelector:@selector(entityName)]) {
+//        relatedEntityName = [recordClass entityName];
+//    }
+//    
+//    return [self createRelationshipNamed:name toEntityNamed:relatedEntityName hasMany:hasMany storeRelator:storeRelator cloudRelater:cloudRelater];
+//}
 
 
 //-(void)revert{

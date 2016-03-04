@@ -305,7 +305,7 @@
     MMResultsSet * __block ret;
     
     if (! NSClassFromString(classname)) {
-        [NSException raise:@"MMInvalidClassnameException" format:@"The classname provided does not reference a valid class."];
+        [NSException raise:@"MMInvalidClassnameException" format:@"The classname provided %@ does not reference a valid class.", classname];
     }
     
     
@@ -463,7 +463,7 @@
     
     
     
-    return @"sql";
+    return sql;
 }
 
 
@@ -520,7 +520,7 @@
     
     MMSQLiteRequest * request = MMAutorelease([[MMSQLiteRequest alloc] init]);
     
-    request.className = relationship.className;
+    request.className = relationship.relatedClassName;
     
     request.sqlSelect = [NSString stringWithFormat:@"%@.*", relationship.relatedEntityName];
     
@@ -571,13 +571,46 @@
     
     MMSQLiteRequest * request = [[MMSQLiteRequest alloc] init];
     
-    request.className = relationship.className;
+    request.className = relationship.relatedClassName;
     
-    request.sqlSelect = [NSString stringWithFormat:@"%@.*", relationship.relatedEntityName];
+    MMSQLiteRelater * relater = nil;
     
-    request.sqlFrom = [NSString stringWithFormat:@"%@", [[self class] buildRelationshipReadSqlWithRelationship:relationship]];
+    
+    if([relationship.storeRelater isKindOfClass:[MMSQLiteRelater class]]){
+        
+        relater = (MMSQLiteRelater*)relationship.storeRelater;
+        
+    }
+    
+    
+//    
+//    sql = [NSString stringWithFormat:@"SELECT %@.* FROM %@ JOIN %@ WHERE %@.%@ = %@.%@",
+//           [relater relatedEntityName],
+//           [relater recordEntityName],
+//           [relater relatedEntityName],
+//           [relater recordEntityName],
+//           [relater recordEntityAttribute],
+//           [relater relatedEntityName],
+//           [relater relatedEntityAttribute]
+//           ];
+//    
+//    
+//    
+    
+    
+    request.sqlSelect = [NSString stringWithFormat:@"%@.*", [relater relatedEntityName]];
+    
+    request.sqlFrom = [NSString stringWithFormat:@"%@ JOIN %@ ON (%@.%@ = %@.%@)",
+                                                   [relater recordEntityName],
+                                                   [relater relatedEntityName],
+                                                   [relater recordEntityName],
+                                                   [relater recordEntityAttribute],
+                                                   [relater relatedEntityName],
+                                                   [relater relatedEntityAttribute]];
     
     request.sqlWhere = [[self class]primaryKeyWhereClauseForRecord:record];
+    
+    [request.sqlBindValues addEntriesFromDictionary:[record idValues]];
     
     set.request = request;
     
@@ -589,6 +622,105 @@
     
     return set;
 }
+
+
+-(MMRelationshipSet *)buildManualRelationshipDeleteSQLOfRecords:(NSArray *)records toRelationship:(MMRelationship *)relationship record:(MMRecord *)record {
+    
+    //MMSQLiteRelater * relater = relationship.storeRelater;
+
+    
+    
+    
+    
+    //INSERT OR UPDATE?
+    //[NSString stringWithFormat:@"INSERT INTO %@"];
+    
+    //TABLE TO Evaluate.
+    
+    
+    //WHERE CLAUSE
+    
+    
+    //relater.m
+    return nil;
+}
+
+
+-(MMRelationshipSet *)buildManualRelationshipAddSQLOfRecords:(NSArray *)records toRelationship:(MMRelationship *)relationship record:(MMRecord *)record bindValues:(NSMutableArray **)bindValuesRef{
+
+    
+    NSMutableArray * __autoreleasing bindValues = [NSMutableArray array];
+    
+    
+    MMSQLiteRelater * relatr= (MMSQLiteRelater *)relationship.storeRelater;
+
+    NSAssert([relatr isKindOfClass:[MMSQLiteRelater class]], @"Class Missmatch for MMSQLiteRelater");
+
+    
+    NSString * tableToUpdate = [relatr tableToUpdateName] ;
+    NSString * foreignColumnName = relatr.foreignKeyColumnName;
+    
+    NSString * query = nil;
+    
+    NSAssert([relatr isKindOfClass:[MMSQLiteRelater class]], @"");
+    
+    //INSERT OR UPDATE?
+    
+    if (relatr.intermediateTableName) {
+        query = [[NSString stringWithFormat:@"INSERT OR REPLACE INTO %@ (%@, %@) VALUES ", tableToUpdate, relatr.recordIntermediateAttribute, relatr.relatedIntermediateAttribute] mutableCopy];
+        
+        NSMutableArray * valuesStrings = [NSMutableArray array];
+        
+        for (MMRecord * relatedRecord in records) {
+            
+            [valuesStrings addObject:@"(?,?)"];
+            id firstValue = [[self class] rowidColumnValueForRecord:record];
+            id secondValue = [[self class] rowidColumnValueForRecord:relatedRecord];
+            
+            NSAssert(firstValue, @"record %@ does not have primary key", record);
+            NSAssert(secondValue, @"record %@ does not have primary key", relatedRecord);
+
+            [bindValues addObject:firstValue];
+            [bindValues addObject:secondValue];
+            
+        }
+        
+        NSString * valuesString = [valuesStrings componentsJoinedByString:@","];
+        
+        query = [query stringByAppendingString:valuesString];
+        
+    }
+    else{
+        
+//        NSString * tableToUpdatePrimaryKeyColumnName = [relatr tableToUpdatePrimaryKeyColumnName];
+//
+//        query = [NSString stringWithFormat:@"UPDATE %@ SET %@ = ? WHERE %@ IN ", tableToUpdate, foreignColumnName, primaryKeyColumnName, nil];
+//        
+//        if (relatr.keyOptions == MMSQLiteForeignKeyOnTarget) {
+//            
+//        }
+//        
+//        
+//        bindValues addObject:<#(nonnull id)#>
+
+    }
+    
+    
+    bindValuesRef = &bindValues;
+    
+    //INSERT OR UPDATE?
+
+    
+    
+    //TABLE TO Evaluate.
+    
+    
+    //WHERE CLAUSE
+    
+    return query;
+
+}
+
 
 -(BOOL)addRecords:(NSArray *)set toRelationship:(MMRelationship *)relationship onRecord:(MMRecord *)record error:(NSError **)error{
 
@@ -677,6 +809,11 @@
             }
             
         }];
+    }
+    else{
+        
+        
+        
     }
     
     return success;

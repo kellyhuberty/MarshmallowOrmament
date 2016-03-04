@@ -30,9 +30,9 @@
 //}
 
 
-+(instancetype)relationshipWithDictionary:(NSDictionary *)dict schema:(MMSchema *)schema{
++(instancetype)relationshipWithDictionary:(NSDictionary *)dict{
     
-    return MMAutorelease([[[self class] alloc] initWithDictionary:dict schema:schema]);
+    return MMAutorelease([[[self class] alloc] initWithDictionary:dict]);
     
 }
 
@@ -57,17 +57,17 @@
 
 
 
--(id)init{
-    NSAssert(false, @"%@ can not be instantiated with init. Use initWithSchema:", NSStringFromClass([self class]));
-    return nil;
-}
+//-(id)init{
+//    NSAssert(false, @"%@ can not be instantiated with init. Use initWithSchema:", NSStringFromClass([self class]));
+//    return nil;
+//}
+//
+//-(id)initWithDictionary:(NSDictionary *)dict{
+//    NSAssert(false, @"%@ can not be instantiated with initWithDictionary:. Use initWithDictionary:schema:", NSStringFromClass([self class]));
+//    return nil;
+//}
 
 -(id)initWithDictionary:(NSDictionary *)dict{
-    NSAssert(false, @"%@ can not be instantiated with initWithDictionary:. Use initWithDictionary:schema:", NSStringFromClass([self class]));
-    return nil;
-}
-
--(id)initWithDictionary:(NSDictionary *)dict schema:(MMSchema *)schema{
     
     //    NSArray * arr = [dict allKeys];
     //
@@ -76,7 +76,7 @@
     //    NSArray * attrKeys = [arr filteredArrayUsingPredicate:pred];
     //
     
-    if(self = [self initWithSchema:schema]){
+    if(self = [self init]){
         
         NSError * error;
         
@@ -91,11 +91,35 @@
     
 }
 
--(instancetype)initWithSchema:(MMSchema *)schema{
+
++(instancetype)relationshipWithName:(NSString *)name localEntityName:(NSString *)localEntityName localClass:(Class)localClass    hasMany:(BOOL)hasMany ofRelatedEntityName:(NSString *)relatedEntityName relatedClass:(Class)relatedClass storeRelater:(MMRelater *)storeRelator cloudRelater:(MMRelater *)cloudRelator{
+    
+    return [[[self class]alloc] initWithName:name localEntityName:localEntityName localClass:localClass hasMany:hasMany ofRelatedEntityName:relatedEntityName relatedClass:relatedClass storeRelater:storeRelator cloudRelater:cloudRelator];
+    
+}
+
+-(instancetype)initWithName:(NSString *)name localEntityName:(NSString *)localEntityName localClass:(Class)localClass hasMany:(BOOL)hasMany ofRelatedEntityName:(NSString *)relatedEntityName relatedClass:(__unsafe_unretained Class)relatedClass storeRelater:(MMRelater *)storeRelator cloudRelater:(MMRelater *)cloudRelator{
+    
+    if (self = [self init]) {
+        
+        _name = name;
+        _localEntityName = localEntityName;
+        _localClassName = NSStringFromClass(localClass);
+        _hasMany = hasMany;
+        _relatedEntityName = relatedEntityName;
+        self.storeRelater = storeRelator;
+        self.cloudRelater = cloudRelator;
+        _relatedClassName = NSStringFromClass(relatedClass);
+        
+    }
+    
+    return self;
+}
+
+
+-(instancetype)init{
     
     if(self = [super init]){
-        _schema = schema;
-        _links = [[MMSet alloc]init];
         _hasMany = YES;
         _autoRelate = NO;
 
@@ -112,20 +136,6 @@
 
     _name = [dict[@"name"] copy];
     
-    if ((relations = dict[@"links"])) {
-        
-        for (NSObject * relDat in relations) {
-        
-            if ([relDat isKindOfClass:[NSString class]]) {
-                [_links addObject: [ MMRelation relationWithRelationFormat:relDat ]];
-            }
-            if ([relDat isKindOfClass:[NSDictionary class]]) {
-                [_links addObject: [ MMRelation relationWithDictionary:relDat ]];
-            }
-            
-        }
-        
-    }
     if (dict[@"hasMany"]) {
         
         _hasMany = [dict[@"hasMany"] boolValue];
@@ -147,11 +157,11 @@
         
     }
     
-    _className = [dict[@"className"] copy];
+    _relatedClassName = [dict[@"className"] copy];
     _relatedEntityName = [dict[@"entityName"] copy];
 
     if (!_relatedEntityName) {
-        _relatedEntityName = [[NSClassFromString(_className) entityName]copy];
+        _relatedEntityName = [[NSClassFromString(_relatedClassName) entityName]copy];
     }
         
     
@@ -166,16 +176,8 @@
     MMLog(@"                ");
     
     MMLog(@"            name:%@", _name);
-    MMLog(@"            classname: %@", _className);
+    MMLog(@"            classname: %@", _relatedClassName);
     MMLog(@"            classname: %@", _relatedEntityName);
-    
-    for (MMRelation * relation in _links) {
-        
-        MMLog(@"            {");
-        MMLog(@"            }");
-        
-        
-    }
     
 }
 
