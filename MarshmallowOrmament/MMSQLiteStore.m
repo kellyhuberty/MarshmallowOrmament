@@ -646,7 +646,7 @@
 }
 
 
--(MMRelationshipSet *)buildManualRelationshipAddSQLOfRecords:(NSArray *)records toRelationship:(MMRelationship *)relationship record:(MMRecord *)record bindValues:(NSMutableArray **)bindValuesRef{
+-(NSString *)buildManualRelationshipAddSQLOfRecords:(NSArray *)relatedRecords toRelationship:(MMRelationship *)relationship onRecord:(MMRecord *)record bindValues:(NSMutableArray **)bindValuesRef{
 
     
     NSMutableArray * __autoreleasing bindValues = [NSMutableArray array];
@@ -671,7 +671,7 @@
         
         NSMutableArray * valuesStrings = [NSMutableArray array];
         
-        for (MMRecord * relatedRecord in records) {
+        for (MMRecord * relatedRecord in relatedRecords) {
             
             [valuesStrings addObject:@"(?,?)"];
             id firstValue = [[self class] rowidColumnValueForRecord:record];
@@ -692,34 +692,131 @@
     }
     else{
         
-//        NSString * tableToUpdatePrimaryKeyColumnName = [relatr tableToUpdatePrimaryKeyColumnName];
-//
-//        query = [NSString stringWithFormat:@"UPDATE %@ SET %@ = ? WHERE %@ IN ", tableToUpdate, foreignColumnName, primaryKeyColumnName, nil];
-//        
-//        if (relatr.keyOptions == MMSQLiteForeignKeyOnTarget) {
-//            
-//        }
-//        
-//        
-//        bindValues addObject:<#(nonnull id)#>
+        NSString * tableToUpdatePrimaryKeyColumnName = [relatr tableToUpdatePrimaryKeyColumnName];
+        
+        query = [NSString stringWithFormat:@"UPDATE %@ SET %@ = ? WHERE %@ IN ", tableToUpdate, foreignColumnName, tableToUpdatePrimaryKeyColumnName];
+        
+        if (relatr.keyOptions == MMSQLiteForeignKeyOnTarget) {
+            
+            NSAssert([relatedRecords count] == 1, @"Inconsistent cardinality for values for MMSQLiteForeignKeyOnTarget. MMSQLiteForeignKeyOnTarget only allows 1 value.");
+            
+            [bindValues addObject:[[self class] rowidColumnValueForRecord:relatedRecords[0]]];
+            [bindValues addObject:[[self class] rowidColumnValueForRecord:record]];
+            
+            query = [NSString stringWithFormat:@"%@ ( ? )", query];
+            
+        }else if (relatr.keyOptions == MMSQLiteForeignKeyOnRelated) {
+         
+            [bindValues addObject:[[self class] rowidColumnValueForRecord:record]];
+            
+            NSMutableArray * questionMarkArray = [NSMutableArray array];
+            
+            for (MMRecord * relatedRecord in relatedRecords) {
+                [bindValues addObject:[[self class] rowidColumnValueForRecord:relatedRecord]];
+                [questionMarkArray addObject:@"?"];
+            }
+            
+            query = [NSString stringWithFormat:@"%@ ( %@ )",
+                     query,
+                     [questionMarkArray componentsJoinedByString:@","]
+                     ];
 
+        }
+    
     }
     
-    
     bindValuesRef = &bindValues;
-    
-    //INSERT OR UPDATE?
-
-    
-    
-    //TABLE TO Evaluate.
-    
-    
-    //WHERE CLAUSE
     
     return query;
 
 }
+
+
+-(NSString *)buildManualRelationshipDeleteSQLOfRecords:(NSArray *)relatedRecords toRelationship:(MMRelationship *)relationship onRecord:(MMRecord *)record bindValues:(NSMutableArray **)bindValuesRef{
+    
+    
+    NSMutableArray * __autoreleasing bindValues = [NSMutableArray array];
+    
+    
+    MMSQLiteRelater * relatr= (MMSQLiteRelater *)relationship.storeRelater;
+    
+    NSAssert([relatr isKindOfClass:[MMSQLiteRelater class]], @"Class Missmatch for MMSQLiteRelater");
+    
+    
+    NSString * tableToUpdate = [relatr tableToUpdateName] ;
+    NSString * foreignColumnName = relatr.foreignKeyColumnName;
+    
+    NSString * query = nil;
+    
+    NSAssert([relatr isKindOfClass:[MMSQLiteRelater class]], @"");
+    
+    //INSERT OR UPDATE?
+    
+    if (relatr.intermediateTableName) {
+        query = [[NSString stringWithFormat:@"DELETE FROM %@ WHERE %@ = ? AND %@ IN (", tableToUpdate, relatr.recordIntermediateAttribute, relatr.relatedIntermediateAttribute] mutableCopy];
+        
+        id firstValue = [[self class] rowidColumnValueForRecord:record];
+        NSAssert(firstValue, @"record %@ does not have primary key", record);
+        [bindValues addObject:firstValue];
+        
+        NSMutableArray * valuesStrings = [NSMutableArray array];
+        
+        for (MMRecord * relatedRecord in relatedRecords) {
+            
+            [valuesStrings addObject:@"?"];
+            id secondValue = [[self class] rowidColumnValueForRecord:relatedRecord];
+            NSAssert(secondValue, @"record %@ does not have primary key", relatedRecord);
+            [bindValues addObject:secondValue];
+            
+        }
+        
+        NSString * valuesString = [valuesStrings componentsJoinedByString:@","];
+        
+        query = [query stringByAppendingFormat:@"%@)", valuesString];
+        
+    }
+    else{
+        
+        NSString * tableToUpdatePrimaryKeyColumnName = [relatr tableToUpdatePrimaryKeyColumnName];
+        
+        query = [NSString stringWithFormat:@"UPDATE %@ SET %@ = ? WHERE %@ IN ", tableToUpdate, foreignColumnName, tableToUpdatePrimaryKeyColumnName];
+        
+        if (relatr.keyOptions == MMSQLiteForeignKeyOnTarget) {
+            
+            NSAssert([relatedRecords count] == 1, @"Inconsistent cardinality for values for MMSQLiteForeignKeyOnTarget. MMSQLiteForeignKeyOnTarget only allows 1 value.");
+            
+            [bindValues addObject:[NSNull null]];
+            [bindValues addObject:[[self class] rowidColumnValueForRecord:record]];
+            
+            query = [NSString stringWithFormat:@"%@ ( ? )", query];
+            
+        }else if (relatr.keyOptions == MMSQLiteForeignKeyOnRelated) {
+            
+            [bindValues addObject:[NSNull null]];
+            
+            NSMutableArray * questionMarkArray = [NSMutableArray array];
+            
+            for (MMRecord * relatedRecord in relatedRecords) {
+                [bindValues addObject:[[self class] rowidColumnValueForRecord:relatedRecord]];
+                [questionMarkArray addObject:@"?"];
+            }
+            
+            query = [NSString stringWithFormat:@"%@ ( %@ )",
+                     query,
+                     [questionMarkArray componentsJoinedByString:@","]
+                     ];
+            
+        }
+        
+    }
+    
+    bindValuesRef = &bindValues;
+    
+    return query;
+    
+}
+
+
 
 
 -(BOOL)addRecords:(NSArray *)set toRelationship:(MMRelationship *)relationship onRecord:(MMRecord *)record error:(NSError **)error{
