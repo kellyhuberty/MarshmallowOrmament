@@ -211,5 +211,18 @@
 }
 
 
+-(Class)localClass{
+    
+    return NSClassFromString(self.localClassName);
+    
+}
+
+-(Class)relatedClass{
+    
+    return NSClassFromString(self.relatedClassName);
+    
+}
+
+
 
 @end

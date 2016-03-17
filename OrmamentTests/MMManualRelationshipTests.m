@@ -82,6 +82,7 @@
     [note save];
     TSTNotebook * notebook = [TSTNotebook create];
     notebook.title = @"notebook1";
+    [notebook save];
     note.notebook = notebook;
     [note save];
     [notebook save];
@@ -95,7 +96,7 @@
         
         NSDictionary * values = [resultSet resultDictionary];
         
-        [array addObject:values];
+        [array addObject:values]; 
         
     }
     
@@ -109,43 +110,302 @@
 
 - (void)testForeignKeyOnRelationship_AddItem_PersistenceCheck {
     
-    TSTNote * note = [TSTNote create];
-    note.text = @"note text";
-    [note save];
+    TSTNote * note1 = [TSTNote create];
+    TSTNote * note2 = [TSTNote create];
+    TSTNote * note3 = [TSTNote create];
+
+    note1.text = @"note text 1";
+    note2.text = @"note text 2";
+    note3.text = @"note text 3";
+
+    [note1 save];
+    [note2 save];
+    [note3 save];
+
     TSTNotebook * notebook = [TSTNotebook create];
     notebook.title = @"notebook1";
-    [notebook.notes addObject:note];
-    [note save];
+    [notebook save];
+    [notebook.notes addObject:note1];
+    [notebook.notes addObject:note2];
+    [notebook.notes addObject:note3];
     [notebook save];
     
+//    
+//    FMResultSet * resultSet = [((MMSQLiteStore *)[[note class] store]).db executeQuery:@"SELECT notebook.* FROM note join notebook ON (notebook.identifier = note.notebookId) WHERE note.identifier IN (?, ?, ?)"  ];
+//    
+    FMDatabase * db = ((MMSQLiteStore *)[[note1 class] store]).db;
     
-    //[notebook.notes count] == 1
-    XCTAssertEqual([notebook.notes count], 1);
-    XCTAssertEqualObjects([notebook.notes objectAtIndex:0], note);
+    FMResultSet * addResultSet = [db
+            executeQuery:@"SELECT notebook.* FROM note join notebook ON (notebook.identifier = note.notebookId) WHERE note.identifier IN (?, ?, ?)"
+    withArgumentsInArray:@[
+                           [NSNumber numberWithInteger:note1.identifier],
+                           [NSNumber numberWithInteger:note2.identifier],
+                           [NSNumber numberWithInteger:note3.identifier]
+                           ]
+     ];
+    
+    NSMutableArray * addResultSetArray = [NSMutableArray array];
+    
+    while ([addResultSet next]) {
+        
+        NSDictionary * values = [addResultSet resultDictionary];
+        
+        [addResultSetArray addObject:values];
+        
+    }
+    
+    
+    
+    XCTAssertEqual([addResultSetArray count], 3);
+    
 
+    
+    //[(MMSQLiteStore *)[TSTNote store] db]executeQuery:@"SELECT * FROM note WHERE"
+    
     
 }
 
-- (void)testForeignKeyOnRelationship_DeleteItem {
 
-    TSTNote * note = [TSTNote create];
-    note.text = @"note text";
-    [note save];
+
+
+
+- (void)testForeignKeyOnRelationship_DeleteItem_PersistenceCheck {
+    
+    TSTNote * note1 = [TSTNote create];
+    TSTNote * note2 = [TSTNote create];
+    TSTNote * note3 = [TSTNote create];
+    
+    note1.text = @"note text 1";
+    note2.text = @"note text 2";
+    note3.text = @"note text 3";
+    
+    [note1 save];
+    [note2 save];
+    [note3 save];
+    
     TSTNotebook * notebook = [TSTNotebook create];
     notebook.title = @"notebook1";
-    note.notebook = notebook;
-    [note save];
+    [notebook save];
+    [notebook.notes addObject:note1];
+    [notebook.notes addObject:note2];
+    [notebook.notes addObject:note3];
+    [notebook save];
+    
+    //
+    //    FMResultSet * resultSet = [((MMSQLiteStore *)[[note class] store]).db executeQuery:@"SELECT notebook.* FROM note join notebook ON (notebook.identifier = note.notebookId) WHERE note.identifier IN (?, ?, ?)"  ];
+    //
+    FMDatabase * db = ((MMSQLiteStore *)[[note1 class] store]).db;
+    
+    FMResultSet * addResultSet = [db
+                                  executeQuery:@"SELECT notebook.* FROM note join notebook ON (notebook.identifier = note.notebookId) WHERE note.identifier IN (?, ?, ?)"
+                                  withArgumentsInArray:@[
+                                                         [NSNumber numberWithInteger:note1.identifier],
+                                                         [NSNumber numberWithInteger:note2.identifier],
+                                                         [NSNumber numberWithInteger:note3.identifier]
+                                                         ]
+                                  ];
+    
+    NSMutableArray * addResultSetArray = [NSMutableArray array];
+    
+    while ([addResultSet next]) {
+        
+        NSDictionary * values = [addResultSet resultDictionary];
+        
+        [addResultSetArray addObject:values];
+        
+    }
+    
+    
+    
+    XCTAssertEqual([addResultSetArray count], 3);
+    
+    
+    
+    
+    
+    [notebook.notes removeLastObject];
+    
     [notebook save];
     
     
-    //[notebook.notes count] == 1
-    XCTAssertEqual([notebook.notes count], 1);
-    XCTAssertEqualObjects([notebook.notes objectAtIndex:0], note);
-
     
+    FMResultSet * deleteResultSet = [db
+                                     executeQuery:@"SELECT notebook.* FROM note join notebook ON (notebook.identifier = note.notebookId) WHERE note.identifier IN (?, ?, ?)"
+                                     withArgumentsInArray:@[
+                                                            [NSNumber numberWithInteger:note1.identifier],
+                                                            [NSNumber numberWithInteger:note2.identifier],
+                                                            [NSNumber numberWithInteger:note3.identifier]
+                                                            ]
+                                     ];
+    
+    NSMutableArray * deleteResultSetArray = [NSMutableArray array];
+    
+    while ([deleteResultSet next]) {
+        
+        NSDictionary * values = [deleteResultSet resultDictionary];
+        
+        [deleteResultSetArray addObject:values];
+        
+    }
+    
+    XCTAssertEqual([deleteResultSetArray count], 2);
+    
+    
+    //[(MMSQLiteStore *)[TSTNote store] db]executeQuery:@"SELECT * FROM note WHERE"
     
     
 }
+
+
+
+
+
+- (void)testForeignKeyOnTarget_AddItem_PersistenceCheck {
+    
+    TSTNote * note1 = [TSTNote create];
+    TSTNote * note2 = [TSTNote create];
+    TSTNote * note3 = [TSTNote create];
+    
+    note1.text = @"note text 1";
+    note2.text = @"note text 2";
+    note3.text = @"note text 3";
+    
+    [note1 save];
+    [note2 save];
+    [note3 save];
+    
+    TSTNotebook * notebook = [TSTNotebook create];
+    notebook.title = @"notebook1";
+    [notebook save];
+    note1.notebook = notebook;
+    note2.notebook = notebook;
+    note3.notebook = notebook;
+    [note1 save];
+    [note2 save];
+    [note3 save];
+
+    FMDatabase * db = ((MMSQLiteStore *)[[note1 class] store]).db;
+    
+    FMResultSet * addResultSet = [db
+                                  executeQuery:@"SELECT notebook.* FROM note join notebook ON (notebook.identifier = note.notebookId) WHERE note.identifier IN (?, ?, ?)"
+                                  withArgumentsInArray:@[
+                                                         [NSNumber numberWithInteger:note1.identifier],
+                                                         [NSNumber numberWithInteger:note2.identifier],
+                                                         [NSNumber numberWithInteger:note3.identifier]
+                                                         ]
+                                  ];
+    
+    NSMutableArray * addResultSetArray = [NSMutableArray array];
+    
+    while ([addResultSet next]) {
+        
+        NSDictionary * values = [addResultSet resultDictionary];
+        
+        [addResultSetArray addObject:values];
+        
+    }
+    
+    
+    
+    XCTAssertEqual([addResultSetArray count], 3);
+    
+    
+    
+    //[(MMSQLiteStore *)[TSTNote store] db]executeQuery:@"SELECT * FROM note WHERE"
+    
+    
+}
+
+
+
+
+
+- (void)testForeignKeyOnTarget_DeleteItem_PersistenceCheck {
+    
+    TSTNote * note1 = [TSTNote create];
+    TSTNote * note2 = [TSTNote create];
+    TSTNote * note3 = [TSTNote create];
+    
+    note1.text = @"note text 1";
+    note2.text = @"note text 2";
+    note3.text = @"note text 3";
+    
+    [note1 save];
+    [note2 save];
+    [note3 save];
+    
+    TSTNotebook * notebook = [TSTNotebook create];
+    notebook.title = @"notebook1";
+    [notebook save];
+    note1.notebook = notebook;
+    note2.notebook = notebook;
+    note3.notebook = notebook;
+    [note1 save];
+    [note2 save];
+    [note3 save];
+
+    FMDatabase * db = ((MMSQLiteStore *)[[note1 class] store]).db;
+    
+    FMResultSet * addResultSet = [db
+                                  executeQuery:@"SELECT notebook.* FROM note join notebook ON (notebook.identifier = note.notebookId) WHERE note.identifier IN (?, ?, ?)"
+                                  withArgumentsInArray:@[
+                                                         [NSNumber numberWithInteger:note1.identifier],
+                                                         [NSNumber numberWithInteger:note2.identifier],
+                                                         [NSNumber numberWithInteger:note3.identifier]
+                                                         ]
+                                  ];
+    
+    NSMutableArray * addResultSetArray = [NSMutableArray array];
+    
+    while ([addResultSet next]) {
+        
+        NSDictionary * values = [addResultSet resultDictionary];
+        
+        [addResultSetArray addObject:values];
+        
+    }
+    
+    
+    
+    XCTAssertEqual([addResultSetArray count], 3);
+    
+    
+    
+    
+    
+    note3.notebook = nil;
+    
+    [note3 save];
+    
+    
+    
+    FMResultSet * deleteResultSet = [db
+                                     executeQuery:@"SELECT notebook.* FROM note join notebook ON (notebook.identifier = note.notebookId) WHERE note.identifier IN (?, ?, ?)"
+                                     withArgumentsInArray:@[
+                                                            [NSNumber numberWithInteger:note1.identifier],
+                                                            [NSNumber numberWithInteger:note2.identifier],
+                                                            [NSNumber numberWithInteger:note3.identifier]
+                                                            ]
+                                     ];
+    
+    NSMutableArray * deleteResultSetArray = [NSMutableArray array];
+    
+    while ([deleteResultSet next]) {
+        
+        NSDictionary * values = [deleteResultSet resultDictionary];
+        
+        [deleteResultSetArray addObject:values];
+        
+    }
+    
+    XCTAssertEqual([deleteResultSetArray count], 2);
+    
+    
+    //[(MMSQLiteStore *)[TSTNote store] db]executeQuery:@"SELECT * FROM note WHERE"
+    
+    
+}
+
 
 - (void)testIntermediateTableKeyOnRelationship {
     // This is an example of a functional test case.

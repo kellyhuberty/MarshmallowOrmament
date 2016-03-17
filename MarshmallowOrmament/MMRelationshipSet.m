@@ -168,7 +168,7 @@
     }
     if ([_recordsToDel count] > 0) {
         
-        delSuccess = [[[_record class ]store] removeRecords:_recordsToAdd fromRelationship:_relationship onRecord:_record error:error];
+        delSuccess = [[[_record class ]store] removeRecords:_recordsToDel fromRelationship:_relationship onRecord:_record error:error];
         
         [_recordsToDel removeAllObjects];
         

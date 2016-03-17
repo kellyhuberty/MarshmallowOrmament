@@ -10,6 +10,7 @@
 #import "MMSQLiteRelater.h"
 @implementation TSTNote
 
+@dynamic identifier;
 @dynamic text;
 @dynamic notebook;
 @dynamic longitude;

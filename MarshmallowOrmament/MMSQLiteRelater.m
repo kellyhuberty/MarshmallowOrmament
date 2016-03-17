@@ -129,16 +129,21 @@
 
 -(NSString *)tableToUpdatePrimaryKeyColumnName{
     
+    Class recordClass = nil;
+    
     if (self.keyOptions == MMSQLiteForeignKeyOnTarget) {
-        return self.recordEntityAttribute;
+        recordClass = [_relationship localClass];
     }
     else if(self.keyOptions == MMSQLiteForeignKeyOnRelated){
-        
-        return self.relatedEntityAttribute;
-        
+        recordClass = [_relationship relatedClass];
     }
     
-    return nil;
+    
+    NSArray * idKeys = [recordClass idKeys];
+    
+    NSAssert([idKeys count] == 1, @"Number of ID keys must match in an SQL Relationship.");
+    
+    return idKeys[0];
     
 }
 

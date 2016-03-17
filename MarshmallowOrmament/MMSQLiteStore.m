@@ -646,11 +646,14 @@
 }
 
 
--(NSString *)buildManualRelationshipAddSQLOfRecords:(NSArray *)relatedRecords toRelationship:(MMRelationship *)relationship onRecord:(MMRecord *)record bindValues:(NSMutableArray **)bindValuesRef{
+-(NSString *)buildManualRelationshipAddSQLOfRecords:(NSArray *)relatedRecords toRelationship:(MMRelationship *)relationship onRecord:(MMRecord *)record bindValues:(NSMutableArray *)bindValues{
 
     
-    NSMutableArray * __autoreleasing bindValues = [NSMutableArray array];
+    //NSMutableArray * bindValues = [NSMutableArray array];
     
+    NSAssert(bindValues, @"bind values must not be nil");
+    NSAssert([bindValues isKindOfClass:[NSMutableArray class]], @"Bind Values must be of kind NSMutableArray");
+
     
     MMSQLiteRelater * relatr= (MMSQLiteRelater *)relationship.storeRelater;
 
@@ -725,17 +728,14 @@
     
     }
     
-    bindValuesRef = &bindValues;
     
     return query;
 
 }
 
 
--(NSString *)buildManualRelationshipDeleteSQLOfRecords:(NSArray *)relatedRecords toRelationship:(MMRelationship *)relationship onRecord:(MMRecord *)record bindValues:(NSMutableArray **)bindValuesRef{
+-(NSString *)buildManualRelationshipDeleteSQLOfRecords:(NSArray *)relatedRecords toRelationship:(MMRelationship *)relationship onRecord:(MMRecord *)record bindValues:(NSMutableArray *)bindValues{
     
-    
-    NSMutableArray * __autoreleasing bindValues = [NSMutableArray array];
     
     
     MMSQLiteRelater * relatr= (MMSQLiteRelater *)relationship.storeRelater;
@@ -810,7 +810,6 @@
         
     }
     
-    bindValuesRef = &bindValues;
     
     return query;
     
@@ -859,15 +858,29 @@
         }];
     } else {
         
-        if ([relationship.storeRelater isKindOfClass:[MMSQLiteRelater class]]) {
-            if (((MMSQLiteRelater *)relationship.storeRelater).addToRelationship) {
-                ((MMSQLiteRelater *)relationship.storeRelater).addToRelationship(self, relationship, record, set);
-            }
+//        if ([relationship.storeRelater isKindOfClass:[MMSQLiteRelater class]]) {
+//            if (((MMSQLiteRelater *)relationship.storeRelater).addToRelationship) {
+//                ((MMSQLiteRelater *)relationship.storeRelater).addToRelationship(self, relationship, record, set);
+//            }
+//        }
+        
+        NSMutableArray * __block bindValues = [[NSMutableArray alloc]init];
+        
+        NSString * query = [self buildManualRelationshipAddSQLOfRecords:set toRelationship:relationship onRecord:record bindValues:bindValues];
+        
+        [self.dbQueue inDatabase:^(FMDatabase *db) {
+        
+            success = [db executeUpdate:query withArgumentsInArray:bindValues];
+        
+            *error = [db lastError];
+            
+            
+        }];
+        
+        
+        if (*error) {
+            MMDebug(@"Records added to relationship failed. Reason: %@", [*error localizedDescription]);
         }
-        
-        
-        
-        NSLog(@"Add records %@ to relationship %@ on record %@", set, relationship, record);
         
     }
 
@@ -909,7 +922,23 @@
     }
     else{
         
+        NSMutableArray * __block bindValues = [[NSMutableArray alloc]init];
         
+        NSString * query = [self buildManualRelationshipDeleteSQLOfRecords:set toRelationship:relationship onRecord:record bindValues:bindValues];
+        
+        [self.dbQueue inDatabase:^(FMDatabase *db) {
+            
+            success = [db executeUpdate:query withArgumentsInArray:bindValues];
+            
+            *error = [db lastError];
+            
+            
+        }];
+        
+        
+        if (*error) {
+            MMDebug(@"Records removed from relationship failed. Reason: %@, query:\n %@", [*error localizedDescription], query);
+        }
         
     }
     

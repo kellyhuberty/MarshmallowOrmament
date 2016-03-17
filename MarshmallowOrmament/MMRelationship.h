@@ -69,4 +69,9 @@
 -(MMEntity *)localEntity;
 -(MMEntity *)relatedEntity;
 
+
+-(Class)localClass;
+-(Class)relatedClass;
+
+
 @end

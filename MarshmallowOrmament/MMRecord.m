@@ -231,8 +231,10 @@ static void setRelationValueIMP(id self, SEL _cmd, id aValue) {
         id obj = [self _fetchRelationshipSetWithRelationshipName:key];
 
         [obj removeAllObjects];
-    
-        [obj addObject:aValue];
+
+        if (aValue != nil) {
+            [obj addObject:aValue];
+        }
     
         [self didChangeValueForKey:key];
         
