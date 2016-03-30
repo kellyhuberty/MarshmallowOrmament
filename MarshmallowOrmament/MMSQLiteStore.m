@@ -776,7 +776,10 @@
     //INSERT OR UPDATE?
     
     if (relatr.intermediateTableName) {
-        query = [[NSString stringWithFormat:@"DELETE FROM %@ WHERE %@ = ? AND %@ IN (", tableToUpdate, relatr.recordIntermediateAttribute, relatr.relatedIntermediateAttribute] mutableCopy];
+        query = [[NSString stringWithFormat:@"DELETE FROM %@ WHERE %@ = ? AND %@ IN (",
+                  relatr.intermediateTableName,
+                  relatr.recordIntermediateAttribute,
+                  relatr.relatedIntermediateAttribute] mutableCopy];
         
         id firstValue = [[self class] rowidColumnValueForRecord:record];
         NSAssert(firstValue, @"record %@ does not have primary key", record);
