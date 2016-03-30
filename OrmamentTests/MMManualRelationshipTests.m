@@ -12,6 +12,7 @@
 #import "TSANote.h"
 #import "TSANotebook.h"
 #import "TSTNote.h"
+#import "TSTTag.h"
 #import "TSTNotebook.h"
 #import "MMSQLiteStore.h"
 
@@ -405,6 +406,152 @@
     
     
 }
+
+
+
+- (void)testForeignKeyOnIntermediates_AddItem_PersistenceCheck {
+    
+    TSTNote * note1 = [TSTNote create];
+    TSTNote * note2 = [TSTNote create];
+    TSTNote * note3 = [TSTNote create];
+    
+    note1.text = @"note text 1";
+    note2.text = @"note text 2";
+    note3.text = @"note text 3";
+    
+    [note1 save];
+    [note2 save];
+    [note3 save];
+    
+    
+    
+    
+    TSTTag * tag1 = [TSTTag create];
+    TSTTag * tag2 = [TSTTag create];
+    TSTTag * tag3 = [TSTTag create];
+    
+    tag1.title = @"note text 1";
+    tag2.title = @"note text 2";
+    tag3.title = @"note text 3";
+    
+    [tag1 save];
+    [tag2 save];
+    [tag3 save];
+    
+    [note1.tags addObject:tag1];
+
+    [note2.tags addObject:tag1];
+    [note2.tags addObject:tag2];
+
+    [note3.tags addObject:tag1];
+    [note3.tags addObject:tag2];
+    [note3.tags addObject:tag3];
+    
+    
+    [note1 save];
+    [note2 save];
+    [note3 save];
+    
+    
+    
+    
+    
+    FMDatabase * db = ((MMSQLiteStore *)[[note1 class] store]).db;
+    
+    FMResultSet * addResultSetNote1 = [db
+                                  executeQuery:@"SELECT tag.* FROM tag JOIN tag_note on (tag.identifier = tag_note.tag_identifier) JOIN note ON (note.identifier = tag_note.note_identifier) WHERE note.identifier IN (?)"
+                                  withArgumentsInArray:@[
+                                                         [NSNumber numberWithInteger:note1.identifier],
+                                                         ]
+                                  ];
+    
+    NSMutableArray * addResultSetArray = [NSMutableArray array];
+    
+    while ([addResultSetNote1 next]) {
+        
+        NSDictionary * values = [addResultSetNote1 resultDictionary];
+        
+        [addResultSetArray addObject:values];
+        
+    }
+    
+    
+    
+    XCTAssertEqual([addResultSetArray count], 1);
+    
+
+    
+    
+    
+    
+    FMResultSet * addResultSetNote2 = [db
+                                       executeQuery:@"SELECT tag.* FROM tag JOIN tag_note on (tag.identifier = tag_note.tag_identifier) JOIN note ON (note.identifier = tag_note.note_identifier) WHERE note.identifier IN (?)"
+                                       withArgumentsInArray:@[
+                                                              [NSNumber numberWithInteger:note2.identifier],
+                                                              ]
+                                       ];
+    
+    addResultSetArray = [NSMutableArray array];
+    
+    while ([addResultSetNote2 next]) {
+        
+        NSDictionary * values = [addResultSetNote2 resultDictionary];
+        
+        [addResultSetArray addObject:values];
+        
+    }
+    
+    
+    
+    XCTAssertEqual([addResultSetArray count], 2);
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    /*
+    
+    note3.notebook = nil;
+    
+    [note3 save];
+    
+    
+    
+    FMResultSet * deleteResultSet = [db
+                                     executeQuery:@"SELECT notebook.* FROM note join notebook ON (notebook.identifier = note.notebookId) WHERE note.identifier IN (?, ?, ?)"
+                                     withArgumentsInArray:@[
+                                                            [NSNumber numberWithInteger:note1.identifier],
+                                                            [NSNumber numberWithInteger:note2.identifier],
+                                                            [NSNumber numberWithInteger:note3.identifier]
+                                                            ]
+                                     ];
+    
+    NSMutableArray * deleteResultSetArray = [NSMutableArray array];
+    
+    while ([deleteResultSet next]) {
+        
+        NSDictionary * values = [deleteResultSet resultDictionary];
+        
+        [deleteResultSetArray addObject:values];
+        
+    }
+    
+    XCTAssertEqual([deleteResultSetArray count], 2);
+    
+    
+    //[(MMSQLiteStore *)[TSTNote store] db]executeQuery:@"SELECT * FROM note WHERE"
+    */
+    
+}
+
+
+
+
+
 
 
 - (void)testIntermediateTableKeyOnRelationship {

@@ -600,13 +600,36 @@
     
     request.sqlSelect = [NSString stringWithFormat:@"%@.*", [relater relatedEntityName]];
     
-    request.sqlFrom = [NSString stringWithFormat:@"%@ JOIN %@ ON (%@.%@ = %@.%@)",
-                                                   [relater recordEntityName],
-                                                   [relater relatedEntityName],
-                                                   [relater recordEntityName],
-                                                   [relater recordEntityAttribute],
-                                                   [relater relatedEntityName],
-                                                   [relater relatedEntityAttribute]];
+    if(relater.intermediateTableName){
+        
+        request.sqlFrom = [NSString stringWithFormat:@"%@ JOIN %@ ON (%@.%@ = %@.%@)\
+                                                          JOIN %@ ON (%@.%@ = %@.%@)",
+                                                            [relater recordEntityName],
+                                                            [relater intermediateTableName],
+                                                            [relater recordEntityName],
+                                                            [relater recordEntityAttribute],
+                                                            [relater intermediateTableName],
+                                                            [relater recordIntermediateAttribute],
+
+                                                            [relater relatedEntityName],
+                                                            [relater relatedEntityName],
+                                                            [relater relatedEntityAttribute],
+                                                            [relater intermediateTableName],
+                                                            [relater relatedIntermediateAttribute]
+                                                        ];
+        
+    }else{
+
+        request.sqlFrom = [NSString stringWithFormat:@"%@ JOIN %@ ON (%@.%@ = %@.%@)",
+                           [relater recordEntityName],
+                           [relater relatedEntityName],
+                           [relater recordEntityName],
+                           [relater recordEntityAttribute],
+                           [relater relatedEntityName],
+                           [relater relatedEntityAttribute]];
+        
+    }
+    
     
     request.sqlWhere = [[self class]primaryKeyWhereClauseForRecord:record];
     
@@ -670,7 +693,7 @@
     //INSERT OR UPDATE?
     
     if (relatr.intermediateTableName) {
-        query = [[NSString stringWithFormat:@"INSERT OR REPLACE INTO %@ (%@, %@) VALUES ", tableToUpdate, relatr.recordIntermediateAttribute, relatr.relatedIntermediateAttribute] mutableCopy];
+        query = [[NSString stringWithFormat:@"INSERT OR REPLACE INTO %@ (%@, %@) VALUES ", relatr.intermediateTableName, relatr.recordIntermediateAttribute, relatr.relatedIntermediateAttribute] mutableCopy];
         
         NSMutableArray * valuesStrings = [NSMutableArray array];
         

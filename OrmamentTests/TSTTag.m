@@ -1,21 +1,19 @@
 //
-//  TSTNotebook.m
+//  TSTTag.m
 //  MarshmallowOrmament
 //
-//  Created by Kelly Huberty on 8/5/14.
-//  Copyright (c) 2014 Kelly Huberty. All rights reserved.
+//  Created by Kelly Huberty on 3/19/16.
+//  Copyright © 2016 Kelly Huberty. All rights reserved.
 //
 
-#import "TSTNotebook.h"
+#import "TSTTag.h"
 #import "TSTNote.h"
 #import "MMSQLiteRelater.h"
-
-@implementation TSTNotebook
+@implementation TSTTag
 
 @dynamic identifier;
 @dynamic title;
 @dynamic description;
-@dynamic notes;
 
 +(NSString *)schemaName{
     
@@ -25,7 +23,7 @@
 
 +(NSString *)entityName{
     
-    return @"notebook";
+    return @"tag";
     
 }
 
@@ -43,12 +41,20 @@
 
 +(NSArray *)relationshipsForRecordEntity{
     
+    //MMSQLiteRelater
+    
+
+    
+    
     MMRelationship * rel = [self createRelationshipNamed:@"notes"
                                            toRecordClass:[TSTNote class]
                                                  hasMany:YES
-                                            storeRelator:[MMSQLiteRelater relaterWithForeignKeyName:@"notebookId" onEntity:MMSQLiteForeignKeyOnRelated andMutationOptions:MMSQLiteNullForeignKey]
+                                            storeRelator:
+                                            [MMSQLiteRelater relaterWithIntermediateTableName:@"tag_note"
+                                                                          localForeignKeyName:@"tag_identifier"
+                                                                        relatedForeignKeyName:@"note_identifier"]
                                             cloudRelater:nil];
-
+    
     
     return @[rel];
     

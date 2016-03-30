@@ -35,7 +35,7 @@
     return self;
 }
 
-+(MMSQLiteRelater *)relaterWithforeignKeyName:(NSString *)foreignKeyColumnName onEntity:(MMSQLiteRelaterKeyOptions)keyOptions andMutationOptions:(MMSQLiteRelaterMutationOptions)mutationOptions{
++(MMSQLiteRelater *)relaterWithForeignKeyName:(NSString *)foreignKeyColumnName onEntity:(MMSQLiteRelaterKeyOptions)keyOptions andMutationOptions:(MMSQLiteRelaterMutationOptions)mutationOptions{
     
     MMSQLiteRelater * rel = [[self alloc]initWithForeignKeyName:foreignKeyColumnName
                                            withRelatorOptions:keyOptions
@@ -47,8 +47,33 @@
     
 }
 
++(MMSQLiteRelater *)relaterWithIntermediateTableName:(NSString *)intermediateTableName
+                                 localForeignKeyName:(NSString *)localForeignKeyColumnName
+                               relatedForeignKeyName:(NSString *)relatedForeignKeyName{
+    
+    MMSQLiteRelater * rel = [[self alloc]initWithIntermediateTableName:intermediateTableName
+                                                   localForeignKeyName:localForeignKeyColumnName
+                                                 relatedForeignKeyName:relatedForeignKeyName];
+    
+    
+    
+    return rel;
+    
+}
 
-
+-(MMSQLiteRelater *)initWithIntermediateTableName:(NSString *)intermediateTableName
+                              localForeignKeyName:(NSString *)localForeignKeyColumnName
+                            relatedForeignKeyName:(NSString *)relatedForeignKeyName{
+    
+    self = [super init];
+    
+    _intermediateTableName = intermediateTableName;
+    _recordIntermediateAttribute = localForeignKeyColumnName;
+    _relatedIntermediateAttribute = relatedForeignKeyName;
+    
+    return self;
+    
+}
 
 -(NSString *)recordEntityName{
     return _relationship.localEntityName;
@@ -73,23 +98,25 @@
 -(NSString *)intermediateTable{
     
     return nil;
+    
 }
 
 -(NSString *)recordIntermediateAttribute{
     
-    return nil;
+    return _recordIntermediateAttribute;
 
 }
 
 -(NSString *)relatedIntermediateAttribute{
     
-    return nil;
+    return _relatedIntermediateAttribute;
 
 }
 
 
 
 -(NSString *)relatedEntityName{
+    
     return _relationship.relatedEntityName;
 
     

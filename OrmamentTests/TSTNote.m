@@ -7,11 +7,13 @@
 //
 
 #import "TSTNote.h"
+#import "TSTTag.h"
 #import "MMSQLiteRelater.h"
 @implementation TSTNote
 
 @dynamic identifier;
 @dynamic text;
+@dynamic tags;
 @dynamic notebook;
 @dynamic longitude;
 @dynamic latitude;
@@ -60,14 +62,25 @@
 +(NSArray *)relationshipsForRecordEntity{
     
     
-    MMRelationship * rel = [self createRelationshipNamed:@"notebook"
+    MMRelationship * notebookRelationship = [self createRelationshipNamed:@"notebook"
                                            toRecordClass:[TSTNotebook class]
                                                  hasMany:NO
-                                            storeRelator:[MMSQLiteRelater relaterWithforeignKeyName:@"notebookId" onEntity:MMSQLiteForeignKeyOnTarget andMutationOptions:MMSQLiteNullForeignKey]
+                                            storeRelator:[MMSQLiteRelater relaterWithForeignKeyName:@"notebookId" onEntity:MMSQLiteForeignKeyOnTarget andMutationOptions:MMSQLiteNullForeignKey]
                                             cloudRelater:nil];
     
     
-    return @[rel];
+    MMRelationship * tagRelationship = [self createRelationshipNamed:@"tags"
+                                           toRecordClass:[TSTTag class]
+                                                 hasMany:YES
+                                            storeRelator:
+                            [MMSQLiteRelater relaterWithIntermediateTableName:@"tag_note"
+                                                          localForeignKeyName:@"note_identifier"
+                                                        relatedForeignKeyName:@"tag_identifier"]
+                                            cloudRelater:nil];
+    
+    
+    
+    return @[notebookRelationship, tagRelationship];
     
 }
 

@@ -63,6 +63,11 @@ typedef NS_ENUM(NSUInteger, MMSQLiteRelaterMutationOptions) {
     
     MMEntity * _recordEntity;
     MMEntity * _relatedEntity;
+    
+    NSString * _recordIntermediateAttribute;
+    NSString * _relatedIntermediateAttribute;
+    
+    
 //    NSString * _intermediateTableName;
 //    NSString * _foreignKeyColumnName;
 //    NSString * _intermediateToRelationshipTableKeyColumnName;
@@ -91,7 +96,15 @@ typedef NS_ENUM(NSUInteger, MMSQLiteRelaterMutationOptions) {
 //+(MMSQLiteRelater *)relaterWithIntermediateTableName:(nullable NSString*)intermediateTable foreignKeyToRecordName:(NSString *)foreignKeyToRecordColumnName foreignKeyToRelatedName:(NSString *)foreignKeyToRelatedColumnName;
 //+(MMSQLiteRelater *)relaterWithRecordEntity:(MMEntity *)recordEntity relatedEntity:(MMEntity *)relatedEntity ForeignKeyName:(NSString *)foreignKeyColumnName onEntity:(MMSQLiteRelaterKeyOptions)keyOptions andMutationOptions:(MMSQLiteRelaterMutationOptions)mutationOptions;
 
-+(MMSQLiteRelater *)relaterWithforeignKeyName:(NSString *)foreignKeyColumnName onEntity:(MMSQLiteRelaterKeyOptions)keyOptions andMutationOptions:(MMSQLiteRelaterMutationOptions)mutationOptions;
++(MMSQLiteRelater *)relaterWithForeignKeyName:(NSString *)foreignKeyColumnName
+                                     onEntity:(MMSQLiteRelaterKeyOptions)keyOptions
+                           andMutationOptions:(MMSQLiteRelaterMutationOptions)mutationOptions;
+
++(MMSQLiteRelater *)relaterWithIntermediateTableName:(NSString *)intermediateTableName
+                                 localForeignKeyName:(NSString *)localForeignKeyColumnName
+                               relatedForeignKeyName:(NSString *)relatedForeignKeyName;
+
+
 
 
 -(NSString *)recordEntityName;

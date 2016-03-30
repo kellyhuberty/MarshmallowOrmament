@@ -73,8 +73,14 @@
                                  `title` TEXT ,\
                                  `description` TEXT  ,\
                                 PRIMARY KEY (identifier) ON CONFLICT ROLLBACK );"];
-    
-    
+        [self runQuery:@"CREATE TABLE `tag` (  `identifier` INTEGER ,\
+                                 `title` TEXT ,\
+                                 `description` TEXT  ,\
+                                 PRIMARY KEY (identifier) ON CONFLICT ROLLBACK );"];
+        [self runQuery:@"CREATE TABLE `tag_note` (  `identifier` INTEGER ,\
+                             `tag_identifier` INTEGER ,\
+                             `note_identifier` INTEGER ,\
+                             PRIMARY KEY (identifier) ON CONFLICT ROLLBACK );"];
     }
     if ([_newVersion compareVersion:@"1.1"] == NSOrderedDescending || [_newVersion compareVersion:@"1.1"] == NSOrderedSame) {
 

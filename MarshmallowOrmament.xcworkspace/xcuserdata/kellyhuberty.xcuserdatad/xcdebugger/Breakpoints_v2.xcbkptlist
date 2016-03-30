@@ -42,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "OrmamentTests/MMManualRelationshipTests.m"
-            timestampString = "479504233.967176"
+            timestampString = "480833522.624309"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "91"
-            endingLineNumber = "91"
+            startingLineNumber = "92"
+            endingLineNumber = "92"
             landmarkName = "-testForeignKeyOnRecord_AddItem_PersistenceCheck"
             landmarkType = "5">
          </BreakpointContent>
@@ -74,11 +74,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MarshmallowOrmament/MMSQLiteRelater.m"
-            timestampString = "477376959.838981"
+            timestampString = "480395482.797319"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "62"
-            endingLineNumber = "62"
+            startingLineNumber = "87"
+            endingLineNumber = "87"
             landmarkName = "-recordEntityAttribute"
             landmarkType = "5">
          </BreakpointContent>
@@ -90,11 +90,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MarshmallowOrmament/MMSQLiteRelater.m"
-            timestampString = "477377081.952096"
+            timestampString = "480395482.797319"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "66"
-            endingLineNumber = "66"
+            startingLineNumber = "91"
+            endingLineNumber = "91"
             landmarkName = "-recordEntityAttribute"
             landmarkType = "5">
          </BreakpointContent>
@@ -106,11 +106,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "OrmamentTests/MMManualRelationshipTests.m"
-            timestampString = "479504233.967176"
+            timestampString = "480833522.624309"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "92"
-            endingLineNumber = "92"
+            startingLineNumber = "93"
+            endingLineNumber = "93"
             landmarkName = "-testForeignKeyOnRecord_AddItem_PersistenceCheck"
             landmarkType = "5">
          </BreakpointContent>
@@ -138,11 +138,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MarshmallowOrmament/MMSQLiteStore.m"
-            timestampString = "479879556.320836"
+            timestampString = "481000948.679244"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "909"
-            endingLineNumber = "909"
+            startingLineNumber = "932"
+            endingLineNumber = "932"
             landmarkName = "-removeRecords:fromRelationship:onRecord:error:"
             landmarkType = "5">
          </BreakpointContent>
@@ -154,11 +154,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MarshmallowOrmament/MMSQLiteStore.m"
-            timestampString = "479879556.320836"
+            timestampString = "481000948.679244"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "844"
-            endingLineNumber = "844"
+            startingLineNumber = "867"
+            endingLineNumber = "867"
             landmarkName = "-addRecords:toRelationship:onRecord:error:"
             landmarkType = "5">
          </BreakpointContent>
@@ -170,11 +170,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MarshmallowOrmament/MMSQLiteStore.m"
-            timestampString = "479508268.19519"
+            timestampString = "481000948.679244"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "705"
-            endingLineNumber = "705"
+            startingLineNumber = "728"
+            endingLineNumber = "728"
             landmarkName = "-buildManualRelationshipAddSQLOfRecords:toRelationship:onRecord:bindValues:"
             landmarkType = "5">
          </BreakpointContent>
@@ -250,11 +250,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MarshmallowOrmament/MMSQLiteStore.m"
-            timestampString = "479508268.19519"
+            timestampString = "481000948.679244"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "708"
-            endingLineNumber = "708"
+            startingLineNumber = "731"
+            endingLineNumber = "731"
             landmarkName = "-buildManualRelationshipAddSQLOfRecords:toRelationship:onRecord:bindValues:"
             landmarkType = "5">
          </BreakpointContent>
@@ -266,11 +266,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MarshmallowOrmament/MMSQLiteStore.m"
-            timestampString = "479879556.320836"
+            timestampString = "481000948.679244"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "872"
-            endingLineNumber = "872"
+            startingLineNumber = "895"
+            endingLineNumber = "895"
             landmarkName = "-addRecords:toRelationship:onRecord:error:"
             landmarkType = "5">
          </BreakpointContent>
@@ -282,11 +282,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MarshmallowOrmament/MMSQLiteStore.m"
-            timestampString = "479879556.320836"
+            timestampString = "481000948.679244"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "877"
-            endingLineNumber = "877"
+            startingLineNumber = "900"
+            endingLineNumber = "900"
             landmarkName = "-addRecords:toRelationship:onRecord:error:"
             landmarkType = "5">
             <Locations>
@@ -345,11 +345,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "OrmamentTests/MMManualRelationshipTests.m"
-            timestampString = "479506992.218843"
+            timestampString = "480833522.624309"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "100"
-            endingLineNumber = "100"
+            startingLineNumber = "101"
+            endingLineNumber = "101"
             landmarkName = "-testForeignKeyOnRecord_AddItem_PersistenceCheck"
             landmarkType = "5">
          </BreakpointContent>
@@ -361,11 +361,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MarshmallowOrmament/MMSQLiteStore.m"
-            timestampString = "479879556.320836"
+            timestampString = "481000948.679244"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "870"
-            endingLineNumber = "870"
+            startingLineNumber = "893"
+            endingLineNumber = "893"
             landmarkName = "-addRecords:toRelationship:onRecord:error:"
             landmarkType = "5">
             <Locations>
@@ -409,11 +409,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MarshmallowOrmament/MMSQLiteStore.m"
-            timestampString = "479508268.19519"
+            timestampString = "481000948.679244"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "730"
-            endingLineNumber = "730"
+            startingLineNumber = "753"
+            endingLineNumber = "753"
             landmarkName = "-buildManualRelationshipAddSQLOfRecords:toRelationship:onRecord:bindValues:"
             landmarkType = "5">
          </BreakpointContent>
@@ -425,11 +425,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MarshmallowOrmament/MMSQLiteStore.m"
-            timestampString = "479508268.19519"
+            timestampString = "481000948.679244"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "731"
-            endingLineNumber = "731"
+            startingLineNumber = "754"
+            endingLineNumber = "754"
             landmarkName = "-buildManualRelationshipAddSQLOfRecords:toRelationship:onRecord:bindValues:"
             landmarkType = "5">
          </BreakpointContent>
@@ -441,11 +441,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "OrmamentTests/MMManualRelationshipTests.m"
-            timestampString = "479879069.409024"
+            timestampString = "480833522.624309"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "225"
-            endingLineNumber = "225"
+            startingLineNumber = "226"
+            endingLineNumber = "226"
             landmarkName = "-testForeignKeyOnRelationship_DeleteItem_PersistenceCheck"
             landmarkType = "5">
          </BreakpointContent>
@@ -457,11 +457,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "OrmamentTests/MMManualRelationshipTests.m"
-            timestampString = "479879110.040533"
+            timestampString = "480833522.624309"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "230"
-            endingLineNumber = "230"
+            startingLineNumber = "231"
+            endingLineNumber = "231"
             landmarkName = "-testForeignKeyOnRelationship_DeleteItem_PersistenceCheck"
             landmarkType = "5">
          </BreakpointContent>
@@ -473,11 +473,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "OrmamentTests/MMManualRelationshipTests.m"
-            timestampString = "479879390.444778"
+            timestampString = "480833522.624309"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "240"
-            endingLineNumber = "240"
+            startingLineNumber = "241"
+            endingLineNumber = "241"
             landmarkName = "-testForeignKeyOnRelationship_DeleteItem_PersistenceCheck"
             landmarkType = "5">
          </BreakpointContent>
@@ -489,11 +489,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "OrmamentTests/MMManualRelationshipTests.m"
-            timestampString = "479880012.340058"
+            timestampString = "480833522.624309"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "253"
-            endingLineNumber = "253"
+            startingLineNumber = "254"
+            endingLineNumber = "254"
             landmarkName = "-testForeignKeyOnRelationship_DeleteItem_PersistenceCheck"
             landmarkType = "5">
             <Locations>
@@ -505,12 +505,12 @@
                   moduleName = "OrmamentTests"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/kellyhuberty/Projects/MarshmallowOrmament/OrmamentTests/MMManualRelationshipTests.m"
-                  timestampString = "479880794.800437"
+                  timestampString = "481001268.24622"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "257"
-                  endingLineNumber = "257"
-                  offsetFromSymbolStart = "2228">
+                  startingLineNumber = "258"
+                  endingLineNumber = "258"
+                  offsetFromSymbolStart = "2113">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -520,12 +520,12 @@
                   moduleName = "OrmamentTests"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/kellyhuberty/Projects/MarshmallowOrmament/OrmamentTests/MMManualRelationshipTests.m"
-                  timestampString = "479880794.800948"
+                  timestampString = "481001268.246381"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "257"
-                  endingLineNumber = "257"
-                  offsetFromSymbolStart = "3150">
+                  startingLineNumber = "258"
+                  endingLineNumber = "258"
+                  offsetFromSymbolStart = "3004">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -535,12 +535,12 @@
                   moduleName = "OrmamentTests"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/kellyhuberty/Projects/MarshmallowOrmament/OrmamentTests/MMManualRelationshipTests.m"
-                  timestampString = "479880794.801342"
+                  timestampString = "481001268.24669"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "257"
-                  endingLineNumber = "257"
-                  offsetFromSymbolStart = "3585">
+                  startingLineNumber = "258"
+                  endingLineNumber = "258"
+                  offsetFromSymbolStart = "3501">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -550,12 +550,12 @@
                   moduleName = "OrmamentTests"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/kellyhuberty/Projects/MarshmallowOrmament/OrmamentTests/MMManualRelationshipTests.m"
-                  timestampString = "479880794.801785"
+                  timestampString = "481001268.246997"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "257"
-                  endingLineNumber = "257"
-                  offsetFromSymbolStart = "3904">
+                  startingLineNumber = "258"
+                  endingLineNumber = "258"
+                  offsetFromSymbolStart = "3876">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -565,12 +565,12 @@
                   moduleName = "OrmamentTests"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/kellyhuberty/Projects/MarshmallowOrmament/OrmamentTests/MMManualRelationshipTests.m"
-                  timestampString = "479880794.802275"
+                  timestampString = "481001268.24725"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "257"
-                  endingLineNumber = "257"
-                  offsetFromSymbolStart = "4651">
+                  startingLineNumber = "258"
+                  endingLineNumber = "258"
+                  offsetFromSymbolStart = "4636">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -580,12 +580,12 @@
                   moduleName = "OrmamentTests"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/kellyhuberty/Projects/MarshmallowOrmament/OrmamentTests/MMManualRelationshipTests.m"
-                  timestampString = "479880794.802847"
+                  timestampString = "481001268.247612"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "257"
-                  endingLineNumber = "257"
-                  offsetFromSymbolStart = "5084">
+                  startingLineNumber = "258"
+                  endingLineNumber = "258"
+                  offsetFromSymbolStart = "5005">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -595,14 +595,46 @@
                   moduleName = "OrmamentTests"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/kellyhuberty/Projects/MarshmallowOrmament/OrmamentTests/MMManualRelationshipTests.m"
-                  timestampString = "479880794.803401"
+                  timestampString = "481001268.247902"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "257"
-                  endingLineNumber = "257"
-                  offsetFromSymbolStart = "5531">
+                  startingLineNumber = "258"
+                  endingLineNumber = "258"
+                  offsetFromSymbolStart = "5502">
                </Location>
             </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MarshmallowOrmamentTests/TSTMigrator.m"
+            timestampString = "480393716.820134"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "92"
+            endingLineNumber = "92"
+            landmarkName = "-runUpgrade"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "OrmamentTests/MMManualRelationshipTests.m"
+            timestampString = "481001084.857065"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "411"
+            endingLineNumber = "411"
+            landmarkName = "-testForeignKeyOnIntermediates_AddItem_PersistenceCheck"
+            landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
