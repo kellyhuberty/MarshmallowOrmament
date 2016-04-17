@@ -54,6 +54,8 @@ static MMOrmManager * manager = nil;
     
     MMOrmManager * manager = [self manager];
     
+    
+    
     [manager loadSchemas:schemas];
     
     //[manager loadSchemaServices]
