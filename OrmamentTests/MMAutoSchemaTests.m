@@ -132,8 +132,8 @@
 }
 
 
-
-
+/*
+depricated
 - (void)testBuildStore
 {
     MMSetArcEnabled();
@@ -143,7 +143,7 @@
     
         //NSArray * path = [[NSBundle bundleForClass:[self class]] pathsForResourcesOfType:@"plist" inDirectory:nil];
     
-    NSString * path = [[NSBundle bundleForClass:[self class]] pathForResource:@"noteit__0_1_0" ofType:@"plist"];
+    NSString * path = [[NSBundle bundleForClass:[self class]] pathForResource:@"noteit__0_1" ofType:@"plist"];
     
     NSLog(@"path %@", path);
     
@@ -171,7 +171,7 @@
     
         //XCTFail(@"No implementation for \"%s\"", __PRETTY_FUNCTION__);
 }
-
+*/
 
 
 

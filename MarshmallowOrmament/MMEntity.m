@@ -176,9 +176,11 @@ static NSString * classPrefix;
     }
     if ([class respondsToSelector:@selector(idKeysForRecordEntity)]) {
         NSArray * idKeys = [class idKeysForRecordEntity];
-        if(idKeys){
+        
             _idKeys = [idKeys copy];
-        }
+        
+    }else{
+        [NSException raise:@"MMRecordMisconfiguration" format:@"Record that are autoconfigured must respond to the idKeysForRecordEntity selector."];
     }
     
     _modelClassName = NSStringFromClass(class);
@@ -667,17 +669,16 @@ static NSString * classPrefix;
 -(NSArray *)idKeys{
     
     if (_idKeys && [ _idKeys isKindOfClass:[NSArray class] ]) {
+        
+        NSAssert([_idKeys count] ==1, @"IDKEys must only contain one item");
+        
         return [_idKeys copy];
     }
-    
-    NSArray * keys = nil;
-    
-    if ((keys = [_attributes objectsWithValue:[NSNumber numberWithBool:YES] forKey:@"autoincrement"])) {
-        return [keys copy];
+    else{
+        [NSException raise:@"MMEntityInconsistency" format:@"Entity of name %@ has no id keys.", _name];
     }
-
-    return @[@"ROWID"];
     
+    return nil;
 }
 
 

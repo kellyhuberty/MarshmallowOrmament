@@ -55,10 +55,8 @@
     
     
     NSArray * pathsToDelete = @[
-                                [libraryPath stringByAppendingPathComponent:@"noteit__1_0_0.db"],
-                                [libraryPath stringByAppendingPathComponent:@"noteit__0_1_0.db"],
-                                [libraryPath stringByAppendingPathComponent:@"noteit__0_2_0.db"],
-                                [libraryPath stringByAppendingPathComponent:@"noteit__0_3_0.db"]
+                                [libraryPath stringByAppendingPathComponent:@"noteit__1_0.db"],
+
                                 ];
     
     for (NSString * filePath in pathsToDelete) {
@@ -87,7 +85,7 @@
 //    [MMOrmManager startWithSchemas:@[     @{
 //                                                     @"name":@"noteit",@"version":@"0.1.0"
 //                                                     }]];
-    [MMOrmManager startWithSchemas:@[@"noteit"]];
+    [MMOrmManager startWithSchemas:@[@"noteit_manual"]];
 
     
     
@@ -151,7 +149,7 @@
     //    [MMOrmManager startWithSchemas:@[     @{
     //                                                     @"name":@"noteit",@"version":@"0.1.0"
     //                                                     }]];
-    [MMOrmManager startWithSchemas:@[@"noteit"]];
+    [MMOrmManager startWithSchemas:@[@"noteit_manual"]];
     
     
     MMSQLiteStore * store = ((MMSQLiteStore *)[[MMOrmManager manager] serviceWithType:@"store" schemaName:@"noteit"]);
@@ -213,7 +211,7 @@
     //    [MMOrmManager startWithSchemas:@[     @{
     //                                                     @"name":@"noteit",@"version":@"0.1.0"
     //                                                     }]];
-    [MMOrmManager startWithSchemas:@[@"noteit"]];
+    [MMOrmManager startWithSchemas:@[@"noteit_manual"]];
     
     
     MMSQLiteStore * store = ((MMSQLiteStore *)[[MMOrmManager manager] serviceWithType:@"store" schemaName:@"noteit"]);
@@ -277,111 +275,113 @@
 
 
 
-
-- (void)testAddItemToRelationshipHasManyNO
-{
-    
-    //    MMSetArcEnabled();
-    //
-    //
-    //    [MMOrmManager startWithSchemas:@[     @{
-    //                                                     @"name":@"noteit",@"version":@"0.1.0"
-    //                                                     }]];
-    [MMOrmManager startWithSchemas:@[@"noteit"]];
-    
-    MMSQLiteStore * store = ((MMSQLiteStore *)[[MMOrmManager manager] serviceWithType:@"store" schemaName:@"noteit"]);
-    
-    [[store db]executeUpdate:
-     @"INSERT INTO notebook (identifier, title, description) VALUES (2, 'correct notebook', 'the right one'),(1, 'incorrect notebook', 'the wrong one')"
-     ];
-    
-    [[store db]executeUpdate:
-     @"INSERT INTO note (notebookid ,created, text) VALUES (2,1,'note1'),(2,1, 'note2'),(2,1, 'note3'),(2,1, 'note4')"
-     ];
-    
-    
-    MMSQLiteRequest * req = [TSTNote newStoreRequest];
-    
-    req.sqlWhere = @" identifier = 1 ";
-    
-    NSError * error;
-    
-    MMSet * set = [req executeOnStore:nil error:&error];
-    if (error) {
-        MMLog(@"%@", [error description]);
-        
-    }
-    
-    TSTNote * note = set[0];
-    
-    
-    
-    
-
-    
-
-    MMSQLiteRequest * nbReq = [TSTNotebook newStoreRequest];
-    
-    nbReq.sqlWhere = @" identifier = 1 ";
-    
-    NSError * nberror;
-    
-    MMSet * nbset = [nbReq executeOnStore:nil error:&nberror];
-    if (nberror) {
-        MMLog(@"%@", [error description]);
-        
-    }
-    
-    TSTNotebook * nb = nbset[0];
-    
-    
-    
-    note.notebook = nb;
-    
-    NSError * saveError;
-
-    [note save:&saveError];
-    
-    
-    
-    //First let's make sure there was no errors....
-//    if(saveError){
+//depricated
+//- (void)testAddItemToRelationshipHasManyNO
+//{
+//    
+//    //    MMSetArcEnabled();
+//    //
+//    //
+//    //    [MMOrmManager startWithSchemas:@[     @{
+//    //                                                     @"name":@"noteit",@"version":@"0.1.0"
+//    //                                                     }]];
+//    [MMOrmManager startWithSchemas:@[@"noteit_manual"]];
+//    
+//    MMSQLiteStore * store = ((MMSQLiteStore *)[[MMOrmManager manager] serviceWithType:@"store" schemaName:@"noteit"]);
+//    
+//    [[store db]executeUpdate:
+//     @"INSERT INTO notebook (identifier, title, description) VALUES (2, 'correct notebook', 'the right one'),(1, 'incorrect notebook', 'the wrong one')"
+//     ];
+//    
+//    [[store db]executeUpdate:
+//     @"INSERT INTO note (notebookid ,created, text) VALUES (2,1,'note1'),(2,1, 'note2'),(2,1, 'note3'),(2,1, 'note4')"
+//     ];
+//    
+//    
+//    MMSQLiteRequest * req = [TSTNote newStoreRequest];
+//    
+//    req.sqlWhere = @" identifier = 1 ";
+//    
+//    NSError * error;
+//    
+//    MMSet * set = [req executeOnStore:nil error:&error];
+//    if (error) {
+//        MMLog(@"%@", [error description]);
 //        
-//        XCTFail(@"error on save");
+//    }
+//    
+//    TSTNote * note = set[0];
+//    
+//    
+//    
+//    
+//
+//    
+//
+//    MMSQLiteRequest * nbReq = [TSTNotebook newStoreRequest];
+//    
+//    nbReq.sqlWhere = @" identifier = 1 ";
+//    
+//    NSError * nberror;
+//    
+//    MMSet * nbset = [nbReq executeOnStore:nil error:&nberror];
+//    if (nberror) {
+//        MMLog(@"%@", [error description]);
+//        
+//    }
+//    
+//    TSTNotebook * nb = nbset[0];
+//    
+//    
+//    
+//    note.notebook = nb;
+//    
+//    NSError * saveError;
+//
+//    [note save:&saveError];
+//    
+//    
+//    
+//    //First let's make sure there was no errors....
+////    if(saveError){
+////        
+////        XCTFail(@"error on save");
+////
+////    }
+//    
+//    
+//    
+//    FMResultSet * res = [[store db]executeQuery:@"SELECT * FROM NotesInNotebook"];
+//    
+//    XCTAssertNotNil(res);
+//    
+//    NSDictionary * dict = nil;
+//    
+//    if ( [res next ] ) {
+//        
+//        dict = [res resultDictionary];
+//    
+//    }
+//    
+//    //[dict[@"notebook__id"] intValue] == 1
+//    
+//    if(dict){
+//    
+//        XCTAssertEqual([dict[@"notebook__id"] intValue], 1, @"notebook id not equivalent.");
+//
+//        XCTAssertEqual([dict[@"note__id"] intValue], 1, @"note id not equivalent.");
+//
+//    }else{
+//        
+//        XCTFail(@"No dict value for....");
 //
 //    }
-    
-    
-    
-    FMResultSet * res = [[store db]executeQuery:@"SELECT * FROM NotesInNotebook"];
-    
-    NSDictionary * dict = nil;
-    
-    if ( [res next ] ) {
-        
-        dict = [res resultDictionary];
-    
-    }
-    
-    //[dict[@"notebook__id"] intValue] == 1
-    
-    if(dict){
-    
-        XCTAssertEqual([dict[@"notebook__id"] intValue], 1, @"notebook id not equivalent.");
-
-        XCTAssertEqual([dict[@"note__id"] intValue], 1, @"note id not equivalent.");
-
-    }else{
-        
-        XCTFail(@"No dict value for....");
-
-    }
-    // note.date = [NSDate date];
-    
-    //XCTAssertTrue(1 == 1, @"is true");
-    
-    //XCTFail(@"No implementation for \"%s\"", __PRETTY_FUNCTION__);
-}
+//    // note.date = [NSDate date];
+//    
+//    //XCTAssertTrue(1 == 1, @"is true");
+//    
+//    //XCTFail(@"No implementation for \"%s\"", __PRETTY_FUNCTION__);
+//}
 
 - (void)testRemoveItemToRelationshipHasManyNO
 {
@@ -392,7 +392,7 @@
     //    [MMOrmManager startWithSchemas:@[     @{
     //                                                     @"name":@"noteit",@"version":@"0.1.0"
     //                                                     }]];
-    [MMOrmManager startWithSchemas:@[@"noteit"]];
+    [MMOrmManager startWithSchemas:@[@"noteit_manual"]];
     
     
     

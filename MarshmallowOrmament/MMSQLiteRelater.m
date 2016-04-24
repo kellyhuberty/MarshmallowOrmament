@@ -67,6 +67,7 @@
     
     self = [super init];
     
+    _keyOptions = MMSQLiteForeignKeysOnIntermediate;
     _intermediateTableName = intermediateTableName;
     _recordIntermediateAttribute = localForeignKeyColumnName;
     _relatedIntermediateAttribute = relatedForeignKeyName;
@@ -81,14 +82,22 @@
 }
 
 -(NSString *)recordEntityAttribute{
+
     if (_keyOptions == MMSQLiteForeignKeyOnTarget) {
+        NSParameterAssert(_foreignKeyColumnName);
         return _foreignKeyColumnName;
     }
     
     if([NSClassFromString(_relationship.localClassName) isSubclassOfClass:[MMRecord class]]){
         
         NSArray* idKeys = [[NSClassFromString(_relationship.localClassName) entity] idKeys];
+        
+        
+        
+        
         return [idKeys objectAtIndex:0];
+    }else{
+        
     }
     
     return nil;

@@ -81,6 +81,10 @@
                              `tag_identifier` INTEGER ,\
                              `note_identifier` INTEGER ,\
                              PRIMARY KEY (identifier) ON CONFLICT ROLLBACK );"];
+        [self runQuery:@"CREATE TABLE `NotesInNotebook` (  `note__id` INTEGER ,\
+         `notebook__id` INTEGER   );"];
+        
+        
     }
     if ([_newVersion compareVersion:@"1.1"] == NSOrderedDescending || [_newVersion compareVersion:@"1.1"] == NSOrderedSame) {
 

@@ -113,6 +113,10 @@
 
 -(void)addObjectToRelationship:(id)obj{
     
+    if ([_recordsToDel containsObject:obj]) {
+        [_recordsToDel removeObject:obj];
+    }
+    
     [_recordsToAdd addObject:obj];
     
     NSError * error = nil;
@@ -125,6 +129,10 @@
 
 -(void)removeObjectFromRelationship:(id)obj{
     
+    if ([_recordsToAdd containsObject:obj]) {
+        [_recordsToAdd removeObject:obj];
+    }
+
     [_recordsToDel addObject:obj];
 
     NSError * error = nil;
@@ -179,9 +187,11 @@
         
     }
     
-    if(error){
+    NSError * locError = *error;
+
+    if(!(addSuccess && delSuccess)){
         
-        NSLog(@"ERR SAVING RELSET %@",[*error localizedDescription]);
+        NSLog(@"ERR SAVING RELSET %@",[locError localizedDescription]);
         
     }
     

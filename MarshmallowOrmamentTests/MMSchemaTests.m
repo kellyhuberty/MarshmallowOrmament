@@ -147,75 +147,75 @@
     //XCTFail(@"No implementation for \"%s\"", __PRETTY_FUNCTION__);
 }
 
-
-- (void)testBuildSql
-{
-    MMSetArcEnabled();
-
-    
-    MMSQLiteSchema * schema;
-    
-    //NSArray * path = [[NSBundle bundleForClass:[self class]] pathsForResourcesOfType:@"plist" inDirectory:nil];
-    
-    NSString * path = [[NSBundle bundleForClass:[self class]] pathForResource:@"noteit__0_1_0" ofType:@"plist"];
-    
-    NSLog(@"path %@", path);
-    
-    NSArray * paths = [[NSBundle bundleForClass:[self class]] pathsForResourcesOfType:@"plist" inDirectory:nil];
-    
-    NSLog(@"%@", paths);
-    
-    
-    schema = [[MMSQLiteSchema alloc]initWithFilePath:path];
-    [MMLogger setEnabled];
-    
-    NSLog(@"build sql :%@", [schema buildSql]);
-    
-    //[schema log];
-    
-    
-    
-    
-    //XCTFail(@"No implementation for \"%s\"", __PRETTY_FUNCTION__);
-}
-
-- (void)testBuildStore
-{
-    MMSetArcEnabled();
-    
-    
-    MMSQLiteSchema * schema;
-    
-    //NSArray * path = [[NSBundle bundleForClass:[self class]] pathsForResourcesOfType:@"plist" inDirectory:nil];
-    
-    NSString * path = [[NSBundle bundleForClass:[self class]] pathForResource:@"noteit__0_1_0" ofType:@"plist"];
-    
-    NSLog(@"path %@", path);
-    
-    //NSArray * paths = [[NSBundle bundleForClass:[self class]] pathsForResourcesOfType:@"plist" inDirectory:nil];
-    
-    //NSLog(@"%@", paths);
-    
-    
-    schema = [[MMSQLiteSchema alloc]initWithFilePath:path];
-    
-    MMService * store = [[MMSQLiteStore alloc]initWithSchema:schema ];
-    
-    NSError * error;
-    
-    XCTAssertTrue([store build:&error], @"sql buildt");
-    
-    [MMLogger setEnabled];
-    
-    NSLog(@"build sql error:%@", [error localizedDescription]);
-    
-    //[schema log];
-    
-    
-    
-    
-    //XCTFail(@"No implementation for \"%s\"", __PRETTY_FUNCTION__);
-}
+//Depricated
+//- (void)testBuildSql
+//{
+//    MMSetArcEnabled();
+//
+//    
+//    MMSQLiteSchema * schema;
+//    
+//    //NSArray * path = [[NSBundle bundleForClass:[self class]] pathsForResourcesOfType:@"plist" inDirectory:nil];
+//    
+//    NSString * path = [[NSBundle bundleForClass:[self class]] pathForResource:@"noteit__0_1_0" ofType:@"plist"];
+//    
+//    NSLog(@"path %@", path);
+//    
+//    NSArray * paths = [[NSBundle bundleForClass:[self class]] pathsForResourcesOfType:@"plist" inDirectory:nil];
+//    
+//    NSLog(@"%@", paths);
+//    
+//    
+//    schema = [[MMSQLiteSchema alloc]initWithFilePath:path];
+//    [MMLogger setEnabled];
+//    
+//    NSLog(@"build sql :%@", [schema buildSql]);
+//    
+//    //[schema log];
+//    
+//    
+//    
+//    
+//    //XCTFail(@"No implementation for \"%s\"", __PRETTY_FUNCTION__);
+//}
+//
+//- (void)testBuildStore
+//{
+//    MMSetArcEnabled();
+//    
+//    
+//    MMSQLiteSchema * schema;
+//    
+//    //NSArray * path = [[NSBundle bundleForClass:[self class]] pathsForResourcesOfType:@"plist" inDirectory:nil];
+//    
+//    NSString * path = [[NSBundle bundleForClass:[self class]] pathForResource:@"noteit__0_1_0" ofType:@"plist"];
+//    
+//    NSLog(@"path %@", path);
+//    
+//    //NSArray * paths = [[NSBundle bundleForClass:[self class]] pathsForResourcesOfType:@"plist" inDirectory:nil];
+//    
+//    //NSLog(@"%@", paths);
+//    
+//    
+//    schema = [[MMSQLiteSchema alloc]initWithFilePath:path];
+//    
+//    MMService * store = [[MMSQLiteStore alloc]initWithSchema:schema ];
+//    
+//    NSError * error;
+//    
+//    XCTAssertTrue([store build:&error], @"sql buildt");
+//    
+//    [MMLogger setEnabled];
+//    
+//    NSLog(@"build sql error:%@", [error localizedDescription]);
+//    
+//    //[schema log];
+//    
+//    
+//    
+//    
+//    //XCTFail(@"No implementation for \"%s\"", __PRETTY_FUNCTION__);
+//}
 
 
 

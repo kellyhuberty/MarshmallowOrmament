@@ -29,7 +29,7 @@
             
             if (!success) {
                 
-                NSLog(@"unable to update  %@", [db lastError]);
+                NSLog(@"unable to update with SQL : ##%@## \n error: %@", [db lastError]);
                 
                 *error = [db lastError];
             }

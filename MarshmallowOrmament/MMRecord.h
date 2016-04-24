@@ -155,6 +155,15 @@ typedef enum{
 -(void)registerForRecordChangesWithTarget:(id)target selector:(SEL)aSelector;
 +(void)registerForEntityChangesWithTarget:(id)target selector:(SEL)aSelector;
 
+
+
+
+-(void)setPrimativeValue:(id)value forKey:(NSString *)key;
+-(id)primativeValueForKey:(NSString *)key;
+
+
+
+
 @end
 
 

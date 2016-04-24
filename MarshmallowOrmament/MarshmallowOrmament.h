@@ -6,8 +6,41 @@
 //  Copyright (c) 2014 Kelly Huberty. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-
-@interface MarshmallowOrmament : NSObject
-
-@end
+#import "MMAttribute.h"
+#import "MMAutoRelatedEntity.h"
+#import "MMCloud.h"
+#import "MMCondition.h"
+#import "MMConditional.h"
+#import "MMCouchbaseStore.h"
+#import "MMEntity.h"
+#import "MMGroupDescriptor.h"
+#import "MMOrmamentManager.h"
+#import "MMOrmManager.h"
+#import "MMOrmMeta.h"
+#import "MMORMUtility.h"
+#import "MMRecord.h"
+#import "MMRecordLoadingPlaceholder.h"
+#import "MMRecordSet.h"
+#import "MMRelater.h"
+#import "MMRelation.h"
+#import "MMRelationship.h"
+#import "MMRelationshipSet.h"
+#import "MMRequest.h"
+#import "MMRequestController.h"
+#import "MMResultsController.h"
+#import "MMResultsSection.h"
+#import "MMResultsSet.h"
+#import "MMSchema.h"
+#import "MMSchemaMigration.h"
+#import "MMSchemaObject.h"
+#import "MMSectionDescriptor.h"
+#import "MMService.h"
+#import "MMServiceMigrationDelegate.h"
+#import "MMSQLiteJoin.h"
+#import "MMSQLiteMutation.h"
+#import "MMSQLiteRelater.h"
+#import "MMSQLiteRequest.h"
+#import "MMSQLiteSchema.h"
+#import "MMSqliteSchemaMigration.h"
+#import "MMSQLiteStore.h"
+#import "MMStore.h"

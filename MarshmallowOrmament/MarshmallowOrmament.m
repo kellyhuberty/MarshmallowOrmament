@@ -6,8 +6,3 @@
 //  Copyright (c) 2014 Kelly Huberty. All rights reserved.
 //
 
-#import "MarshmallowOrmament.h"
-
-@implementation MarshmallowOrmament
-
-@end

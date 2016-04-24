@@ -49,7 +49,7 @@
 //    [MMOrmamentManager startWithSchemas:@[     @{
 //                                                   @"name":@"noteit",@"version":@"0.1.0"
 //                                                   }]];
-    [MMOrmManager startWithSchemas:@[@"noteit"]];
+    [MMOrmManager startWithSchemas:@[@"noteit_manual"]];
 
 }
 
@@ -60,10 +60,7 @@
     
     
     NSArray * pathsToDelete = @[
-                                [libraryPath stringByAppendingPathComponent:@"noteit__1_0_0.db"],
-                                [libraryPath stringByAppendingPathComponent:@"noteit__0_1_0.db"],
-                                [libraryPath stringByAppendingPathComponent:@"noteit__0_2_0.db"],
-                                [libraryPath stringByAppendingPathComponent:@"noteit__0_3_0.db"]
+                                [libraryPath stringByAppendingPathComponent:@"noteit__1_0.db"]
                                 ];
     
     for (NSString * filePath in pathsToDelete) {

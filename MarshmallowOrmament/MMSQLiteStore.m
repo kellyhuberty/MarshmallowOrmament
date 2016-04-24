@@ -343,7 +343,7 @@
         }
         else{
             
-           // *error = [db lastError];
+            [self generateDatabaseErrorWithDatabase:db error:error ];
             
         }
         
@@ -400,8 +400,7 @@
         }
         else{
             
-            //*error = [db lastError];
-            
+            [self generateDatabaseErrorWithDatabase:db error:error ];
         }
         
     }];
@@ -602,6 +601,8 @@
     
     if(relater.intermediateTableName){
         
+        NSParameterAssert(                                                            [relater recordEntityAttribute]);
+        
         request.sqlFrom = [NSString stringWithFormat:@"%@ JOIN %@ ON (%@.%@ = %@.%@)\
                                                           JOIN %@ ON (%@.%@ = %@.%@)",
                                                             [relater recordEntityName],
@@ -733,12 +734,23 @@
             
         }else if (relatr.keyOptions == MMSQLiteForeignKeyOnRelated) {
          
-            [bindValues addObject:[[self class] rowidColumnValueForRecord:record]];
+            NSObject * rowIdColumnValue = [[self class] rowidColumnValueForRecord:record];
+            
+            NSAssert(rowIdColumnValue, @"Row id column val");
+            
+            [bindValues addObject:rowIdColumnValue];
             
             NSMutableArray * questionMarkArray = [NSMutableArray array];
             
             for (MMRecord * relatedRecord in relatedRecords) {
-                [bindValues addObject:[[self class] rowidColumnValueForRecord:relatedRecord]];
+                
+                NSObject * rowIdColumnValueOnRelated = [[self class] rowidColumnValueForRecord:relatedRecord];
+
+                
+                NSAssert(rowIdColumnValue, @"Row id column val related");
+
+                
+                [bindValues addObject:rowIdColumnValueOnRelated];
                 [questionMarkArray addObject:@"?"];
             }
             
@@ -872,11 +884,8 @@
                                                                             @"local":[[self class] rowidColumnValueForRecord:record],
                                                                             @"foreign":[[self class] rowidColumnValueForRecord:recf]
                                                                             }];
-                if (!success) {
-                    
-                    NSLog(@"unable to update  %@", [db lastError]);
-                    
-                    *error = [db lastError];
+                if ( ! success ) {
+                    [self generateDatabaseErrorWithDatabase:db error:error ];
                 }
                 
             }
@@ -898,13 +907,14 @@
         
             success = [db executeUpdate:query withArgumentsInArray:bindValues];
         
-            *error = [db lastError];
-            
+            if ( ! success ) {
+                [self generateDatabaseErrorWithDatabase:db error:error ];
+            }
             
         }];
         
         
-        if (*error) {
+        if (!success) {
             MMDebug(@"Records added to relationship failed. Reason: %@", [*error localizedDescription]);
         }
         
@@ -938,8 +948,8 @@
                                                                  @"foreign":[[self class] rowidColumnValueForRecord:recf]
                                                                  }];
                 
-                if (!success) {
-                    *error = [db lastError];
+                if ( ! success ) {
+                    [self generateDatabaseErrorWithDatabase:db error:error ];
                 }
                 
             }
@@ -958,6 +968,9 @@
             
             *error = [db lastError];
             
+            if ( ! success ) {
+                [self generateDatabaseErrorWithDatabase:db error:error ];
+            }
             
         }];
         
@@ -1034,7 +1047,12 @@
     NSString * name = [((MMSQLiteStore *)[[rec class] store]) rowidColumnNameForEntityName:[[rec class]entityName]];
     
     Ivar ivar = class_getInstanceVariable([rec class], "_values");
-    return [((NSMutableDictionary *)object_getIvar(rec, ivar)) objectForKey:name];
+    id value = [((NSMutableDictionary *)object_getIvar(rec, ivar)) objectForKey:name];
+    
+    
+    //NSAssert(value, @"No rowid column value for record %@ column name %@", rec, name);
+    
+    return value;
     
 }
 
@@ -1071,6 +1089,10 @@
     
     NSArray * idKeys = [entity idKeys];
     
+    NSAssert(idKeys, @"No ID keys found for entity %@", entity);
+    NSAssert([idKeys count] == 1, @"More that one column for a primary key is prohibited.");
+    
+    
     //return [self entityName];
     if([idKeys count] == 1){
         
@@ -1086,9 +1108,9 @@
         
         MMDebug(@"name: %@ key: %@ primativeName:%@ classNAme: %@ ", entity.name, key, primativeName, className);
         
-        if ([className isEqualToString:@"NSNumber"] || [primativeName isEqualToString:@"int"]) {
-            return key;
-        }
+        //if ([className isEqualToString:@"NSNumber"] || [primativeName isEqualToString:@"int"]) {
+        return key;
+        //}
         
         
     }
@@ -1252,11 +1274,10 @@
         
         success = [db executeUpdate:[[self class] buildInsertQueryForRecord:rec values:values] withParameterDictionary:values];
 
-        if ([[values allKeys]count] == 0) {
-            NSLog(@"issue");
-        }
+        NSAssert ([[values allKeys]count] != 0, @"No values inserted");
+
         
-        [self refreshRecord:rec withValues:values forRowId:[db lastInsertRowId] database:db];
+        [self refreshRecord:rec withValues:values database:db];
         
         if ( ! success ) {
             [self generateDatabaseErrorWithDatabase:db error:error ];
@@ -1267,15 +1288,24 @@
     return success;
 }
 
--(BOOL)refreshRecord:(MMRecord *)rec withValues:(NSMutableDictionary *)values forRowId:(long long)rowId database:(FMDatabase *)db{
+-(BOOL)refreshRecord:(MMRecord *)rec withValues:(NSMutableDictionary *)values database:(FMDatabase *)db{
     
     //FMDatabase * db = [self db];
     
     BOOL __block crap;
+        
+    NSString * rowIdKey = [[self class] rowidColumnNameForRecord:rec];
+    id rowIdValue = [[self class] rowidColumnValueForRecord:rec];
+
+    if (!rowIdValue) {
+        long long rowID = [db lastInsertRowId];
+        rowIdValue = [NSNumber numberWithLongLong:rowID];
+    }
+    
     
     [values removeAllObjects];
+
     
-    NSString * rowIdKey = [[self class] rowidColumnNameForRecord:rec];
     
     //NSLog(@"REFRESHED VALUES %@", [NSString stringWithFormat:@"SELECT * FROM %@ WHERE `%@` = :%@", [[self class] tableNameForRecord:rec] , rowIdKey, rowIdKey]);
     
@@ -1284,7 +1314,14 @@
                                           [[self class] tableNameForRecord:rec],
                                           rowIdKey,
                                           rowIdKey]
-                 withParameterDictionary:@{rowIdKey:[NSNumber numberWithLongLong:rowId]}];
+                 withParameterDictionary:@{rowIdKey:rowIdValue}];
+    
+    
+    NSAssert(res, @"Refresh values for record are nil. There is a consistency issue.");
+    
+    if ( ! res ) {
+        [self generateDatabaseErrorWithDatabase:db error:nil];
+    }
     
     crap = [res next];
     
@@ -1445,12 +1482,16 @@
     NSLog(@"DATABASE CODE::: %i", [db lastErrorCode]);
     NSLog(@"DATABASE MSG::: %@", [db lastErrorMessage]);
 
+
     
     
-    NSError * lastError = [db lastError];
+    
+    NSError * __autoreleasing lastError = [db lastError];
     
     
-    *error = lastError;
+    error = &lastError;
+    
+    [NSException raise:@"MMSQLiteDatabaseError" format:@""];
     
     //NSError * lastError = NSError errorWithDomain:@"com.kellyhuberty.MarshmallowOrmament" code: userInfo:<#(NSDictionary *)#>
     
