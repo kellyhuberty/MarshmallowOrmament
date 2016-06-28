@@ -430,6 +430,15 @@ static void setRelationValueIMP(id self, SEL _cmd, id aValue) {
 }
 
 //
+-(void)saveAndPush:(NSError **)error completionBlock:( void (^)(MMRecord * record, BOOL success, NSError **))completionBlock{
+    
+    
+    
+    
+    
+}
+
+//
 -(void)save:(NSError **)error completionBlock:( void (^)(MMRecord * record, BOOL success, NSError **))completionBlock{
     
     NSOperationQueue * queue = [[NSOperationQueue alloc] init];
@@ -468,8 +477,6 @@ static void setRelationValueIMP(id self, SEL _cmd, id aValue) {
             [self sendOperationNotification:MMCrudOperationUpdate forRecord:self onService:[[self class] store]];
         }
         
-        //[self executeUpdateOnRecord:self withValues:_values error:error];
-    
     }
     
     if (suc) {
@@ -954,7 +961,7 @@ static void setRelationValueIMP(id self, SEL _cmd, id aValue) {
     
     NSMutableDictionary * dict = [[NSMutableDictionary alloc]init];
     
-    MMDebug(@"ID values: %@", values);
+    //MMDebug(@"ID values: %@", values);
     
     for ( NSString * key in keys ) {
         if (values[key] != nil) {

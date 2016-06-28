@@ -90,12 +90,12 @@
     
     if([NSClassFromString(_relationship.localClassName) isSubclassOfClass:[MMRecord class]]){
         
-        NSArray* idKeys = [[NSClassFromString(_relationship.localClassName) entity] idKeys];
+        MMEntity * entity = [NSClassFromString(_relationship.localClassName) entity];
         
-        
-        
+        NSArray* idKeys = [entity idKeys];
         
         return [idKeys objectAtIndex:0];
+        
     }else{
         
     }
@@ -138,7 +138,10 @@
     }
     
     if([NSClassFromString(_relationship.relatedClassName) isSubclassOfClass:[MMRecord class]]){
-        return [[[NSClassFromString(_relationship.relatedClassName) entity] idKeys] objectAtIndex:0];
+        
+        MMEntity * entity = [NSClassFromString(_relationship.relatedClassName) entity];
+        
+        return [[entity idKeys] objectAtIndex:0];
     }
     
     return nil;

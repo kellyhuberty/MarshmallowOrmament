@@ -71,9 +71,8 @@
     
     NSLog(@"PATHS::: %@", NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES));
     
-    //NSLog(@" db dir :%@", [NSString stringWithFormat:@"%@/%@__%@.db", dataDir, _schema.name, [_schema.version pathString]]);
     
-    NSString * path = [NSString stringWithFormat:@"%@/%@__%@.db", dataDir, _schema.name, [_schema.version pathString]];
+    NSString * path = [NSString stringWithFormat:@"%@/%@.db", dataDir, _schema.name];
     
     NSLog(@" db dir :%@", path);
     
@@ -556,8 +555,6 @@
         NSLog(@"cant fetch error ___%@", [error localizedDescription]);
     }
     
-    NSLog(@"SETT:%@", set);
-    
     return set;
 }
 
@@ -641,9 +638,7 @@
     set.record = record;
     
     [set fetch:nil];
-    
-    NSLog(@"SETT:%@", set);
-    
+        
     return set;
 }
 
@@ -1333,7 +1328,7 @@
     
     
     
-    NSLog(@"REFRESHED VALUES %@", resultsDictionary);
+//    NSLog(@"REFRESHED VALUES %@", resultsDictionary);
     
     return crap;
     

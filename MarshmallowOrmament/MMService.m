@@ -356,7 +356,10 @@ static NSMutableDictionary * activeRecords;
 
 +(MMVersionString *)currentVersionForSchemaName:(NSString *)schemaName type:(NSString *)type{
     
-    NSDictionary * dict = [[MMPreferences valueForKey:@"MMServiceVersions"] mutableCopy];
+    NSUserDefaults * shared = [NSUserDefaults standardUserDefaults];
+
+    
+    NSDictionary * dict = [[shared dictionaryForKey:@"MMServiceVersions"] mutableCopy];
     
     NSString * key = [NSString stringWithFormat:@"%@_%@",schemaName, type];
     
@@ -369,8 +372,10 @@ static NSMutableDictionary * activeRecords;
 
 +(void)setCurrentVersion:(MMVersionString *)version forSchemaName:(NSString *)schemaName type:(NSString *)type{
     
-    NSMutableDictionary * dict = [[MMPreferences valueForKey:@"MMServiceVersions"] mutableCopy ];
+    NSUserDefaults * shared = [NSUserDefaults standardUserDefaults];
     
+    NSMutableDictionary * dict = [[shared dictionaryForKey:@"MMServiceVersions"] mutableCopy ];
+        
     NSString * key = [NSString stringWithFormat:@"%@_%@",schemaName, type];
     
     if (!dict) {
@@ -379,8 +384,8 @@ static NSMutableDictionary * activeRecords;
     
     dict[key] = version;
     
-    [MMPreferences setValue:dict forKey:@"MMServiceVersions"];
-    
+    [shared setObject:dict forKey:@"MMServiceVersions"];
+    [shared synchronize];
     
 }
 

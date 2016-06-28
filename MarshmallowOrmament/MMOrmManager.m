@@ -179,7 +179,11 @@ static MMOrmManager * manager = nil;
             
         }
         
-        [MMService setCurrentVersion:schema.version forSchemaName:schema.name type:type];
+        
+        if(!error){
+            [MMService setCurrentVersion:schema.version forSchemaName:schema.name type:type];
+        }
+        
         
     }
     

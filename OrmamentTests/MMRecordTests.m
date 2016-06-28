@@ -684,7 +684,7 @@
     
     MMSetArcEnabled();
     
-[self open];
+    [self open];
     //[MMOrmamentManager startWithSchemas:@[@"noteit"]];
     
     NSMutableArray * notes = [NSMutableArray array];
