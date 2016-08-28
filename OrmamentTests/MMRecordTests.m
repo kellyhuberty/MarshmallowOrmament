@@ -60,7 +60,7 @@
     
     
     NSArray * pathsToDelete = @[
-                                [libraryPath stringByAppendingPathComponent:@"noteit__1_0.db"]
+                                [libraryPath stringByAppendingPathComponent:@"noteit.db"]
                                 ];
     
     for (NSString * filePath in pathsToDelete) {
@@ -185,7 +185,7 @@
     //exit(1);
     //XCTAssertTrue([note save:&error], @"Saving");
 
-    
+    XCTAssertNil(error);
     
 
     
@@ -663,7 +663,7 @@
     NSLog(@"testBasicRead %@" ,array);
     
     
-    XCTAssertTrue(([array count] == 2), @"Saving");
+    XCTAssertEqual([array count], 2, @"Saving");
 
     [self archiveDatabaseFileForTest:@"testBasicRead"];
 
