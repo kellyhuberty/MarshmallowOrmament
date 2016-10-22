@@ -76,6 +76,7 @@ typedef enum{
 +(NSArray *)relationshipsForRecordEntity;
 +(MMRelationship *)createRelationshipNamed:(NSString *)name toEntityNamed:(NSString *)relatedEntityNamed hasMany:(BOOL)hasMany storeRelator:(MMRelater *)storeRelator cloudRelater:(MMRelater *)cloudRelater;
 +(MMRelationship *)createRelationshipNamed:(NSString *)name toRecordClass:(Class)recordClass hasMany:(BOOL)hasMany storeRelator:(MMRelater *)storeRelator cloudRelater:(MMRelater *)cloudRelater;
++(BOOL)shouldAutoloadClassAsEntity;
 
 @end
 

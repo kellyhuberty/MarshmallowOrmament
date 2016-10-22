@@ -378,67 +378,18 @@ static void setRelationValueIMP(id self, SEL _cmd, id aValue) {
     
 }
 
-
-
-//-(void)registerNotificationHash{
-//    
-//    NSNotificationCenter * center = [NSNotificationCenter defaultCenter];
-//    
-//    [center addObserver:self selector:@selector(receiveRecordChangeNotification:) name:[NSString stringWithFormat:@"__%@__CHANGED", [self idHash]] object:self];
-//    
-//    
-//    
-//}
-//
-//-(void)sendRecordChangeNotification:(NSNotification *) notification{
-//    
-//    NSNotificationCenter * center = [NSNotificationCenter defaultCenter];
-//
-//    [center postNotificationName:[NSString stringWithFormat:@"__%@__CHANGED", [self idHash]] object:self userInfo:@{@"store":[[self class]store]}];
-//    
-//}
-
-
-
-
-//-(void)_setDirty{
-//
-//    
-//    _dirty = true;
-//    
-//}
-
-
 -(void)fill:(NSDictionary *)dict{
-    
-    //MMRelease(_values);
-    
-    //_values = [[NSMutableDictionary alloc] init];
     
     [_values removeAllObjects];
     
     NSEnumerator * e = [dict keyEnumerator];
     NSString * key = nil;
     while ( key = [e nextObject]) {
-
         [_values setObject:key forKey:[dict valueForKey:key]];
-        
     }
     
-    //[self loadRelations];
-
 }
 
-//
--(void)saveAndPush:(NSError **)error completionBlock:( void (^)(MMRecord * record, BOOL success, NSError **))completionBlock{
-    
-    
-    
-    
-    
-}
-
-//
 -(void)save:(NSError **)error completionBlock:( void (^)(MMRecord * record, BOOL success, NSError **))completionBlock{
     
     NSOperationQueue * queue = [[NSOperationQueue alloc] init];
@@ -451,8 +402,6 @@ static void setRelationValueIMP(id self, SEL _cmd, id aValue) {
     }];
     
 }
-
-
 
 -(BOOL)save:(NSError **)error{
     
@@ -517,9 +466,6 @@ static void setRelationValueIMP(id self, SEL _cmd, id aValue) {
     
 }
 
-
-
-
 -(BOOL)push:(NSError **)error{
     
     BOOL suc = false;
@@ -553,74 +499,35 @@ static void setRelationValueIMP(id self, SEL _cmd, id aValue) {
     
 }
 
-
-
-
-
-
 -(BOOL)_saveRelationships:(NSError **)error{
     
     for (MMRelationshipSet * set in [_relationValues allValues]) {
-        
         if ([set dirty]) {
-  
             [set save:error];
-            
         }
-    
     }
     
     return YES;
     
 }
 
-
-
 -(BOOL)destroy:(NSError **)error completionBlock:(void (^)(MMRecord * record, BOOL success, NSError ** error))completionBlock{
     
-    
-    
-    //if ([self valid:error] && [self validForCreate:error]) {
-    //return [self executeDestroyForValues:_values error:error];
     return [[[self class] store] executeDestroyOnRecord:self withValues:_values error:error];
-    
-    //}
-    
-    
-    
+
 }
 
 -(BOOL)destroy:(NSError **)error{
-    
 
-        
-        //if ([self valid:error] && [self validForCreate:error]) {
-    //return [self executeDestroyForValues:_values error:error];
     return [[[self class] store] executeDestroyOnRecord:self withValues:_values error:error];
-    
-    //}
-
-
     
 }
 
 -(BOOL)destroy{
     
-    
-    
-    //if ([self valid:error] && [self validForCreate:error]) {
-    //return [self executeDestroyForValues:_values error:error];
     return [self destroy:nil];
     
-    //}
-    
-    
-    
 }
-
-
-//-(BOOL)destroy;
-
 
 -(BOOL)valid:(NSError **)err{
     
@@ -669,10 +576,8 @@ static void setRelationValueIMP(id self, SEL _cmd, id aValue) {
 +(NSString *)schemaName{
     
     NSLog(@"[WARNING]:Record class %@ has no implementation for +schemaName.", NSStringFromClass(self));
-
-    //[NSException raise:@"MMSchemaNameException" format:@"Record class %@ has no implementation for +schemaName.", NSStringFromClass(self)];
+    [NSException raise:@"MMSchemaNameException" format:@"Record class %@ has no implementation for +schemaName.", NSStringFromClass(self)];
     
-    //return @"noteit";
     return nil;
     
 }
@@ -680,9 +585,8 @@ static void setRelationValueIMP(id self, SEL _cmd, id aValue) {
 +(NSString *)entityName{
     
     NSLog(@"[WARNING]:Record class %@ has no implementation for +entityName.", NSStringFromClass(self));
-    //[NSException raise:@"MMEntityNameException" format:@"Record class %@ has no implementation for entityName.", NSStringFromClass(self)];
+    [NSException raise:@"MMEntityNameException" format:@"Record class %@ has no implementation for entityName.", NSStringFromClass(self)];
     
-    //return @"noteit";
     return nil;
 }
 
@@ -710,11 +614,6 @@ static void setRelationValueIMP(id self, SEL _cmd, id aValue) {
     
     [center postNotification:notification];
     [center postNotification:entitynotification];
-    
-    
-    //[NSNotification notificationWithName:@"MMRecordChangeNotification" object:self];
-    //[NSNotification notificationWithName:@"MMRecordChangeNotification" object:self];
-    
     
 }
 
@@ -759,22 +658,13 @@ static void setRelationValueIMP(id self, SEL _cmd, id aValue) {
 
 +(MMRequest *)newStoreRequest{
     
-    //[[MMRequest alloc] initWithStore:[self store] classname:NSStringFromClass(self)];
-
-    
     return [[self store] newRequestForClassname:NSStringFromClass(self)];
-    
-        //return MMAutorelease([[MMRequest alloc] initWithService:[self store] classname:NSStringFromClass(self)]);
-    
+
 }
 
 +(MMRequest *)newCloudRequest{
     
-    //[[MMRequest alloc] initWithStore:[self store] classname:NSStringFromClass(self)];
-    
     return [[self cloud] newRequestForClassname:NSStringFromClass(self)];
-
-        //return MMAutorelease([[MMRequest alloc] initWithService:[self cloud] classname:NSStringFromClass(self)]);
     
 }
 
@@ -809,129 +699,17 @@ static void setRelationValueIMP(id self, SEL _cmd, id aValue) {
     
 }
 
-//
-//+(MMRelationship *)createRelationshipNamed:(NSString *)name toRecordClass:(Class)recordClass hasMany:(BOOL)hasMany storeRelator:(MMRelater *)storeRelator cloudRelater:(MMRelater *)cloudRelater{
-//    
-//    NSString * relatedEntityName = nil;
-//    if ([recordClass respondsToSelector:@selector(entityName)]) {
-//        relatedEntityName = [recordClass entityName];
-//    }
-//    
-//    return [self createRelationshipNamed:name toEntityNamed:relatedEntityName hasMany:hasMany storeRelator:storeRelator cloudRelater:cloudRelater];
-//}
-
-
-//-(void)revert{
-//    
-//    
-//}
-
-//-(void)cleanup{
-//    
-//    [_dirtyValues removeAllObjects];
-//    
-//}
-
-//-(void)keyIsDirty:(NSString *)key{
-//    
-//    [_dirty setValue:[NSNumber numberWithBOOL:YES] forKey:key];
-//    
-//}
-
-//-(BOOL)dirty{
-//    
-//    return [[dirty count] > 0];
-//    
-//}
-
-//-(void)setDirtyForKey:(NSString *)key{
-//    
-//
-//}
-
-//-(void)setValue:(id)value forKey:(NSString *)key{
-//    
-//    //if (  ) {
-//        
-//    [_dirty setObject:value forKey:key];
-//    
-//    //}
-//
-//}
-
-//-(void)setValue:(id)value forKey:(NSString *)path{
-//    
-//    [_dirtyValues setValue:value forKey:path];
-//    
-//}
-//
-//
-//-(id)valueForKey:(NSString *)key{
-//    
-//    if ([_dirtyValues valueForKey:key] != nil) {
-//        return [_dirtyValues valueForKey:key];
-//    }
-//    if ([_values valueForKey:key] != nil) {
-//        id<NSCopying> copy = [[_values valueForKey:key]copy];
-//        [_dirtyValues setValue:copy forKey:key];
-//        return copy;
-//    }
-//    
-//    return nil;
-//}
-
-
-//-(void)setValue:(id)value forKey:(NSString *)path{
-//
-//    [_dirtyValues setValue:value forKey:path];
-//
-//}
-//
-//
-//-(id)valueForKey:(NSString *)key{
-//
-//    if ([_dirtyValues valueForKey:key] != nil) {
-//        return [_dirtyValues valueForKey:key];
-//    }
-//    if ([_values valueForKey:key] != nil) {
-//        id<NSCopying> copy = [[_values valueForKey:key]copy];
-//        [_dirtyValues setValue:copy forKey:key];
-//        return copy;
-//    }
-//
-//    return nil;
-//}
-
-//-(BOOL)dirty{
-//    
-//    if([[_dirtyValues allValues]count] > 0){
-//    
-//        return YES;
-//        
-//    }
-//    
-//    return NO;
-//    
-//}
-
-
 -(void)setPrimativeValue:(id)value forKey:(NSString *)key{
     @synchronized(_values){
         _values[key] = value;
     }
 }
 
-
 -(id)primativeValueForKey:(NSString *)key{
     @synchronized(_values){
         return _values[key];
     }
 }
-
-
-
-
-
 
 +(NSArray *)idKeys{
     
@@ -1012,47 +790,24 @@ static void setRelationValueIMP(id self, SEL _cmd, id aValue) {
     
 }
 
-
 -(void)logValues{
     
     NSLog(@"values %@", _values);
     
 }
 
-
-
-
-//+(NSString *)arrayValueHash:(NSArray *)array
-//{
-//    
-//    NSMutableString * keyHash = [NSMutableString stringWithString:@""];
-//    
-//    for (id<NSCopying> key in array) {
-//        
-//        NSString * hashString = [[NSNumber numberWithInteger:[((id<NSObject>)key) hash]] stringValue];
-//        
-//        [keyHash appendString:hashString];
-//        
-//    }
-//    
-//    return keyHash;
-//}
-
-
-/*
-+(void)setCoreDataEntityName:(NSString ){
-    
-    
-    
-    
-}
-*/
-
 -(void)_fetchAllRelationships:(NSString *)relationship{
     
     
     
     
+    
+}
+
+//Used to determine if class should be autoloaded as an entity. Return false for an abstract class.
++(BOOL)shouldAutoloadClassAsEntity{
+    
+    return YES;
     
 }
 
@@ -1081,104 +836,6 @@ static void setRelationValueIMP(id self, SEL _cmd, id aValue) {
     return obj;
     
 }
-
-
-/*
--(MMEntity *)entity{
-    
-    return [MMEntity registeredEntityWithName:[self coreDataEntityName]];
-    
-}
-
-
--(NSString *)coreDataEntityName{
-    NSString * classname = NSStringFromClass([self class]);
-    
-    
-    
-    int i = 0;
-    BOOL isUppercase = true;
-    while(isUppercase == true && i < [classname length]){
-        
-        
-        BOOL isUppercase = [[NSCharacterSet uppercaseLetterCharacterSet] characterIsMember:[classname characterAtIndex:i]];
-        
-        if (isUppercase == false && (i - 1) >= 0 && (i - 1) <  [classname length]) {
-            
-            return [classname substringFromIndex:(i-1)];
-            
-        }
-        ++i;
-        
-        
-    }
-    
-    
-    return nil;
-}
- 
- 
- 
-
-
--(NSEntityDescription *)coreDataEntityDescription:(NSManagedObjectContext *)context{
-    
-    if (context == nil) {
-        context = [MMCoreData managedObjectContext];
-    }
-    
-    MMLog(@"%@", [self coreDataEntityName]);
-    
-    return [NSEntityDescription entityForName:[self coreDataEntityName] inManagedObjectContext:context];
-    
-    
-}
-
--(NSDictionary *)uniqueIndex{
-    
-    NSArray * keys =[[self entity] uniqueIndex];
-    
-    NSMutableDictionary * ret = [NSMutableDictionary dictionary];
-    
-    for (NSString * key in keys) {
-        [self valueForKey:key];
-        [ret setValue:[self valueForKey:key] forKey:key];
-        
-        
-    }
-    
-    return [NSDictionary dictionaryWithDictionary:ret];
-}
-*/
-
-//-(void)setValue:(id)value forKey:(NSString *)path{
-//    
-//    [self willChangeValueForKey:path];
-//
-//    _dirty = YES;
-//    
-//    [_values setValue:value forKey:path];
-//    
-//    [self didChangeValueForKey:path];
-//    
-//}
-//
-//
-//-(id)valueForKey:(NSString *)key{
-//    
-//    //    if ([_dirtyValues valueForKey:key] != nil) {
-//    //        return [_dirtyValues valueForKey:key];
-//    //    }
-//    //    if ([_values valueForKey:key] != nil) {
-//    //        id<NSCopying> copy = [[_values valueForKey:key]copy];
-//    //        [_dirtyValues setValue:copy forKey:key];
-//    //        return copy;
-//    //    }
-//    
-//    return [_values valueForKey:key];
-//    
-//    return nil;
-//}
 
 
 -(id)valueForKey:(NSString *)key{

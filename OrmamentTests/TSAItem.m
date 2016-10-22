@@ -12,4 +12,12 @@
 
 @dynamic date;
 
++(BOOL)shouldAutoloadClassAsEntity{
+    if([self class] == [TSAItem class]){
+        return NO;
+    }
+    return YES;
+}
+
+
 @end

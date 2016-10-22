@@ -472,6 +472,18 @@ NSArray * MMGetSubclasses(Class parentClass)
     
     for (Class class in allSubclasses) {
         
+        if ((class != [MMRecord class]) && [((id<NSObject>)class) respondsToSelector:@selector(shouldAutoloadClassAsEntity)]) {
+            
+            if([((id<MMRecordEntityCofiguration>)class) shouldAutoloadClassAsEntity] == NO){
+                
+                MMDebug(@"Class %@ opted out of autoloading.", NSStringFromClass(class));
+                
+                continue;
+                
+            }
+            
+        }
+        
         
         NSString * schemaName = nil;
         NSString * entityName = nil;

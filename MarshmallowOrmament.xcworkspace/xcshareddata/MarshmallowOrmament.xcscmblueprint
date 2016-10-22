@@ -10,12 +10,12 @@
   },
   "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "ED44D52F-7C1F-45F2-B043-37C10CA0D30F",
   "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
-    "9FFF97BDD0FB6ABB87955FFAA618700966837BA2" : "MarshmallowOrmament",
-    "046846DD0612D74C5915B4B51F97FAED0D2B681A" : "MarshmallowCore",
+    "9FFF97BDD0FB6ABB87955FFAA618700966837BA2" : "MarshmallowOrmament\/",
+    "046846DD0612D74C5915B4B51F97FAED0D2B681A" : "MarshmallowCore\/",
     "86611C488D31DB79CFE4D32D0B49BD7973862822" : "MarshmallowUITouch"
   },
   "DVTSourceControlWorkspaceBlueprintNameKey" : "MarshmallowOrmament",
-  "DVTSourceControlWorkspaceBlueprintVersion" : 203,
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
   "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "MarshmallowOrmament.xcworkspace",
   "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
     {

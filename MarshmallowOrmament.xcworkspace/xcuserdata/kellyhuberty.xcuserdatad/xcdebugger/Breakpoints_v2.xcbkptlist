@@ -32,7 +32,7 @@
             startingLineNumber = "594"
             endingLineNumber = "594"
             landmarkName = "-testForeignKeyOnIntermediates_DeleteItem_PersistenceCheck"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
