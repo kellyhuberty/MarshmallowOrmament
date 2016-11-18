@@ -26,12 +26,20 @@
 
 static void setValueIMP(id self, SEL _cmd, id aValue);
 
+@interface MMRecord(){
+    
+    NSString * _queueReference;
+    
+}
+-(void)dispatchWriteBlock:(void (^)())syncBlock;
+-(void)dispatchReadBlock:(void (^)())syncBlock;
 
-@interface MMRecord ()
 
 -(MMRelationshipSet *)_fetchRelationshipSetWithRelationshipName:(NSString *)relationshipName;
 -(MMRelationshipSet *)_fetchRelationshipSetWithRelationship:(MMRelationship *)relationship;
 
+
+@property(nonatomic)dispatch_queue_t queue;
 @end
 
 
@@ -39,8 +47,8 @@ static void setValueIMP(id self, SEL _cmd, id aValue);
 // generic getter
 id valueIMP(id self, SEL _cmd) {
 
-    id value;
-    @synchronized(self) {
+    id __block value;
+    [(MMRecord *)self dispatchReadBlock:^(){
 
         //[self willAccessValueForKey:NSStringFromSelector(_cmd)];
         Ivar ivar = class_getInstanceVariable([self class], "_values");
@@ -50,7 +58,7 @@ id valueIMP(id self, SEL _cmd) {
         if (value == [NSNull null]) {
             value = nil;
         }
-    }
+    }];
     return value;
 
 }
@@ -108,7 +116,7 @@ static void setValueIMP(id self, SEL _cmd, id aValue) {
     
     id value = [aValue copy];
     
-    @synchronized(self){
+    [(MMRecord *)self dispatchWriteBlock:^(){
     
         NSString *key;
         key = [NSStringFromSelector(_cmd) mutableCopy];
@@ -141,11 +149,11 @@ static void setValueIMP(id self, SEL _cmd, id aValue) {
         
         NSMutableDictionary * dict = ((NSMutableDictionary *)object_getIvar(self, ivar));
         
-        @synchronized(dict){
+        [self dispatchWriteBlock:^(){
             [dict setObject:(value) forKey:key];
-        }
+            ((MMRecord *)self).dirty = true;
+        }];
         
-        ((MMRecord *)self).dirty = true;
         
         //void * dirty;
         //object_getInstanceVariable([self class], "_dirty", &dirty);
@@ -155,7 +163,7 @@ static void setValueIMP(id self, SEL _cmd, id aValue) {
         
         [self didChangeValueForKey:key];
 
-    }
+    }];
 }
 
 
@@ -168,7 +176,7 @@ id relationValueIMP(id self, SEL _cmd) {
     //Ivar ivar = class_getInstanceVariable([self class], "_relationValues");
     //id obj = [((NSMutableDictionary *)object_getIvar(self, ivar)) objectForKey:NSStringFromSelector(_cmd)];
 
-    MMEntity * entity = [[((MMRecord *)self) class] entity];
+    MMEntity * entity = (MMEntity *)[[((MMRecord *)self) class] entity];
     MMRelationship * relationship = [entity relationshipWithName:NSStringFromSelector(_cmd)];
 //    
 //    if (!obj) {
@@ -185,22 +193,26 @@ id relationValueIMP(id self, SEL _cmd) {
 //        [((NSMutableDictionary *)object_getIvar(self, ivar)) setObject:obj forKey:NSStringFromSelector(_cmd)];
 //    }
     
-    MMRelationshipSet * obj = [(MMRecord *)self _fetchRelationshipSetWithRelationship:relationship];
+    MMRelationshipSet * __block obj = nil;
+    
+    
+    [self dispatchReadBlock:^(){
+        obj = [(MMRecord *)self _fetchRelationshipSetWithRelationship:relationship];
 
-    
-    if (!relationship.hasMany) {
         
-        if ([obj count] > 0){
+        if (!relationship.hasMany) {
             
-            obj = obj[0];
-            
+            if ([obj count] > 0){
+                
+                obj = obj[0];
+                
+            }
+            else{
+                obj = nil;
+            }
+        
         }
-        else{
-            obj = nil;
-        }
-    
-    }
-    
+    }];
     return obj;
 }
 
@@ -219,36 +231,38 @@ static void setRelationValueIMP(id self, SEL _cmd, id aValue) {
     NSString *firstChar = [key substringToIndex:1];
     [key replaceCharactersInRange:NSMakeRange(0, 1) withString:[firstChar lowercaseString]];
     
-    
-    MMService * store = [[((MMRecord *)self) class] store];
-    MMEntity * entity = [[((MMRecord *)self) class] entity];
+    MMEntity * entity = (MMEntity *)[[((MMRecord *)self) class] entity];
     MMRelationship * relationship = [entity relationshipWithName:key];
     
-    if (!relationship.hasMany) {
+    [self dispatchWriteBlock:^(){
         
-        [self willChangeValueForKey:key];
+        if (!relationship.hasMany) {
+            
+            [self willChangeValueForKey:key];
 
-        id obj = [self _fetchRelationshipSetWithRelationshipName:key];
+            id obj = [self _fetchRelationshipSetWithRelationshipName:key];
 
-        [obj removeAllObjects];
+            [obj removeAllObjects];
 
-        if (aValue != nil) {
-            [obj addObject:aValue];
+            if (aValue != nil) {
+                [obj addObject:aValue];
+            }
+        
+            [self didChangeValueForKey:key];
+            
+            return;
         }
-    
-        [self didChangeValueForKey:key];
+            
+            
         
-        return;
-    }
-    
-    [NSException raise:@"MMInvalidRelationshipSaveContext" format:@"You can't directly save a hasMany relationship by property assignment. Please use addObjects: or removeObjects:, or other NSMutableArray mutator methods."];
+        [NSException raise:@"MMInvalidRelationshipSaveContext" format:@"You can't directly save a hasMany relationship by property assignment. Please use addObjects: or removeObjects:, or other NSMutableArray mutator methods."];
+            
+    }];
         
 }
 
 
-
-
-
+const char * queueReferenceKey = "queueReferenceKey";
 
 
 
@@ -266,9 +280,9 @@ static void setRelationValueIMP(id self, SEL _cmd, id aValue) {
     
     if (self != nil) {
         _inserted = NO;
-        @synchronized(_values){
+        [self dispatchWriteBlock:^(){
             [_values addEntriesFromDictionary:values];
-        }
+        }];
             //[self registerNotificationHash];
         
         MMDebug(@"values %@", values);
@@ -283,13 +297,10 @@ static void setRelationValueIMP(id self, SEL _cmd, id aValue) {
     self = [self init];
     
     if (self != nil) {
-        @synchronized(self){
+        [self dispatchWriteBlock:^(){
             _inserted = inserted;
-        }
-        @synchronized(_values){
             [_values addEntriesFromDictionary:values];
-        }
-        //[self registerNotificationHash];
+        }];
     }
     
     return self;
@@ -302,10 +313,17 @@ static void setRelationValueIMP(id self, SEL _cmd, id aValue) {
     self = [super init];
     
     if (self != nil) {
-
+        
         _values = [[NSMutableDictionary alloc]init];
         _relationValues = [[NSMutableDictionary alloc]init];
 
+        _queueReference = [NSString stringWithFormat:@"MMRecordQueue-%@", [[NSUUID UUID] UUIDString]];
+        char const * recordQueueUUID = [_queueReference UTF8String];
+
+        _queue = dispatch_queue_create( recordQueueUUID  , NULL);
+        
+        dispatch_queue_set_specific(_queue, queueReferenceKey, (__bridge void * _Nullable)(_queueReference), nil);
+        
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(recacheActiveStore) name:@"MMActiveRecordCacheClear" object:[[self class]store]];
         
     }
@@ -390,60 +408,14 @@ static void setRelationValueIMP(id self, SEL _cmd, id aValue) {
     
 }
 
--(void)save:(NSError **)error completionBlock:( void (^)(MMRecord * record, BOOL success, NSError **))completionBlock{
-    
-    NSOperationQueue * queue = [[NSOperationQueue alloc] init];
-    
-    [queue addOperationWithBlock:^(){
-        
-        BOOL suc = [self save:&error];
-        
-        completionBlock(self, suc, error);
-    }];
-    
-}
-
--(BOOL)save:(NSError **)error{
-    
-    BOOL suc = false;
-    
-    if (!_inserted) {
-
-        if ([self valid:error] && [self validForUpdate:error]) {
-            suc = [[[self class] store] executeCreateOnRecord:self withValues:_values error:error];
-            [self sendOperationNotification:MMCrudOperationCreate forRecord:self onService:[[self class] store]];
-        }
-    
-        if (suc) {
-            _inserted = true;
-        }
-        
-    }
-    else{
-        
-        if ([self valid:error] && [self validForCreate:error]) {
-            suc = [[[self class] store] executeUpdateOnRecord:self withValues:_values error:error];
-            [self sendOperationNotification:MMCrudOperationUpdate forRecord:self onService:[[self class] store]];
-        }
-        
-    }
-    
-    if (suc) {
-        suc = [self _saveRelationships:error];
-    }
-    
-    return suc;
-
-}
-
 -(BOOL)save{
-
+    
     BOOL suc = false;
     
     NSError * error;
     
     suc = [self save:&error];
-
+    
     if (!suc) {
         NSLog(@"MMLog save error: %@", [error localizedDescription]);
     }
@@ -452,52 +424,107 @@ static void setRelationValueIMP(id self, SEL _cmd, id aValue) {
     
 }
 
--(void)push:(NSError **)error completionBlock:( void (^)(MMRecord * record, BOOL success, NSError **))completionBlock{
+-(void)save:(NSError **)error completionBlock:( void (^)(MMRecord * record, BOOL success, NSError **))completionBlock{
     
     NSOperationQueue * queue = [[NSOperationQueue alloc] init];
     
-    
     [queue addOperationWithBlock:^(){
         
-        BOOL suc = [self save:&error];
+        BOOL suc = [self save:error];
         
         completionBlock(self, suc, error);
     }];
     
 }
 
--(BOOL)push:(NSError **)error{
+-(BOOL)save:(NSError **)error{
     
-    BOOL suc = false;
+    BOOL __block suc = false;
     
-    if (!_inserted) {
+    [self dispatchWriteBlock:^(){
         
-        if ([self valid:error] && [self validForUpdate:error]) {
-            suc = [[[self class] store] executeCreateOnRecord:self withValues:_values error:error];
+        if (!_inserted) {
+
+            if ([self valid:error] && [self validForUpdate:error]) {
+                suc = [[[self class] store] executeCreateOnRecord:self withValues:_values error:error];
+                [self sendOperationNotification:MMCrudOperationCreate forRecord:self onService:[[self class] store]];
+            }
+        
+            if (suc) {
+                _inserted = true;
+                [self scheduleCloudCreate];
+            }
+            
+        }
+        else{
+            
+            if ([self valid:error] && [self validForCreate:error]) {
+                suc = [[[self class] store] executeUpdateOnRecord:self withValues:_values error:error];
+                [self sendOperationNotification:MMCrudOperationUpdate forRecord:self onService:[[self class] store]];
+            }
+            
+            if (suc) {
+                [self scheduleCloudUpdate];
+            }
+            
         }
         
         if (suc) {
-            _inserted = true;
+            suc = [self _saveRelationships:error];
         }
         
-    }
-    else{
+    }];
         
-        if ([self valid:error] && [self validForCreate:error]) {
-            suc = [[[self class] store] executeUpdateOnRecord:self withValues:_values error:error];
-        }
-        
-        //[self executeUpdateOnRecord:self withValues:_values error:error];
-        
-    }
-    
-    if (suc) {
-        suc = [self _saveRelationships:error];
-    }
-    
     return suc;
-    
+
 }
+
+//-(void)push:(NSError **)error completionBlock:( void (^)(MMRecord * record, BOOL success, NSError **))completionBlock{
+//    
+//    NSOperationQueue * queue = [[NSOperationQueue alloc] init];
+//    
+//    
+//    [queue addOperationWithBlock:^(){
+//        
+//        BOOL suc = [self save:error];
+//        
+//        completionBlock(self, suc, error);
+//    }];
+//    
+//}
+//
+//-(BOOL)push:(NSError **)error{
+//    
+//    BOOL suc = false;
+//    
+//    if (!_inserted) {
+//        
+//        if ([self valid:error] && [self validForUpdate:error]) {
+//            suc = [[[self class] store] executeCreateOnRecord:self withValues:_values error:error];
+//        }
+//        
+//        if (suc) {
+//            _inserted = true;
+//        }
+//        
+//    }
+//    else{
+//        
+//        if ([self valid:error] && [self validForCreate:error]) {
+//            suc = [[[self class] store] executeUpdateOnRecord:self withValues:_values error:error];
+//        }
+//        
+//        //[self executeUpdateOnRecord:self withValues:_values error:error];
+//        
+//    }
+//    
+//    if (suc) {
+//        suc = [self _saveRelationships:error];
+//    }
+//    
+//    return suc;
+//    
+//}
 
 -(BOOL)_saveRelationships:(NSError **)error{
     
@@ -511,16 +538,27 @@ static void setRelationValueIMP(id self, SEL _cmd, id aValue) {
     
 }
 
--(BOOL)destroy:(NSError **)error completionBlock:(void (^)(MMRecord * record, BOOL success, NSError ** error))completionBlock{
+-(void)destroy:(NSError **)error completionBlock:(void (^)(MMRecord * record, BOOL success, NSError ** error))completionBlock{
     
-    return [[[self class] store] executeDestroyOnRecord:self withValues:_values error:error];
-
+    NSOperationQueue * queue = [[NSOperationQueue alloc] init];
+    
+    [queue addOperationWithBlock:^(){
+        
+        BOOL suc = [self destroy:error];
+        
+        completionBlock(self, suc, error);
+    }];
 }
 
 -(BOOL)destroy:(NSError **)error{
-
-    return [[[self class] store] executeDestroyOnRecord:self withValues:_values error:error];
-    
+    BOOL suc = false;
+    if ([self valid:error] && [self validForDestroy:error]) {
+        suc = [[[self class] store] executeDestroyOnRecord:self withValues:_values error:error];
+    }
+    if (suc) {
+        [self scheduleCloudDestroy];
+    }
+    return suc;
 }
 
 -(BOOL)destroy{
@@ -546,6 +584,31 @@ static void setRelationValueIMP(id self, SEL _cmd, id aValue) {
     return true;
     
 }
+
+-(BOOL)validForDestroy:(NSError **)err{
+    
+    return true;
+    
+}
+
+-(void)scheduleCloudUpdate{
+    
+    [[self class]cloud];
+    
+}
+
+-(void)scheduleCloudCreate{
+    
+    [[self class]cloud];
+
+}
+
+-(void)scheduleCloudDestroy{
+    
+    [[self class]cloud];
+
+}
+
 
 +(MMSet *)attributes{
     
@@ -598,7 +661,9 @@ static void setRelationValueIMP(id self, SEL _cmd, id aValue) {
     NSNotificationCenter * center = [NSNotificationCenter defaultCenter];
     
     NSString * changeStr = [NSString stringWithFormat:@"MMRecordOperationNotification"];
-    NSString * formalStr = [NSString stringWithFormat:@"MMEntityOperationNotification+%@", [[self class]entityName] ];
+    
+    //Might be used later for entity level notifications
+    //NSString * formalStr = [NSString stringWithFormat:@"MMEntityOperationNotification+%@", [[self class]entityName] ];
     
     NSNotification * notification = [NSNotification notificationWithName:changeStr object:self userInfo:@{
                                                                                                           @"operationName":MMStringFromCrudOperation(operation),
@@ -619,9 +684,9 @@ static void setRelationValueIMP(id self, SEL _cmd, id aValue) {
 
 
 -(void)registerForRecordChangesWithTarget:(id)target selector:(SEL)aSelector{
+
     NSNotificationCenter * center = [NSNotificationCenter defaultCenter];
     [center addObserver:target selector:aSelector name:@"MMRecordOperationNotification" object:self];
-    
     
 }
 
@@ -643,14 +708,14 @@ static void setRelationValueIMP(id self, SEL _cmd, id aValue) {
 }
 
 
-+(NSDictionary *)configureRecordEntityAttribute:(MMAttribute *)attribute fromProperty:(MMProperty *)prop{
++(void)configureRecordEntityAttribute:(MMAttribute *)attribute fromProperty:(MMProperty *)prop{
     
-    return nil;
+    //return nil;
     
 }
 
 
-+(MMStore *)cloud{
++(MMService *)cloud{
     
     return [MMCloud cloudWithSchemaName:[self schemaName] version:nil];
     
@@ -700,15 +765,17 @@ static void setRelationValueIMP(id self, SEL _cmd, id aValue) {
 }
 
 -(void)setPrimativeValue:(id)value forKey:(NSString *)key{
-    @synchronized(_values){
+    [self dispatchWriteBlock:^(){
         _values[key] = value;
-    }
+    }];
 }
 
 -(id)primativeValueForKey:(NSString *)key{
-    @synchronized(_values){
-        return _values[key];
-    }
+    id __block primativeValue= nil;
+    [self dispatchReadBlock:^(){
+         primativeValue = _values[key];
+    }];
+    return primativeValue;
 }
 
 +(NSArray *)idKeys{
@@ -886,13 +953,41 @@ static void setRelationValueIMP(id self, SEL _cmd, id aValue) {
 
 -(NSString *)description{
     
+    NSDictionary * __block values = nil;
+    
+    [self dispatchReadBlock:^() {
+        values = [_values copy];
+    }];
+    
     return [NSString stringWithFormat:@"%@ \nvalues:\n %@", [super description], _values];
     
 }
 
+-(void)dispatchWriteBlock:(void (^)())syncBlock{
+ 
+    [self dispatchBlock:syncBlock];
+    
+}
 
+-(void)dispatchReadBlock:(void (^)())syncBlock{
 
+    [self dispatchBlock:syncBlock];
 
+}
+
+-(void)dispatchBlock:(void (^)())syncBlock{
+    
+    NSString * queueIdentifierString = (__bridge NSString *)(dispatch_queue_get_specific(_queue, queueReferenceKey));
+
+    if([queueIdentifierString isEqualToString:_queueReference]){
+        syncBlock();
+    }else{
+        dispatch_barrier_sync(_queue, ^(){
+            syncBlock();
+        });
+    }
+    
+}
 
 +(BOOL)resolveInstanceMethod:(SEL)aSEL {
     
