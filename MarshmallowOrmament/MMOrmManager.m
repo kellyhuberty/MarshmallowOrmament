@@ -202,7 +202,6 @@ static MMOrmManager * manager = nil;
 }
 
 
-
 +(void)buildServiceType:(NSString *)serviceType forSchema:(MMSchema *)schema error:(NSError **)error{
     
     NSString * serviceClassName;
@@ -232,9 +231,6 @@ static MMOrmManager * manager = nil;
         }
         
     }
-    
-    
-    //    [self setCurrentVersion:schema.version forSchemaName:schema.name];
     
 }
 

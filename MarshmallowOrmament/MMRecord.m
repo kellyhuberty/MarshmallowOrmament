@@ -323,7 +323,7 @@ const char * queueReferenceKey = "queueReferenceKey";
         _queue = dispatch_queue_create( recordQueueUUID  , NULL);
         
         dispatch_queue_set_specific(_queue, queueReferenceKey, (__bridge void * _Nullable)(_queueReference), nil);
-        
+
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(recacheActiveStore) name:@"MMActiveRecordCacheClear" object:[[self class]store]];
         
     }
@@ -478,53 +478,6 @@ const char * queueReferenceKey = "queueReferenceKey";
     return suc;
 
 }
-
-//-(void)push:(NSError **)error completionBlock:( void (^)(MMRecord * record, BOOL success, NSError **))completionBlock{
-//    
-//    NSOperationQueue * queue = [[NSOperationQueue alloc] init];
-//    
-//    
-//    [queue addOperationWithBlock:^(){
-//        
-//        BOOL suc = [self save:error];
-//        
-//        completionBlock(self, suc, error);
-//    }];
-//    
-//}
-//
-//-(BOOL)push:(NSError **)error{
-//    
-//    BOOL suc = false;
-//    
-//    if (!_inserted) {
-//        
-//        if ([self valid:error] && [self validForUpdate:error]) {
-//            suc = [[[self class] store] executeCreateOnRecord:self withValues:_values error:error];
-//        }
-//        
-//        if (suc) {
-//            _inserted = true;
-//        }
-//        
-//    }
-//    else{
-//        
-//        if ([self valid:error] && [self validForCreate:error]) {
-//            suc = [[[self class] store] executeUpdateOnRecord:self withValues:_values error:error];
-//        }
-//        
-//        //[self executeUpdateOnRecord:self withValues:_values error:error];
-//        
-//    }
-//    
-//    if (suc) {
-//        suc = [self _saveRelationships:error];
-//    }
-//    
-//    return suc;
-//    
-//}
 
 -(BOOL)_saveRelationships:(NSError **)error{
     
@@ -735,15 +688,6 @@ const char * queueReferenceKey = "queueReferenceKey";
 
 
 +(MMRelationship *)createRelationshipNamed:(NSString *)name toRecordClass:(Class)recordClass hasMany:(BOOL)hasMany storeRelator:(MMRelater *)storeRelator cloudRelater:(MMRelater *)cloudRelater{
-    
-    
-    
-//    return [[MMRelationship alloc]initWithName:name
-//                                    schemaName:[self schemaName]
-//                               localEntityName:[self entityName]
-//                             relatedEntityName:relatedEntityNamed
-//                                  storeRelater:storeRelator
-//                                  cloudRelater:cloudRelater];
 
     NSString * relatedEntityName = nil;
     if ([recordClass respondsToSelector:@selector(entityName)]) {
@@ -760,7 +704,6 @@ const char * queueReferenceKey = "queueReferenceKey";
                                    relatedClass:recordClass
                                    storeRelater:storeRelator
                                    cloudRelater:cloudRelater];
-    
     
 }
 
@@ -823,28 +766,12 @@ const char * queueReferenceKey = "queueReferenceKey";
 
 
 -(NSString *)idHash{
-    
-//    NSMutableArray * hashArray = [NSMutableArray array];
-//    
-//    [hashArray addObject:[[self class]schemaName]];
-//    [hashArray addObject:[[self class]entityName]];
-//    
-//    [hashArray addObjectsFromArray:MMORMSortedValueArray([self idValues])];
-//    
-//    return MMORMIdentifierHash([self idValues]);
 
     return [[self class]idHashWithIdValues:[self idValues]];
     
 }
 
 +(NSString *)idHashWithIdValues:(NSDictionary *)idValues{
-    
-//    NSMutableArray * hashArray = [NSMutableArray array];
-//    
-//    [hashArray addObject:[[self class]schemaName]];
-//    [hashArray addObject:[[self class]entityName]];
-//    
-//    [hashArray addObjectsFromArray:MMORMSortedValueArray(idValues)];
 
     NSMutableDictionary * dict = [NSMutableDictionary dictionaryWithDictionary:idValues];
     
@@ -1025,48 +952,9 @@ const char * queueReferenceKey = "queueReferenceKey";
     }
     
     
-
-//    if ([key hasPrefix:@"set"]) {
-//
-//    
-//        [key deleteCharactersInRange:NSMakeRange(0, 3)];
-//        [key deleteCharactersInRange:NSMakeRange([key length] - 1, 1)];
-//        NSString *firstChar = [key substringToIndex:1];
-//        [key replaceCharactersInRange:NSMakeRange(0, 1) withString:[firstChar lowercaseString]];
-//    
-//        attr = [entity attributeWithName:key];
-//        rel = [entity relationshipWithName:key];
-//        
-//        
-//        if (attr || rel) {
-//            setter = YES;
-//        }
-//        
-//        
-//        
-//    }
-//    if ([key hasPrefix:@"get"]) {
-//        
-//        
-//        [key deleteCharactersInRange:NSMakeRange(0, 3)];
-//        NSString *firstChar = [key substringToIndex:1];
-//        [key replaceCharactersInRange:NSMakeRange(0, 1) withString:[firstChar lowercaseString]];
-//        
-//        attr = [[self entity] attributeWithName:key];
-//        rel = [[self entity] relationshipWithName:key];
-//        
-//        
-//    }
-    
-    
-    
     if (attr == nil && rel == nil) {
-        //NSException * e = [NSException exceptionWithName:@"InvalidPropertyNameException" reason:[NSString stringWithFormat:@"The class %@ does not implement the selector %@ either dynamically or conventionally.",NSStringFromClass([self class]) ,NSStringFromSelector(aSEL) ] userInfo:@{}];
-        
-        //@throw e;
-        //NSLog(@"selector::: %@", NSStringFromSelector(aSEL));
+        MMDebug(@"The class %@ does not implement the selector %@ either dynamically or conventionally.",NSStringFromClass([self class]) ,NSStringFromSelector(aSEL));
         return [super resolveInstanceMethod:aSEL];
-    
     }
     
 
@@ -1138,13 +1026,6 @@ const char * queueReferenceKey = "queueReferenceKey";
         return YES;
     }
 
-    
-    //introspect properties, attributes...
-//    if ([NSStringFromSelector(aSEL) hasPrefix:@"set"]) {
-//        class_addMethod([self class], aSEL, (IMP)setValueIMP, "v@:@");
-//    } else {
-//        class_addMethod([self class], aSEL,(IMP)valueIMP, "@@:");
-//    }
     return [super resolveInstanceMethod:aSEL];
 }
 
