@@ -38,6 +38,7 @@ NSString * MMStringFromCrudOperation(MMCrudOperation op){
 
 
 static NSMutableDictionary * activeRecords;
+static dispatch_queue_t activeRecordDispatchQueue;
 
 
 
@@ -67,8 +68,7 @@ static NSMutableDictionary * activeRecords;
 
 +(void)initialize{
     
-    //MMRelease(storesByThread);
-    //storesByThread = [[NSMutableDictionary alloc]init];
+    activeRecordDispatchQueue = dispatch_queue_create("MMActiveRecordQueue", NULL);
     
     activeRecords = [[NSMutableDictionary alloc]init];
     
@@ -317,33 +317,33 @@ static NSMutableDictionary * activeRecords;
 
 +(void)addRecordToActiveRecords:(MMRecord *)rec{
     
-    @synchronized(activeRecords){
-        return [activeRecords setObject:rec forKey:[rec idHash]];
-    }
+    dispatch_barrier_sync(activeRecordDispatchQueue, ^(){
+        [activeRecords setObject:rec forKey:[rec idHash]];
+    });
     
 }
 
 +(void)removeRecordFromActiveRecords:(MMRecord *)rec{
     
-    @synchronized(activeRecords){
+    dispatch_barrier_sync(activeRecordDispatchQueue, ^(){
         return [activeRecords removeObjectForKey:[rec idHash]];
-    }
+    });
     
 }
 
 +(MMRecord *)retrieveActiveRecord:(NSString *)hash{
-
-    @synchronized(activeRecords){
-        return activeRecords[hash];
-    }
-    
+    MMRecord * __block rec;
+    dispatch_sync(activeRecordDispatchQueue, ^(){
+         rec = activeRecords[hash];
+    });
+    return rec;
 }
 
 +(void)clearActiveRecordCache{
     
-    @synchronized(activeRecords){
+    dispatch_barrier_sync(activeRecordDispatchQueue, ^(){
         [activeRecords removeAllObjects];
-    }
+    });
     
     [[NSNotificationCenter defaultCenter] postNotificationName:@"MMActiveRecordCacheClear" object:self];
 
