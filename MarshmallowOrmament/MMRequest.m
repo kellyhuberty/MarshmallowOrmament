@@ -7,6 +7,10 @@
 //
 
 #import "MMRequest.h"
+#import "MMUtility.h"
+#import "MMResultsSet.h"
+#import "MMService.h"
+#import "MMOrmMeta.h"
 
 @implementation MMRequest
 
@@ -99,7 +103,7 @@
 -(MMSet *)executeOnStore:(MMService *)store error:(NSError**)error{
     
     if (_service == nil) {
-        _service = MMRetain(store);
+        _service = store;
     }
     
     return [self loadRequest:error];

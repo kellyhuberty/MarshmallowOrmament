@@ -11,7 +11,7 @@
 #import "MMSQLiteStore.h"
 #import "MMOrmamentManager.h"
 #import "MMOrmManager.h"
-
+#import "MMUtility.h"
 @interface MMRecordTests : XCTestCase
 
 @end

@@ -14,6 +14,7 @@
 #import "MMRelationship.h"
 #import "MMSQLiteRelater.h"
 #import "MMSQLiteJoin.h"
+#import "MMRelationshipSet.h"
 
 #import <objc/runtime.h>
  
@@ -30,7 +31,7 @@
     self = [super init];
     if (self) {
         
-        _schema = MMRetain(schema);
+        _schema = schema;
         
     }
     return self;
@@ -333,7 +334,6 @@
                 
                 [ret addObject:rec];
                 
-                MMRelease(rec);
                 
             }
             
@@ -348,7 +348,7 @@
         
     }];
     
-    MMResultsSet * resultSet = MMAutorelease([[MMResultsSet alloc]init]);;
+    MMResultsSet * resultSet = [[MMResultsSet alloc]init];
     
     [resultSet addObjectsFromArray:ret];
     
@@ -516,7 +516,7 @@
     
     MMRelationshipSet * set = [[MMRelationshipSet alloc]init];
     
-    MMSQLiteRequest * request = MMAutorelease([[MMSQLiteRequest alloc] init]);
+    MMSQLiteRequest * request = [[MMSQLiteRequest alloc] init];
     
     request.className = relationship.relatedClassName;
     
@@ -1219,7 +1219,7 @@
     
     //FMDatabase * db = [self db];
     
-    MMResultsSet * __block set = MMAutorelease([[MMResultsSet alloc]init]);
+    MMResultsSet * __block set = [[MMResultsSet alloc]init];
     
     //[self.dbQueue inDatabase:^(FMDatabase * db){
         

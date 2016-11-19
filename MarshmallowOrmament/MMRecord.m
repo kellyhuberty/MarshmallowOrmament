@@ -7,23 +7,17 @@
 //
 
 #import "MMRecord.h"
-    //#import "MMService.h"
-    //#import "MMEntity.h"
 #import "MMUtility.h"
 #import "MMService.h"
-
 #import "MMSet.h"
-
 #import "MMORMUtility.h"
-
 #import "MMRequest.h"
-
 #import <objc/runtime.h>
 #import "MMAdapter.h"
-
 #import "MMAttribute.h"
 #import "MMOrmManager.h"
-
+#import "MMEntity.h"
+#import "MMRelationshipSet.h"
 static void setValueIMP(id self, SEL _cmd, id aValue);
 
 @interface MMRecord(){
@@ -138,12 +132,7 @@ static void setValueIMP(id self, SEL _cmd, id aValue) {
         NSString *firstChar = [key substringToIndex:1];
         key = [key stringByReplacingCharactersInRange:NSMakeRange(0, 1) withString:[firstChar lowercaseString]];
 
-        
-        
-        
         [self willChangeValueForKey:key];
-        
-        
         
         Ivar ivar = class_getInstanceVariable([self class], "_values");
         
@@ -153,13 +142,6 @@ static void setValueIMP(id self, SEL _cmd, id aValue) {
             [dict setObject:(value) forKey:key];
             ((MMRecord *)self).dirty = true;
         }];
-        
-        
-        //void * dirty;
-        //object_getInstanceVariable([self class], "_dirty", &dirty);
-        
-        
-        
         
         [self didChangeValueForKey:key];
 
@@ -348,7 +330,7 @@ const char * queueReferenceKey = "queueReferenceKey";
 
 +(instancetype)create{
     
-    id blah = MMAutorelease([[[self class] alloc] init]);
+    id blah = [[[self class] alloc] init];
     
     return blah;
     //return rec;
@@ -386,7 +368,7 @@ const char * queueReferenceKey = "queueReferenceKey";
 
 +(instancetype)create:(NSDictionary *)dictionary error:(NSError **)error{
     
-    MMRecord * rec = MMAutorelease([[[self class] alloc] initWithValues:dictionary]);
+    MMRecord * rec = [[[self class] alloc] initWithValues:dictionary];
 
     //NSError * error;
     
@@ -424,20 +406,28 @@ const char * queueReferenceKey = "queueReferenceKey";
     
 }
 
--(void)save:(NSError **)error completionBlock:( void (^)(MMRecord * record, BOOL success, NSError **))completionBlock{
+-(BOOL)save:(NSError **)error{
+
+    return [self save:error cloudCompletionBlock:nil];
+    
+}
+
+-(void)save:(NSError **)error
+        localCompletionBlock:( void (^)(MMRecord * record, BOOL success, NSError **))localBlock
+        cloudCompletionBlock:( void (^)(MMRecord * record, BOOL success, NSError **))cloudBlock{
     
     NSOperationQueue * queue = [[NSOperationQueue alloc] init];
     
     [queue addOperationWithBlock:^(){
         
-        BOOL suc = [self save:error];
+        BOOL suc = [self save:error cloudCompletionBlock:cloudBlock];
         
-        completionBlock(self, suc, error);
+        localBlock(self, suc, error);
     }];
     
 }
 
--(BOOL)save:(NSError **)error{
+-(BOOL)save:(NSError **)error cloudCompletionBlock:( void (^)(MMRecord * record, BOOL success, NSError **))completionBlock{
     
     BOOL __block suc = false;
     
@@ -452,7 +442,7 @@ const char * queueReferenceKey = "queueReferenceKey";
         
             if (suc) {
                 _inserted = true;
-                [self scheduleCloudCreate];
+                [self scheduleCloudCreateWithCompletionBlock:completionBlock];
             }
             
         }
@@ -464,7 +454,7 @@ const char * queueReferenceKey = "queueReferenceKey";
             }
             
             if (suc) {
-                [self scheduleCloudUpdate];
+                [self scheduleCloudUpdateWithCompletionBlock:completionBlock];
             }
             
         }
@@ -491,7 +481,9 @@ const char * queueReferenceKey = "queueReferenceKey";
     
 }
 
--(void)destroy:(NSError **)error completionBlock:(void (^)(MMRecord * record, BOOL success, NSError ** error))completionBlock{
+-(void)destroy:(NSError **)error
+    localCompletionBlock:(void (^)(MMRecord * record, BOOL success, NSError ** error))localBlock
+    cloudCompletionBlock:(void (^)(MMRecord * record, BOOL success, NSError ** error))cloudBlock{
     
     NSOperationQueue * queue = [[NSOperationQueue alloc] init];
     
@@ -499,19 +491,25 @@ const char * queueReferenceKey = "queueReferenceKey";
         
         BOOL suc = [self destroy:error];
         
-        completionBlock(self, suc, error);
+        localBlock(self, suc, error);
     }];
 }
 
--(BOOL)destroy:(NSError **)error{
+-(BOOL)destroy:(NSError **)error cloudCompletionBlock:(void (^)(MMRecord *, BOOL, NSError *__autoreleasing *))cloudBlock{
     BOOL suc = false;
     if ([self valid:error] && [self validForDestroy:error]) {
         suc = [[[self class] store] executeDestroyOnRecord:self withValues:_values error:error];
     }
     if (suc) {
-        [self scheduleCloudDestroy];
+        [self scheduleCloudDestroyWithCompletionBlock:cloudBlock];
     }
     return suc;
+}
+
+-(BOOL)destroy:(NSError **)error{
+    
+    return [self destroy:error cloudCompletionBlock:nil];
+
 }
 
 -(BOOL)destroy{
@@ -544,19 +542,19 @@ const char * queueReferenceKey = "queueReferenceKey";
     
 }
 
--(void)scheduleCloudUpdate{
+-(void)scheduleCloudUpdateWithCompletionBlock:( void (^)(MMRecord * record, BOOL success, NSError **))completionBlock{
     
     [[self class]cloud];
     
 }
 
--(void)scheduleCloudCreate{
+-(void)scheduleCloudCreateWithCompletionBlock:( void (^)(MMRecord * record, BOOL success, NSError **))completionBlock{
     
     [[self class]cloud];
 
 }
 
--(void)scheduleCloudDestroy{
+-(void)scheduleCloudDestroyWithCompletionBlock:( void (^)(MMRecord * record, BOOL success, NSError **))completionBlock{
     
     [[self class]cloud];
 
@@ -924,12 +922,10 @@ const char * queueReferenceKey = "queueReferenceKey";
     
     NSString * selectorName = NSStringFromSelector(aSEL);
     
-    //NSMutableString * key = [NSStringFromSelector(aSEL) mutableCopy];
     MMAttribute * attr = nil;
     MMRelationship * rel = nil;
     NSString * propertyName = nil;
 
-    
     BOOL setter = NO;
     
     //entity retrieve
@@ -996,9 +992,7 @@ const char * queueReferenceKey = "queueReferenceKey";
             else{
                 class_addMethod([self class], aSEL, (IMP)setValueIMP, "v@:@");
             }
-        } else {
-                //class_addMethod([self class], aSEL,(IMP)valueIMP, "@@:");
-            
+        } else {            
             
             if ([type isEqualToString:@"int"]) {
                 class_addMethod([self class], aSEL, (IMP)valueIntIMP, "v@:@");

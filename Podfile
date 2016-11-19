@@ -1,3 +1,9 @@
-pod 'MarshmallowCore', :path => '/Users/kellyhuberty/Projects/MarshmallowCore'
-pod 'FMDB'
-pod 'couchbase-lite-ios'
+abstract_target 'All' do
+	pod 'MarshmallowCore', :path => '/Users/kellyhuberty/Projects/MarshmallowCore'
+	pod 'FMDB'
+	target 'MarshmallowOrmament' do
+	end  
+	target 'OrmamentTests' do
+	end
+end
+

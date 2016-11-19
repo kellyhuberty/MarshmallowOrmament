@@ -7,6 +7,7 @@
 //
 
 #import "MMSchemaMigration.h"
+#import "MMVersionString.h"
 
 @implementation MMSchemaMigration
 
@@ -21,8 +22,6 @@
     else{
         migration = [[MMSchemaMigration alloc]initWithDictionary:dictionary entityDictionary:nil];
     }
-    
-    MMAutorelease(migration);
     
     return migration;
     
@@ -77,8 +76,8 @@
     
     self = [super init];
     if(self){
-        _olderSchema = MMRetain(oldSchema);
-        _newerSchema = MMRetain(newSchema);
+        _olderSchema = (oldSchema);
+        _newerSchema = (newSchema);
         [self setOptions:options];
         
     }
@@ -89,7 +88,7 @@
 
 +(instancetype)migrationForOldSchema:(MMSchema *)oldSchema newSchema:(MMSchema *)newSchema{
     
-   return MMAutorelease([[[self class]alloc] initWithOldSchema:(MMSchema *)oldSchema newSchema:(MMSchema *)newSchema]);
+   return [[[self class]alloc] initWithOldSchema:(MMSchema *)oldSchema newSchema:(MMSchema *)newSchema];
     
 }
 

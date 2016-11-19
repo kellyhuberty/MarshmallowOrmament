@@ -12,7 +12,8 @@
 #import "MMSchemaMigration.h"
 
 #import "MMService.h"
-
+#import "MMLogger.h"
+#import "MMVersionString.h"
 @implementation MMOrmamentManager
 
 
@@ -33,8 +34,6 @@
 
 
 +(void)resetSharedManager{
-    
-    MMRelease(sharedManager);
     
     sharedManager = nil;
     
@@ -149,7 +148,7 @@
     
     NSLog(@"url path__ %@ string__ %@", path, string);
     
-    return MMAutorelease([[MMSchema alloc]initWithDictionary:dictionary]);
+    return [[MMSchema alloc]initWithDictionary:dictionary];
     
 }
 

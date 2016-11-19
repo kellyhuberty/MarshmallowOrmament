@@ -26,13 +26,43 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "OrmamentTests/MMManualRelationshipTests.m"
-            timestampString = "483159375.660852"
+            timestampString = "501288312.405537"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "594"
-            endingLineNumber = "594"
+            startingLineNumber = "595"
+            endingLineNumber = "595"
             landmarkName = "-testForeignKeyOnIntermediates_DeleteItem_PersistenceCheck"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MarshmallowOrmament/MMRecord.m"
+            timestampString = "501288654.642215"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "678"
+            endingLineNumber = "678"
+            landmarkName = "+newStoreRequest"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../MarshmallowCore/MarshmallowCore/MMUtility.m"
+            timestampString = "501288312.405537"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "49"
+            endingLineNumber = "49">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

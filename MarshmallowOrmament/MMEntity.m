@@ -13,7 +13,7 @@
 #import "MMRelationship.h"
 #import "MMRecord.h"
 #import "MMProperty.h"
-
+#import "MMRelationshipSet.h"
 #import <objc/runtime.h>
 
 @interface MMEntity ()
@@ -142,8 +142,6 @@ static NSString * classPrefix;
 +(instancetype)entityWithRecordClass:(Class)aClass{
     
     MMEntity * instance = [[self alloc]initWithRecordClass:aClass];
-    
-    MMAutorelease(instance);
     
     return instance;
     
@@ -466,10 +464,7 @@ static NSString * classPrefix;
 
 -(void)setName:(NSString *)name{
    
-   // MMRelease(_entityDescription);
-   // _entityDescription = [MMCoreData entityDescriptorWithName:name];
-    MMRelease(_name);
-    _name = MMRetain(name);
+    _name = name;
     
 }
 
@@ -634,7 +629,7 @@ static NSString * classPrefix;
 //}
 
 +(void)setModelClassNamePrefix:(NSString *)prefix{
-    classPrefix = MMRetain([prefix uppercaseString]);
+    classPrefix = [prefix uppercaseString];
 }
 
 //-(NSString *)createTableSQL{
@@ -731,27 +726,6 @@ static NSString * classPrefix;
     
     MMLog(@"    }");
     
-    
-}
-
-
--(void)dealloc{
-    
-    
-    MMRelease(_name);
-    MMRelease(_modelClassName);
-    MMRelease(_idKeys);
-    //MMRelease( _defaultEntityMap);
-    //MMRelease(_entityDescription);
-    
-        //MMDataMap * _recordMap;
-    
-    
-#if __has_feature(objc_arc)
-    
-#else
-    [super dealloc];
-#endif
     
 }
 

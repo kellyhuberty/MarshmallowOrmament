@@ -6,7 +6,6 @@
 //  Copyright (c) 2014 Kelly Huberty. All rights reserved.
 //
 
-#import "MMSet.h"
 //#import "MMStore.h"
 #import "MMResultsSet.h"
 @interface MMRecordSet : MMResultsSet{

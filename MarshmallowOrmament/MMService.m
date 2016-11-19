@@ -12,6 +12,9 @@
 #import "MMRecordSet.h"
 #import "MMOrmManager.h"
 #import "MMPreferences.h"
+#import "MMEntity.h"
+#import "MMRelationshipSet.h"
+#import "MMVersionString.h"
 
 //static NSMutableDictionary * storesByThread;
 
@@ -59,7 +62,7 @@ static dispatch_queue_t activeRecordDispatchQueue;
     self = [super init];
     if (self) {
 
-        _schema = MMRetain(schema);
+        _schema = schema;
         
     }
     return self;
@@ -244,7 +247,6 @@ static dispatch_queue_t activeRecordDispatchQueue;
         
         [set addObject:rec];
         
-        MMRelease(set);
         
     }
     

@@ -5,9 +5,10 @@
 //  Created by Kelly Huberty on 11/8/13.
 //  Copyright (c) 2013 Kelly Huberty. All rights reserved.
 //
-
-//#import "MMUtility.h"
-
+#import "MMVersionString.h"
+#import "MMEntity.h"
+#import "MMSet.h"
+#import "MMUtility.h"
 #import "MMSchema.h"
 #import "MMAutoRelatedEntity.h"
 #import "MMSchemaMigration.h"
@@ -130,7 +131,7 @@ NSArray * MMGetSubclasses(Class parentClass)
     
     NSLog(@"schema name:%@ ver:%@", name, ver);
     
-    return MMAutorelease([[MMSchema alloc]initWithDictionary:[self schemaDictionaryWithName:name version:ver]]);
+    return [[MMSchema alloc]initWithDictionary:[self schemaDictionaryWithName:name version:ver]];
     
 }
 
@@ -282,7 +283,7 @@ NSArray * MMGetSubclasses(Class parentClass)
         
     }
     
-    NSDictionary * dict = MMRetain([NSDictionary dictionaryWithContentsOfFile:path]);
+    NSDictionary * dict = [NSDictionary dictionaryWithContentsOfFile:path];
     
     
     if(!dict){
@@ -317,7 +318,6 @@ NSArray * MMGetSubclasses(Class parentClass)
     
         if (dict[@"name"]){
             _name = [dict[@"name"] copy];
-            MMRetain(_name);
         }
         else{
             [MMException(@"Schema Dictionary contains no name", nil, nil) raise];
@@ -332,15 +332,12 @@ NSArray * MMGetSubclasses(Class parentClass)
         if (dict[@"storeClassName"]){
             _storeClassName = [dict[@"storeClassName"] copy];
             
-            MMRetain(_storeClassName);
         }
         else{
             
         }
         if (dict[@"cloudClassName"]){
             _cloudClassName = [dict[@"cloudClassName"] copy];
-            
-            MMRetain(_cloudClassName);
         }
         else{
             
@@ -363,7 +360,6 @@ NSArray * MMGetSubclasses(Class parentClass)
                 
                 [entities addObject:entity];
                 
-                MMAutorelease(entity);
             }
             
             self.entities = entities;
@@ -704,7 +700,6 @@ NSArray * MMGetSubclasses(Class parentClass)
 
 -(void)setEntityArray:(NSArray *)array{
     
-    MMRelease(_entities);
     
     //_entities = [[NSMutableDictionary alloc]init];
     //_entities = MMSet arrayWithArray:
@@ -837,29 +832,5 @@ NSArray * MMGetSubclasses(Class parentClass)
     MMLog(@"}");
     
 }
-
-//-(BOOL)performMutation:(MMSchemaMutation *)mutation{
-//    
-//}
-//
-//
-//
-
-
-- (void)dealloc
-{
-    
-    MMRelease(_name);
-    MMRelease(_version);
-    MMRelease(_entities);
-    MMRelease(_modelClassNameIndex);
-    
-    #if __has_feature(objc_arc)
-    #else
-    [super dealloc];
-    #endif
-}
-
-
 
 @end

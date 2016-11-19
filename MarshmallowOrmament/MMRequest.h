@@ -7,9 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "MMService.h"
-#import "MMOrmMeta.h"
 
+
+@class MMRecordSet;
+@class MMService;
+@class MMConditional;
+@class MMSet;
+@class MMResultsSet;
 
 typedef void (^completionBlock)(MMSet *, NSError *__autoreleasing *);
 
@@ -67,8 +71,8 @@ typedef void (^completionBlock)(MMSet *, NSError *__autoreleasing *);
 @property(atomic, copy) void (^completionBlock)(MMSet* set, NSError *__autoreleasing* error);
 
 
--(id)init;
--(id)initWithService:(MMService *)store classname:(NSString *)className;
+-(instancetype)init;
+-(instancetype)initWithService:(MMService *)store classname:(NSString *)className;
 
 -(MMResultsSet *)loadRequest:(NSError**) error;
 

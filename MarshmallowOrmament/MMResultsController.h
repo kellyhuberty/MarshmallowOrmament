@@ -8,12 +8,13 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
-#import "MMRequest.h"
-#import "MMSet.h"
-#import "MMSectionDescriptor.h"
 #import "MMResultsControllerAbstract.h"
-#import "MMRecordLoadingPlaceholder.h"
-
+@class MMSet;
+@class MMResultsSet;
+@class MMRequest;
+@class MMSectionDescriptor;
+@class MMResultsControllerAbstract;
+@class MMRecordLoadingPlaceholder;
 
 @protocol MMResultsControllerDelegate <NSFetchedResultsControllerDelegate>
 

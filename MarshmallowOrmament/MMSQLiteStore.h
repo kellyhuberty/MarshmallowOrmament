@@ -8,9 +8,9 @@
 
 #import <Foundation/Foundation.h>
 #import "MMStore.h"
-//#import <sqlite3.h>
 #import <FMDB/FMDB.h>
 
+@class MMResultsSet;
 @class MMRecord;
 
 @interface MMSQLiteStore:MMStore{

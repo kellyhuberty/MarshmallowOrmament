@@ -11,6 +11,8 @@
 #import "MMSet.h"
 #import "MMRelation.h"
 #import "MMRelater.h"
+#import "MMUtility.h"
+
 @implementation MMRelationship
 
 
@@ -32,7 +34,7 @@
 
 +(instancetype)relationshipWithDictionary:(NSDictionary *)dict{
     
-    return MMAutorelease([[[self class] alloc] initWithDictionary:dict]);
+    return [[[self class] alloc] initWithDictionary:dict];
     
 }
 

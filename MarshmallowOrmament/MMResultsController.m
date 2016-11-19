@@ -5,12 +5,15 @@
 //  Created by Kelly Huberty on 1/6/15.
 //
 //
-
+#import "MMRecordLoadingPlaceholder.h"
+#import "MMResultsSet.h"
 #import "MMResultsController.h"
 #import "MMResultsSection.h"
 #import "MMUtility.h"
 #import "MMRecord.h"
+#import "MMRequest.h"
 #import <UIKit/UIKit.h>
+#import "MMSectionDescriptor.h"
 @implementation MMResultsController
 
 -(instancetype)initWithRequest:(MMRequest *)request{

@@ -19,7 +19,8 @@
 
 #import <Foundation/Foundation.h>
 #import "MMSchemaObject.h"
-#import "MMProperty.h"
+@class MMProperty;
+
 @interface MMAttribute : MMSchemaObject<NSCopying>{
     
     

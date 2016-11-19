@@ -7,12 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "MMUtility.h"
-#import "MMVersionString.h"
-#import "MMEntity.h"
-#import "MMSet.h"
-#import "MMSchemaObject.h"
 
+@class MMVersionString;
+@class MMEntity;
+@class MMSet;
+@class MMSchemaObject;
+#import "MMSchemaObject.h"
 
 
 @interface MMSchema : MMSchemaObject{

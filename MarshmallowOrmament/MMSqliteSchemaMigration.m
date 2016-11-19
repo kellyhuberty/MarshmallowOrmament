@@ -8,6 +8,7 @@
 
 #import "MMSqliteSchemaMigration.h"
 #import "MMSqliteStore.h"
+#import "MMEntity.h"
 
 @implementation MMSqliteSchemaMigration
 

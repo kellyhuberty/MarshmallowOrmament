@@ -12,7 +12,8 @@
 #import "MMRecord.h"
 #import "TSTNote.h"
 #import "MMSQLiteRequest.h"
-
+#import "MMSet.h"
+#import "MMLogger.h"
 @interface MMRelationshipTests : XCTestCase
 
 @end

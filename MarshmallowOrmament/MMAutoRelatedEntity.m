@@ -32,9 +32,7 @@
 +(instancetype)autoRelatedEntityWithAutoRelationships:(NSArray *)relationships{
     
     MMAutoRelatedEntity * en = [[[self class] alloc]initWithAutoRelationships:relationships];
-    
-    MMAutorelease(en);
-    
+        
     return en;
     
 }

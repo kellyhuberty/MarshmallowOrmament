@@ -8,10 +8,8 @@
 
 #import <XCTest/XCTest.h>
 #import "MMSchema.h"
-#import "MMSQLiteSchema.h"
 #import "MMSQLiteStore.h"
-
-    //#import <FMDB/FMDB.h>
+#import "MMUtility.h"
 
 @interface MMAutoSchemaTests : XCTestCase{
     
@@ -76,9 +74,6 @@
 - (void)testAutoSchema
 {
     
-    
-    MMSetArcEnabled();
-    
     MMSchema * schema;
     
     
@@ -101,9 +96,7 @@
 
 - (void)testBuildFileInvalid
 {
-    
-    MMSetArcEnabled();
-    
+        
     MMSchema * schema;
     
         //NSArray * path = [[NSBundle bundleForClass:[self class]] pathsForResourcesOfType:@"plist" inDirectory:nil];

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		39E01720BD12AE6D7553905B /* libPods-All-MarshmallowOrmament.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CF7295B0D4556F9530AE31D9 /* libPods-All-MarshmallowOrmament.a */; };
+		551C064B44735F14CC3DB25C /* libPods-All-OrmamentTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 23D9A42EE3CF96AC557C69C2 /* libPods-All-OrmamentTests.a */; };
 		C7199DCC1A637ACF00903D7C /* MMResultsController.m in Sources */ = {isa = PBXBuildFile; fileRef = C7199DC91A637ACF00903D7C /* MMResultsController.m */; };
 		C7199DCE1A637ACF00903D7C /* MMResultsSection.m in Sources */ = {isa = PBXBuildFile; fileRef = C7199DCB1A637ACF00903D7C /* MMResultsSection.m */; };
 		C7265A711B5BF33200866343 /* noteit.plist in Resources */ = {isa = PBXBuildFile; fileRef = C75F60241B5BF0AC005A3DD6 /* noteit.plist */; };
@@ -78,7 +80,7 @@
 		C7E2F52C19ED72C000B2064F /* noteit__0_2_0.plist in Resources */ = {isa = PBXBuildFile; fileRef = C7CEBE9E19E322A40094E4A8 /* noteit__0_2_0.plist */; };
 		C7F2145F196CF05A00002371 /* MMRecordTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C7F2145E196CF05A00002371 /* MMRecordTests.m */; };
 		C7FDE00C1C9E0AFB005ABC10 /* TSTTag.m in Sources */ = {isa = PBXBuildFile; fileRef = C7FDE00B1C9E0AFB005ABC10 /* TSTTag.m */; };
-		F66B7131FB1946A18756E921 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E5A1237B9E264435AAC8ECB3 /* libPods.a */; };
+		F3404A1DAA1C42B63DF983D5 /* libPods-MarshmallowOrmament.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EEF2830D62E3AFC9F9CD8D9D /* libPods-MarshmallowOrmament.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -105,7 +107,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		B21B32DAD641BEE99523B067 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		1E60FD46D57EDD54E47EDB09 /* Pods-MarshmallowOrmament.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MarshmallowOrmament.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MarshmallowOrmament/Pods-MarshmallowOrmament.debug.xcconfig"; sourceTree = "<group>"; };
+		23D9A42EE3CF96AC557C69C2 /* libPods-All-OrmamentTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-All-OrmamentTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B33BC06211694A654A000343 /* Pods-All-OrmamentTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-All-OrmamentTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-All-OrmamentTests/Pods-All-OrmamentTests.debug.xcconfig"; sourceTree = "<group>"; };
 		C7199DC81A637ACF00903D7C /* MMResultsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMResultsController.h; sourceTree = "<group>"; };
 		C7199DC91A637ACF00903D7C /* MMResultsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMResultsController.m; sourceTree = "<group>"; };
 		C7199DCA1A637ACF00903D7C /* MMResultsSection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMResultsSection.h; sourceTree = "<group>"; };
@@ -241,8 +245,12 @@
 		C7F2145E196CF05A00002371 /* MMRecordTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMRecordTests.m; sourceTree = "<group>"; };
 		C7FDE00A1C9E0AFB005ABC10 /* TSTTag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSTTag.h; sourceTree = "<group>"; };
 		C7FDE00B1C9E0AFB005ABC10 /* TSTTag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSTTag.m; sourceTree = "<group>"; };
-		E5A1237B9E264435AAC8ECB3 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		EA40C49C3D687741A0791EB5 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		CF7295B0D4556F9530AE31D9 /* libPods-All-MarshmallowOrmament.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-All-MarshmallowOrmament.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D19119AA6445DABD2517B0E5 /* Pods-All-OrmamentTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-All-OrmamentTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-All-OrmamentTests/Pods-All-OrmamentTests.release.xcconfig"; sourceTree = "<group>"; };
+		D9F097B6ECE0C90592012EF3 /* Pods-All-MarshmallowOrmament.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-All-MarshmallowOrmament.release.xcconfig"; path = "Pods/Target Support Files/Pods-All-MarshmallowOrmament/Pods-All-MarshmallowOrmament.release.xcconfig"; sourceTree = "<group>"; };
+		E7935D9DBCD13C73DD2DF459 /* Pods-MarshmallowOrmament.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MarshmallowOrmament.release.xcconfig"; path = "Pods/Target Support Files/Pods-MarshmallowOrmament/Pods-MarshmallowOrmament.release.xcconfig"; sourceTree = "<group>"; };
+		EEF2830D62E3AFC9F9CD8D9D /* libPods-MarshmallowOrmament.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MarshmallowOrmament.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		FF45C23A2979F3694239C25E /* Pods-All-MarshmallowOrmament.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-All-MarshmallowOrmament.debug.xcconfig"; path = "Pods/Target Support Files/Pods-All-MarshmallowOrmament/Pods-All-MarshmallowOrmament.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -251,7 +259,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				C74389081963D134000D50AF /* Foundation.framework in Frameworks */,
-				F66B7131FB1946A18756E921 /* libPods.a in Frameworks */,
+				F3404A1DAA1C42B63DF983D5 /* libPods-MarshmallowOrmament.a in Frameworks */,
+				39E01720BD12AE6D7553905B /* libPods-All-MarshmallowOrmament.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -261,17 +270,22 @@
 			files = (
 				C7C3D9FA19EDDAC9000EEE19 /* libMarshmallowOrmament.a in Frameworks */,
 				C7A346081965B46500EC08BB /* Foundation.framework in Frameworks */,
+				551C064B44735F14CC3DB25C /* libPods-All-OrmamentTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		2805A29EE068316727DF3CCD /* Pods */ = {
+		1D30EC94E4058D2CF9A68BBE /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				EA40C49C3D687741A0791EB5 /* Pods.debug.xcconfig */,
-				B21B32DAD641BEE99523B067 /* Pods.release.xcconfig */,
+				1E60FD46D57EDD54E47EDB09 /* Pods-MarshmallowOrmament.debug.xcconfig */,
+				E7935D9DBCD13C73DD2DF459 /* Pods-MarshmallowOrmament.release.xcconfig */,
+				FF45C23A2979F3694239C25E /* Pods-All-MarshmallowOrmament.debug.xcconfig */,
+				D9F097B6ECE0C90592012EF3 /* Pods-All-MarshmallowOrmament.release.xcconfig */,
+				B33BC06211694A654A000343 /* Pods-All-OrmamentTests.debug.xcconfig */,
+				D19119AA6445DABD2517B0E5 /* Pods-All-OrmamentTests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -291,6 +305,22 @@
 			name = ResultsControllers;
 			sourceTree = "<group>";
 		};
+		C721468B1DDECA640054CE6E /* MarshmallowCloud */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = MarshmallowCloud;
+			path = MarshmallowOrmamentTests;
+			sourceTree = "<group>";
+		};
+		C721468C1DDECA9A0054CE6E /* MarshmallowCloudTests */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = MarshmallowCloudTests;
+			path = MarshmallowOrmamentTests;
+			sourceTree = "<group>";
+		};
 		C74388FB1963D134000D50AF = {
 			isa = PBXGroup;
 			children = (
@@ -304,11 +334,13 @@
 				C733B46C197830B100116BBC /* MMRelationshipSet.h */,
 				C733B46D197830B100116BBC /* MMRelationshipSet.m */,
 				C74389091963D134000D50AF /* MarshmallowOrmament */,
+				C721468B1DDECA640054CE6E /* MarshmallowCloud */,
 				C743891D1963D134000D50AF /* MarshmallowOrmamentTests */,
+				C721468C1DDECA9A0054CE6E /* MarshmallowCloudTests */,
 				C7A3460A1965B46500EC08BB /* OrmamentTests */,
 				C74389061963D134000D50AF /* Frameworks */,
 				C74389051963D134000D50AF /* Products */,
-				2805A29EE068316727DF3CCD /* Pods */,
+				1D30EC94E4058D2CF9A68BBE /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -333,7 +365,9 @@
 				C74389071963D134000D50AF /* Foundation.framework */,
 				C74389151963D134000D50AF /* XCTest.framework */,
 				C74389181963D134000D50AF /* UIKit.framework */,
-				E5A1237B9E264435AAC8ECB3 /* libPods.a */,
+				EEF2830D62E3AFC9F9CD8D9D /* libPods-MarshmallowOrmament.a */,
+				CF7295B0D4556F9530AE31D9 /* libPods-All-MarshmallowOrmament.a */,
+				23D9A42EE3CF96AC557C69C2 /* libPods-All-OrmamentTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -498,12 +532,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C74389271963D134000D50AF /* Build configuration list for PBXNativeTarget "MarshmallowOrmament" */;
 			buildPhases = (
-				EF78FFD8F8FB4FDCB2E78701 /* Check Pods Manifest.lock */,
+				BA53AA3C53D92499C62729E4 /* [CP] Check Pods Manifest.lock */,
 				C74389001963D134000D50AF /* Sources */,
 				C74389011963D134000D50AF /* Frameworks */,
 				C74389021963D134000D50AF /* CopyFiles */,
-				238F4A8677294A7E97C29910 /* Copy Pods Resources */,
 				C79C6F791B30CD2A00EBAB55 /* ShellScript */,
+				25BF29946051BB6DD7439288 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -518,12 +552,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C7A346151965B46500EC08BB /* Build configuration list for PBXNativeTarget "OrmamentTests" */;
 			buildPhases = (
-				0CD8BD6446862DC25730EA83 /* Check Pods Manifest.lock */,
+				DE4CF47B7F2151A984ABE16F /* [CP] Check Pods Manifest.lock */,
 				C7A346021965B46500EC08BB /* Sources */,
 				C7A346031965B46500EC08BB /* Frameworks */,
 				C7A346041965B46500EC08BB /* Resources */,
-				B5A7BE3CA35614B0014B599D /* Copy Pods Resources */,
 				C79C6F781B30CC5700EBAB55 /* ShellScript */,
+				6816F8A8D8C6993705AFDD1B /* [CP] Embed Pods Frameworks */,
+				5D97DDA55A427A8E2CD75BAD /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -584,49 +619,64 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		0CD8BD6446862DC25730EA83 /* Check Pods Manifest.lock */ = {
+		25BF29946051BB6DD7439288 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-All-MarshmallowOrmament/Pods-All-MarshmallowOrmament-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		238F4A8677294A7E97C29910 /* Copy Pods Resources */ = {
+		5D97DDA55A427A8E2CD75BAD /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-All-OrmamentTests/Pods-All-OrmamentTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		B5A7BE3CA35614B0014B599D /* Copy Pods Resources */ = {
+		6816F8A8D8C6993705AFDD1B /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Copy Pods Resources";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-All-OrmamentTests/Pods-All-OrmamentTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BA53AA3C53D92499C62729E4 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		C79C6F781B30CC5700EBAB55 /* ShellScript */ = {
@@ -655,19 +705,19 @@
 			shellPath = /bin/sh;
 			shellScript = "# APPLEDOC_PATH=`which appledoc`\n# if [ $APPLEDOC_PATH ]; then\n#\n# appledoc  --project-name ${PROJECT_NAME}  --project-company \"KellyHuberty\"  --company-id \"com.kellyhuberty\"  --ignore \".m\"  --ignore \"Pods\"  --explicit-crossref  --keep-undocumented-objects  --keep-undocumented-members  --no-repeat-first-par  --no-warn-missing-arg  --no-warn-undocumented-object  --no-warn-undocumented-member  --no-warn-empty-description  --docset-bundle-id ${PROJECT_NAME}  --docset-bundle-name ${PROJECT_NAME}  --docset-install-path ${PROJECT_DIR}  --output ${PROJECT_DIR}  ${PROJECT_DIR}\n#\n# fi";
 		};
-		EF78FFD8F8FB4FDCB2E78701 /* Check Pods Manifest.lock */ = {
+		DE4CF47B7F2151A984ABE16F /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -780,7 +830,6 @@
 /* Begin XCBuildConfiguration section */
 		C74389251963D134000D50AF /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = EA40C49C3D687741A0791EB5 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -820,7 +869,6 @@
 		};
 		C74389261963D134000D50AF /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B21B32DAD641BEE99523B067 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -854,13 +902,13 @@
 		};
 		C74389281963D134000D50AF /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = EA40C49C3D687741A0791EB5 /* Pods.debug.xcconfig */;
+			baseConfigurationReference = FF45C23A2979F3694239C25E /* Pods-All-MarshmallowOrmament.debug.xcconfig */;
 			buildSettings = {
 				DSTROOT = /tmp/MarshmallowOrmament.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MarshmallowOrmament/MarshmallowOrmament-Prefix.pch";
 				ONLY_ACTIVE_ARCH = YES;
-				OTHER_LDFLAGS = "-ObjC";
+				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
@@ -868,13 +916,13 @@
 		};
 		C74389291963D134000D50AF /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B21B32DAD641BEE99523B067 /* Pods.release.xcconfig */;
+			baseConfigurationReference = D9F097B6ECE0C90592012EF3 /* Pods-All-MarshmallowOrmament.release.xcconfig */;
 			buildSettings = {
 				DSTROOT = /tmp/MarshmallowOrmament.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MarshmallowOrmament/MarshmallowOrmament-Prefix.pch";
 				ONLY_ACTIVE_ARCH = YES;
-				OTHER_LDFLAGS = "-ObjC";
+				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
@@ -882,7 +930,7 @@
 		};
 		C7A346161965B46500EC08BB /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = EA40C49C3D687741A0791EB5 /* Pods.debug.xcconfig */;
+			baseConfigurationReference = B33BC06211694A654A000343 /* Pods-All-OrmamentTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				BUNDLE_LOADER = "";
@@ -912,7 +960,7 @@
 		};
 		C7A346171965B46500EC08BB /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B21B32DAD641BEE99523B067 /* Pods.release.xcconfig */;
+			baseConfigurationReference = D19119AA6445DABD2517B0E5 /* Pods-All-OrmamentTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;

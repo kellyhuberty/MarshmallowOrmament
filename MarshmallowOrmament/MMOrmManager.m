@@ -6,10 +6,12 @@
 //  Copyright (c) 2015 Kelly Huberty. All rights reserved.
 //
 
+#import "MMUtility.h"
 #import "MMOrmManager.h"
 #import "MMSchema.h"
 #import "MMService.h"
 #import "MMServiceMigrationDelegate.h"
+#import "MMLogger.h"
 
 static MMOrmManager * manager = nil;
 

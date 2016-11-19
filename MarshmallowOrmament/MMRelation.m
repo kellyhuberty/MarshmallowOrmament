@@ -83,7 +83,7 @@
 
 +(instancetype)relationWithRelationFormat:(NSString *)format{
     MMRelation * rel= [[MMRelation alloc]initWithRelationFormat:format];
-    MMAutorelease(rel);
+    rel;
     return rel;
 }
 

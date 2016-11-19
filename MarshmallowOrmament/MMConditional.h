@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "MMService.h"
+@class MMSet;
 
 @interface MMConditional : NSObject{
     

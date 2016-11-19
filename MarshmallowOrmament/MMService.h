@@ -15,13 +15,12 @@
 
 
 #import "MMRelationship.h"
-#import "MMRelationshipSet.h"
 
-#import "MMVersionString.h"
 #import "MMConditional.h"
 
 @class MMRequest;
 @class MMRecord;
+@class MMRelationshipSet;
 
 @interface MMService : NSObject{
 

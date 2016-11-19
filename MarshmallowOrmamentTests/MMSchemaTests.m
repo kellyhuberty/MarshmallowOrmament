@@ -11,7 +11,7 @@
 #import "MMSQLiteSchema.h"
 #import "MMSQLiteStore.h"
 #import "MMOrmamentManager.h"
-
+#import "MMLogger.h"
 //#import <FMDB/FMDB.h>
 
 
@@ -87,7 +87,6 @@
 {
     
     
-    MMSetArcEnabled();
     
     MMSchema * schema;
     
@@ -118,7 +117,6 @@
 - (void)testBuildFileInvalid
 {
     
-    MMSetArcEnabled();
 
     MMSchema * schema;
     

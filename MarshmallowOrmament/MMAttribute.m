@@ -8,6 +8,7 @@
 
 #import "MMUtility.h"
 #import "MMAttribute.h"
+#import "MMProperty.h"
 
 @interface MMAttribute ()
 
@@ -32,23 +33,6 @@
 //static NSDictionary * dict;
 
 
-#pragma mark dealloc
-- (void)dealloc
-{
-    
-    mmRelease(_displayName);
-    mmRelease(_name);
-    mmRelease(_classname);
-    mmRelease(_controlName);
-    mmRelease(_controlProperty);
-    mmRelease(_controlOptions);
-    mmRelease(_primativeType);
-    mmRelease(_defaultValue);
-#if __has_feature(objc_arc)
-#else
-    [super dealloc];
-#endif
-}
 
 #pragma mark Init
 -(id)init{
@@ -173,7 +157,7 @@
         //_classname = aClassName;
         
         
-        _controlProperty = mmRetain(propertyName);
+        _controlProperty = propertyName;
         
         _controlOptions = [[NSMutableDictionary alloc]initWithDictionary:options];
         
@@ -188,14 +172,14 @@
 
 +(MMAttribute *)attributeWithName:(NSString *)aName displayName:(NSString *)aDisplayName controlClassName:(NSString *)controlClassName enforcedClassName:(NSString *)aClassName{
     
-    return (MMAttribute *)mmAutorelease([[MMAttribute alloc] initWithName:aName displayName:aDisplayName controlClassName:controlClassName enforcedClassName:aClassName]);
+    return [[MMAttribute alloc] initWithName:aName displayName:aDisplayName controlClassName:controlClassName enforcedClassName:aClassName];
     
 }
 
 
 +(MMAttribute *)attributeWithName:(NSString *)aName displayName:(NSString *)aDisplayName controlClassName:(NSString *)controlClassName controlPropertyName:(NSString *)propertyName controlOptions:(NSDictionary *)dictionary{
     
-    MMAttribute * attr = mmAutorelease([[MMAttribute alloc] initWithName:aName displayName:aDisplayName controlClassName:controlClassName controlPropertyName:propertyName controlOptions:dictionary]);
+    MMAttribute * attr = [[MMAttribute alloc] initWithName:aName displayName:aDisplayName controlClassName:controlClassName controlPropertyName:propertyName controlOptions:dictionary];
     
     
     return attr;
@@ -264,11 +248,11 @@
 
 +(MMAttribute *)attributeWithDictionary:(NSDictionary *)dict
 {
-    return mmAutorelease([[MMAttribute alloc]initWithDictionary:dict]);
+    return [[MMAttribute alloc]initWithDictionary:dict];
 }
 
 +(MMAttribute *)attributeWithProperty:(MMProperty *)property{
-    return mmAutorelease([[MMAttribute alloc]initWithProperty:property]);
+    return [[MMAttribute alloc]initWithProperty:property];
 
 }
 

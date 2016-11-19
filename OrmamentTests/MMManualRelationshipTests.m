@@ -15,6 +15,7 @@
 #import "TSTTag.h"
 #import "TSTNotebook.h"
 #import "MMSQLiteStore.h"
+#import "MMRelationshipSet.h"
 
 @interface MMManualRelationshipTests : XCTestCase
 
