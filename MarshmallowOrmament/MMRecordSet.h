@@ -14,5 +14,6 @@
     
     
 }
-//@property(nonatomic)MMRequest * request;
+-(BOOL)willAddObject:(id)obj;
+-(BOOL)willRemoveObject:(id)obj;
 @end

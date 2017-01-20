@@ -305,22 +305,6 @@
 			name = ResultsControllers;
 			sourceTree = "<group>";
 		};
-		C721468B1DDECA640054CE6E /* MarshmallowCloud */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = MarshmallowCloud;
-			path = MarshmallowOrmamentTests;
-			sourceTree = "<group>";
-		};
-		C721468C1DDECA9A0054CE6E /* MarshmallowCloudTests */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = MarshmallowCloudTests;
-			path = MarshmallowOrmamentTests;
-			sourceTree = "<group>";
-		};
 		C74388FB1963D134000D50AF = {
 			isa = PBXGroup;
 			children = (
@@ -334,9 +318,7 @@
 				C733B46C197830B100116BBC /* MMRelationshipSet.h */,
 				C733B46D197830B100116BBC /* MMRelationshipSet.m */,
 				C74389091963D134000D50AF /* MarshmallowOrmament */,
-				C721468B1DDECA640054CE6E /* MarshmallowCloud */,
 				C743891D1963D134000D50AF /* MarshmallowOrmamentTests */,
-				C721468C1DDECA9A0054CE6E /* MarshmallowCloudTests */,
 				C7A3460A1965B46500EC08BB /* OrmamentTests */,
 				C74389061963D134000D50AF /* Frameworks */,
 				C74389051963D134000D50AF /* Products */,

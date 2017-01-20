@@ -58,66 +58,14 @@ NSArray * MMGetSubclasses(Class parentClass)
 
 @implementation MMSchema
 
-
-//+(void)initialize{
-//    
-//    //MMRelease(globalSchemas);
-//
-//    globalSchemas = [[NSMutableDictionary alloc] init];
-//    
-//    
-//}
-
 +(void)registerSchema:(MMSchema *)schema{
     
     MMOrmamentManager * manager = [MMOrmamentManager sharedManager];
     NSMutableDictionary * globalSchemas = manager.schemas;
     
-//    NSMutableDictionary * schemaDicts = globalSchemas[schema.name];
-//    if (!schemaDicts) {
-//        globalSchemas[schema.name] = schemaDicts = [NSMutableDictionary dictionary];
-//    }
     globalSchemas[schema.name] = schema;
     
 }
-
-
-//+(MMSchema *)registeredSchemaWithName:(NSString *)name version:(NSString *)version{
-//    
-//    MMOrmamentManager * manager = [MMOrmamentManager sharedManager];
-//    NSMutableDictionary *  globalSchemas = manager.schemas;
-//    NSMutableDictionary * schemaDicts = globalSchemas[name];
-//    if (!schemaDicts) {
-//            //globalSchemas[schema.name] = schemaDicts = [NSMutableDictionary dictionary];
-//        return nil;
-//    
-//    }
-//    
-//    
-//    
-//    return [schemaDicts objectForKey:version];
-//    
-//}
-
-
-//+(MMSchema *)registeredSchemaWithName:(NSString *)name version:(NSString *)version{
-//
-//    MMOrmamentManager * manager = [MMOrmamentManager sharedManager];
-//    NSMutableDictionary *  globalSchemas = manager.schemas;
-//    NSMutableDictionary * schemaDicts = globalSchemas[name];
-//    if (!schemaDicts) {
-//            //globalSchemas[schema.name] = schemaDicts = [NSMutableDictionary dictionary];
-//        return nil;
-//
-//    }
-//
-//
-//
-//    return [schemaDicts objectForKey:version];
-//
-//}
-
-
 
 +(MMSchema *)registeredSchemaWithName:(NSString *)name{
 
@@ -160,28 +108,6 @@ NSArray * MMGetSubclasses(Class parentClass)
     
 }
 
-
-//+(NSString *)schemaIdentifierStringFromName:(NSString *)name version:(NSString *)ver{
-//    
-//    //NSLog(@"schema name file:%@", [NSString stringWithFormat:@"%@__%@", name, [[MMVersionString stringWithString:ver] pathString]]);
-//    
-//    //return [self schemaFromPlistPath: [NSString stringWithFormat:@"%@__%@", name, [[MMVersionString stringWithString:ver] pathString]]];
-//    
-//    return [NSString stringWithFormat:@"%@__%@", name, [[MMVersionString stringWithString:ver] pathString]];
-//    
-//}
-
-//+(MMSchema *)currentSchemaWithName:(NSString *)name{
-//    
-//    MMVersionString * ver = [[self class] currentVersionForSchemaName:name];
-//    
-//    NSLog(@"ver: %@", ver);
-//    
-//    return [self registeredSchemaWithName:name];
-//    
-//}
-
-
 +(NSArray *)allSchemas{
     
     MMOrmamentManager * manager = [MMOrmamentManager sharedManager];
@@ -190,17 +116,11 @@ NSArray * MMGetSubclasses(Class parentClass)
     
 }
 
-
-//static MMSchema * schema;
 -(id)initWithFilename:(NSString *)filename{
     
     MMLog(@"Init with filename.");
 
-    //NSString * fullFilename = [filename stringByAppendingString:@".schema"];
- //   NSBundle * bundle = [NSBundle mainBundle];
     NSString * path = [[NSBundle bundleForClass:[self class]] pathForResource:filename ofType:@"plist"];
-    
-    //NSString * path2 = bundle.bundlePath;
     
     if(!path){
         
@@ -209,11 +129,7 @@ NSArray * MMGetSubclasses(Class parentClass)
         
     }
     
-    
     NSDictionary * dict = [NSDictionary dictionaryWithContentsOfFile:path] ;
-    
-    
-    
     
     if(!dict){
         
@@ -221,7 +137,6 @@ NSArray * MMGetSubclasses(Class parentClass)
         return nil;
         
     }
-    
 
     if(self = [self initWithDictionary:dict]){
         
@@ -235,7 +150,6 @@ NSArray * MMGetSubclasses(Class parentClass)
     
     
     self = nil;
-    //if (!entities) {
     
         @try {
             self = [self initWithFilename:[NSString stringWithFormat:@"%@__%@",name,[[MMVersionString stringWithString:version] pathString]]];
@@ -250,23 +164,13 @@ NSArray * MMGetSubclasses(Class parentClass)
                 
             }
             
-            
-            
-            
-            
-            
         }
         @finally {
             
         }
-        
-    //}
-    
-    //_name = MMRetain(name);
+
     self.name = name;
     self.version = version;
-    //entities;
-    
     
     return self;
     
@@ -285,14 +189,12 @@ NSArray * MMGetSubclasses(Class parentClass)
     
     NSDictionary * dict = [NSDictionary dictionaryWithContentsOfFile:path];
     
-    
     if(!dict){
         
         [MMException(@"Dictionary not parseable.", @"MMFileException", nil) raise];
         return nil;
         
     }
-    
     
     if(self = [self initWithDictionary:dict]){
         
@@ -316,99 +218,65 @@ NSArray * MMGetSubclasses(Class parentClass)
     NSLog(@"schema name___%@", dict[@"name"]);
     
     
-        if (dict[@"name"]){
-            _name = [dict[@"name"] copy];
-        }
-        else{
-            [MMException(@"Schema Dictionary contains no name", nil, nil) raise];
-        }
-        if ( dict[@"version"] ){
-            _version = [[MMVersionString alloc] initWithString:(NSString *)dict[@"version"]];
-        }
-        else{
-            NSLog(@"Notice: MMSchema `%@` has an unset version number. Assuming version 1.0.0.", _name);
-            _version = [[MMVersionString alloc] initWithString:@"1.0.0"];
-        }
-        if (dict[@"storeClassName"]){
-            _storeClassName = [dict[@"storeClassName"] copy];
-            
-        }
-        else{
-            
-        }
-        if (dict[@"cloudClassName"]){
-            _cloudClassName = [dict[@"cloudClassName"] copy];
-        }
-        else{
-            
-        }
-        if ( dict[@"autoEntities"] ){
-            //_version = [[MMVersionString alloc] initWithString:(NSString *)dict[@"version"]];
-            self.autoEntities = YES;
+    if (dict[@"name"]){
+        _name = [dict[@"name"] copy];
+    }
+    else{
+        [MMException(@"Schema Dictionary contains no name", nil, nil) raise];
+    }
+    if ( dict[@"version"] ){
+        _version = [[MMVersionString alloc] initWithString:(NSString *)dict[@"version"]];
+    }
+    else{
+        NSLog(@"Notice: MMSchema `%@` has an unset version number. Assuming version 1.0.0.", _name);
+        _version = [[MMVersionString alloc] initWithString:@"1.0.0"];
+    }
+    if (dict[@"storeClassName"]){
+        _storeClassName = [dict[@"storeClassName"] copy];
+    }
+    else{
         
-        }
-        else if ( dict[@"entities"] != nil && [dict[@"entities"] isKindOfClass:[NSArray class]]){
-            NSArray * array = dict[@"entities"];
+    }
+    if (dict[@"cloudClassName"]){
+        _cloudClassName = [dict[@"cloudClassName"] copy];
+    }
+    else{
+        
+    }
+    if ( dict[@"autoEntities"] ){
+        self.autoEntities = YES;
+    
+    }
+    else if ( dict[@"entities"] != nil && [dict[@"entities"] isKindOfClass:[NSArray class]]){
+        NSArray * array = dict[@"entities"];
 
-            NSMutableArray * entities = [NSMutableArray array];
+        NSMutableArray * entities = [NSMutableArray array];
+        
+        for ( NSDictionary * entityDict in array ) {
             
-            for ( NSDictionary * entityDict in array ) {
-                
-                MMEntity * entity = [[[[self class]entityClass] alloc]initWithDictionary:entityDict];
-                
-                //[_autoRelationships addObjectsFromArray:[entity.relationships objectsWithValue:[NSNumber numberWithBool:true] forKey:@"autoRelated"]];
-                
-                [entities addObject:entity];
-                
-            }
+            MMEntity * entity = [[[[self class]entityClass] alloc]initWithDictionary:entityDict];
             
-            self.entities = entities;
-
-        }
-        else{
-            //do nothing really... for serious, you don't have any entities?
-        }
-        if ( dict[@"autoBuild"] ){
-            //_version = [[MMVersionString alloc] initWithString:(NSString *)dict[@"version"]];
-            self.autoBuild = [dict[@"autoBuild"] boolValue];
+            [entities addObject:entity];
             
-        }
-        if ( dict[@"storeMigrationDelegateClassName"] ) {
-            _storeMigrationDelegateClassname = dict[@"storeMigrationDelegateClassName"];
-        }
-        if ( dict[@"cloudMigrationDelegateClassName"] ) {
-            _cloudMigrationDelegateClassname = dict[@"cloudMigrationDelegateClassName"];
         }
         
-    
-    
-//        if ( dict[@"migrations"] ){
-//            
-//            NSArray * array = dict[@"migrations"];
-//            
-//            NSMutableArray * migrations = [NSMutableArray array];
-//            
-//            for ( NSDictionary * migrationDictionary in array ) {
-//                
-//                MMSchemaMigration * migration = [[MMSchemaMigration alloc]initWithDictionary:migrationDictionary];
-//                
-//                //[_autoRelationships addObjectsFromArray:[entity.relationships objectsWithValue:[NSNumber numberWithBool:true] forKey:@"autoRelated"]];
-//                
-//                [migrations addObject:migration];
-//                
-//                MMAutorelease(migration);
-//            }
-//            
-//            self.migrations = [MMSet arrayWithArray:migrations];
-//            
-//        }
-//        else{
-//            
-//            //NSLog(@"Notice: MMSchema `%@` has an unset version number. Assuming version 1.0.0.", _name);
-//            //_version = [[MMVersionString alloc] initWithString:@"1.0.0"];
-//        
-//        }
+        self.entities = entities;
 
+    }
+    else{
+        //do nothing really... for serious, you don't have any entities?
+    }
+    if ( dict[@"autoBuild"] ){
+        //_version = [[MMVersionString alloc] initWithString:(NSString *)dict[@"version"]];
+        self.autoBuild = [dict[@"autoBuild"] boolValue];
+        
+    }
+    if ( dict[@"storeMigrationDelegateClassName"] ) {
+        _storeMigrationDelegateClassname = dict[@"storeMigrationDelegateClassName"];
+    }
+    if ( dict[@"cloudMigrationDelegateClassName"] ) {
+        _cloudMigrationDelegateClassname = dict[@"cloudMigrationDelegateClassName"];
+    }
     
     return YES;
 
@@ -447,14 +315,11 @@ NSArray * MMGetSubclasses(Class parentClass)
     
     _autoEntities = autoEntities;
     
-    
     if(_autoEntities){
         
         [self autoLoadEntities];
         
     }
-    
-    
     
 }
 
@@ -645,20 +510,6 @@ NSArray * MMGetSubclasses(Class parentClass)
     [MMPreferences setValue:dict forKey:@"MMSchemaVersions"];
     
 }
-
-
-
-
-//
-//-(id)initWithName:(NSString *)name version:(MMVersionString *)version entities:(NSArray *)entities{
-//    
-//    NSString * _name;
-//    MMVersionString * _version;
-//        //NSDictionary * _upgradePath;
-//    NSMutableArray * _entities;
-//    
-//    
-//}
 
 
 -(id)init{

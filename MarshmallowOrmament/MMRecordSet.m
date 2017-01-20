@@ -10,4 +10,14 @@
 
 @implementation MMRecordSet
 
+-(BOOL)willAddObject:(id)obj{
+    
+    return [super willAddObject:obj];
+}
+-(BOOL)willRemoveObject:(id)obj{
+    
+    return [super willRemoveObject:obj];
+}
+
+
 @end

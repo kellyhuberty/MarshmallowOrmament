@@ -105,16 +105,8 @@ typedef enum{
 @property (atomic, readonly)BOOL deleted;
 @property (atomic, readonly)BOOL inserted;
 @property (atomic)BOOL dirty;
+@property (atomic)NSString * cloudChangeTag;
 
-
-//@property (nonatomic, retain)NSDictionary * values;
-//@property (nonatomic, readonly)NSString * identifier;
-//@property (nonatomic, readonly)NSDictionary * identifierDictionary;
-
-
-//@property (nonatomic, retain)MMEntity * mmEntity;
-//@property (nonatomic, retain)MMService * mmService;
-//@property (nonatomic, retain)NSMutableDictionary * mmValues;
 +(MMSet *)attributes;
 +(MMEntity *)entity;
 +(MMService *)store;
@@ -125,22 +117,28 @@ typedef enum{
 
 
 -(id)init;
--(BOOL)save:(NSError **)error;
+
 -(BOOL)save;
+-(BOOL)save:(NSError **)error;
+-(void)save:(NSError **)error
+        localCompletionBlock:( void (^)(MMRecord * record, BOOL success, NSError **))localBlock
+        cloudCompletionBlock:( void (^)(MMRecord * record, BOOL success, NSError **))cloudBlock;
+-(BOOL)save:(NSError **)error
+        cloudCompletionBlock:( void (^)(MMRecord * record, BOOL success, NSError **))completionBlock;
 
 +(instancetype)create:(NSDictionary*)values;
 
 
-//-(BOOL)delete:(NSError **)error;
-//-(BOOL)delete;
-
--(BOOL)destroy:(NSError **)error;
 -(BOOL)destroy;
+-(BOOL)destroy:(NSError **)error;
+-(void)destroy:(NSError **)error
+        localCompletionBlock:(void (^)(MMRecord * record, BOOL success, NSError ** error))localBlock
+        cloudCompletionBlock:(void (^)(MMRecord * record, BOOL success, NSError ** error))cloudBlock;
+-(BOOL)destroy:(NSError **)error cloudCompletionBlock:(void (^)(MMRecord *, BOOL, NSError *__autoreleasing *))cloudBlock;
+
+
 
 -(void)revert;
-
-
-
 -(BOOL)valid:(NSError **)err;
 -(BOOL)validForUpdate:(NSError **)err;
 -(BOOL)validForCreate:(NSError **)err;

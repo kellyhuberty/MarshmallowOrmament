@@ -314,18 +314,11 @@ const char * queueReferenceKey = "queueReferenceKey";
 }
 
 +(instancetype)findOne:(NSDictionary *)criteria{
-    
-    
-    
     return nil;
-    
 }
 
 +(instancetype)findMany:(NSDictionary *)criteria{
-    
-    
     return nil;
-    
 }
 
 +(instancetype)create{
@@ -336,13 +329,15 @@ const char * queueReferenceKey = "queueReferenceKey";
     //return rec;
 }
 
-+(void)create:(NSDictionary *)dictionary error:(NSError **)error completionBlock:( void (^)(MMRecord * record, BOOL success, NSError **))completionBlock{
++(void)create:(NSDictionary *)dictionary error:(NSError **)error
+    localCompletionBlock:( void (^)(MMRecord * record, BOOL success, NSError **))localBlock
+    cloudCompletionBlock:( void (^)(MMRecord * record, BOOL success, NSError **))cloudBlock{
     
     NSOperationQueue * queue = [[NSOperationQueue alloc] init];
     
     [queue addOperationWithBlock:^(){
         
-        MMRecord * rec = [self create:dictionary error:error];
+        MMRecord * rec = [self create:dictionary error:error cloudCompletionBlock:cloudBlock];
         
         BOOL success = false;
         
@@ -350,7 +345,7 @@ const char * queueReferenceKey = "queueReferenceKey";
             success = true;
         }
         
-        completionBlock(rec, success, error);
+        localBlock(rec, success, error);
     
     }];
     
@@ -360,19 +355,21 @@ const char * queueReferenceKey = "queueReferenceKey";
     
     NSError * error;
     
-    MMRecord * rec = [self create:dictionary error:&error];
+    MMRecord * rec = [self create:dictionary error:&error cloudCompletionBlock:nil];
     
     return  rec;
     
 }
 
-+(instancetype)create:(NSDictionary *)dictionary error:(NSError **)error{
++(instancetype)create:(NSDictionary *)dictionary
+                error:(NSError **)error
+ cloudCompletionBlock:( void (^)(MMRecord * record, BOOL success, NSError **))cloudBlock{
     
     MMRecord * rec = [[[self class] alloc] initWithValues:dictionary];
 
     //NSError * error;
     
-    [rec save:error];
+    [rec save:error cloudCompletionBlock:cloudBlock];
     
     return  rec;
     
@@ -762,7 +759,6 @@ const char * queueReferenceKey = "queueReferenceKey";
     
 }
 
-
 -(NSString *)idHash{
 
     return [[self class]idHashWithIdValues:[self idValues]];
@@ -867,14 +863,23 @@ const char * queueReferenceKey = "queueReferenceKey";
     
 }
 
-
 -(void)recacheActiveStore{
     
     [MMService addRecordToActiveRecords:self];
     
 }
 
+-(void)setCloudChangeTag:(NSString *)cloudChangeTag{
+    
+    //_cloudChangeTag = cloudChangeTag;
+    
+}
 
+-(NSString *)cloudChangeTag{
+    
+    return nil;
+    
+}
 
 -(NSString *)description{
     
@@ -918,8 +923,7 @@ const char * queueReferenceKey = "queueReferenceKey";
     
     
     MMEntity * entity = [self entity];
-    
-    
+        
     NSString * selectorName = NSStringFromSelector(aSEL);
     
     MMAttribute * attr = nil;
@@ -953,12 +957,9 @@ const char * queueReferenceKey = "queueReferenceKey";
         return [super resolveInstanceMethod:aSEL];
     }
     
-
-    
     MMDebug(@"blah sel %@", NSStringFromSelector(aSEL));
     
     NSString * type = getPropertyTypeName([self class], propertyName);
-    
     
     if (rel != nil) {
         if (setter) {
@@ -992,7 +993,7 @@ const char * queueReferenceKey = "queueReferenceKey";
             else{
                 class_addMethod([self class], aSEL, (IMP)setValueIMP, "v@:@");
             }
-        } else {            
+        } else {
             
             if ([type isEqualToString:@"int"]) {
                 class_addMethod([self class], aSEL, (IMP)valueIntIMP, "v@:@");
